@@ -6,6 +6,14 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
+      "Gallaria_DC.GUI/1.0.0": {
+        "dependencies": {
+          "MahApps.Metro": "2.4.9"
+        },
+        "runtime": {
+          "Gallaria_DC.GUI.dll": {}
+        }
+      },
       "ControlzEx/4.4.0": {
         "dependencies": {
           "Microsoft.Xaml.Behaviors.Wpf": "1.1.19",
@@ -42,17 +50,15 @@
           }
         }
       },
-      "System.Text.Json/4.7.2": {
-        "runtime": {
-          "lib/netcoreapp3.0/System.Text.Json.dll": {
-            "assemblyVersion": "4.0.1.2",
-            "fileVersion": "4.700.20.21406"
-          }
-        }
-      }
+      "System.Text.Json/4.7.2": {}
     }
   },
   "libraries": {
+    "Gallaria_DC.GUI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "ControlzEx/4.4.0": {
       "type": "package",
       "serviceable": true,
