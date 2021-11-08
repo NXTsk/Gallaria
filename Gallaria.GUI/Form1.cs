@@ -22,7 +22,7 @@ namespace Gallaria.GUI
         public Form1()
         {
             InitializeComponent();
-            radioButtonBrush.Checked = true;
+            toolStripBrush.Checked = true;
             g = panelDrawingCanvas.CreateGraphics();
             //smoothing the drawing line
             p.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
@@ -36,12 +36,12 @@ namespace Gallaria.GUI
 
         private void panelDrawingCanvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && radioButtonBrush.Checked)
+            if (e.Button == MouseButtons.Left && toolStripBrush.Checked)
             {
                 current = e.Location;
                 g.DrawLine(p, old, current);
                 old = current;
-            } else if (e.Button == MouseButtons.Left && radioButtonEraser.Checked)
+            } else if (e.Button == MouseButtons.Left && toolStripEraser.Checked)
             {
                 current = e.Location;
                 g.DrawLine(pe, old, current);
@@ -61,10 +61,30 @@ namespace Gallaria.GUI
 
         private void trackBarSize_Scroll(object sender, EventArgs e)
         {
-            p.Width = trackBarSize.Value;
-            pe.Width = trackBarSize.Value;
+            p.Width = trackBarSize2.Value;
+            pe.Width = trackBarSize2.Value;
         }
 
+        private void toolStripButton_Click(object sender, EventArgs e)
+        {
+            foreach (ToolStripButton item in ((ToolStripButton)sender).GetCurrentParent().Items)
+            {
+                if (item == sender) item.Checked = true;
+                if ((item != null) && (item != sender))
+                {
+                    item.Checked = false;
+                }
+            }
+        }
 
+        private void toolStripButtonColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            if (cd.ShowDialog() == DialogResult.OK)
+            {
+                p.Color = cd.Color;
+                toolStripButtonColor.BackColor = cd.Color;
+            }
+        }
     }
 }

@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Forms;
+
 namespace Gallaria.GUI
 {
     partial class Form1
@@ -29,159 +31,168 @@ namespace Gallaria.GUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.trackBarSize = new System.Windows.Forms.TrackBar();
-            this.buttonColorPicker = new System.Windows.Forms.Button();
-            this.radioButtonSelect = new System.Windows.Forms.RadioButton();
-            this.radioButtonEraser = new System.Windows.Forms.RadioButton();
-            this.radioButtonBrush = new System.Windows.Forms.RadioButton();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.sidebar = new System.Windows.Forms.SplitContainer();
             this.panelDrawingCanvas = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarSize)).BeginInit();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.trackBarSize2 = new System.Windows.Forms.TrackBar();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripBrush = new System.Windows.Forms.ToolStripButton();
+            this.toolStripEraser = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonColor = new System.Windows.Forms.ToolStripButton();
+            ((System.ComponentModel.ISupportInitialize)(this.sidebar)).BeginInit();
+            this.sidebar.Panel2.SuspendLayout();
+            this.sidebar.SuspendLayout();
+            this.panelDrawingCanvas.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSize2)).BeginInit();
+            this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // splitContainer1
+            // sidebar
             // 
-            this.splitContainer1.Cursor = System.Windows.Forms.Cursors.VSplit;
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
+            this.sidebar.Cursor = System.Windows.Forms.Cursors.VSplit;
+            this.sidebar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sidebar.Location = new System.Drawing.Point(0, 0);
+            this.sidebar.Name = "sidebar";
             // 
-            // splitContainer1.Panel1
+            // sidebar.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
+            this.sidebar.Panel1.BackColor = System.Drawing.Color.DeepSkyBlue;
             // 
-            // splitContainer1.Panel2
+            // sidebar.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.panelDrawingCanvas);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 450);
-            this.splitContainer1.SplitterDistance = 266;
-            this.splitContainer1.TabIndex = 0;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Cursor = System.Windows.Forms.Cursors.VSplit;
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Cursor = System.Windows.Forms.Cursors.Arrow;
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.trackBarSize);
-            this.splitContainer2.Panel2.Controls.Add(this.buttonColorPicker);
-            this.splitContainer2.Panel2.Controls.Add(this.radioButtonSelect);
-            this.splitContainer2.Panel2.Controls.Add(this.radioButtonEraser);
-            this.splitContainer2.Panel2.Controls.Add(this.radioButtonBrush);
-            this.splitContainer2.Panel2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.splitContainer2.Size = new System.Drawing.Size(266, 450);
-            this.splitContainer2.SplitterDistance = 123;
-            this.splitContainer2.TabIndex = 0;
-            // 
-            // trackBarSize
-            // 
-            this.trackBarSize.Location = new System.Drawing.Point(3, 89);
-            this.trackBarSize.Maximum = 20;
-            this.trackBarSize.Minimum = 2;
-            this.trackBarSize.Name = "trackBarSize";
-            this.trackBarSize.Size = new System.Drawing.Size(130, 56);
-            this.trackBarSize.TabIndex = 4;
-            this.trackBarSize.Value = 2;
-            this.trackBarSize.Scroll += new System.EventHandler(this.trackBarSize_Scroll);
-            // 
-            // buttonColorPicker
-            // 
-            this.buttonColorPicker.Location = new System.Drawing.Point(6, 188);
-            this.buttonColorPicker.Name = "buttonColorPicker";
-            this.buttonColorPicker.Size = new System.Drawing.Size(94, 29);
-            this.buttonColorPicker.TabIndex = 3;
-            this.buttonColorPicker.Text = "Color";
-            this.buttonColorPicker.UseVisualStyleBackColor = true;
-            this.buttonColorPicker.Click += new System.EventHandler(this.buttonColorPicker_Click);
-            // 
-            // radioButtonSelect
-            // 
-            this.radioButtonSelect.AutoSize = true;
-            this.radioButtonSelect.Location = new System.Drawing.Point(3, 151);
-            this.radioButtonSelect.Name = "radioButtonSelect";
-            this.radioButtonSelect.Size = new System.Drawing.Size(70, 24);
-            this.radioButtonSelect.TabIndex = 0;
-            this.radioButtonSelect.Text = "Select";
-            this.radioButtonSelect.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonEraser
-            // 
-            this.radioButtonEraser.AutoSize = true;
-            this.radioButtonEraser.Location = new System.Drawing.Point(3, 59);
-            this.radioButtonEraser.Name = "radioButtonEraser";
-            this.radioButtonEraser.Size = new System.Drawing.Size(70, 24);
-            this.radioButtonEraser.TabIndex = 0;
-            this.radioButtonEraser.Text = "Eraser";
-            this.radioButtonEraser.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonBrush
-            // 
-            this.radioButtonBrush.AutoSize = true;
-            this.radioButtonBrush.Location = new System.Drawing.Point(3, 29);
-            this.radioButtonBrush.Name = "radioButtonBrush";
-            this.radioButtonBrush.Size = new System.Drawing.Size(66, 24);
-            this.radioButtonBrush.TabIndex = 0;
-            this.radioButtonBrush.Text = "Brush";
-            this.radioButtonBrush.UseVisualStyleBackColor = true;
+            this.sidebar.Panel2.Controls.Add(this.panelDrawingCanvas);
+            this.sidebar.Size = new System.Drawing.Size(800, 450);
+            this.sidebar.SplitterDistance = 157;
+            this.sidebar.TabIndex = 0;
             // 
             // panelDrawingCanvas
             // 
+            this.panelDrawingCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelDrawingCanvas.BackColor = System.Drawing.Color.White;
+            this.panelDrawingCanvas.Controls.Add(this.groupBox1);
             this.panelDrawingCanvas.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.panelDrawingCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDrawingCanvas.Location = new System.Drawing.Point(0, 0);
             this.panelDrawingCanvas.Name = "panelDrawingCanvas";
-            this.panelDrawingCanvas.Size = new System.Drawing.Size(530, 450);
+            this.panelDrawingCanvas.Size = new System.Drawing.Size(639, 450);
             this.panelDrawingCanvas.TabIndex = 0;
             this.panelDrawingCanvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelDrawingCanvas_MouseDown);
             this.panelDrawingCanvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelDrawingCanvas_MouseMove);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox1.Controls.Add(this.trackBarSize2);
+            this.groupBox1.Controls.Add(this.toolStrip);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(0);
+            this.groupBox1.Size = new System.Drawing.Size(639, 77);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
+            // trackBarSize2
+            // 
+            this.trackBarSize2.Location = new System.Drawing.Point(95, 11);
+            this.trackBarSize2.Maximum = 30;
+            this.trackBarSize2.Minimum = 2;
+            this.trackBarSize2.Name = "trackBarSize2";
+            this.trackBarSize2.Size = new System.Drawing.Size(182, 56);
+            this.trackBarSize2.SmallChange = 2;
+            this.trackBarSize2.TabIndex = 1;
+            this.trackBarSize2.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.trackBarSize2.Value = 2;
+            this.trackBarSize2.Scroll += new System.EventHandler(this.trackBarSize_Scroll);
+            // 
+            // toolStrip
+            // 
+            this.toolStrip.BackColor = System.Drawing.SystemColors.Control;
+            this.toolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripBrush,
+            this.toolStripEraser,
+            this.toolStripButtonColor});
+            this.toolStrip.Location = new System.Drawing.Point(0, 20);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Size = new System.Drawing.Size(639, 29);
+            this.toolStrip.TabIndex = 0;
+            this.toolStrip.Text = "toolStrip1";
+            // 
+            // toolStripBrush
+            // 
+            this.toolStripBrush.AutoSize = false;
+            this.toolStripBrush.AutoToolTip = false;
+            this.toolStripBrush.Checked = true;
+            this.toolStripBrush.CheckOnClick = true;
+            this.toolStripBrush.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripBrush.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBrush.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBrush.Image")));
+            this.toolStripBrush.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBrush.Name = "toolStripBrush";
+            this.toolStripBrush.Size = new System.Drawing.Size(29, 24);
+            this.toolStripBrush.Text = "toolStripButton1";
+            this.toolStripBrush.Click += new System.EventHandler(this.toolStripButton_Click);
+            // 
+            // toolStripEraser
+            // 
+            this.toolStripEraser.CheckOnClick = true;
+            this.toolStripEraser.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripEraser.Image = ((System.Drawing.Image)(resources.GetObject("toolStripEraser.Image")));
+            this.toolStripEraser.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripEraser.Name = "toolStripEraser";
+            this.toolStripEraser.Size = new System.Drawing.Size(29, 26);
+            this.toolStripEraser.Text = "toolStripButton1";
+            this.toolStripEraser.Click += new System.EventHandler(this.toolStripButton_Click);
+            // 
+            // toolStripButtonColor
+            // 
+            this.toolStripButtonColor.AutoSize = false;
+            this.toolStripButtonColor.BackColor = System.Drawing.Color.Black;
+            this.toolStripButtonColor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.toolStripButtonColor.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonColor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonColor.Name = "toolStripButtonColor";
+            this.toolStripButtonColor.Padding = new System.Windows.Forms.Padding(1);
+            this.toolStripButtonColor.Size = new System.Drawing.Size(29, 26);
+            this.toolStripButtonColor.Click += new System.EventHandler(this.toolStripButtonColor_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.sidebar);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            this.splitContainer2.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarSize)).EndInit();
+            this.sidebar.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.sidebar)).EndInit();
+            this.sidebar.ResumeLayout(false);
+            this.panelDrawingCanvas.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSize2)).EndInit();
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.RadioButton radioButtonSelect;
-        private System.Windows.Forms.RadioButton radioButtonEraser;
-        private System.Windows.Forms.RadioButton radioButtonBrush;
+        private System.Windows.Forms.SplitContainer sidebar;
         private System.Windows.Forms.Panel panelDrawingCanvas;
-        private System.Windows.Forms.Button buttonColorPicker;
-        private System.Windows.Forms.TrackBar trackBarSize;
+        private System.Windows.Forms.ToolStrip toolStrip;
+        private System.Windows.Forms.ToolStripButton toolStripBrush;
+        private System.Windows.Forms.ToolStripButton toolStripEraser;
+        private System.Windows.Forms.ToolStripButton toolStripButtonColor;
+        private TrackBar trackBarSize2;
+        private GroupBox groupBox1;
     }
 }
 
