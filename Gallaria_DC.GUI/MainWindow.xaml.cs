@@ -25,5 +25,33 @@ namespace Gallaria_DC.GUI
         {
             InitializeComponent();
         }
+
+        private void ToolButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Get a reference to the radiobutton
+            var radiobutton = sender as RadioButton;
+
+            // Get the radiobutton pressed
+            string radioBPressed = radiobutton.Content.ToString();
+
+            // Change settings based on button
+            if (radioBPressed == "Brush")
+            {
+                this.DrawingCanvas.EditingMode = InkCanvasEditingMode.Ink;
+            }
+            else if (radioBPressed == "Eraser")
+            {
+                this.DrawingCanvas.EditingMode = InkCanvasEditingMode.EraseByPoint;
+            }
+            else if (radioBPressed == "Select")
+            {
+                this.DrawingCanvas.EditingMode = InkCanvasEditingMode.Select;
+            }
+        }
+
+        private void ColorButton_Click(object sender, RoutedEventArgs e)
+        {
+        
+        }
     }
 }
