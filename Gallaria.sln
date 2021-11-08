@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gallaria_DC.GUI", "Gallaria_DC.GUI\Gallaria_DC.GUI.csproj", "{D76D0659-1D4B-489B-8586-A8686B9BA357}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gallaria_DC.GUI", "Gallaria_DC.GUI\Gallaria_DC.GUI.csproj", "{D76D0659-1D4B-489B-8586-A8686B9BA357}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gallaria.GUI", "Gallaria.GUI\Gallaria.GUI.csproj", "{45A2CE38-9D76-4EC9-9B85-79418FB1FB24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D76D0659-1D4B-489B-8586-A8686B9BA357}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D76D0659-1D4B-489B-8586-A8686B9BA357}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D76D0659-1D4B-489B-8586-A8686B9BA357}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45A2CE38-9D76-4EC9-9B85-79418FB1FB24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45A2CE38-9D76-4EC9-9B85-79418FB1FB24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45A2CE38-9D76-4EC9-9B85-79418FB1FB24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45A2CE38-9D76-4EC9-9B85-79418FB1FB24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

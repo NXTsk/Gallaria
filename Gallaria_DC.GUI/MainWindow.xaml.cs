@@ -24,6 +24,7 @@ namespace Gallaria_DC.GUI
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         private void ToolButton_Click(object sender, RoutedEventArgs e)
@@ -37,21 +38,33 @@ namespace Gallaria_DC.GUI
             // Change settings based on button
             if (radioBPressed == "Brush")
             {
-                this.DrawingCanvas.EditingMode = InkCanvasEditingMode.Ink;
+                this.drawingCanvas.EditingMode = InkCanvasEditingMode.Ink;
             }
             else if (radioBPressed == "Eraser")
             {
-                this.DrawingCanvas.EditingMode = InkCanvasEditingMode.EraseByPoint;
+                this.drawingCanvas.EditingMode = InkCanvasEditingMode.EraseByPoint;
             }
             else if (radioBPressed == "Select")
             {
-                this.DrawingCanvas.EditingMode = InkCanvasEditingMode.Select;
+                this.drawingCanvas.EditingMode = InkCanvasEditingMode.Select;
             }
         }
 
-        private void ColorButton_Click(object sender, RoutedEventArgs e)
+        private void BrushSizeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-        
+            ////Get Slider reference
+            //var slider = sender as Slider;
+            ////Get Slider value
+            //double value = slider.Value;
+            ////Change brush size
+            //strokeAttribute.Width = value;
+            ////drawingCanvas.DefaultDrawingAttributes.Height = value;
+            //////strokeAttribute.Height = value;
         }
+
+        //private void ClrPcker_Background_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
+        //{
+        //    TextBox.Text = "#" + ClrPcker_Background.SelectedColor.R.ToString() + ClrPcker_Background.SelectedColor.G.ToString() + ClrPcker_Background.SelectedColor.B.ToString();
+        //}
     }
 }

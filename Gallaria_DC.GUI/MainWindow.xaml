@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:Gallaria_DC.GUI"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -16,7 +17,8 @@
         <ToolBarTray Grid.Column="1" Orientation="Vertical">
             <ToolBar HorizontalAlignment="Center" Height="434" VerticalAlignment="Center" Width="110">
                 <RadioButton Name="brushRadioBtn" Click="ToolButton_Click" Content="Brush" Background="#FFD2D2D2" Height="50"/>
-                <Button Name="colorBtn" Click="ColorButton_Click" Background="#FFD2D2D2" Content="Color" Height="50"/>
+                <Slider Name="brushSizeSlider" ValueChanged = "BrushSizeSlider_ValueChanged" Background="White" Minimum="2" Maximum="10" TickFrequency="1"/>
+                <Button Name="colorBtn" Background="#FFD2D2D2" Content="Color" Height="50"/>
                 <RadioButton Name="eraserRadioBtn" Click="ToolButton_Click" Content="Eraser" Background="#FFD2D2D2" Height="50"/>
                 <RadioButton Name="selectRadioBtn" Click="ToolButton_Click" Content="Select" Background="#FFD2D2D2" Height="50"/>
                 <Button Name="undoBtn" Background="#FFD2D2D2" Content="Undo"/>
@@ -25,26 +27,11 @@
                 <Button Name="loadBtn" Background="#FFD2D2D2" Content="Load"/>
             </ToolBar>
         </ToolBarTray>
-        <InkCanvas Name="DrawingCanvas"  Grid.Column="2">
+        <InkCanvas Name="drawingCanvas"  Grid.Column="2">
             <InkCanvas.DefaultDrawingAttributes>
                 <DrawingAttributes x:Name="strokeAttribute" Width="3" Height="3" Color="Black"/>
             </InkCanvas.DefaultDrawingAttributes>
         </InkCanvas>
-        <ToggleButton x:Name="TogglePopupButton" Height="30" Width="150" HorizontalAlignment="Left">
-            <StackPanel>
-                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Run Text="Is button toggled? " />
-            <Run Text="{Binding IsChecked, ElementName=TogglePopupButton}" />
-                </TextBlock>
-
-                <Popup Name="myPopup" IsOpen="{Binding IsChecked, ElementName=TogglePopupButton}">
-                    <Border BorderThickness="1">
-                        <TextBlock Name="myPopupText" Background="LightBlue" Foreground="Blue" Padding="30">
-                Popup Text
-                        </TextBlock>
-                    </Border>
-                </Popup>
-            </StackPanel>
-        </ToggleButton>
+        
     </Grid>
 </mah:MetroWindow>
