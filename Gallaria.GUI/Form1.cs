@@ -86,5 +86,15 @@ namespace Gallaria.GUI
                 toolStripButtonColor.BackColor = cd.Color;
             }
         }
+
+        private void toolStripButtonUndo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButtonRedo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

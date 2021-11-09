@@ -22,3 +22,27 @@ D:\Zythaar\Documents\UCN\3rd Semester\Project\code\Gallaria\Gallaria.GUI\bin\Deb
 D:\Zythaar\Documents\UCN\3rd Semester\Project\code\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\Microsoft.Xaml.Behaviors.dll
 D:\Zythaar\Documents\UCN\3rd Semester\Project\code\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\de\MahApps.Metro.resources.dll
 D:\Zythaar\Documents\UCN\3rd Semester\Project\code\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.csproj.CopyComplete
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\Gallaria.GUI.exe
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\Gallaria.GUI.deps.json
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\Gallaria.GUI.runtimeconfig.json
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\Gallaria.GUI.runtimeconfig.dev.json
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\Gallaria.GUI.dll
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\ref\Gallaria.GUI.dll
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\Gallaria.GUI.pdb
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\ControlzEx.dll
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\MahApps.Metro.dll
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\Microsoft.Xaml.Behaviors.dll
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\de\MahApps.Metro.resources.dll
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.csproj.AssemblyReference.cache
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.Form1.resources
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.Properties.Resources.resources
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.csproj.GenerateResource.cache
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.AssemblyInfoInputs.cache
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.AssemblyInfo.cs
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.csproj.CoreCompileInputs.cache
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.csproj.CopyComplete
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.dll
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\ref\Gallaria.GUI.dll
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.pdb
+C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.genruntimeconfig.cache
