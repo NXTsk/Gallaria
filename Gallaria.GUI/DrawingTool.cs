@@ -8,24 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
 namespace Gallaria.GUI
 {
-    public partial class Form1 : Form
+    public partial class DrawingTool : Form
     {
         public Point current = new Point();
         public Point old = new Point();
         public Pen p = new Pen(Color.Black, 5);
         public Pen pe = new Pen(Color.White, 5);
         public Graphics g;
-        
-        Bitmap bitmap = new Bitmap(1520, 880);
+
+        Bitmap bitmap = new Bitmap(1700, 820);
         Image openedFile;
 
 
 
 
-        public Form1()
+        public DrawingTool()
         {
             InitializeComponent();
             toolStripBrush.Checked = true;
@@ -58,7 +57,8 @@ namespace Gallaria.GUI
                 current = e.Location;
                 g.DrawLine(p, old, current);
                 old = current;
-            } else if (e.Button == MouseButtons.Left && toolStripEraser.Checked)
+            }
+            else if (e.Button == MouseButtons.Left && toolStripEraser.Checked)
             {
                 current = e.Location;
                 g.DrawLine(pe, old, current);
@@ -66,6 +66,16 @@ namespace Gallaria.GUI
             }
             pbCanvas.Image = bitmap;
         }
+
+        private void buttonColorPicker_Click(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            if (cd.ShowDialog() == DialogResult.OK)
+            {
+                p.Color = cd.Color;
+            }
+        }
+
 
         private void trackBarSize_Scroll(object sender, EventArgs e)
         {
