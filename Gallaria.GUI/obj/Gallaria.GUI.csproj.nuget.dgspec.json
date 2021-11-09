@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\matte\\Desktop\\UCN 2nd year\\Project\\Gallaria\\Gallaria.GUI\\Gallaria.GUI.csproj": {}
+    "C:\\Users\\neagu\\Documents\\GitHub\\Gallaria\\Gallaria.GUI\\Gallaria.GUI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\matte\\Desktop\\UCN 2nd year\\Project\\Gallaria\\Gallaria.GUI\\Gallaria.GUI.csproj": {
+    "C:\\Users\\neagu\\Documents\\GitHub\\Gallaria\\Gallaria.GUI\\Gallaria.GUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\matte\\Desktop\\UCN 2nd year\\Project\\Gallaria\\Gallaria.GUI\\Gallaria.GUI.csproj",
+        "projectUniqueName": "C:\\Users\\neagu\\Documents\\GitHub\\Gallaria\\Gallaria.GUI\\Gallaria.GUI.csproj",
         "projectName": "Gallaria.GUI",
-        "projectPath": "C:\\Users\\matte\\Desktop\\UCN 2nd year\\Project\\Gallaria\\Gallaria.GUI\\Gallaria.GUI.csproj",
-        "packagesPath": "C:\\Users\\matte\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\matte\\Desktop\\UCN 2nd year\\Project\\Gallaria\\Gallaria.GUI\\obj\\",
+        "projectPath": "C:\\Users\\neagu\\Documents\\GitHub\\Gallaria\\Gallaria.GUI\\Gallaria.GUI.csproj",
+        "packagesPath": "C:\\Users\\neagu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\neagu\\Documents\\GitHub\\Gallaria\\Gallaria.GUI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\matte\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\neagu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

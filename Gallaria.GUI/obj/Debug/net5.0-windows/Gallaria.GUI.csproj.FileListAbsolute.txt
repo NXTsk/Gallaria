@@ -46,3 +46,27 @@ C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\obj\Debug\net5
 C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\ref\Gallaria.GUI.dll
 C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.pdb
 C:\Users\matte\Desktop\UCN 2nd year\Project\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.genruntimeconfig.cache
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\Gallaria.GUI.exe
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\Gallaria.GUI.deps.json
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\Gallaria.GUI.runtimeconfig.json
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\Gallaria.GUI.runtimeconfig.dev.json
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\Gallaria.GUI.dll
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\ref\Gallaria.GUI.dll
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\Gallaria.GUI.pdb
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\ControlzEx.dll
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\MahApps.Metro.dll
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\Microsoft.Xaml.Behaviors.dll
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\bin\Debug\net5.0-windows\de\MahApps.Metro.resources.dll
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.csproj.AssemblyReference.cache
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.Form1.resources
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.Properties.Resources.resources
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.csproj.GenerateResource.cache
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.AssemblyInfoInputs.cache
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.AssemblyInfo.cs
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.csproj.CoreCompileInputs.cache
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.csproj.CopyComplete
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.dll
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\ref\Gallaria.GUI.dll
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.pdb
+C:\Users\neagu\Documents\GitHub\Gallaria\Gallaria.GUI\obj\Debug\net5.0-windows\Gallaria.GUI.genruntimeconfig.cache

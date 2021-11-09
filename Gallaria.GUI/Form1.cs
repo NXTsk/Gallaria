@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Gallaria.GUI
 {
     public partial class Form1 : Form
@@ -17,25 +18,41 @@ namespace Gallaria.GUI
         public Pen p = new Pen(Color.Black, 5);
         public Pen pe = new Pen(Color.White, 5);
         public Graphics g;
+        
+        Bitmap bitmap = new Bitmap(1920, 1080);
+        Image openedFile;
+
+
 
 
         public Form1()
         {
             InitializeComponent();
             toolStripBrush.Checked = true;
-            g = panelDrawingCanvas.CreateGraphics();
+            g = pbCanvas.CreateGraphics();
+
             //smoothing the drawing line
             p.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
             pe.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
+
+            //Changing the background of saved picture to white
+            for (int i = 0; i < bitmap.Width; i++)
+            {
+                for (int j = 0; j < bitmap.Height; j++)
+                {
+                    bitmap.SetPixel(i, j, Color.White);
+                }
+            }
         }
 
-        private void panelDrawingCanvas_MouseDown(object sender, MouseEventArgs e)
+        private void PbCanvas_MouseDown(object sender, MouseEventArgs e)
         {
             old = e.Location;
         }
 
-        private void panelDrawingCanvas_MouseMove(object sender, MouseEventArgs e)
+        private void PbCanvas_MouseMove(object sender, MouseEventArgs e)
         {
+            g = Graphics.FromImage(bitmap);
             if (e.Button == MouseButtons.Left && toolStripBrush.Checked)
             {
                 current = e.Location;
@@ -47,6 +64,7 @@ namespace Gallaria.GUI
                 g.DrawLine(pe, old, current);
                 old = current;
             }
+            pbCanvas.Image = bitmap;
         }
 
         private void buttonColorPicker_Click(object sender, EventArgs e)
@@ -95,6 +113,41 @@ namespace Gallaria.GUI
         private void toolStripButtonRedo_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void SaveMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Jpeg Image|*.jpg|Bitmap Image *.bmp|";
+            saveFileDialog.Title = "Save an Image File";
+            saveFileDialog.ShowDialog();
+            if (saveFileDialog.FileName != "")
+            {
+                System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog.OpenFile();
+                switch (saveFileDialog.FilterIndex)
+                {
+                    case 1:
+                        this.pbCanvas.Image.Save(fs, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        break;
+                    case 2:
+                        this.pbCanvas.Image.Save(fs, System.Drawing.Imaging.ImageFormat.Bmp);
+                        break;
+                }
+                fs.Close();
+            }
+        }
+
+        private void OpenMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            DialogResult dr = op.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                openedFile = Image.FromFile(op.FileName);
+                bitmap = new Bitmap(openedFile);
+                pbCanvas.ImageLocation = op.FileName;
+                pbCanvas.Image = bitmap;
+            }
         }
     }
 }
