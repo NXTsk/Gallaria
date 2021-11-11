@@ -1,32 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.GUI\\Gallaria.GUI.csproj": {}
+    "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.Tests\\Gallaria.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.GUI\\Gallaria.GUI.csproj": {
+    "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.Tests\\Gallaria.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.GUI\\Gallaria.GUI.csproj",
-        "projectName": "Gallaria.GUI",
-        "projectPath": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.GUI\\Gallaria.GUI.csproj",
+        "projectUniqueName": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.Tests\\Gallaria.Tests.csproj",
+        "projectName": "Gallaria.Tests",
+        "projectPath": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.Tests\\Gallaria.Tests.csproj",
         "packagesPath": "C:\\Users\\CallM\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.GUI\\obj\\",
+        "outputPath": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\CallM\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0-windows7.0"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0-windows7.0": {
-            "targetAlias": "net5.0-windows",
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {}
           }
         },
@@ -37,12 +37,24 @@
         }
       },
       "frameworks": {
-        "net5.0-windows7.0": {
-          "targetAlias": "net5.0-windows",
+        "net5.0": {
+          "targetAlias": "net5.0",
           "dependencies": {
-            "mahapps.metro": {
+            "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[2.4.9, )"
+              "version": "[16.9.4, )"
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[3.13.1, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[3.17.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[3.0.2, )"
             }
           },
           "imports": [
@@ -58,9 +70,6 @@
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
-            },
-            "Microsoft.WindowsDesktop.App.WindowsForms": {
-              "privateAssets": "none"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"

@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gallaria.GUI", "Gallaria.GUI\Gallaria.GUI.csproj", "{45A2CE38-9D76-4EC9-9B85-79418FB1FB24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{4D23FB65-CE9D-494D-B10D-4BD15765EAEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{4D23FB65-CE9D-494D-B10D-4BD15765EAEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gallaria.API", "Gallaria.API\Gallaria.API.csproj", "{418892A9-A8C3-475D-A6E4-95411DB374FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gallaria.Tests", "Gallaria.Tests\Gallaria.Tests.csproj", "{C6C497E0-B1B4-42EC-84D6-FF045E20127A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{4D23FB65-CE9D-494D-B10D-4BD15765EAEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D23FB65-CE9D-494D-B10D-4BD15765EAEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D23FB65-CE9D-494D-B10D-4BD15765EAEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{418892A9-A8C3-475D-A6E4-95411DB374FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{418892A9-A8C3-475D-A6E4-95411DB374FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{418892A9-A8C3-475D-A6E4-95411DB374FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{418892A9-A8C3-475D-A6E4-95411DB374FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6C497E0-B1B4-42EC-84D6-FF045E20127A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6C497E0-B1B4-42EC-84D6-FF045E20127A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6C497E0-B1B4-42EC-84D6-FF045E20127A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6C497E0-B1B4-42EC-84D6-FF045E20127A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
