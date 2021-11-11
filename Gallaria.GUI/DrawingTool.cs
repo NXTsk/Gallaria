@@ -18,15 +18,24 @@ namespace Gallaria.GUI
         public Pen pe = new Pen(Color.White, 5);
         public Graphics g;
 
-        Bitmap bitmap = new Bitmap(1700, 820);
+        private const int Height = 820; 
+        private const int Width = 1700; 
+
+        Bitmap bitmap;
         Image openedFile;
 
-
+        private Stack<Bitmap> undoStack;
+        private Stack<Bitmap> redoStack;
 
 
         public DrawingTool()
         {
             InitializeComponent();
+
+            this.bitmap = new Bitmap(Width, Height);
+            this.undoStack = new Stack<Bitmap>();
+            this.redoStack = new Stack<Bitmap>();
+
             toolStripBrush.Checked = true;
             g = pbCanvas.CreateGraphics();
 
@@ -35,18 +44,14 @@ namespace Gallaria.GUI
             pe.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
 
             //Changing the background of saved picture to white
-            for (int i = 0; i < bitmap.Width; i++)
-            {
-                for (int j = 0; j < bitmap.Height; j++)
-                {
-                    bitmap.SetPixel(i, j, Color.White);
-                }
-            }
+            
         }
 
         private void PbCanvas_MouseDown(object sender, MouseEventArgs e)
         {
             old = e.Location;
+
+            AddStep();
         }
 
         private void PbCanvas_MouseMove(object sender, MouseEventArgs e)
@@ -64,7 +69,8 @@ namespace Gallaria.GUI
                 g.DrawLine(pe, old, current);
                 old = current;
             }
-            pbCanvas.Image = bitmap;
+            UpdateCanvas();
+            
         }
 
         private void buttonColorPicker_Click(object sender, EventArgs e)
@@ -107,12 +113,22 @@ namespace Gallaria.GUI
 
         private void toolStripButtonUndo_Click(object sender, EventArgs e)
         {
-
+            if(undoStack.Count >= 1)
+            {
+                Bitmap bitmap = UndoStep();
+                UseStep(bitmap);
+                UpdateCanvas();
+            }
         }
 
         private void toolStripButtonRedo_Click(object sender, EventArgs e)
         {
-
+            if(redoStack.Count >= 1)
+            {
+                Bitmap bitmap = RedoStep();
+                UseStep(bitmap);
+                UpdateCanvas();
+            }
         }
 
         private void SaveMenuItem_Click(object sender, EventArgs e)
@@ -148,6 +164,52 @@ namespace Gallaria.GUI
                 pbCanvas.ImageLocation = op.FileName;
                 pbCanvas.Image = bitmap;
             }
+        }
+
+        private void AddStep()
+        {
+            this.undoStack.Push(new Bitmap(this.bitmap));
+        }
+
+        private Bitmap UndoStep()
+        {
+            // return bitmap
+            Bitmap returnMap = this.undoStack.Pop();
+
+            this.redoStack.Push(this.bitmap);
+
+            return returnMap;
+        }
+
+        private Bitmap RedoStep()
+        {
+            // return bitmap
+            Bitmap returnMap = this.redoStack.Pop();
+
+            this.undoStack.Push(this.bitmap);
+
+            return returnMap;
+        }
+
+        private void UseStep(Bitmap bitmap)
+        {
+            this.bitmap = bitmap;
+        }
+
+        private void ClearBitmap()
+        {
+            for (int i = 0; i < bitmap.Width; i++)
+            {
+                for (int j = 0; j < bitmap.Height; j++)
+                {
+                    this.bitmap.SetPixel(i, j, Color.White);
+                }
+            }
+        }
+
+        private void UpdateCanvas()
+        {
+            pbCanvas.Image = bitmap;
         }
     }
 }
