@@ -170,19 +170,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\CallM\\.nuget\\packages\\": {}
+    "C:\\Users\\Zythaar\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria_DC.GUI\\Gallaria_DC.GUI.csproj",
+      "projectUniqueName": "D:\\Zythaar\\Documents\\UCN\\3rd Semester\\Project\\code\\Gallaria\\Gallaria_DC.GUI\\Gallaria_DC.GUI.csproj",
       "projectName": "Gallaria_DC.GUI",
-      "projectPath": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria_DC.GUI\\Gallaria_DC.GUI.csproj",
-      "packagesPath": "C:\\Users\\CallM\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria_DC.GUI\\obj\\",
+      "projectPath": "D:\\Zythaar\\Documents\\UCN\\3rd Semester\\Project\\code\\Gallaria\\Gallaria_DC.GUI\\Gallaria_DC.GUI.csproj",
+      "packagesPath": "C:\\Users\\Zythaar\\.nuget\\packages\\",
+      "outputPath": "D:\\Zythaar\\Documents\\UCN\\3rd Semester\\Project\\code\\Gallaria\\Gallaria_DC.GUI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\CallM\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Zythaar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

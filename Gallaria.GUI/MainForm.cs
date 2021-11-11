@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,11 +22,17 @@ namespace Gallaria.GUI
         public MainForm()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
             btnCloseChildForm.Visible = false;
             this.Text = string.Empty;
-            //this.ControlBox = false;
-            //this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            this.ControlBox = false;
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
         }
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
 
         private void ActivateButton(object btnSender)
         {
@@ -72,7 +79,7 @@ namespace Gallaria.GUI
             this.panelDesktopPane.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
-            //lblTitle.Text = childForm.Text;
+            lblTitle.Text = childForm.Text;
         }
 
         private void buttonCreate_Click(object sender, EventArgs e)
@@ -89,10 +96,34 @@ namespace Gallaria.GUI
         private void Reset()
         {
             DisableButton();
-            //lblTitle.Text = "HOME";
+            lblTitle.Text = "HOME";
             panelTitleBar.BackColor = themeColor;
             currentButton = null;
             btnCloseChildForm.Visible = false;
+        }
+
+        private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+                this.WindowState = FormWindowState.Maximized;
+            else
+                this.WindowState = FormWindowState.Normal;
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

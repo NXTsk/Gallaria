@@ -222,7 +222,7 @@ namespace Gallaria.GUI
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "DrawingTool";
-            this.Text = "DrawingTool";
+            this.Text = "Create";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);

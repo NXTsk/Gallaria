@@ -103,6 +103,16 @@ namespace Gallaria.GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap crossIcon_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("crossIcon-32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap eraser_icon_125292 {
             get {
                 object obj = ResourceManager.GetObject("eraser_icon_125292", resourceCulture);

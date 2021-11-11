@@ -19,7 +19,7 @@ namespace Gallaria.GUI
         public Graphics g;
 
         private const int Height = 820; 
-        private const int Width = 1700; 
+        private const int Width = 1094; 
 
         Bitmap bitmap;
         Image openedFile;
