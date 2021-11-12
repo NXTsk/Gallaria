@@ -94,6 +94,7 @@ StyleCopReport.xml
 *.tlog
 *.vspscc
 *.vssscc
+*.cache
 .builds
 *.pidb
 *.svclog
@@ -387,3 +388,12 @@ FodyWeavers.xsd
 # JetBrains Rider
 .idea/
 *.sln.iml
+*.cache
+*.cache
+Gallaria.API/obj/project.nuget.cache
+*.cache
+*.cache
+*.editorconfig
+*.editorconfig
+*.json
+*.editorconfig

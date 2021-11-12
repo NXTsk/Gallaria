@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Zythaar\\Documents\\UCN\\3rd Semester\\Project\\code\\Gallaria\\Gallaria.Tests\\Gallaria.Tests.csproj": {}
+    "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.Tests\\Gallaria.Tests.csproj": {}
   },
   "projects": {
-    "D:\\Zythaar\\Documents\\UCN\\3rd Semester\\Project\\code\\Gallaria\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Zythaar\\Documents\\UCN\\3rd Semester\\Project\\code\\Gallaria\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "D:\\Zythaar\\Documents\\UCN\\3rd Semester\\Project\\code\\Gallaria\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\Zythaar\\.nuget\\packages\\",
-        "outputPath": "D:\\Zythaar\\Documents\\UCN\\3rd Semester\\Project\\code\\Gallaria\\DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\CallM\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Zythaar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\CallM\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -72,17 +72,17 @@
         }
       }
     },
-    "D:\\Zythaar\\Documents\\UCN\\3rd Semester\\Project\\code\\Gallaria\\Gallaria.Tests\\Gallaria.Tests.csproj": {
+    "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.Tests\\Gallaria.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Zythaar\\Documents\\UCN\\3rd Semester\\Project\\code\\Gallaria\\Gallaria.Tests\\Gallaria.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.Tests\\Gallaria.Tests.csproj",
         "projectName": "Gallaria.Tests",
-        "projectPath": "D:\\Zythaar\\Documents\\UCN\\3rd Semester\\Project\\code\\Gallaria\\Gallaria.Tests\\Gallaria.Tests.csproj",
-        "packagesPath": "C:\\Users\\Zythaar\\.nuget\\packages\\",
-        "outputPath": "D:\\Zythaar\\Documents\\UCN\\3rd Semester\\Project\\code\\Gallaria\\Gallaria.Tests\\obj\\",
+        "projectPath": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.Tests\\Gallaria.Tests.csproj",
+        "packagesPath": "C:\\Users\\CallM\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Zythaar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\CallM\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -96,8 +96,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\Zythaar\\Documents\\UCN\\3rd Semester\\Project\\code\\Gallaria\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "D:\\Zythaar\\Documents\\UCN\\3rd Semester\\Project\\code\\Gallaria\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\DataAccess\\DataAccess.csproj"
               }
             }
           }

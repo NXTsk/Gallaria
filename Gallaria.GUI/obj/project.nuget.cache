@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "Dk1q/Nnq6n70i6/eqerQD5qQZ8L36Agpy0hn21B4K/ondJRZw6WUn0SnwxBLWdBj5pYe6GNTlTkUZizFb6xfMA==",
+  "dgSpecHash": "IAj5shZ7Akz4yzv8DG1BuoOYuY6NF/Ss73bry4ADqIMpYJ4pb/HICT96GhpV3RaFZ78aD2sCR6PCTr7jHc2UmA==",
   "success": true,
-  "projectFilePath": "D:\\Zythaar\\Documents\\UCN\\3rd Semester\\Project\\code\\Gallaria\\Gallaria.GUI\\Gallaria.GUI.csproj",
+  "projectFilePath": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.GUI\\Gallaria.GUI.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Zythaar\\.nuget\\packages\\controlzex\\4.4.0\\controlzex.4.4.0.nupkg.sha512",
-    "C:\\Users\\Zythaar\\.nuget\\packages\\mahapps.metro\\2.4.9\\mahapps.metro.2.4.9.nupkg.sha512",
-    "C:\\Users\\Zythaar\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.19\\microsoft.xaml.behaviors.wpf.1.1.19.nupkg.sha512",
-    "C:\\Users\\Zythaar\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512"
+    "C:\\Users\\CallM\\.nuget\\packages\\controlzex\\4.4.0\\controlzex.4.4.0.nupkg.sha512",
+    "C:\\Users\\CallM\\.nuget\\packages\\mahapps.metro\\2.4.9\\mahapps.metro.2.4.9.nupkg.sha512",
+    "C:\\Users\\CallM\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.19\\microsoft.xaml.behaviors.wpf.1.1.19.nupkg.sha512",
+    "C:\\Users\\CallM\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512"
   ],
   "logs": []
 }
