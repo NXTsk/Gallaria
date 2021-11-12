@@ -44,7 +44,7 @@ namespace Gallaria.GUI
             pe.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
 
             //Changing the background of saved picture to white
-            
+            ClearBitmap();
         }
 
         private void PbCanvas_MouseDown(object sender, MouseEventArgs e)
