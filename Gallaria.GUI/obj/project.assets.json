@@ -170,19 +170,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\CallM\\.nuget\\packages\\": {}
+    "C:\\Users\\matte\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.GUI\\Gallaria.GUI.csproj",
+      "projectUniqueName": "C:\\Users\\matte\\Desktop\\UCN 2nd year\\Project\\Gallaria\\Gallaria.GUI\\Gallaria.GUI.csproj",
       "projectName": "Gallaria.GUI",
-      "projectPath": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.GUI\\Gallaria.GUI.csproj",
-      "packagesPath": "C:\\Users\\CallM\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.GUI\\obj\\",
+      "projectPath": "C:\\Users\\matte\\Desktop\\UCN 2nd year\\Project\\Gallaria\\Gallaria.GUI\\Gallaria.GUI.csproj",
+      "packagesPath": "C:\\Users\\matte\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\matte\\Desktop\\UCN 2nd year\\Project\\Gallaria\\Gallaria.GUI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\CallM\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\matte\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -231,7 +231,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

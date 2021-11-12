@@ -82,12 +82,12 @@ namespace Gallaria.GUI
             lblTitle.Text = childForm.Text;
         }
 
-        private void buttonCreate_Click(object sender, EventArgs e)
+        private void ButtonCreate_Click(object sender, EventArgs e)
         {
             OpenChildForm(new DrawingTool(), sender);
         }
 
-        private void btnCloseChildForm_Click(object sender, EventArgs e)
+        private void BtnCloseChildForm_Click(object sender, EventArgs e)
         {
             if (activeForm != null)
                 activeForm.Close();
@@ -102,18 +102,18 @@ namespace Gallaria.GUI
             btnCloseChildForm.Visible = false;
         }
 
-        private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
+        private void PanelTitleBar_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void BtnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void btnMaximize_Click(object sender, EventArgs e)
+        private void BtnMaximize_Click(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Normal)
                 this.WindowState = FormWindowState.Maximized;
@@ -121,7 +121,7 @@ namespace Gallaria.GUI
                 this.WindowState = FormWindowState.Normal;
         }
 
-        private void btnMinimize_Click(object sender, EventArgs e)
+        private void BtnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }

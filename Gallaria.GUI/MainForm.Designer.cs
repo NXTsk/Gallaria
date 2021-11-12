@@ -55,7 +55,7 @@ namespace Gallaria.GUI
             this.panelSidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelSidebar.Location = new System.Drawing.Point(0, 0);
             this.panelSidebar.Name = "panelSidebar";
-            this.panelSidebar.Size = new System.Drawing.Size(200, 553);
+            this.panelSidebar.Size = new System.Drawing.Size(200, 600);
             this.panelSidebar.TabIndex = 0;
             // 
             // button2
@@ -116,7 +116,7 @@ namespace Gallaria.GUI
             this.buttonCreate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonCreate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonCreate.UseVisualStyleBackColor = false;
-            this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
+            this.buttonCreate.Click += new System.EventHandler(this.ButtonCreate_Click);
             // 
             // panelLogo
             // 
@@ -138,16 +138,16 @@ namespace Gallaria.GUI
             this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitleBar.Location = new System.Drawing.Point(200, 0);
             this.panelTitleBar.Name = "panelTitleBar";
-            this.panelTitleBar.Size = new System.Drawing.Size(782, 40);
+            this.panelTitleBar.Size = new System.Drawing.Size(800, 40);
             this.panelTitleBar.TabIndex = 1;
-            this.panelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
+            this.panelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelTitleBar_MouseDown);
             // 
             // lblTitle
             // 
             this.lblTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTitle.Location = new System.Drawing.Point(326, -7);
+            this.lblTitle.Location = new System.Drawing.Point(335, -7);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(128, 50);
             this.lblTitle.TabIndex = 2;
@@ -160,12 +160,12 @@ namespace Gallaria.GUI
             this.btnMinimize.FlatAppearance.BorderSize = 0;
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimize.Image = global::Gallaria.GUI.Properties.Resources.minus;
-            this.btnMinimize.Location = new System.Drawing.Point(668, 0);
+            this.btnMinimize.Location = new System.Drawing.Point(686, 0);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(34, 34);
             this.btnMinimize.TabIndex = 1;
             this.btnMinimize.UseVisualStyleBackColor = true;
-            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
+            this.btnMinimize.Click += new System.EventHandler(this.BtnMinimize_Click);
             // 
             // btnMaximize
             // 
@@ -174,12 +174,12 @@ namespace Gallaria.GUI
             this.btnMaximize.FlatAppearance.BorderSize = 0;
             this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMaximize.Image = global::Gallaria.GUI.Properties.Resources.square;
-            this.btnMaximize.Location = new System.Drawing.Point(708, 0);
+            this.btnMaximize.Location = new System.Drawing.Point(726, 0);
             this.btnMaximize.Name = "btnMaximize";
             this.btnMaximize.Size = new System.Drawing.Size(34, 34);
             this.btnMaximize.TabIndex = 1;
             this.btnMaximize.UseVisualStyleBackColor = true;
-            this.btnMaximize.Click += new System.EventHandler(this.btnMaximize_Click);
+            this.btnMaximize.Click += new System.EventHandler(this.BtnMaximize_Click);
             // 
             // btnClose
             // 
@@ -188,12 +188,12 @@ namespace Gallaria.GUI
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::Gallaria.GUI.Properties.Resources.crossIcon_32x32;
-            this.btnClose.Location = new System.Drawing.Point(748, 0);
+            this.btnClose.Location = new System.Drawing.Point(766, 0);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(34, 34);
             this.btnClose.TabIndex = 1;
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // btnCloseChildForm
             // 
@@ -206,7 +206,7 @@ namespace Gallaria.GUI
             this.btnCloseChildForm.Size = new System.Drawing.Size(45, 40);
             this.btnCloseChildForm.TabIndex = 0;
             this.btnCloseChildForm.UseVisualStyleBackColor = true;
-            this.btnCloseChildForm.Click += new System.EventHandler(this.btnCloseChildForm_Click);
+            this.btnCloseChildForm.Click += new System.EventHandler(this.BtnCloseChildForm_Click);
             // 
             // panelDesktopPane
             // 
@@ -214,14 +214,14 @@ namespace Gallaria.GUI
             this.panelDesktopPane.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktopPane.Location = new System.Drawing.Point(200, 40);
             this.panelDesktopPane.Name = "panelDesktopPane";
-            this.panelDesktopPane.Size = new System.Drawing.Size(782, 513);
+            this.panelDesktopPane.Size = new System.Drawing.Size(800, 560);
             this.panelDesktopPane.TabIndex = 2;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(982, 553);
+            this.ClientSize = new System.Drawing.Size(1000, 600);
             this.Controls.Add(this.panelDesktopPane);
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelSidebar);

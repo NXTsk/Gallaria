@@ -5396,19 +5396,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\CallM\\.nuget\\packages\\": {}
+    "C:\\Users\\matte\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.Tests\\Gallaria.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\matte\\Desktop\\UCN 2nd year\\Project\\Gallaria\\Gallaria.Tests\\Gallaria.Tests.csproj",
       "projectName": "Gallaria.Tests",
-      "projectPath": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.Tests\\Gallaria.Tests.csproj",
-      "packagesPath": "C:\\Users\\CallM\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\Gallaria.Tests\\obj\\",
+      "projectPath": "C:\\Users\\matte\\Desktop\\UCN 2nd year\\Project\\Gallaria\\Gallaria.Tests\\Gallaria.Tests.csproj",
+      "packagesPath": "C:\\Users\\matte\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\matte\\Desktop\\UCN 2nd year\\Project\\Gallaria\\Gallaria.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\CallM\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\matte\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5422,8 +5422,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\DataAccess\\DataAccess.csproj"
+            "C:\\Users\\matte\\Desktop\\UCN 2nd year\\Project\\Gallaria\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "C:\\Users\\matte\\Desktop\\UCN 2nd year\\Project\\Gallaria\\DataAccess\\DataAccess.csproj"
             }
           }
         }
@@ -5474,7 +5474,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }
