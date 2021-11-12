@@ -159,7 +159,7 @@ namespace Gallaria.GUI
             this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMinimize.FlatAppearance.BorderSize = 0;
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.Image = global::Gallaria.GUI.Properties.Resources.check_circle_icon_1320184982103223133_32;
+            this.btnMinimize.Image = global::Gallaria.GUI.Properties.Resources.minus;
             this.btnMinimize.Location = new System.Drawing.Point(668, 0);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(34, 34);
@@ -173,7 +173,7 @@ namespace Gallaria.GUI
             this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMaximize.FlatAppearance.BorderSize = 0;
             this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMaximize.Image = global::Gallaria.GUI.Properties.Resources.check_circle_icon_1320184982103223133_32;
+            this.btnMaximize.Image = global::Gallaria.GUI.Properties.Resources.square;
             this.btnMaximize.Location = new System.Drawing.Point(708, 0);
             this.btnMaximize.Name = "btnMaximize";
             this.btnMaximize.Size = new System.Drawing.Size(34, 34);
@@ -187,7 +187,7 @@ namespace Gallaria.GUI
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Image = global::Gallaria.GUI.Properties.Resources.check_circle_icon_1320184982103223133_32;
+            this.btnClose.Image = global::Gallaria.GUI.Properties.Resources.crossIcon_32x32;
             this.btnClose.Location = new System.Drawing.Point(748, 0);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(34, 34);

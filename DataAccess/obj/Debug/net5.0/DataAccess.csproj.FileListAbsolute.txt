@@ -1,0 +1,12 @@
+D:\Zythaar\Documents\UCN\3rd Semester\Project\code\Gallaria\DataAccess\bin\Debug\net5.0\DataAccess.deps.json
+D:\Zythaar\Documents\UCN\3rd Semester\Project\code\Gallaria\DataAccess\bin\Debug\net5.0\DataAccess.dll
+D:\Zythaar\Documents\UCN\3rd Semester\Project\code\Gallaria\DataAccess\bin\Debug\net5.0\ref\DataAccess.dll
+D:\Zythaar\Documents\UCN\3rd Semester\Project\code\Gallaria\DataAccess\bin\Debug\net5.0\DataAccess.pdb
+D:\Zythaar\Documents\UCN\3rd Semester\Project\code\Gallaria\DataAccess\obj\Debug\net5.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\Zythaar\Documents\UCN\3rd Semester\Project\code\Gallaria\DataAccess\obj\Debug\net5.0\DataAccess.AssemblyInfoInputs.cache
+D:\Zythaar\Documents\UCN\3rd Semester\Project\code\Gallaria\DataAccess\obj\Debug\net5.0\DataAccess.AssemblyInfo.cs
+D:\Zythaar\Documents\UCN\3rd Semester\Project\code\Gallaria\DataAccess\obj\Debug\net5.0\DataAccess.csproj.CoreCompileInputs.cache
+D:\Zythaar\Documents\UCN\3rd Semester\Project\code\Gallaria\DataAccess\obj\Debug\net5.0\DataAccess.dll
+D:\Zythaar\Documents\UCN\3rd Semester\Project\code\Gallaria\DataAccess\obj\Debug\net5.0\ref\DataAccess.dll
+D:\Zythaar\Documents\UCN\3rd Semester\Project\code\Gallaria\DataAccess\obj\Debug\net5.0\DataAccess.pdb
+D:\Zythaar\Documents\UCN\3rd Semester\Project\code\Gallaria\DataAccess\obj\Debug\net5.0\DataAccess.csproj.AssemblyReference.cache

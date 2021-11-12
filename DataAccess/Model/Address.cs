@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Model
 {
-    class Address
+    public class Address
     {
 
         public string Street { get; set; }
@@ -15,13 +15,5 @@ namespace DataAccess.Model
         public string City { get; set; }
         public string Country { get; set; }
 
-        public Address(string street, string houseNumber, int zipcode, string city, string country)
-        {
-            Street = street;
-            HouseNumber = houseNumber;
-            Zipcode = zipcode;
-            City = city;
-            Country = country;
-        }
     }
 }

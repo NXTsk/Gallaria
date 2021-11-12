@@ -9,5 +9,6 @@ namespace DataAccess.Model
     class Artist : Person
     {
         public string ProfileDescription { get; set; }
+
     }
 }

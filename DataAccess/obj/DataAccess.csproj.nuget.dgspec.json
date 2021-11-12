@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\DataAccess\\DataAccess.csproj": {}
+    "D:\\Zythaar\\Documents\\UCN\\3rd Semester\\Project\\code\\Gallaria\\DataAccess\\DataAccess.csproj": {}
   },
   "projects": {
-    "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\DataAccess\\DataAccess.csproj": {
+    "D:\\Zythaar\\Documents\\UCN\\3rd Semester\\Project\\code\\Gallaria\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "D:\\Zythaar\\Documents\\UCN\\3rd Semester\\Project\\code\\Gallaria\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\CallM\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\CallM\\source\\repos\\Gallaria\\Gallaria\\DataAccess\\obj\\",
+        "projectPath": "D:\\Zythaar\\Documents\\UCN\\3rd Semester\\Project\\code\\Gallaria\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\Zythaar\\.nuget\\packages\\",
+        "outputPath": "D:\\Zythaar\\Documents\\UCN\\3rd Semester\\Project\\code\\Gallaria\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\CallM\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Zythaar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,6 +39,20 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "BCrypt.Net-Core": {
+              "target": "Package",
+              "version": "[1.6.0, )"
+            },
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.123, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
