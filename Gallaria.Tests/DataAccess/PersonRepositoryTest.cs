@@ -22,11 +22,11 @@ namespace Gallaria.Tests.DataAccess
             CreateNewPersonAsync();
         }
 
-        //[TearDown]
-        //public void CleanUp()
-        //{
-        //    _personRepository.DeleteAsync(_newPerson.Id);
-        //}
+        [TearDown]
+        public void CleanUp()
+        {
+            _personRepository.DeletePerson(_newPerson.Id);
+        }
 
         private Person CreateNewPersonAsync()
         {
@@ -43,6 +43,21 @@ namespace Gallaria.Tests.DataAccess
             //ASSERT
             
             Assert.IsTrue(_newPerson.Id > 0, "Created author ID not returned");
+        }
+
+        [Test]
+        public void UpdateAuthorPasswordAndLogin()
+        {
+            //ARRANGE
+            var newPassword = "TestNewPassword";
+
+            //ACT
+            var updateSuccess = _personRepository.UpdatePassword(_newPerson.Email, _password, newPassword);
+
+            //ASSERT
+            var loginWithNewPasswordOk = _personRepository.Login(_newPerson.Email, newPassword);
+            Assert.IsTrue(updateSuccess, "Author not updated");
+            Assert.IsTrue(loginWithNewPasswordOk > 0, "Unable to login with Author's updated password");
         }
     }
 }
