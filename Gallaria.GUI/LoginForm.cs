@@ -49,11 +49,12 @@ namespace Gallaria.GUI
 
         private void CustomizeComponents()
         {
+            //setting size of textboxes
             txtUserName.AutoSize = false;
-            txtUserName.Size = new Size(350, 30);
+            txtUserName.Size = new Size(350, 40);
 
             txtPassword.AutoSize = false;
-            txtPassword.Size = new Size(350, 30);
+            txtPassword.Size = new Size(350, 40);
             txtPassword.UseSystemPasswordChar = true;
         }
 

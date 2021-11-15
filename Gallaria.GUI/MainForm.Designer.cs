@@ -66,6 +66,7 @@ namespace Gallaria.GUI
             this.button2.Dock = System.Windows.Forms.DockStyle.Top;
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button2.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.Location = new System.Drawing.Point(0, 180);
@@ -85,6 +86,7 @@ namespace Gallaria.GUI
             this.btnUpload.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnUpload.FlatAppearance.BorderSize = 0;
             this.btnUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpload.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnUpload.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.btnUpload.Image = global::Gallaria.GUI.Properties.Resources.upload_icon_64x64;
             this.btnUpload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -105,6 +107,7 @@ namespace Gallaria.GUI
             this.buttonCreate.Dock = System.Windows.Forms.DockStyle.Top;
             this.buttonCreate.FlatAppearance.BorderSize = 0;
             this.buttonCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCreate.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.buttonCreate.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.buttonCreate.Image = global::Gallaria.GUI.Properties.Resources.brush_64x64;
             this.buttonCreate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -146,12 +149,12 @@ namespace Gallaria.GUI
             // 
             this.lblTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTitle.Font = new System.Drawing.Font("Yu Gothic UI", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblTitle.Location = new System.Drawing.Point(335, -7);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(128, 50);
+            this.lblTitle.Size = new System.Drawing.Size(121, 50);
             this.lblTitle.TabIndex = 2;
-            this.lblTitle.Text = "HOME";
+            this.lblTitle.Text = "Home";
             // 
             // btnMinimize
             // 
@@ -159,8 +162,8 @@ namespace Gallaria.GUI
             this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMinimize.FlatAppearance.BorderSize = 0;
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.Image = global::Gallaria.GUI.Properties.Resources.minus;
-            this.btnMinimize.Location = new System.Drawing.Point(686, 0);
+            this.btnMinimize.Image = global::Gallaria.GUI.Properties.Resources.minimize_32x32;
+            this.btnMinimize.Location = new System.Drawing.Point(678, 0);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(34, 34);
             this.btnMinimize.TabIndex = 1;
@@ -173,8 +176,8 @@ namespace Gallaria.GUI
             this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMaximize.FlatAppearance.BorderSize = 0;
             this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMaximize.Image = global::Gallaria.GUI.Properties.Resources.square;
-            this.btnMaximize.Location = new System.Drawing.Point(726, 0);
+            this.btnMaximize.Image = global::Gallaria.GUI.Properties.Resources.maximize_32x32;
+            this.btnMaximize.Location = new System.Drawing.Point(718, 0);
             this.btnMaximize.Name = "btnMaximize";
             this.btnMaximize.Size = new System.Drawing.Size(34, 34);
             this.btnMaximize.TabIndex = 1;
@@ -188,7 +191,7 @@ namespace Gallaria.GUI
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::Gallaria.GUI.Properties.Resources.crossIcon_32x32;
-            this.btnClose.Location = new System.Drawing.Point(766, 0);
+            this.btnClose.Location = new System.Drawing.Point(758, 0);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(34, 34);
             this.btnClose.TabIndex = 1;

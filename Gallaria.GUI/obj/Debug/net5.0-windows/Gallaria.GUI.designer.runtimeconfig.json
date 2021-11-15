@@ -7,7 +7,7 @@
     },
     "additionalProbingPaths": [
       "C:\\Users\\matte\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\CallM\\.nuget\\packages"
+      "C:\\Users\\matte\\.nuget\\packages"
     ],
     "configProperties": {
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true

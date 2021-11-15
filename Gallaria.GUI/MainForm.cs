@@ -96,7 +96,7 @@ namespace Gallaria.GUI
         private void Reset()
         {
             DisableButton();
-            lblTitle.Text = "HOME";
+            lblTitle.Text = "Home";
             panelTitleBar.BackColor = themeColor;
             currentButton = null;
             btnCloseChildForm.Visible = false;
