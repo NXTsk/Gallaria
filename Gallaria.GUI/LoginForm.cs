@@ -58,11 +58,14 @@ namespace Gallaria.GUI
             txtPassword.UseSystemPasswordChar = true;
         }
 
-
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            //TODO: implement login function
+            LoginUser();
+        }
 
+        private void LoginUser()
+        {
+            //TODO: implement login function
             this.Hide();
             MainForm mainForm = new MainForm();
             mainForm.ShowDialog();

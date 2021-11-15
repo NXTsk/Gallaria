@@ -41,6 +41,7 @@ namespace Gallaria.GUI
             this.btnLogin = new System.Windows.Forms.Button();
             this.linkLabelForgotPassword = new System.Windows.Forms.LinkLabel();
             this.lblGallaria = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.titleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimalize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
@@ -173,11 +174,19 @@ namespace Gallaria.GUI
             this.lblGallaria.AutoSize = true;
             this.lblGallaria.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblGallaria.ForeColor = System.Drawing.Color.White;
-            this.lblGallaria.Location = new System.Drawing.Point(112, 105);
+            this.lblGallaria.Location = new System.Drawing.Point(113, 97);
             this.lblGallaria.Name = "lblGallaria";
             this.lblGallaria.Size = new System.Drawing.Size(240, 81);
             this.lblGallaria.TabIndex = 9;
             this.lblGallaria.Text = "Gallaria";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.Location = new System.Drawing.Point(25, 618);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(400, 1);
+            this.panel1.TabIndex = 10;
             // 
             // LoginForm
             // 
@@ -185,6 +194,7 @@ namespace Gallaria.GUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(197)))), ((int)(((byte)(230)))));
             this.ClientSize = new System.Drawing.Size(450, 703);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblGallaria);
             this.Controls.Add(this.linkLabelForgotPassword);
             this.Controls.Add(this.btnLogin);
@@ -224,5 +234,6 @@ namespace Gallaria.GUI
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.LinkLabel linkLabelForgotPassword;
         private System.Windows.Forms.Label lblGallaria;
+        private System.Windows.Forms.Panel panel1;
     }
 }
