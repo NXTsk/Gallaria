@@ -46,7 +46,7 @@ namespace DataAccess.Repositories
                 throw new Exception($"Error deleting person with id {id}: '{ex.Message}'.", ex);
             }
         }
-        public  int Login(string email, string password)
+        public int Login(string email, string password)
         {
             try
             {
