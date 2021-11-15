@@ -30,6 +30,7 @@ namespace Gallaria.GUI
         private void InitializeComponent()
         {
             this.titleBar = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnMinimalize = new System.Windows.Forms.PictureBox();
             this.btnClose = new System.Windows.Forms.PictureBox();
             this.bottomPanel = new System.Windows.Forms.Panel();
@@ -40,16 +41,19 @@ namespace Gallaria.GUI
             this.checkBoxRememberPassword = new System.Windows.Forms.CheckBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.linkLabelForgotPassword = new System.Windows.Forms.LinkLabel();
-            this.lblGallaria = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.titleBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimalize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // titleBar
             // 
             this.titleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
+            this.titleBar.Controls.Add(this.pictureBox1);
             this.titleBar.Controls.Add(this.btnMinimalize);
             this.titleBar.Controls.Add(this.btnClose);
             this.titleBar.Dock = System.Windows.Forms.DockStyle.Top;
@@ -58,6 +62,15 @@ namespace Gallaria.GUI
             this.titleBar.Size = new System.Drawing.Size(450, 44);
             this.titleBar.TabIndex = 0;
             this.titleBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseMove);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Gallaria.GUI.Properties.Resources.gallariaIcon_32x32;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
             // 
             // btnMinimalize
             // 
@@ -96,8 +109,8 @@ namespace Gallaria.GUI
             // 
             this.lblUserName.AutoSize = true;
             this.lblUserName.Font = new System.Drawing.Font("Yu Gothic UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblUserName.ForeColor = System.Drawing.Color.Black;
-            this.lblUserName.Location = new System.Drawing.Point(43, 235);
+            this.lblUserName.ForeColor = System.Drawing.Color.White;
+            this.lblUserName.Location = new System.Drawing.Point(43, 219);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(117, 31);
             this.lblUserName.TabIndex = 2;
@@ -106,7 +119,7 @@ namespace Gallaria.GUI
             // txtUserName
             // 
             this.txtUserName.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtUserName.Location = new System.Drawing.Point(50, 269);
+            this.txtUserName.Location = new System.Drawing.Point(50, 253);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(350, 34);
             this.txtUserName.TabIndex = 3;
@@ -114,7 +127,7 @@ namespace Gallaria.GUI
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Yu Gothic UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtPassword.Location = new System.Drawing.Point(50, 352);
+            this.txtPassword.Location = new System.Drawing.Point(50, 336);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(350, 31);
             this.txtPassword.TabIndex = 5;
@@ -123,8 +136,8 @@ namespace Gallaria.GUI
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Yu Gothic UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblPassword.ForeColor = System.Drawing.Color.Black;
-            this.lblPassword.Location = new System.Drawing.Point(43, 318);
+            this.lblPassword.ForeColor = System.Drawing.Color.White;
+            this.lblPassword.Location = new System.Drawing.Point(43, 302);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(111, 31);
             this.lblPassword.TabIndex = 4;
@@ -134,7 +147,8 @@ namespace Gallaria.GUI
             // 
             this.checkBoxRememberPassword.AutoSize = true;
             this.checkBoxRememberPassword.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.checkBoxRememberPassword.Location = new System.Drawing.Point(50, 395);
+            this.checkBoxRememberPassword.ForeColor = System.Drawing.Color.White;
+            this.checkBoxRememberPassword.Location = new System.Drawing.Point(50, 379);
             this.checkBoxRememberPassword.Name = "checkBoxRememberPassword";
             this.checkBoxRememberPassword.Size = new System.Drawing.Size(171, 24);
             this.checkBoxRememberPassword.TabIndex = 6;
@@ -148,7 +162,7 @@ namespace Gallaria.GUI
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(50, 486);
+            this.btnLogin.Location = new System.Drawing.Point(50, 470);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(350, 50);
             this.btnLogin.TabIndex = 7;
@@ -161,24 +175,14 @@ namespace Gallaria.GUI
             this.linkLabelForgotPassword.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.linkLabelForgotPassword.AutoSize = true;
             this.linkLabelForgotPassword.Font = new System.Drawing.Font("Yu Gothic UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.linkLabelForgotPassword.LinkColor = System.Drawing.Color.Black;
+            this.linkLabelForgotPassword.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.linkLabelForgotPassword.LinkColor = System.Drawing.Color.White;
             this.linkLabelForgotPassword.Location = new System.Drawing.Point(150, 643);
             this.linkLabelForgotPassword.Name = "linkLabelForgotPassword";
             this.linkLabelForgotPassword.Size = new System.Drawing.Size(148, 23);
             this.linkLabelForgotPassword.TabIndex = 8;
             this.linkLabelForgotPassword.TabStop = true;
             this.linkLabelForgotPassword.Text = "Forgot password ?";
-            // 
-            // lblGallaria
-            // 
-            this.lblGallaria.AutoSize = true;
-            this.lblGallaria.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblGallaria.ForeColor = System.Drawing.Color.White;
-            this.lblGallaria.Location = new System.Drawing.Point(113, 97);
-            this.lblGallaria.Name = "lblGallaria";
-            this.lblGallaria.Size = new System.Drawing.Size(240, 81);
-            this.lblGallaria.TabIndex = 9;
-            this.lblGallaria.Text = "Gallaria";
             // 
             // panel1
             // 
@@ -188,14 +192,23 @@ namespace Gallaria.GUI
             this.panel1.Size = new System.Drawing.Size(400, 1);
             this.panel1.TabIndex = 10;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Gallaria.GUI.Properties.Resources.gallariaLogo_small2;
+            this.pictureBox2.Location = new System.Drawing.Point(100, 94);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(250, 80);
+            this.pictureBox2.TabIndex = 11;
+            this.pictureBox2.TabStop = false;
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(197)))), ((int)(((byte)(230)))));
             this.ClientSize = new System.Drawing.Size(450, 703);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.lblGallaria);
             this.Controls.Add(this.linkLabelForgotPassword);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.checkBoxRememberPassword);
@@ -213,8 +226,10 @@ namespace Gallaria.GUI
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LoginForm_MouseMove);
             this.titleBar.ResumeLayout(false);
             this.titleBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimalize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,7 +248,8 @@ namespace Gallaria.GUI
         private System.Windows.Forms.CheckBox checkBoxRememberPassword;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.LinkLabel linkLabelForgotPassword;
-        private System.Windows.Forms.Label lblGallaria;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
