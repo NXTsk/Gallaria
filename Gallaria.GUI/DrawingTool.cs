@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Gallaria.GUI
@@ -210,6 +205,17 @@ namespace Gallaria.GUI
         private void UpdateCanvas()
         {
             pbCanvas.Image = bitmap;
+        }
+
+        private void toolStripFill_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < bitmap.Width; i++)
+            {
+                for (int j = 0; j < bitmap.Height; j++)
+                {
+                    this.bitmap.SetPixel(i, j, p.Color);
+                }
+            }
         }
     }
 }
