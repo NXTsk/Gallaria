@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using Gallaria.ApiClient.ApiResponses;
+using Gallaria.ApiClient;
+using Gallaria.ApiClient.Models;
 
 namespace Gallaria.GUI
 {
@@ -67,6 +70,10 @@ namespace Gallaria.GUI
         {
             //TODO: implement login function
             this.Hide();
+
+            var data = AuthenticateController.Login(new User { Username = txtUserName.Text, Password = txtPassword.Text });
+            AuthenticatedUserData userData = data.Result;
+
             MainForm mainForm = new MainForm();
             mainForm.ShowDialog();
         }

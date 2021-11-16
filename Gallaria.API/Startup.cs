@@ -34,63 +34,28 @@ namespace Gallaria.API
             // JWT Token Generation from Server Side.  
             services.AddMvc();
             // Enable Swagger   
-            services.AddSwaggerGen(swagger =>
-            {
-                //This is to generate the Default UI of Swagger Documentation  
-                swagger.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Version = "v1",
-                    Title = "JWT Token Authentication API",
-                    Description = "ASP.NET Core 3.1 Web API"
-                });
 
-                // To Enable authorization using Swagger (JWT)  
-                swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
-                {
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer",
-                    BearerFormat = "JWT",
-                    In = ParameterLocation.Header,
-                    Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",
-                });
-                swagger.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                          new OpenApiSecurityScheme
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                        .AddJwtBearer(options =>
+                        {
+                            options.SaveToken = true;
+                            options.RequireHttpsMetadata = false;
+                            options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
                             {
-                                Reference = new OpenApiReference
-                                {
-                                    Type = ReferenceType.SecurityScheme,
-                                    Id = "Bearer"
-                                }
-                            },
-                            new string[] {}
+                                ValidateIssuer = true,
+                                ValidateAudience = true,
+                                ValidAudience = "https://dotnetdetail.net",
+                                ValidIssuer = "https://dotnetdetail.net",
+                                // Secret key - should not be shown in plain text
+                                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Qc9bJwm849tHZLdA"))
+                            };
+                        });
 
-                    }
-                });
-
-                swagger.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
-            });
-
-            services.AddAuthentication(option =>
-            {
-                option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
-            }).AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = false,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = Configuration["Jwt:Issuer"],
-                    ValidAudience = Configuration["Jwt:Issuer"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"])) //Configuration["JwtToken:SecretKey"]  
-                };
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

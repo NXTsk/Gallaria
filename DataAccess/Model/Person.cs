@@ -15,7 +15,5 @@ namespace DataAccess.Model
         public string HashPassword { get; set; }
         public string PhoneNumber { get; set; }
         public Address Address { get; set; }
-
-
     }
 }
