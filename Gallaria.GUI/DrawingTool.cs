@@ -13,8 +13,8 @@ namespace Gallaria.GUI
         public Pen pe = new Pen(Color.White, 5);
         public Graphics g;
 
-        private const int Height = 820; 
-        private const int Width = 1094; 
+        private const int Height = 870; 
+        private const int Width = 1160; 
 
         Bitmap bitmap;
         Image openedFile;
