@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gallaria.API", "Gallaria.AP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gallaria.Tests", "Gallaria.Tests\Gallaria.Tests.csproj", "{C6C497E0-B1B4-42EC-84D6-FF045E20127A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gallaria.ApiClient", "Gallaria.ApiClient\Gallaria.ApiClient.csproj", "{872ECD14-42A0-4449-B3DF-A699A1C0257A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gallaria.ApiClient", "Gallaria.ApiClient\Gallaria.ApiClient.csproj", "{872ECD14-42A0-4449-B3DF-A699A1C0257A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gallaria.WEB", "Gallaria.WEB\Gallaria.WEB.csproj", "{FE0498CA-0CCD-4464-ACA0-2A61F1F07402}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{872ECD14-42A0-4449-B3DF-A699A1C0257A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{872ECD14-42A0-4449-B3DF-A699A1C0257A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{872ECD14-42A0-4449-B3DF-A699A1C0257A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE0498CA-0CCD-4464-ACA0-2A61F1F07402}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE0498CA-0CCD-4464-ACA0-2A61F1F07402}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE0498CA-0CCD-4464-ACA0-2A61F1F07402}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE0498CA-0CCD-4464-ACA0-2A61F1F07402}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
