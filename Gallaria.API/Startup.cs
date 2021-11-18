@@ -60,7 +60,7 @@ namespace Gallaria.API
                                 ValidAudience = "https://dotnetdetail.net",
                                 ValidIssuer = "https://dotnetdetail.net",
                                 // Secret key - should not be shown in plain text
-                                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Qc9bJwm849tHZLdA"))
+                                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtInfo:Key"]))
                             };
                         });
 

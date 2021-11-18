@@ -63,19 +63,18 @@ namespace Gallaria.GUI
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            LoginUser();
+            _ = LoginUser();
         }
 
-        private void LoginUser()
+        private async Task LoginUser()
         {
             //TODO: implement login function
-            this.Hide();
 
-            var data = AuthenticateController.Login(new User { Username = txtUserName.Text, Password = txtPassword.Text });
-            AuthenticatedUserData userData = data.Result;
-
+            var data = await AuthenticateController.Login(new User { Email = txtUserName.Text, Password = txtPassword.Text });
+            AuthenticatedUserData userData = data;
             if (userData.isUserAuthenticated)
             {
+                this.Hide();
                 MainForm mainForm = new MainForm(userData);
                 mainForm.ShowDialog();
             }

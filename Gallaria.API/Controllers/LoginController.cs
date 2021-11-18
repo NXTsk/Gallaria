@@ -37,7 +37,7 @@ namespace Gallaria.API.Controllers
                 // User isn't authenticated
                 return Unauthorized();
             }
-            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JwtInfo:Key"]));
             var token = new JwtSecurityToken(
                 issuer: _config["Jwt:Issuer"],
                 audience: _config["Jwt:Issuer"],

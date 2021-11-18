@@ -17,16 +17,17 @@ namespace Gallaria.ApiClient
         public static async Task<AuthenticatedUserData> Login(User user)
         {
             AuthenticatedUserData authenticatedData = new AuthenticatedUserData();
-            using (var httpClient = new HttpClient())
-            {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
+            var httpClient = new HttpClient();
 
-                using (var response = await httpClient.PostAsync(ApiUrl + "login/login", content))
-                {
-                    // TODO: check for response != Unauthorized
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    authenticatedData = JsonConvert.DeserializeObject<AuthenticatedUserData>(apiResponse);
-                }
+            StringContent content = new StringContent(JsonConvert.SerializeObject(user), Encoding.Default, "application/json");
+
+            var response = await httpClient.PostAsync(ApiUrl + "api/Login", content);
+
+            // TODO: check for response != Unauthorized
+            if (response.IsSuccessStatusCode)
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                authenticatedData = JsonConvert.DeserializeObject<AuthenticatedUserData>(apiResponse);
             }
 
             if (authenticatedData.Token == null)

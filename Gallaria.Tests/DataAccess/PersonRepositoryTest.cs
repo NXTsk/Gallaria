@@ -61,7 +61,7 @@ namespace Gallaria.Tests.DataAccess
         }
 
         [Test]
-        public async Task DeleteAuthorAsync()
+        public async Task DeletePerson()
         {
             //ARRANGE is done in Setup()
 
