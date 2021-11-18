@@ -18,22 +18,21 @@ namespace Gallaria.ApiClient
         {
             AuthenticatedUserData authenticatedData = new AuthenticatedUserData();
             var httpClient = new HttpClient();
-
             StringContent content = new StringContent(JsonConvert.SerializeObject(user), Encoding.Default, "application/json");
 
             var response = await httpClient.PostAsync(ApiUrl + "api/Login", content);
 
-            // TODO: check for response != Unauthorized
             if (response.IsSuccessStatusCode)
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 authenticatedData = JsonConvert.DeserializeObject<AuthenticatedUserData>(apiResponse);
-            }
-
-            if (authenticatedData.Token == null)
-                authenticatedData.isUserAuthenticated = false;
-            else
                 authenticatedData.isUserAuthenticated = true;
+            }
+            else if(response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                authenticatedData.isUserAuthenticated = false;
+            }                
+
             return authenticatedData;
         }
     }

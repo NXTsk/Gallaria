@@ -68,15 +68,18 @@ namespace Gallaria.GUI
 
         private async Task LoginUser()
         {
-            //TODO: implement login function
-
             var data = await AuthenticateController.Login(new User { Email = txtUserName.Text, Password = txtPassword.Text });
             AuthenticatedUserData userData = data;
+
             if (userData.isUserAuthenticated)
             {
                 this.Hide();
                 MainForm mainForm = new MainForm(userData);
                 mainForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show(null, "Wrong username or password", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
