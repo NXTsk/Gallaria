@@ -28,9 +28,9 @@ namespace Gallaria.API.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] LoginModel model)
+        public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
         {
-            int userId = personRepository.Login(model.Email, model.Password);
+            int userId = await personRepository.LoginAsync(model.Email, model.Password);
 
             if(userId == -1)
             {

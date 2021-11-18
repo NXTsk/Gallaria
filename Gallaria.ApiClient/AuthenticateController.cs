@@ -14,7 +14,7 @@ namespace Gallaria.ApiClient
     {
         private const string ApiUrl = "https://localhost:44327/";
 
-        public static async Task<AuthenticatedUserData> Login(User user)
+        public static async Task<AuthenticatedUserData> LoginAsync(User user)
         {
             AuthenticatedUserData authenticatedData = new AuthenticatedUserData();
             var httpClient = new HttpClient();

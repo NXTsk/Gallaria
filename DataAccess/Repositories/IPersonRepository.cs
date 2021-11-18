@@ -11,7 +11,7 @@ namespace DataAccess.Repositories
     {
         Task<int> CreatePersonAsync(Person person, string password);
         Task<bool> DeletePersonAsync(int id);
-        int Login(string email, string password);
+        Task<int> LoginAsync(string email, string password);
         Task<bool> UpdatePasswordAsync(string email, string oldPassword, string newPassword);
 
     }

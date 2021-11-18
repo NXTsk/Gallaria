@@ -61,15 +61,14 @@ namespace Gallaria.GUI
             txtPassword.UseSystemPasswordChar = true;
         }
 
-        private void BtnLogin_Click(object sender, EventArgs e)
+        private async void BtnLogin_Click(object sender, EventArgs e)
         {
-            _ = LoginUser();
+           await LoginUserAsync();
         }
 
-        private async Task LoginUser()
+        private async Task LoginUserAsync()
         {
-            var data = await AuthenticateController.Login(new User { Email = txtUserName.Text, Password = txtPassword.Text });
-            AuthenticatedUserData userData = data;
+            AuthenticatedUserData userData = await AuthenticateController.LoginAsync(new User { Email = txtUserName.Text, Password = txtPassword.Text });
 
             if (userData.isUserAuthenticated)
             {

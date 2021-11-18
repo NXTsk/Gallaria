@@ -55,7 +55,7 @@ namespace Gallaria.Tests.DataAccess
             var updateSuccess = await _personRepository.UpdatePasswordAsync(_newPerson.Email, _password, newPassword);
 
             //ASSERT
-            var loginWithNewPasswordOk = _personRepository.Login(_newPerson.Email, newPassword);
+            var loginWithNewPasswordOk = await _personRepository.LoginAsync(_newPerson.Email, newPassword);
             Assert.IsTrue(updateSuccess, "Person not updated");
             Assert.IsTrue(loginWithNewPasswordOk > 0, "Unable to login with Person's updated password");
         }

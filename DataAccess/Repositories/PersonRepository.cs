@@ -47,14 +47,14 @@ namespace DataAccess.Repositories
                 throw new Exception($"Error deleting person with id {id}: '{ex.Message}'.", ex);
             }
         }
-        public int Login(string email, string password)
+        public async Task<int> LoginAsync(string email, string password)
         {
             try
             {
                 var query = "SELECT Id, hashPassword FROM Person WHERE Email=@Email";
                 using var connection = CreateConnection();
 
-                var personTuple = connection.QueryFirstOrDefault<PersonTuple>(query, new { Email = email });
+                var personTuple = await connection.QueryFirstOrDefaultAsync<PersonTuple>(query, new { Email = email });
                 if (personTuple != null && BCryptTool.ValidatePassword(password, personTuple.HashPassword))
                 {
                     return personTuple.Id;
@@ -71,7 +71,7 @@ namespace DataAccess.Repositories
             try
             {
                 var query = "UPDATE Person SET HashPassword=@NewHashPassword WHERE Id=@Id;";
-                var id = Login(email, oldPassword);
+                var id = await LoginAsync(email, oldPassword);
                 if (id > 0)
                 {
                     var newHashPassword = BCryptTool.HashPassword(newPassword);
