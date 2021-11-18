@@ -16,23 +16,23 @@ namespace Gallaria.Tests.DataAccess
         private string _password = "TestPassword";
 
         [SetUp]
-        public void Setup()
+        public async Task Setup()
         {
             _personRepository = new PersonRepository(Configuration.CONNECTION_STRING);
-            CreateNewPerson();
-            _newPerson.Id = _personRepository.CreatePerson(_newPerson, _password);
+            await CreateNewPerson();
         }
 
         [TearDown]
-        public void CleanUp()
+        public async Task CleanUp()
         {
-            _personRepository.DeletePerson(_newPerson.Id);
+            await _personRepository.DeletePersonAsync(_newPerson.Id);
         }
 
-        private Person CreateNewPerson()
+        private async Task<Person> CreateNewPerson()
         {
             Address a = new Address() { Street = "Dannebrogsgade", HouseNumber = "13", Zipcode = 9000, City = "Aalborg", Country = "Denmark" };
             _newPerson = new Person() {FirstName="Laco", LastName = "Cobolski",Email="laco@slovak.sk",PhoneNumber = "123456" ,Address = a};
+            _newPerson.Id = await _personRepository.CreatePersonAsync(_newPerson, _password);
             return _newPerson;
         }
 
@@ -46,13 +46,13 @@ namespace Gallaria.Tests.DataAccess
         }
 
         [Test]
-        public void UpdateAuthorPasswordAndLogin()
+        public async Task UpdatePersonPasswordAndLoginAsync()
         {
             //ARRANGE
             var newPassword = "TestNewPassword";
 
             //ACT
-            var updateSuccess = _personRepository.UpdatePassword(_newPerson.Email, _password, newPassword);
+            var updateSuccess = await _personRepository.UpdatePasswordAsync(_newPerson.Email, _password, newPassword);
 
             //ASSERT
             var loginWithNewPasswordOk = _personRepository.Login(_newPerson.Email, newPassword);
@@ -66,7 +66,7 @@ namespace Gallaria.Tests.DataAccess
             //ARRANGE is done in Setup()
 
             //ACT 
-            bool deleted = _personRepository.DeletePerson(_newPerson.Id);
+            bool deleted = await _personRepository.DeletePersonAsync(_newPerson.Id);
             //ASSERT
             Assert.IsTrue(deleted, "Person not deleted");
         }

@@ -75,14 +75,14 @@ namespace Gallaria.GUI
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenMenuItem_Click);
             // 
@@ -112,7 +112,7 @@ namespace Gallaria.GUI
             this.toolStripFill});
             this.toolStripUndoRedo.Location = new System.Drawing.Point(280, 20);
             this.toolStripUndoRedo.Name = "toolStripUndoRedo";
-            this.toolStripUndoRedo.Size = new System.Drawing.Size(100, 27);
+            this.toolStripUndoRedo.Size = new System.Drawing.Size(139, 27);
             this.toolStripUndoRedo.TabIndex = 2;
             this.toolStripUndoRedo.Text = "toolStrip1";
             // 
@@ -144,6 +144,7 @@ namespace Gallaria.GUI
             this.toolStripFill.Name = "toolStripFill";
             this.toolStripFill.Size = new System.Drawing.Size(29, 24);
             this.toolStripFill.Text = "toolStripButton1";
+            this.toolStripFill.ToolTipText = "Fill";
             this.toolStripFill.Click += new System.EventHandler(this.toolStripFill_Click);
             // 
             // trackBarSize2

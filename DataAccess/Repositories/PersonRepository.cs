@@ -13,7 +13,7 @@ namespace DataAccess.Repositories
     {
         public PersonRepository(string connectionstring) : base(connectionstring) { }
 
-        public int CreatePerson(Person person, string password)
+        public async Task<int> CreatePersonAsync(Person person, string password)
         {
             try
             {
@@ -21,7 +21,8 @@ namespace DataAccess.Repositories
                     " OUTPUT INSERTED.Id VALUES (@FirstName, @LastName, @Email, @HashPassword, @PhoneNumber, @Street, @HouseNumber, @Zipcode, @City, @Country);";
                 var hashPassword = BCryptTool.HashPassword(password);
                 using var connection = CreateConnection();
-                return connection.QuerySingle<int>(query, new {FirstName = person.FirstName, LastName = person.LastName, Email = person.Email, HashPassword = hashPassword, PhoneNumber = person.PhoneNumber, Street = person.Address.Street,
+                return await connection.QuerySingleAsync<int>(query, new {FirstName = person.FirstName, LastName = person.LastName, Email = person.Email, HashPassword = hashPassword, PhoneNumber = person.PhoneNumber,
+                    Street = person.Address.Street,
                     HouseNumber = person.Address.HouseNumber,
                     Zipcode = person.Address.Street,
                     City = person.Address.City,
@@ -33,13 +34,13 @@ namespace DataAccess.Repositories
                 throw new Exception($"Error creating new Person: '{ex.Message}'.", ex);
             }
         }
-        public bool DeletePerson(int id)
+        public async Task<bool> DeletePersonAsync(int id)
         {
             try
             {
                 var query = "DELETE FROM Person WHERE Id=@Id";
                 using var connection = CreateConnection();
-                return connection.Execute(query, new { id }) > 0;
+                return await connection.ExecuteAsync(query, new { id }) > 0;
             }
             catch (Exception ex)
             {
@@ -65,7 +66,7 @@ namespace DataAccess.Repositories
                 throw new Exception($"Error logging in for user with email {email}: '{ex.Message}'.", ex);
             }
         }
-        public bool UpdatePassword(string email, string oldPassword, string newPassword)
+        public async Task<bool> UpdatePasswordAsync(string email, string oldPassword, string newPassword)
         {
             try
             {
@@ -75,7 +76,7 @@ namespace DataAccess.Repositories
                 {
                     var newHashPassword = BCryptTool.HashPassword(newPassword);
                     using var connection = CreateConnection();
-                    return connection.Execute(query, new { Id = id, NewHashPassword = newHashPassword }) > 0;
+                    return await connection.ExecuteAsync(query, new { Id = id, NewHashPassword = newHashPassword }) > 0;
                 }
                 return false;
             }
