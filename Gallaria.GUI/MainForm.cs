@@ -130,5 +130,10 @@ namespace Gallaria.GUI
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new UploadArtForm(), sender);
+        }
     }
 }
