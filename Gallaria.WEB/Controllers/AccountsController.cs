@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace Gallaria.WEB.Controllers
 {
-    public class AccountController : Controller
+    public class AccountsController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
         public IActionResult CreateAccount()
         {
             return View();

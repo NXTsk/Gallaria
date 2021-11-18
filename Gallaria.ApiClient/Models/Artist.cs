@@ -9,6 +9,5 @@ namespace Gallaria.ApiClient.Models
     class Artist : Person
     {
         public string ProfileDescription { get; set; }
-
     }
 }
