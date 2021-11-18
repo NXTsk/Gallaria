@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 
 namespace Gallaria.API.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class LoginController : Controller
     {
         IConfiguration _config;
@@ -45,7 +47,8 @@ namespace Gallaria.API.Controllers
             return Ok(new
             {
                 token = new JwtSecurityTokenHandler().WriteToken(token),
-                expiration = token.ValidTo
+                expiration = token.ValidTo,
+                userId = userId
             });
 
         }

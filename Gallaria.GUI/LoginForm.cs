@@ -74,8 +74,12 @@ namespace Gallaria.GUI
             var data = AuthenticateController.Login(new User { Username = txtUserName.Text, Password = txtPassword.Text });
             AuthenticatedUserData userData = data.Result;
 
-            MainForm mainForm = new MainForm();
-            mainForm.ShowDialog();
+            if (userData.isUserAuthenticated)
+            {
+                MainForm mainForm = new MainForm(userData);
+                mainForm.ShowDialog();
+            }
+            
         }
     }
 }

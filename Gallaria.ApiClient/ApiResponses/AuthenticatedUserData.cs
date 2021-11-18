@@ -8,8 +8,12 @@ namespace Gallaria.ApiClient.ApiResponses
 {
     public class AuthenticatedUserData
     {
+        /*-------API Response-------*/
         public string Token { get; set; }
         public DateTime Expiration { get; set; }
         public int UserId { get; set; }
+
+        /*-------Another variables-------*/
+        public bool isUserAuthenticated { get; set; }
     }
 }

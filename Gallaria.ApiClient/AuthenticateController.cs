@@ -12,7 +12,7 @@ namespace Gallaria.ApiClient
 {
     public class AuthenticateController
     {
-        private const string ApiUrl = "";
+        private const string ApiUrl = "https://localhost:44327/";
 
         public static async Task<AuthenticatedUserData> Login(User user)
         {
@@ -28,6 +28,11 @@ namespace Gallaria.ApiClient
                     authenticatedData = JsonConvert.DeserializeObject<AuthenticatedUserData>(apiResponse);
                 }
             }
+
+            if (authenticatedData.Token == null)
+                authenticatedData.isUserAuthenticated = false;
+            else
+                authenticatedData.isUserAuthenticated = true;
             return authenticatedData;
         }
     }

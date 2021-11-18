@@ -22,5 +22,7 @@ namespace Gallaria.API
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+        
     }
 }

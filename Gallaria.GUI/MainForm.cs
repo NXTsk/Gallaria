@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gallaria.ApiClient.ApiResponses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,15 +14,19 @@ namespace Gallaria.GUI
 {
     public partial class MainForm : Form
     {
+        AuthenticatedUserData _user;
 
         private Button currentButton;
         private Color themeColor = ColorTranslator.FromHtml("#34c5e6");
         private Color selectedColor = ColorTranslator.FromHtml("#006e9c");
         private Form activeForm;
 
-        public MainForm()
+
+        public MainForm(AuthenticatedUserData user)
         {
             InitializeComponent();
+            _user = user;
+
             this.WindowState = FormWindowState.Maximized;
             btnCloseChildForm.Visible = false;
             this.Text = string.Empty;
