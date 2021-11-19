@@ -59,7 +59,7 @@ namespace Gallaria.GUI
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(802, 28);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -97,7 +97,7 @@ namespace Gallaria.GUI
             this.groupBox1.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(0);
-            this.groupBox1.Size = new System.Drawing.Size(800, 51);
+            this.groupBox1.Size = new System.Drawing.Size(802, 51);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             // 
@@ -112,7 +112,7 @@ namespace Gallaria.GUI
             this.toolStripFill});
             this.toolStripUndoRedo.Location = new System.Drawing.Point(280, 20);
             this.toolStripUndoRedo.Name = "toolStripUndoRedo";
-            this.toolStripUndoRedo.Size = new System.Drawing.Size(139, 27);
+            this.toolStripUndoRedo.Size = new System.Drawing.Size(100, 27);
             this.toolStripUndoRedo.TabIndex = 2;
             this.toolStripUndoRedo.Text = "toolStrip1";
             // 
@@ -170,7 +170,7 @@ namespace Gallaria.GUI
             this.toolStripButtonColor});
             this.toolStrip.Location = new System.Drawing.Point(0, 20);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(800, 29);
+            this.toolStrip.Size = new System.Drawing.Size(802, 29);
             this.toolStrip.TabIndex = 0;
             this.toolStrip.Text = "toolStrip1";
             // 
@@ -220,7 +220,7 @@ namespace Gallaria.GUI
             this.pbCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbCanvas.Location = new System.Drawing.Point(0, 79);
             this.pbCanvas.Name = "pbCanvas";
-            this.pbCanvas.Size = new System.Drawing.Size(800, 371);
+            this.pbCanvas.Size = new System.Drawing.Size(802, 424);
             this.pbCanvas.TabIndex = 6;
             this.pbCanvas.TabStop = false;
             this.pbCanvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PbCanvas_MouseDown);
@@ -230,7 +230,7 @@ namespace Gallaria.GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(802, 503);
             this.Controls.Add(this.pbCanvas);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
