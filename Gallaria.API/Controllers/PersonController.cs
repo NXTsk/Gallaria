@@ -3,9 +3,6 @@ using Gallaria.API.Converters;
 using Gallaria.API.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Gallaria.API.Controllers
@@ -23,7 +20,7 @@ namespace Gallaria.API.Controllers
             _personRepository = new PersonRepository(_config["ConnectionStrings:MSSQLconnection"]);
         }
 
-        // POST api/persons
+        // POST api/person
         [HttpPost]
         public async Task<ActionResult<int>> CreatePerson([FromBody] PersonDto newPersonDto)
         {
