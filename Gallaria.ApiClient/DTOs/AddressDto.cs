@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gallaria.ApiClient.Models
+namespace Gallaria.ApiClient.DTOs
 {
-    public class Address
+    public class AddressDto
     {
         public string Street { get; set; }
         public string HouseNumber { get; set; }

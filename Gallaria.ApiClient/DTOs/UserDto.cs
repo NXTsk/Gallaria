@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gallaria.ApiClient.Models
+namespace Gallaria.ApiClient.DTOs
 {
-    public class User
+    public class UserDto
     {
         public string Email { get; set; }
         public string Password { get; set; }

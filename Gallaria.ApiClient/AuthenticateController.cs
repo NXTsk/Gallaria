@@ -1,5 +1,5 @@
 ﻿using Gallaria.ApiClient.ApiResponses;
-using Gallaria.ApiClient.Models;
+using Gallaria.ApiClient.DTOs;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace Gallaria.ApiClient
     {
         private const string ApiUrl = "https://localhost:44327/";
 
-        public static async Task<AuthenticatedUserData> LoginAsync(User user)
+        public static async Task<AuthenticatedUserData> LoginAsync(UserDto user)
         {
             AuthenticatedUserData authenticatedData = new AuthenticatedUserData();
             var httpClient = new HttpClient();
