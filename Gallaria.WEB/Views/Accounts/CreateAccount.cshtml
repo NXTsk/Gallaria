@@ -13,7 +13,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label class="control-label">First name</label>
-                <input asp-for="FirstName" class="form-control" required />
+                <input asp-for="FirstName" class="form-control" required/>
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -29,14 +29,18 @@
             <div class="form-group">
                 <label class="control-label">Password</label>
                 <input asp-for="HashPassword" class="form-control" type="password" id="password" required />
-                <input type="checkbox" onclick="showPassword()"/> Show password
                 <span asp-validation-for="HashPassword" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label for="HashPassword" class="control-label">Confirm password</label>
-                <input for="HashPassword" class="form-control" name="confirm_password" type="password" id="confirmPassword" required />
+                <input type="checkbox" onclick="showPassword()" /> Show password
+            </div>
+            <div class="form-group">
+                <label class="control-label">Confirm password</label>
+                <input asp-for="ConfirmPassword" class="form-control" type="password" id="confirmPassword" required />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="checkbox" onclick="showConfirmPassword()" /> Show password
-                <span for="HashPassword" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Phone number</label>
