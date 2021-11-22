@@ -11,5 +11,6 @@ namespace DataAccess.Repositories
     {
         Task<int> CreateArtAsync(Art art);
         Task<bool> DeleteArtAsync(int id);
+        Task<Art> GetArtByIDAsync(int id);
     }
 }

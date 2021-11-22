@@ -51,6 +51,19 @@ namespace DataAccess.Repositories
             }
         }
 
+        public async Task<Art> GetArtByIDAsync(int id)
+        {
+            try
+            {
+                var query = "SELECT * FROM Art WHERE Id=@Id";
+                using var connection = CreateConnection();
+                return await connection.QuerySingleAsync<Art>(query, new { id });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error getting art with id {id}: '{ex.Message}'.", ex);
+            }
+        }
     }
 
 }

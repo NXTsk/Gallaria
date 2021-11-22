@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Gallaria.ApiClient\Gallaria.ApiClient.csproj" />
+    <ProjectReference Include="..\Gallaria.API\Gallaria.API.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -25,13 +25,14 @@ namespace Gallaria.Tests.DataAccess
         [TearDown]
         public async Task CleanUp()
         {
-           // await _artRepository.DeleteArtAsync(_newArt.Id);
+           await _artRepository.DeleteArtAsync(_newArt.Id);
         }
 
         private async Task<Art> CreateNewArt()
         {
-            byte[] bytes = System.IO.File.ReadAllBytes("C:/Users/Zythaar/Desktop/11.jpg");
-            _newArt = new Art() { AuthorName = "Laco Cobolski", Title = "New art", Description = "hello", Image = bytes, Price = 10, AvailableQuantity = 20, Category = "Nature", CreationDate= new DateTime(2021,11,20)};
+            byte[] bytes = System.IO.File.ReadAllBytes("../../../testImages/11.jpg");
+            string imagePath = Convert.ToBase64String(bytes);
+            _newArt = new Art() { AuthorName = "Laco Cobolski", Title = "New art", Description = "hello", Image = imagePath, Price = 10, AvailableQuantity = 20, Category = "Nature", CreationDate= new DateTime(2021,11,20)};
             _newArt.Id = await _artRepository.CreateArtAsync(_newArt);
             return _newArt;
         }

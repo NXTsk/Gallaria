@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Gallaria.ApiClient
 {
-    class ArtController
+    public class ArtController
 
     {
         private const string ApiUrl = "https://localhost:44327/";
@@ -34,6 +34,22 @@ namespace Gallaria.ApiClient
 
             createdArt.hasBeenCreated = returnValue;
             return createdArt;
+        }
+
+        public static async Task<ArtDto> GetArtByIDAsync(int id)
+        {
+            var httpClient = new HttpClient();
+            ArtDto art = new ArtDto();
+
+            var response = await httpClient.GetAsync(ApiUrl + "api/art/" + id);
+            if (response.IsSuccessStatusCode)
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                art = JsonConvert.DeserializeObject<ArtDto>(apiResponse);
+
+            }
+
+            return art;
         }
 
     }

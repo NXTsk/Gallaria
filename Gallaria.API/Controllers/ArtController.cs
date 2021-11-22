@@ -34,16 +34,18 @@ namespace Gallaria.API.Controllers
 
         // GET api/<ArtController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<ArtDto>> Get(int id)
         {
-            return "value";
+            var art = await _artRepository.GetArtByIDAsync(id);
+            if (art == null) { return NotFound(); }
+            else { return Ok(art); }
         }
 
         // POST api/<ArtController>
         [HttpPost]
         public async Task<ActionResult<int>> CreateArtAsync([FromBody] ArtDto newArtDto)
         {
-            newArtDto.Image = System.IO.File.ReadAllBytes("C:/Users/Zythaar/Desktop/11.jpg");
+
             return Ok(await _artRepository.CreateArtAsync(newArtDto.FromDto()));
         }
 
