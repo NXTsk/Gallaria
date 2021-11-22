@@ -94,7 +94,7 @@ namespace DataAccess.Repositories
 
             try
             {
-                var query = "INSERT INTO Artist (artistId, profileDescription)" + "OUTPUT INSERTED.Id VALUES(@artistId, @profileDescription);";
+                var query = "INSERT INTO Artist (artistId, profileDescription)" + "OUTPUT INSERTED.artistId VALUES(@artistId, @profileDescription);";
                 using var connection = CreateConnection();
                 return await connection.QuerySingleAsync<int>(query, new {
                     artistId = personId, profileDescription = artist.ProfileDescription

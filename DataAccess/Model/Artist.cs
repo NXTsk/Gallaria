@@ -8,7 +8,15 @@ namespace DataAccess.Model
 {
     public class Artist : Person
     {
-        public int ArtistId { get; set; }
+        private int artistId;
+        public int ArtistId {
+            get => artistId;
+            set
+            {
+                artistId = value;
+                Id = value;
+            }
+        }
         public string ProfileDescription { get; set; }
 
     }

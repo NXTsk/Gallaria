@@ -12,6 +12,7 @@ namespace Gallaria.Tests.DataAccess
     class PersonRepositoryTest
     {
         private Person _newPerson;
+        private Artist _newArtist;
         private PersonRepository _personRepository;
         private string _password = "TestPassword";
 
@@ -20,12 +21,16 @@ namespace Gallaria.Tests.DataAccess
         {
             _personRepository = new PersonRepository(Configuration.CONNECTION_STRING);
             await CreateNewPerson();
+            await CreateNewArtist();
         }
 
         [TearDown]
         public async Task CleanUp()
         {
             await _personRepository.DeletePersonAsync(_newPerson.Id);
+
+            await _personRepository.DeleteArtistAsync(_newArtist.ArtistId);
+            await _personRepository.DeletePersonAsync(_newArtist.Id);
         }
 
         private async Task<Person> CreateNewPerson()
@@ -36,12 +41,21 @@ namespace Gallaria.Tests.DataAccess
             return _newPerson;
         }
 
+        private async Task<Artist> CreateNewArtist()
+        {
+            Address a = new Address() { Street = "Nibevej", HouseNumber = "12", Zipcode = 9200, City = "Aalborg", Country = "Denmark" };
+            _newArtist = new Artist() { FirstName = "Petronela", LastName = "Lakatosova", Email = "petronela@slovak.sk", PhoneNumber = "123123", Address = a, ProfileDescription = "I am a digital artist." };
+            _newArtist.ArtistId = await _personRepository.CreateArtistAsync(_newArtist, _password);
+
+            return _newArtist;
+        }
+
         [Test]
         public void CreatePerson()
         {
             //ARRANGE & ACT is done in Setup()
-            //ASSERT
-            
+
+            //ASSERT  
             Assert.IsTrue(_newPerson.Id > 0, "Created author ID not returned");
         }
 
@@ -67,8 +81,30 @@ namespace Gallaria.Tests.DataAccess
 
             //ACT 
             bool deleted = await _personRepository.DeletePersonAsync(_newPerson.Id);
+
             //ASSERT
             Assert.IsTrue(deleted, "Person not deleted");
+        }
+
+        [Test]
+        public void CreateArtist()
+        {
+            //ARRANGE & ACT is done in Setup()
+
+            //ASSERT
+            Assert.IsTrue(_newArtist.Id > 0, "Created artist ID not returned");
+        }
+
+        [Test]
+        public async Task DeleteArtist()
+        {
+            //ARRANGE is done in Setup()
+
+            //ACT 
+            bool deleted = await _personRepository.DeleteArtistAsync(_newArtist.ArtistId);
+
+            //ASSERT
+            Assert.IsTrue(deleted, "Artist not deleted");
         }
     }
 }

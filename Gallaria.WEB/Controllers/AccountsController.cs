@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Gallaria.ApiClient.ApiResponses;
 using Gallaria.ApiClient.DTOs;
+using Gallaria.WEB.ViewModels;
 
 namespace Gallaria.WEB.Controllers
 {
@@ -29,7 +30,7 @@ namespace Gallaria.WEB.Controllers
         // POST: AuthorController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateAccount(PersonDto person)
+        public async Task<ActionResult> CreateAccount(AccountViewModel accountVM)
         {
             ModelState.Remove("NewPassword");
             if (!ModelState.IsValid)
@@ -38,19 +39,32 @@ namespace Gallaria.WEB.Controllers
             }
             else
             {
-                try
+                bool isUserArtist = accountVM.isPersonArtist;
+                if (isUserArtist)
                 {
-                    var response = await PersonController.CreatePersonAsync(person);
-                    if (response.hasBeenCreated)
+                    ArtistDto artist = (ArtistDto)accountVM.Person;
+                    artist.ProfileDescription = accountVM.Artist.ProfileDescription;
+
+                    // TODO: Call Create artist 
+
+                }
+                else
+                {
+                    try
                     {
-                        return RedirectToAction(nameof(Login), "Accounts");
+                        var response = await PersonController.CreatePersonAsync(accountVM.Person);
+                        if (response.hasBeenCreated)
+                        {
+                            return RedirectToAction(nameof(Login), "Accounts");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewBag.ErrorMessage = ex.Message;
                     }
                 }
-                catch (Exception ex)
-                {
-                    ViewBag.ErrorMessage = ex.Message;
-                }
             }
+            
             return View();
         }
     }

@@ -1,4 +1,4 @@
-﻿using DataAccess.Repositories;
+﻿ using DataAccess.Repositories;
 using Gallaria.API.Converters;
 using Gallaria.API.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +25,13 @@ namespace Gallaria.API.Controllers
         public async Task<ActionResult<int>> CreatePerson([FromBody] PersonDto newPersonDto)
         {
             return Ok(await _personRepository.CreatePersonAsync(newPersonDto.FromDto(), newPersonDto.HashPassword));
+        }
+
+        // POST api/artist
+        [HttpPost]
+        public async Task<ActionResult<int>> CreateArtist([FromBody] ArtistDto newArtistDto)
+        {
+            return Ok(await _personRepository.CreateArtistAsync(newArtistDto.FromDto(), newArtistDto.HashPassword));
         }
     }
 }
