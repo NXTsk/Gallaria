@@ -34,6 +34,7 @@ namespace DataAccess.Repositories
                 throw new Exception($"Error creating new Person: '{ex.Message}'.", ex);
             }
         }
+
         public async Task<bool> DeletePersonAsync(int id)
         {
             try
@@ -47,6 +48,7 @@ namespace DataAccess.Repositories
                 throw new Exception($"Error deleting person with id {id}: '{ex.Message}'.", ex);
             }
         }
+
         public async Task<int> LoginAsync(string email, string password)
         {
             try
@@ -83,6 +85,53 @@ namespace DataAccess.Repositories
             catch (Exception ex)
             {
                 throw new Exception($"Error updating person: '{ex.Message}'.", ex);
+            }
+        }
+
+        public async Task<int> CreateArtistAsync(Artist artist, string password)
+        {
+            int personId = await CreatePersonAsync((Person)artist, password);
+
+            try
+            {
+                var query = "INSERT INTO Artist (artistId, profileDescription)" + "OUTPUT INSERTED.Id VALUES(@artistId, @profileDescription);";
+                using var connection = CreateConnection();
+                return await connection.QuerySingleAsync<int>(query, new {
+                    artistId = personId, profileDescription = artist.ProfileDescription
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error creating new Artist: '{ex.Message}'.", ex);
+            }
+        }
+
+        public async Task<bool> DeleteArtistAsync(int artistId)
+        {
+            try
+            {
+                var query = "DELETE FROM Artist WHERE artistId=@artistId";
+                using var connection = CreateConnection();
+                return await connection.ExecuteAsync(query, new { artistId }) > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error deleting artist with id {artistId}: '{ex.Message}'.", ex);
+            }
+        }
+
+        public async Task<bool> IsArtist(int artistId)
+        {
+            try
+            {
+                var query = "SELECT COUNT(*) FROM Artist WHERE artistId=@artistId";
+                using var connection = CreateConnection();
+                int resultNumber = await connection.ExecuteScalarAsync<int>(query, new { artistId }) ;
+                return (resultNumber >= 1) ? true : false; 
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error deleting artist with id {artistId}: '{ex.Message}'.", ex);
             }
         }
     }

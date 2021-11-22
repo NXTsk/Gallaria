@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Model
 {
-    class Artist : Person
+    public class Artist : Person
     {
+        public int ArtistId { get; set; }
         public string ProfileDescription { get; set; }
 
     }
