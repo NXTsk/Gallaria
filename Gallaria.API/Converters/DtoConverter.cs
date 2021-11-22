@@ -44,5 +44,39 @@ namespace Gallaria.API.Converters
             }
         }
         #endregion
+
+        #region Art conversion methods
+
+        public static ArtDto ToDto(this Art artToConvert)
+        {
+            var artDto = new ArtDto();
+            artToConvert.CopyPropertiesTo(artDto);
+            return artDto;
+        }
+
+        public static Art FromDto(this ArtDto artDtoToConvert)
+        {
+            var art = new Art();
+            artDtoToConvert.CopyPropertiesTo(art);
+            return art;
+        }
+
+        public static IEnumerable<ArtDto> ToDtos(this IEnumerable<Art> artsToConvert)
+        {
+            foreach (var art in artsToConvert)
+            {
+                yield return art.ToDto();
+            }
+        }
+
+        public static IEnumerable<Art> FromDtos(this IEnumerable<ArtDto> artDtosToConvert)
+        {
+            foreach (var artDto in artDtosToConvert)
+            {
+                yield return artDto.FromDto();
+            }
+        }
+
+        #endregion
     }
 }

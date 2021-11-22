@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using Gallaria.ApiClient.ApiResponses;
 using Gallaria.ApiClient;
-using Gallaria.ApiClient.Models;
+using Gallaria.ApiClient.DTOs;
 
 namespace Gallaria.GUI
 {
@@ -68,7 +68,7 @@ namespace Gallaria.GUI
 
         private async Task LoginUserAsync()
         {
-            AuthenticatedUserData userData = await AuthenticateController.LoginAsync(new User { Email = txtUserName.Text, Password = txtPassword.Text });
+            AuthenticatedUserData userData = await AuthenticateController.LoginAsync(new UserDto { Email = txtUserName.Text, Password = txtPassword.Text });
 
             if (userData.isUserAuthenticated)
             {

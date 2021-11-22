@@ -63,6 +63,7 @@ namespace Gallaria.GUI
             this.btnSelectFile.TabIndex = 1;
             this.btnSelectFile.Text = "Select File";
             this.btnSelectFile.UseVisualStyleBackColor = false;
+            this.btnSelectFile.Click += new System.EventHandler(this.btnSelectFile_Click);
             // 
             // textBoxName
             // 
