@@ -23,7 +23,6 @@ namespace Gallaria.GUI
         {
             InitializeComponent();
             comboBoxCategory.DataSource = InputCategories();
-
         }
         private async void btnSelectFile_Click(object sender, System.EventArgs e)
         {
@@ -53,17 +52,40 @@ namespace Gallaria.GUI
 
         private void textBoxes_TextChanged(object sender, EventArgs e)
         {
-            name = textBoxName.Text;
-            category = comboBoxCategory.Text;
-            if (textBoxNumberOfPieces.Text.Length > 0)
+            if(textBoxName.Text.Length > 0)
+            {
+                name = textBoxName.Text;
+            }
+            if (textBoxName.Text.Length > 0)
+            {
+                category = comboBoxCategory.Text;
+            }
+            if (textBoxName.Text.Length > 0)
             {
                 int.TryParse(textBoxNumberOfPieces.Text, out numberOfPieces);
             }
-            if (textBoxPrice.Text.Length > 0)
+            if (textBoxName.Text.Length > 0)
             {
                 decimal.TryParse(textBoxPrice.Text, out price);
             }
-            description = richTextBoxDescription.Text;
+            if (textBoxName.Text.Length > 0)
+            {
+                description = richTextBoxDescription.Text;
+            }
+        }
+
+        private void richTextBoxDescription_TextChanged(object sender, EventArgs e)
+        {
+            lblCharacterCounter.Text = $"{richTextBoxDescription.Text.Length}/500";
+
+        }
+
+        private void richTextBoxDescription_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (richTextBoxDescription.Text.Length >= 500)
+            {
+                e.Handled = true;
+            }
         }
 
         private void textBoxNumberOfPieces_KeyPress(object sender, KeyPressEventArgs e)
@@ -86,13 +108,26 @@ namespace Gallaria.GUI
         private async void btnPublish_Click(object sender, EventArgs e)
         {
             ArtDto art = CreateArtFromData();
-            await ArtController.CreateArtAsync(art);
+            var result = await ArtController.CreateArtAsync(art);
+            if (result.hasBeenCreated) {
+                this.Close();
+            }
         }
 
         public string[] InputCategories()
         {
-            var categories = new[] {"Category", "Abstract","Photography","Portrait","Landscape","Nature","Animals","Pixel art","Surrealism" };
+            var categories = new[] {"Abstract", "Photography", "Portrait", "Landscape", "Nature", "Animals", "Pixel art", "Surrealism"};
+            Array.Sort(categories, (x, y) => String.Compare(x, y));
             return categories;
         }
+
+        private void UploadArtForm_Load(object sender, EventArgs e)
+        {
+            comboBoxCategory.SelectedItem = null;
+            comboBoxCategory.SelectedText = "--select--";
+            lblCharacterCounter.Text = $"{richTextBoxDescription.Text.Length}/500";
+        }
+
+        
     }
 }
