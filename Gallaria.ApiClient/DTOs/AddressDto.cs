@@ -16,7 +16,7 @@ namespace Gallaria.ApiClient.DTOs
         public string HouseNumber { get; set; }
 
         [Required(ErrorMessage = "Zipcode is required.")]
-        public int Zipcode { get; set; }
+        public string Zipcode { get; set; }
 
         [Required(ErrorMessage = "City is required.")]
         public string City { get; set; }

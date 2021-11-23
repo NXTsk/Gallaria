@@ -24,7 +24,7 @@ namespace DataAccess.Repositories
                 return await connection.QuerySingleAsync<int>(query, new {FirstName = person.FirstName, LastName = person.LastName, Email = person.Email, HashPassword = hashPassword, PhoneNumber = person.PhoneNumber,
                     Street = person.Address.Street,
                     HouseNumber = person.Address.HouseNumber,
-                    Zipcode = person.Address.Street,
+                    Zipcode = person.Address.Zipcode,
                     City = person.Address.City,
                     Country = person.Address.Country,
                 });

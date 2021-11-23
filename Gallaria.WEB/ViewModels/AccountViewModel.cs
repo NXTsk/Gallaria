@@ -7,7 +7,7 @@ namespace Gallaria.WEB.ViewModels
 {
     public class AccountViewModel
     {
-        public ArtistDto Artist { get; set; }
+        public ArtistDto? Artist { get; set; }
         public PersonDto Person { get; set; }
         public bool isPersonArtist { get; set; }
     }

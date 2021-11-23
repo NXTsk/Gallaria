@@ -45,6 +45,42 @@ namespace Gallaria.API.Converters
         }
         #endregion
 
+        #region Artist conversion methods
+        public static ArtistDto ToDto(this Artist artistToConvert)
+        {
+            var artistDto = new ArtistDto();
+            artistDto.Address = new AddressDto();
+            artistToConvert.CopyPropertiesTo(artistDto);
+            artistToConvert.Address.CopyPropertiesTo(artistDto.Address);
+            return artistDto;
+        }
+
+        public static Artist FromDto(this ArtistDto artistDtoToConvert)
+        {
+            var artist = new Artist();
+            artist.Address = new Address();
+            artistDtoToConvert.CopyPropertiesTo(artist);
+            artistDtoToConvert.Address.CopyPropertiesTo(artist.Address);
+            return artist;
+        }
+
+        public static IEnumerable<ArtistDto> ToDtos(this IEnumerable<Artist> artistsToConvert)
+        {
+            foreach (var artist in artistsToConvert)
+            {
+                yield return artist.ToDto();
+            }
+        }
+
+        public static IEnumerable<Artist> FromDtos(this IEnumerable<ArtistDto> artistDtosToConvert)
+        {
+            foreach (var artistDto in artistDtosToConvert)
+            {
+                yield return artistDto.FromDto();
+            }
+        }
+        #endregion
+
         #region Art conversion methods
 
         public static ArtDto ToDto(this Art artToConvert)

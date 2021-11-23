@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Gallaria.ApiClient.ApiResponses;
 using Gallaria.ApiClient.DTOs;
 using Gallaria.WEB.ViewModels;
-
+using Gallaria.ApiClient.Helpers;
 namespace Gallaria.WEB.Controllers
 {
     public class AccountsController : Controller
@@ -32,8 +32,8 @@ namespace Gallaria.WEB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateAccount(AccountViewModel accountVM)
         {
-            ModelState.Remove("NewPassword");
-            if (!ModelState.IsValid)
+
+            if (accountVM.Person == null)
             {
                 ViewBag.ErrorMessage = "User not created - error in submitted data!";
             }
@@ -42,10 +42,21 @@ namespace Gallaria.WEB.Controllers
                 bool isUserArtist = accountVM.isPersonArtist;
                 if (isUserArtist)
                 {
-                    ArtistDto artist = (ArtistDto)accountVM.Person;
-                    artist.ProfileDescription = accountVM.Artist.ProfileDescription;
+                    try
+                    {
+                        ArtistDto artist = accountVM.Person.ConvertIntoArtist();
+                        artist.ProfileDescription = accountVM.Artist.ProfileDescription;
 
-                    // TODO: Call Create artist 
+                        var response = await PersonController.CreateArtistAsync(artist);
+                        if (response.hasBeenCreated)
+                        {
+                            return RedirectToAction(nameof(Login), "Accounts");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewBag.ErrorMessage = ex.Message;
+                    }
 
                 }
                 else

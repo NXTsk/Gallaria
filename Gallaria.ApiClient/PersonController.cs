@@ -34,6 +34,27 @@ namespace Gallaria.ApiClient
             createdPerson.hasBeenCreated = returnValue;
             return createdPerson;
         }
+
+        public static async Task<CreatePersonApiResponse> CreateArtistAsync(ArtistDto artist)
+        {
+            var httpClient = new HttpClient();
+            bool returnValue = false;
+            CreatePersonApiResponse createdArtist = new CreatePersonApiResponse();
+            StringContent content = new StringContent(JsonConvert.SerializeObject(artist), Encoding.Default, "application/json");
+
+            var response = await httpClient.PostAsync(ApiUrl + "api/Person/artist", content);
+            if (response.IsSuccessStatusCode)
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                int createdResult = JsonConvert.DeserializeObject<int>(apiResponse);
+
+                returnValue = true;
+                createdArtist.UserId = createdResult;
+            }
+
+            createdArtist.hasBeenCreated = returnValue;
+            return createdArtist;
+        }
     }
 
 

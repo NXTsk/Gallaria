@@ -27,11 +27,12 @@ namespace Gallaria.API.Controllers
             return Ok(await _personRepository.CreatePersonAsync(newPersonDto.FromDto(), newPersonDto.HashPassword));
         }
 
-        //// POST api/artist
-        //[HttpPost]
-        //public async Task<ActionResult<int>> CreateArtist([FromBody] ArtistDto newArtistDto)
-        //{
-        //    return Ok(await _personRepository.CreateArtistAsync(newArtistDto.FromDto(), newArtistDto.HashPassword));
-        //}
+        // POST api/artist
+        [HttpPost]
+        [Route("artist")]
+        public async Task<ActionResult<int>> CreateArtist([FromBody] ArtistDto newArtistDto)
+        {
+            return Ok(await _personRepository.CreateArtistAsync(newArtistDto.FromDto(), newArtistDto.HashPassword));
+        }
     }
 }
