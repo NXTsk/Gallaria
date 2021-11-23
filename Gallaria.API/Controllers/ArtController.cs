@@ -45,7 +45,6 @@ namespace Gallaria.API.Controllers
         [HttpPost]
         public async Task<ActionResult<int>> CreateArtAsync([FromBody] ArtDto newArtDto)
         {
-
             return Ok(await _artRepository.CreateArtAsync(newArtDto.FromDto()));
         }
 

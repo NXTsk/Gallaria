@@ -16,12 +16,11 @@ namespace DataAccess.Repositories
         {
             try
             {
-                var query = "INSERT INTO Art (AuthorName, Title, Description, Image, Price, AvailableQuantity, Category, CreationDate)" +
-                    " OUTPUT INSERTED.Id VALUES (@AuthorName, @Title, @Description, @Image, @Price, @AvailableQuantity, @Category, @CreationDate);";
+                var query = "INSERT INTO Art (Title, Description, Image, Price, AvailableQuantity, Category, CreationDate)" +
+                    " OUTPUT INSERTED.Id VALUES (@Title, @Description, @Image, @Price, @AvailableQuantity, @Category, @CreationDate);";
                 using var connection = CreateConnection();
                 return await connection.QuerySingleAsync<int>(query, new
                 {
-                    AuthorName = art.AuthorName,
                     Title = art.Title,
                     Description = art.Description,
                     Image = art.Image,

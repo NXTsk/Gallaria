@@ -3,6 +3,7 @@ using Gallaria.ApiClient.DTOs;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -51,6 +52,15 @@ namespace Gallaria.ApiClient
 
             return art;
         }
+        public static async Task<byte[]> ConvertBase64toByteArray(string pictureBase64String)
+        {
+            byte[] pictureByteArray = Convert.FromBase64String(pictureBase64String);
+            MemoryStream memoryStream = new MemoryStream(pictureByteArray);
+            memoryStream.Position = 0;
 
+            memoryStream.Close();
+
+            return pictureByteArray;
+        }
     }
 }
