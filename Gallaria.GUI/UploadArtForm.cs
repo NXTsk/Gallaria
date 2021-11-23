@@ -22,6 +22,7 @@ namespace Gallaria.GUI
         public UploadArtForm()
         {
             InitializeComponent();
+            comboBoxCategory.DataSource = InputCategories();
 
         }
         private async void btnSelectFile_Click(object sender, System.EventArgs e)
@@ -86,6 +87,12 @@ namespace Gallaria.GUI
         {
             ArtDto art = CreateArtFromData();
             await ArtController.CreateArtAsync(art);
+        }
+
+        public string[] InputCategories()
+        {
+            var categories = new[] {"Category", "Abstract","Photography","Portrait","Landscape","Nature","Animals","Pixel art","Surrealism" };
+            return categories;
         }
     }
 }
