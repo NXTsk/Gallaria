@@ -2,6 +2,7 @@
 using Gallaria.ApiClient.DTOs;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -52,6 +53,29 @@ namespace Gallaria.ApiClient
 
             return art;
         }
+
+        public static async Task<IEnumerable<ArtDto>> GetAllArtsAsync()
+        {
+            var httpClient = new HttpClient();
+            IEnumerable<ArtDto> artDtos;
+
+            var response = await httpClient.GetAsync(ApiUrl + "api/art");
+            if (response.IsSuccessStatusCode)
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                artDtos = JsonConvert.DeserializeObject<IEnumerable<ArtDto>>(apiResponse);
+
+            }
+            else
+            {
+                artDtos = null;
+                throw new Exception("Error retrieving all arts");
+            }
+            return artDtos;
+        }
+
+
+
         public static byte[] ConvertBase64toByteArray(string pictureBase64String)
         {
             byte[] pictureByteArray = Convert.FromBase64String(pictureBase64String);
