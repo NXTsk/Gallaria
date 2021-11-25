@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DataAccess.Model;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,9 +28,11 @@ namespace Gallaria.API.Controllers
 
         // GET: api/<ArtController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<IEnumerable<ArtDto>>> GetAllAsync()
         {
-            return new string[] { "value1", "value2" };
+            IEnumerable<Art> arts;
+            arts = await _artRepository.GetAllArtsAsync();
+            return Ok(arts.ToDtos());
         }
 
         // GET api/<ArtController>/5

@@ -50,6 +50,21 @@ namespace DataAccess.Repositories
             }
         }
 
+        public async Task<IEnumerable<Art>> GetAllArtsAsync()
+        {
+            try
+            {
+                var query = "SELECT * FROM Art";
+                using var connection = CreateConnection();
+                return (await connection.QueryAsync<Art>(query)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error getting all arts: '{ex.Message}'.", ex);
+            }
+
+        }
+
         public async Task<Art> GetArtByIDAsync(int id)
         {
             try
