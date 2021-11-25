@@ -1,0 +1,60 @@
+﻿@model Gallaria.ApiClient.DTOs.ArtDto
+
+@{
+    ViewData["Title"] = "DetailsView";
+}
+<h1>@Html.DisplayFor(model => model.Title)</h1>
+
+<div>
+    <div class="image">
+        <dl>
+            <dd class="col-sm-10">
+                <img src=" @Html.DisplayFor(model => model.Image)" runat="server" alt="Red dot" align="right" style="max-width: 70%; flex-basis: 40%">
+            </dd>
+        </dl>
+    </div>
+    <div class="text" style="float: left; padding-left:20px; ">
+        <dl class="row">
+            <dt class="col-sm-2">
+                Author id:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.AuthorId)
+            </dd>
+            <dt class="col-sm-2">
+                Description:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class="col-sm-2">
+                Price:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-2">
+                Available quantity:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.AvailableQuantity)
+            </dd>
+            <dt class="col-sm-2">
+                Category:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Category)
+            </dd>
+            <dt class="col-sm-2">
+                Created on:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CreationDate)
+            </dd>
+        </dl>
+        <div>
+            <a asp-action="Index">Back to Home page</a>
+        </div>
+    </div>
+</div>
+

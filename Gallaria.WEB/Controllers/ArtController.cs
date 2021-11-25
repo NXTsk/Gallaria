@@ -15,9 +15,13 @@ namespace Gallaria.WEB.Controllers
             return View();
         }
 
-        public IActionResult ArtDetails(int id)
+        public IActionResult Details(int id)
         {
             ArtDto art = ApiClient.ArtController.GetArtByIDAsync(id).Result;
+
+            //Converting from basestring64 to image
+            art.Image = "data:image/png;base64, " + art.Image;
+
             return View(art);
         }
     }
