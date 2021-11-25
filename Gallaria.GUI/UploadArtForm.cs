@@ -116,7 +116,7 @@ namespace Gallaria.GUI
             }
             else
             {
-                MessageBox.Show("Please, fill all required fields.", "Demo App - Message!");
+                MessageBox.Show("Please fill all required fields.", "Gallaria - Message!");
             }
 
             
