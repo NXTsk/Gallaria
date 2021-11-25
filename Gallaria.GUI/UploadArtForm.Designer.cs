@@ -157,7 +157,6 @@ namespace Gallaria.GUI
             this.richTextBoxDescription.TabIndex = 5;
             this.richTextBoxDescription.Text = "";
             this.richTextBoxDescription.TextChanged += new System.EventHandler(this.richTextBoxDescription_TextChanged);
-            this.richTextBoxDescription.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.richTextBoxDescription_KeyPress);
             // 
             // errorProviderDataValidation
             // 

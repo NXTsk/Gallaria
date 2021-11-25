@@ -56,7 +56,7 @@ namespace Gallaria.GUI
             {
                 name = textBoxName.Text;
             }
-            if (comboBoxCategory.Text.Length > 0)
+            if (!comboBoxCategory.Text.Equals("-select category-"))
             {
                 category = comboBoxCategory.Text;
             }
@@ -67,7 +67,7 @@ namespace Gallaria.GUI
             }
             if (textBoxPrice.Text.Length > 0)
             {
-                decimal.TryParse(textBoxPrice.Text, out price);
+                Decimal.TryParse(textBoxPrice.Text, out price);
             }
             if (richTextBoxDescription.Text.Length > 0)
             {
@@ -81,18 +81,10 @@ namespace Gallaria.GUI
 
         }
 
-        private void richTextBoxDescription_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (richTextBoxDescription.Text.Length >= 500)
-            {
-                e.Handled = true;
-            }
-        }
-
         private void textBoxNumberOfPieces_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Verify that the pressed key isn't CTRL or any non-numeric digit
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) // && (e.KeyChar != ','))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -100,16 +92,12 @@ namespace Gallaria.GUI
 
         private void textBoxPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            //{
-            //    e.Handled = true;
-            //}
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ','))
             {
                 e.Handled = true;
             }
 
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf(',') > -1))
             {
                 e.Handled = true;
             }
@@ -136,7 +124,7 @@ namespace Gallaria.GUI
 
         public string[] InputCategories()
         {
-            var categories = new[] {"Abstract", "Photography", "Portrait", "Landscape", "Nature", "Animals", "Pixel art", "Surrealism"};
+            var categories = new[] {"-select category-","Abstract", "Photography", "Portrait", "Landscape", "Nature", "Animals", "Pixel art", "Surrealism"};
             Array.Sort(categories, (x, y) => String.Compare(x, y));
             return categories;
         }
@@ -161,7 +149,7 @@ namespace Gallaria.GUI
                 errorProviderDataValidation.SetError(textBoxName, "field required!");
                 IsValid = false;
             }
-            if (string.IsNullOrEmpty(comboBoxCategory.Text.Trim()) || comboBoxCategory.Text == "Select category")
+            if (string.IsNullOrEmpty(comboBoxCategory.Text.Trim()) || comboBoxCategory.Text == "-select category-")
             {
                 errorProviderDataValidation.SetError(comboBoxCategory, "field required!");
                 IsValid = false;
