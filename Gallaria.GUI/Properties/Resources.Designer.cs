@@ -183,6 +183,16 @@ namespace Gallaria.GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap hidden {
+            get {
+                object obj = ResourceManager.GetObject("hidden", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap maximize_32x32 {
             get {
                 object obj = ResourceManager.GetObject("maximize-32x32", resourceCulture);
@@ -206,6 +216,16 @@ namespace Gallaria.GUI.Properties {
         internal static System.Drawing.Bitmap redo_icon_1320085938952280370 {
             get {
                 object obj = ResourceManager.GetObject("redo+icon-1320085938952280370", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap show {
+            get {
+                object obj = ResourceManager.GetObject("show", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

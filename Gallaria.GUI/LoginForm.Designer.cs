@@ -43,11 +43,15 @@ namespace Gallaria.GUI
             this.linkLabelForgotPassword = new System.Windows.Forms.LinkLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.showPasswordButtonBox = new System.Windows.Forms.PictureBox();
+            this.hidePasswordButtonBox = new System.Windows.Forms.PictureBox();
             this.titleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimalize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.showPasswordButtonBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hidePasswordButtonBox)).BeginInit();
             this.SuspendLayout();
             // 
             // titleBar
@@ -123,7 +127,7 @@ namespace Gallaria.GUI
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(350, 34);
             this.txtUserName.TabIndex = 3;
-            this.txtUserName.Text = "stefan@slovak.sk";
+            this.txtUserName.Text = "denisacreative@gmail.com";
             // 
             // txtPassword
             // 
@@ -132,7 +136,7 @@ namespace Gallaria.GUI
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(350, 31);
             this.txtPassword.TabIndex = 5;
-            this.txtPassword.Text = "password123";
+            this.txtPassword.Text = "1234567";
             // 
             // lblPassword
             // 
@@ -203,6 +207,33 @@ namespace Gallaria.GUI
             this.pictureBox2.TabIndex = 11;
             this.pictureBox2.TabStop = false;
             // 
+            // showPasswordButtonBox
+            // 
+            this.showPasswordButtonBox.BackColor = System.Drawing.Color.White;
+            this.showPasswordButtonBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.showPasswordButtonBox.Image = global::Gallaria.GUI.Properties.Resources.show;
+            this.showPasswordButtonBox.Location = new System.Drawing.Point(365, 338);
+            this.showPasswordButtonBox.Name = "showPasswordButtonBox";
+            this.showPasswordButtonBox.Size = new System.Drawing.Size(32, 32);
+            this.showPasswordButtonBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.showPasswordButtonBox.TabIndex = 12;
+            this.showPasswordButtonBox.TabStop = false;
+            this.showPasswordButtonBox.Click += new System.EventHandler(this.ShowPasswordButtonBox_Click);
+            // 
+            // hidePasswordButtonBox
+            // 
+            this.hidePasswordButtonBox.BackColor = System.Drawing.Color.White;
+            this.hidePasswordButtonBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.hidePasswordButtonBox.Image = global::Gallaria.GUI.Properties.Resources.hidden;
+            this.hidePasswordButtonBox.Location = new System.Drawing.Point(365, 338);
+            this.hidePasswordButtonBox.Name = "hidePasswordButtonBox";
+            this.hidePasswordButtonBox.Size = new System.Drawing.Size(32, 32);
+            this.hidePasswordButtonBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.hidePasswordButtonBox.TabIndex = 13;
+            this.hidePasswordButtonBox.TabStop = false;
+            this.hidePasswordButtonBox.Visible = false;
+            this.hidePasswordButtonBox.Click += new System.EventHandler(this.HidePasswordButtonBox_Click);
+            // 
             // LoginForm
             // 
             this.AcceptButton = this.btnLogin;
@@ -210,6 +241,8 @@ namespace Gallaria.GUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(197)))), ((int)(((byte)(230)))));
             this.ClientSize = new System.Drawing.Size(450, 703);
+            this.Controls.Add(this.hidePasswordButtonBox);
+            this.Controls.Add(this.showPasswordButtonBox);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.linkLabelForgotPassword);
@@ -233,6 +266,8 @@ namespace Gallaria.GUI
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimalize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.showPasswordButtonBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hidePasswordButtonBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,5 +289,7 @@ namespace Gallaria.GUI
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox showPasswordButtonBox;
+        private System.Windows.Forms.PictureBox hidePasswordButtonBox;
     }
 }

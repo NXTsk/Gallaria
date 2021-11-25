@@ -52,7 +52,7 @@ namespace Gallaria.ApiClient
 
             return art;
         }
-        public static async Task<byte[]> ConvertBase64toByteArray(string pictureBase64String)
+        public static byte[] ConvertBase64toByteArray(string pictureBase64String)
         {
             byte[] pictureByteArray = Convert.FromBase64String(pictureBase64String);
             MemoryStream memoryStream = new MemoryStream(pictureByteArray);

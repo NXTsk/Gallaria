@@ -34,5 +34,12 @@ namespace Gallaria.API.Controllers
         {
             return Ok(await _personRepository.CreateArtistAsync(newArtistDto.FromDto(), newArtistDto.HashPassword));
         }
+
+        [HttpGet]
+        [Route("isArtist/{id}")]
+        public async Task<ActionResult<bool>> IsArtistAsync(int id)
+        {
+            return Ok(await _personRepository.IsArtist(id));
+        }
     }
 }

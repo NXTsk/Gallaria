@@ -55,6 +55,21 @@ namespace Gallaria.ApiClient
             createdArtist.hasBeenCreated = returnValue;
             return createdArtist;
         }
+
+        public static async Task<bool> IsArtistAsync(int id)
+        {
+            var httpClient = new HttpClient();
+            bool returnValue = false;
+
+            var response = await httpClient.GetAsync(ApiUrl + "api/Person/isArtist/" + id);
+            if (response.IsSuccessStatusCode)
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                returnValue = JsonConvert.DeserializeObject<bool>(apiResponse);
+            }
+
+            return returnValue;
+        }
     }
 
 
