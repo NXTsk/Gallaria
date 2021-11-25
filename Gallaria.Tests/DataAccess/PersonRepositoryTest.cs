@@ -35,7 +35,7 @@ namespace Gallaria.Tests.DataAccess
 
         private async Task<Person> CreateNewPerson()
         {
-            Address a = new Address() { Street = "Dannebrogsgade", HouseNumber = "13", Zipcode = 9000, City = "Aalborg", Country = "Denmark" };
+            Address a = new Address() { Street = "Dannebrogsgade", HouseNumber = "13", Zipcode = "9000", City = "Aalborg", Country = "Denmark" };
             _newPerson = new Person() {FirstName="Laco", LastName = "Cobolski",Email="laco@slovak.sk",PhoneNumber = "123456" ,Address = a};
             _newPerson.Id = await _personRepository.CreatePersonAsync(_newPerson, _password);
             return _newPerson;
@@ -43,7 +43,7 @@ namespace Gallaria.Tests.DataAccess
 
         private async Task<Artist> CreateNewArtist()
         {
-            Address a = new Address() { Street = "Nibevej", HouseNumber = "12", Zipcode = 9200, City = "Aalborg", Country = "Denmark" };
+            Address a = new Address() { Street = "Nibevej", HouseNumber = "12", Zipcode = "9200", City = "Aalborg", Country = "Denmark" };
             _newArtist = new Artist() { FirstName = "Petronela", LastName = "Lakatosova", Email = "petronela@slovak.sk", PhoneNumber = "123123", Address = a, ProfileDescription = "I am a digital artist." };
             _newArtist.ArtistId = await _personRepository.CreateArtistAsync(_newArtist, _password);
 

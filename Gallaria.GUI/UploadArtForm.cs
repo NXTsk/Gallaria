@@ -22,7 +22,7 @@ namespace Gallaria.GUI
         public UploadArtForm()
         {
             InitializeComponent();
-            comboBoxCategory.DataSource = InputCategories();
+           
         }
         private async void btnSelectFile_Click(object sender, System.EventArgs e)
         {
@@ -56,19 +56,20 @@ namespace Gallaria.GUI
             {
                 name = textBoxName.Text;
             }
-            if (textBoxName.Text.Length > 0)
+            if (comboBoxCategory.Text.Length > 0)
             {
                 category = comboBoxCategory.Text;
             }
-            if (textBoxName.Text.Length > 0)
+
+            if (textBoxNumberOfPieces.Text.Length > 0)
             {
                 int.TryParse(textBoxNumberOfPieces.Text, out numberOfPieces);
             }
-            if (textBoxName.Text.Length > 0)
+            if (textBoxPrice.Text.Length > 0)
             {
                 decimal.TryParse(textBoxPrice.Text, out price);
             }
-            if (textBoxName.Text.Length > 0)
+            if (richTextBoxDescription.Text.Length > 0)
             {
                 description = richTextBoxDescription.Text;
             }
@@ -91,7 +92,7 @@ namespace Gallaria.GUI
         private void textBoxNumberOfPieces_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Verify that the pressed key isn't CTRL or any non-numeric digit
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ','))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) // && (e.KeyChar != ','))
             {
                 e.Handled = true;
             }
@@ -99,6 +100,15 @@ namespace Gallaria.GUI
 
         private void textBoxPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
+            //if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            //{
+            //    e.Handled = true;
+            //}
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
@@ -107,11 +117,21 @@ namespace Gallaria.GUI
 
         private async void btnPublish_Click(object sender, EventArgs e)
         {
-            ArtDto art = CreateArtFromData();
-            var result = await ArtController.CreateArtAsync(art);
-            if (result.hasBeenCreated) {
-                this.Close();
+            if (ValidateChildren())
+            {
+                ArtDto art = CreateArtFromData();
+                var result = await ArtController.CreateArtAsync(art);
+                if (result.hasBeenCreated)
+                {
+                    this.Close();
+                }
             }
+            else
+            {
+                MessageBox.Show("Please, fill all required fields.", "Demo App - Message!");
+            }
+
+            
         }
 
         public string[] InputCategories()
@@ -126,8 +146,43 @@ namespace Gallaria.GUI
             comboBoxCategory.SelectedItem = null;
             comboBoxCategory.SelectedText = "--select--";
             lblCharacterCounter.Text = $"{richTextBoxDescription.Text.Length}/500";
+            comboBoxCategory.DataSource = InputCategories();
         }
 
-        
+        private bool ValidateChildren()
+        {
+            bool IsValid = true;
+            // Clear error provider only once.
+            errorProviderDataValidation.Clear();
+
+            //use if condition for every condtion, dont use else-if
+            if (string.IsNullOrEmpty(textBoxName.Text.Trim()))
+            {
+                errorProviderDataValidation.SetError(textBoxName, "field required!");
+                IsValid = false;
+            }
+            if (string.IsNullOrEmpty(comboBoxCategory.Text.Trim()) || comboBoxCategory.Text == "Select category")
+            {
+                errorProviderDataValidation.SetError(comboBoxCategory, "field required!");
+                IsValid = false;
+            }
+            if (string.IsNullOrEmpty(textBoxNumberOfPieces.Text.Trim()))
+            {
+                errorProviderDataValidation.SetError(textBoxNumberOfPieces, "field required!");
+                IsValid = false;
+            }
+            if (string.IsNullOrEmpty(textBoxPrice.Text.Trim()))
+            {
+                errorProviderDataValidation.SetError(textBoxPrice, "field required!");
+                IsValid = false;
+            }
+            if (pictureBase64String == null)
+            {
+                errorProviderDataValidation.SetError(btnSelectFile, "Select a picture!");
+                IsValid = false;
+            }
+
+            return IsValid;
+        }
     }
 }

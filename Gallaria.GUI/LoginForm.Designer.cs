@@ -123,6 +123,7 @@ namespace Gallaria.GUI
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(350, 34);
             this.txtUserName.TabIndex = 3;
+            this.txtUserName.Text = "stefan@slovak.sk";
             // 
             // txtPassword
             // 
@@ -131,6 +132,7 @@ namespace Gallaria.GUI
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(350, 31);
             this.txtPassword.TabIndex = 5;
+            this.txtPassword.Text = "password123";
             // 
             // lblPassword
             // 

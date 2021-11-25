@@ -75,7 +75,7 @@ namespace Gallaria.GUI
             this.textBoxName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxName.Location = new System.Drawing.Point(429, 79);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.PlaceholderText = "Name";
+            this.textBoxName.PlaceholderText = "*Name";
             this.textBoxName.Size = new System.Drawing.Size(338, 27);
             this.textBoxName.TabIndex = 2;
             this.textBoxName.TextChanged += new System.EventHandler(this.textBoxes_TextChanged);
@@ -85,7 +85,7 @@ namespace Gallaria.GUI
             this.textBoxPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxPrice.Location = new System.Drawing.Point(429, 194);
             this.textBoxPrice.Name = "textBoxPrice";
-            this.textBoxPrice.PlaceholderText = "Price";
+            this.textBoxPrice.PlaceholderText = "*Price";
             this.textBoxPrice.Size = new System.Drawing.Size(338, 27);
             this.textBoxPrice.TabIndex = 2;
             this.textBoxPrice.TextChanged += new System.EventHandler(this.textBoxes_TextChanged);
@@ -96,7 +96,7 @@ namespace Gallaria.GUI
             this.textBoxNumberOfPieces.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxNumberOfPieces.Location = new System.Drawing.Point(429, 156);
             this.textBoxNumberOfPieces.Name = "textBoxNumberOfPieces";
-            this.textBoxNumberOfPieces.PlaceholderText = "Number of pieces";
+            this.textBoxNumberOfPieces.PlaceholderText = "*Number of pieces";
             this.textBoxNumberOfPieces.Size = new System.Drawing.Size(338, 27);
             this.textBoxNumberOfPieces.TabIndex = 2;
             this.textBoxNumberOfPieces.TextChanged += new System.EventHandler(this.textBoxes_TextChanged);
@@ -155,12 +155,13 @@ namespace Gallaria.GUI
             this.richTextBoxDescription.Name = "richTextBoxDescription";
             this.richTextBoxDescription.Size = new System.Drawing.Size(338, 65);
             this.richTextBoxDescription.TabIndex = 5;
-            this.richTextBoxDescription.Text = "Art Description";
+            this.richTextBoxDescription.Text = "";
             this.richTextBoxDescription.TextChanged += new System.EventHandler(this.richTextBoxDescription_TextChanged);
             this.richTextBoxDescription.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.richTextBoxDescription_KeyPress);
             // 
             // errorProviderDataValidation
             // 
+            this.errorProviderDataValidation.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProviderDataValidation.ContainerControl = this;
             // 
             // lblCharacterCounter
