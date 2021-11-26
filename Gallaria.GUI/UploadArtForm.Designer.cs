@@ -137,7 +137,7 @@ namespace Gallaria.GUI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox.BackColor = System.Drawing.SystemColors.Control;
             this.pictureBox.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pictureBox.Image = global::Gallaria.GUI.Properties.Resources.upload_icon_64x64;
+            this.pictureBox.Image = global::Gallaria.GUI.Properties.Resources.uploadIcon512px;
             this.pictureBox.ImageLocation = "";
             this.pictureBox.Location = new System.Drawing.Point(28, 39);
             this.pictureBox.Name = "pictureBox";
