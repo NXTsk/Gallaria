@@ -212,7 +212,7 @@ namespace Gallaria.GUI
             this.showPasswordButtonBox.BackColor = System.Drawing.Color.White;
             this.showPasswordButtonBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.showPasswordButtonBox.Image = global::Gallaria.GUI.Properties.Resources.show;
-            this.showPasswordButtonBox.Location = new System.Drawing.Point(365, 338);
+            this.showPasswordButtonBox.Location = new System.Drawing.Point(362, 340);
             this.showPasswordButtonBox.Name = "showPasswordButtonBox";
             this.showPasswordButtonBox.Size = new System.Drawing.Size(32, 32);
             this.showPasswordButtonBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -225,7 +225,7 @@ namespace Gallaria.GUI
             this.hidePasswordButtonBox.BackColor = System.Drawing.Color.White;
             this.hidePasswordButtonBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.hidePasswordButtonBox.Image = global::Gallaria.GUI.Properties.Resources.hidden;
-            this.hidePasswordButtonBox.Location = new System.Drawing.Point(365, 338);
+            this.hidePasswordButtonBox.Location = new System.Drawing.Point(362, 340);
             this.hidePasswordButtonBox.Name = "hidePasswordButtonBox";
             this.hidePasswordButtonBox.Size = new System.Drawing.Size(32, 32);
             this.hidePasswordButtonBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
