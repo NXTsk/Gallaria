@@ -24,5 +24,15 @@ namespace Gallaria.WEB.Controllers
 
             return View(art);
         }
+        public IActionResult AllArts()
+        {
+            IEnumerable<ArtDto> artDtos = ApiClient.ArtController.GetAllArtsAsync().Result;
+            foreach (var art in artDtos)
+            {
+                art.Image = "data:image/png;base64, " + art.Image;
+            }
+
+            return View(artDtos);
+        }
     }
 }
