@@ -18,6 +18,10 @@ namespace Gallaria.WEB.Controllers
         public IActionResult Details(int id)
         {
             ArtDto art = ApiClient.ArtController.GetArtByIDAsync(id).Result;
+            var artist = ApiClient.PersonController.GetPersonByIdAsync(art.AuthorId).Result;
+            TempData["ArtistName"] = artist.FirstName + " " + artist.LastName;
+
+        
 
             //Converting from basestring64 to image
             art.Image = "data:image/png;base64, " + art.Image;
