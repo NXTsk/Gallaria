@@ -69,7 +69,7 @@ namespace Gallaria.GUI
             {
                 Decimal.TryParse(textBoxPrice.Text, out price);
             }
-            if (richTextBoxDescription.Text.Length > 0)
+            if (richTextBoxDescription.Text != "")
             {
                 description = richTextBoxDescription.Text;
             }
