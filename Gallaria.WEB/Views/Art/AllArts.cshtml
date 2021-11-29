@@ -4,7 +4,6 @@
     ViewData["Title"] = "AllArts";
 }
 
-
 <h1>All Arts</h1>
 
 
@@ -15,7 +14,7 @@
             <a href="@Url.Action("Details", "Art", new { id=item.Id })">
                 <div class="card">
                     <img src="@Html.DisplayFor(modelItem => item.Image)" runat="server" class="card-img-top" alt="Picture">
-                    <div class="card-body">
+                    <div class="card-body ">
                         <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
                         <div class="d-flex justify-content-between">
                             <div class="card-text">Author:</div>
