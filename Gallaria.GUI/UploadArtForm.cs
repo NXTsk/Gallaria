@@ -108,6 +108,8 @@ namespace Gallaria.GUI
             if (ValidateChildren())
             {
                 ArtDto art = CreateArtFromData();
+                art.AuthorId = MainForm._user.UserId;
+
                 var result = await ArtController.CreateArtAsync(art);
                 if (result.hasBeenCreated)
                 {

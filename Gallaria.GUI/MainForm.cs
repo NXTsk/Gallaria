@@ -17,7 +17,7 @@ namespace Gallaria.GUI
 {
     public partial class MainForm : Form
     {
-        AuthenticatedUserData _user;
+        public static AuthenticatedUserData _user;
 
         private Button currentButton;
         private Color themeColor = ColorTranslator.FromHtml("#34c5e6");

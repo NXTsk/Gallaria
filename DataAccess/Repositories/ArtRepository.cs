@@ -16,8 +16,8 @@ namespace DataAccess.Repositories
         {
             try
             {
-                var query = "INSERT INTO Art (Title, Description, Image, Price, AvailableQuantity, Category, CreationDate)" +
-                    " OUTPUT INSERTED.Id VALUES (@Title, @Description, @Image, @Price, @AvailableQuantity, @Category, @CreationDate);";
+                var query = "INSERT INTO Art (Title, Description, Image, Price, AvailableQuantity, Category, CreationDate, AuthorId)" +
+                    " OUTPUT INSERTED.Id VALUES (@Title, @Description, @Image, @Price, @AvailableQuantity, @Category, @CreationDate, @AuthorId);";
                 using var connection = CreateConnection();
                 return await connection.QuerySingleAsync<int>(query, new
                 {
@@ -27,8 +27,8 @@ namespace DataAccess.Repositories
                     Price = art.Price,
                     AvailableQuantity = art.AvailableQuantity,
                     Category = art.Category,
-                    CreationDate = art.CreationDate
-
+                    CreationDate = art.CreationDate,
+                    AuthorId = art.AuthorId
                 }) ;
             }
             catch (Exception ex)
