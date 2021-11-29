@@ -1,4 +1,7 @@
-﻿using Gallaria.ApiClient.ApiResponses;
+﻿using DataAccess.Model;
+using Gallaria.ApiClient;
+using Gallaria.ApiClient.ApiResponses;
+using Gallaria.ApiClient.DTOs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,12 +29,22 @@ namespace Gallaria.GUI
         {
             InitializeComponent();
             _user = user;
+           
+            var person = Task.Run(async () => await GetPersonByIdAsync(_user.UserId)).ConfigureAwait(false).GetAwaiter().GetResult();
+
+            lblUserName.Text = person.FirstName;
 
             this.WindowState = FormWindowState.Maximized;
             btnCloseChildForm.Visible = false;
             this.Text = string.Empty;
             this.ControlBox = false;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+        }
+
+        private async Task<PersonDto> GetPersonByIdAsync(int id)
+        {
+            PersonDto person = await PersonController.GetPersonByIdAsync(id);
+            return person;
         }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -131,7 +144,7 @@ namespace Gallaria.GUI
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void btnUpload_Click(object sender, EventArgs e)
+        private void BtnUpload_Click(object sender, EventArgs e)
         {
             OpenChildForm(new UploadArtForm(), sender);
         }

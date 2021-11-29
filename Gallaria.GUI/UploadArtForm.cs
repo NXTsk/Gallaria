@@ -24,7 +24,7 @@ namespace Gallaria.GUI
             InitializeComponent();
            
         }
-        private async void btnSelectFile_Click(object sender, System.EventArgs e)
+        private async void BtnSelectFile_Click(object sender, System.EventArgs e)
         {
             //TODO: move this code to API Client
 
@@ -50,7 +50,7 @@ namespace Gallaria.GUI
             return newArt;
         }
 
-        private void textBoxes_TextChanged(object sender, EventArgs e)
+        private void TextBoxes_TextChanged(object sender, EventArgs e)
         {
             if(textBoxName.Text.Length > 0)
             {
@@ -75,13 +75,13 @@ namespace Gallaria.GUI
             }
         }
 
-        private void richTextBoxDescription_TextChanged(object sender, EventArgs e)
+        private void RichTextBoxDescription_TextChanged(object sender, EventArgs e)
         {
             lblCharacterCounter.Text = $"{richTextBoxDescription.Text.Length}/500";
 
         }
 
-        private void textBoxNumberOfPieces_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextBoxNumberOfPieces_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Verify that the pressed key isn't CTRL or any non-numeric digit
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -90,7 +90,7 @@ namespace Gallaria.GUI
             }
         }
 
-        private void textBoxPrice_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextBoxPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ','))
             {
@@ -103,7 +103,7 @@ namespace Gallaria.GUI
             }
         }
 
-        private async void btnPublish_Click(object sender, EventArgs e)
+        private async void BtnPublish_Click(object sender, EventArgs e)
         {
             if (ValidateChildren())
             {

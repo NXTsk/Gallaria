@@ -120,7 +120,7 @@ namespace DataAccess.Repositories
             }
         }
 
-        public async Task<bool> IsArtist(int artistId)
+        public async Task<bool> IsArtistAsync(int artistId)
         {
             try
             {
@@ -132,6 +132,20 @@ namespace DataAccess.Repositories
             catch (Exception ex)
             {
                 throw new Exception($"Error deleting artist with id {artistId}: '{ex.Message}'.", ex);
+            }
+        }
+
+        public async Task<Person> GetPersonByIdAsync(int id)
+        {
+            try
+            {
+                var query = "SELECT * FROM Person WHERE Id=@Id";
+                using var connection = CreateConnection();
+                return await connection.QuerySingleAsync<Person>(query, new { id });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error getting person with id {id}: '{ex.Message}'.", ex);
             }
         }
     }

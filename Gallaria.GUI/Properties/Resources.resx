@@ -118,8 +118,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="fillIcon-32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fillIcon-32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="gallariaIcon-32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gallariaIcon-32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="uploadIcon512px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\uploadIcon512px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="brush-64x64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\brush-64x642.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -127,17 +133,14 @@
   <data name="crossIcon-32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\crossIcon-32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Full_Logo_White" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Full_Logo_White.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="hidden" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hidden.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="eraser_icon_125292" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\eraser_icon_125292.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="maximize-32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\maximize-32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="fillIcon-32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fillIcon-32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="minimize-32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\minimize-32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,13 +172,13 @@
   <data name="check+circle+icon-1320184982103223133_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\check+circle+icon-1320184982103223133_321.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="eraser_icon_125292" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\eraser_icon_125292.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Full_Logo_White" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Full_Logo_White.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="gallariaLogo-small2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gallariaLogo-small2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="uploadIcon512px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\uploadIcon512px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="profilePicture-64x64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\profilePicture-64x64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

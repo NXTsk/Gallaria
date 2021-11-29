@@ -37,7 +37,7 @@ namespace Gallaria.ApiClient
             createdArt.hasBeenCreated = returnValue;
             return createdArt;
         }
-
+        
         public static async Task<ArtDto> GetArtByIDAsync(int id)
         {
             var httpClient = new HttpClient();

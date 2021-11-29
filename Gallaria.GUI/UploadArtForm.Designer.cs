@@ -68,7 +68,7 @@ namespace Gallaria.GUI
             this.btnSelectFile.TabIndex = 1;
             this.btnSelectFile.Text = "Select File";
             this.btnSelectFile.UseVisualStyleBackColor = false;
-            this.btnSelectFile.Click += new System.EventHandler(this.btnSelectFile_Click);
+            this.btnSelectFile.Click += new System.EventHandler(this.BtnSelectFile_Click);
             // 
             // textBoxName
             // 
@@ -78,7 +78,7 @@ namespace Gallaria.GUI
             this.textBoxName.PlaceholderText = "Name*";
             this.textBoxName.Size = new System.Drawing.Size(338, 27);
             this.textBoxName.TabIndex = 2;
-            this.textBoxName.TextChanged += new System.EventHandler(this.textBoxes_TextChanged);
+            this.textBoxName.TextChanged += new System.EventHandler(this.TextBoxes_TextChanged);
             // 
             // textBoxPrice
             // 
@@ -88,8 +88,8 @@ namespace Gallaria.GUI
             this.textBoxPrice.PlaceholderText = "Price*";
             this.textBoxPrice.Size = new System.Drawing.Size(338, 27);
             this.textBoxPrice.TabIndex = 2;
-            this.textBoxPrice.TextChanged += new System.EventHandler(this.textBoxes_TextChanged);
-            this.textBoxPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPrice_KeyPress);
+            this.textBoxPrice.TextChanged += new System.EventHandler(this.TextBoxes_TextChanged);
+            this.textBoxPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxPrice_KeyPress);
             // 
             // textBoxNumberOfPieces
             // 
@@ -99,8 +99,8 @@ namespace Gallaria.GUI
             this.textBoxNumberOfPieces.PlaceholderText = "Number of pieces*";
             this.textBoxNumberOfPieces.Size = new System.Drawing.Size(338, 27);
             this.textBoxNumberOfPieces.TabIndex = 2;
-            this.textBoxNumberOfPieces.TextChanged += new System.EventHandler(this.textBoxes_TextChanged);
-            this.textBoxNumberOfPieces.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNumberOfPieces_KeyPress);
+            this.textBoxNumberOfPieces.TextChanged += new System.EventHandler(this.TextBoxes_TextChanged);
+            this.textBoxNumberOfPieces.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxNumberOfPieces_KeyPress);
             // 
             // comboBoxCategory
             // 
@@ -111,7 +111,7 @@ namespace Gallaria.GUI
             this.comboBoxCategory.Name = "comboBoxCategory";
             this.comboBoxCategory.Size = new System.Drawing.Size(338, 28);
             this.comboBoxCategory.TabIndex = 3;
-            this.comboBoxCategory.TextChanged += new System.EventHandler(this.textBoxes_TextChanged);
+            this.comboBoxCategory.TextChanged += new System.EventHandler(this.TextBoxes_TextChanged);
             // 
             // btnPublish
             // 
@@ -128,7 +128,7 @@ namespace Gallaria.GUI
             this.btnPublish.TabIndex = 1;
             this.btnPublish.Text = "Publish";
             this.btnPublish.UseVisualStyleBackColor = false;
-            this.btnPublish.Click += new System.EventHandler(this.btnPublish_Click);
+            this.btnPublish.Click += new System.EventHandler(this.BtnPublish_Click);
             // 
             // pictureBox
             // 
@@ -156,7 +156,7 @@ namespace Gallaria.GUI
             this.richTextBoxDescription.Size = new System.Drawing.Size(338, 65);
             this.richTextBoxDescription.TabIndex = 5;
             this.richTextBoxDescription.Text = "";
-            this.richTextBoxDescription.TextChanged += new System.EventHandler(this.richTextBoxDescription_TextChanged);
+            this.richTextBoxDescription.TextChanged += new System.EventHandler(this.RichTextBoxDescription_TextChanged);
             // 
             // errorProviderDataValidation
             // 

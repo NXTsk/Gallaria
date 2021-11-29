@@ -39,7 +39,16 @@ namespace Gallaria.API.Controllers
         [Route("isArtist/{id}")]
         public async Task<ActionResult<bool>> IsArtistAsync(int id)
         {
-            return Ok(await _personRepository.IsArtist(id));
+            return Ok(await _personRepository.IsArtistAsync(id));
+        }
+
+        // GET api/<PersonController>/id
+        [HttpGet("{id}")]
+        public async Task<ActionResult<PersonDto>> Get(int id)
+        {
+            var person = await _personRepository.GetPersonByIdAsync(id);
+            if (person == null) { return NotFound(); }
+            else { return Ok(person); }
         }
     }
 }

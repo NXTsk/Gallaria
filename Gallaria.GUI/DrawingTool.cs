@@ -68,7 +68,7 @@ namespace Gallaria.GUI
             
         }
 
-        private void buttonColorPicker_Click(object sender, EventArgs e)
+        private void ButtonColorPicker_Click(object sender, EventArgs e)
         {
             ColorDialog cd = new ColorDialog();
             if (cd.ShowDialog() == DialogResult.OK)
@@ -78,13 +78,13 @@ namespace Gallaria.GUI
         }
 
 
-        private void trackBarSize_Scroll(object sender, EventArgs e)
+        private void TrackBarSize_Scroll(object sender, EventArgs e)
         {
             p.Width = trackBarSize2.Value;
             pe.Width = trackBarSize2.Value;
         }
 
-        private void toolStripButton_Click(object sender, EventArgs e)
+        private void ToolStripButton_Click(object sender, EventArgs e)
         {
             foreach (ToolStripButton item in ((ToolStripButton)sender).GetCurrentParent().Items)
             {
@@ -96,7 +96,7 @@ namespace Gallaria.GUI
             }
         }
 
-        private void toolStripButtonColor_Click(object sender, EventArgs e)
+        private void ToolStripButtonColor_Click(object sender, EventArgs e)
         {
             ColorDialog cd = new ColorDialog();
             if (cd.ShowDialog() == DialogResult.OK)
@@ -106,7 +106,7 @@ namespace Gallaria.GUI
             }
         }
 
-        private void toolStripButtonUndo_Click(object sender, EventArgs e)
+        private void ToolStripButtonUndo_Click(object sender, EventArgs e)
         {
             if(undoStack.Count >= 1)
             {
@@ -116,7 +116,7 @@ namespace Gallaria.GUI
             }
         }
 
-        private void toolStripButtonRedo_Click(object sender, EventArgs e)
+        private void ToolStripButtonRedo_Click(object sender, EventArgs e)
         {
             if(redoStack.Count >= 1)
             {
@@ -207,7 +207,7 @@ namespace Gallaria.GUI
             pbCanvas.Image = bitmap;
         }
 
-        private void toolStripFill_Click(object sender, EventArgs e)
+        private void ToolStripFill_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < bitmap.Width; i++)
             {

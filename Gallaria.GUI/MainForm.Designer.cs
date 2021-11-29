@@ -30,6 +30,9 @@ namespace Gallaria.GUI
         private void InitializeComponent()
         {
             this.panelSidebar = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.lblUserName = new System.Windows.Forms.Label();
+            this.lblLoggedAs = new System.Windows.Forms.Label();
             this.btnUpload = new System.Windows.Forms.Button();
             this.buttonCreate = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
@@ -42,6 +45,7 @@ namespace Gallaria.GUI
             this.btnCloseChildForm = new System.Windows.Forms.Button();
             this.panelDesktopPane = new System.Windows.Forms.Panel();
             this.panelSidebar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelTitleBar.SuspendLayout();
@@ -50,6 +54,9 @@ namespace Gallaria.GUI
             // panelSidebar
             // 
             this.panelSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(197)))), ((int)(((byte)(230)))));
+            this.panelSidebar.Controls.Add(this.pictureBox2);
+            this.panelSidebar.Controls.Add(this.lblUserName);
+            this.panelSidebar.Controls.Add(this.lblLoggedAs);
             this.panelSidebar.Controls.Add(this.btnUpload);
             this.panelSidebar.Controls.Add(this.buttonCreate);
             this.panelSidebar.Controls.Add(this.panelLogo);
@@ -58,6 +65,39 @@ namespace Gallaria.GUI
             this.panelSidebar.Name = "panelSidebar";
             this.panelSidebar.Size = new System.Drawing.Size(200, 600);
             this.panelSidebar.TabIndex = 0;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.pictureBox2.Image = global::Gallaria.GUI.Properties.Resources.profilePicture_64x64;
+            this.pictureBox2.Location = new System.Drawing.Point(62, 482);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 5;
+            this.pictureBox2.TabStop = false;
+            // 
+            // lblUserName
+            // 
+            this.lblUserName.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lblUserName.AutoSize = true;
+            this.lblUserName.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblUserName.Location = new System.Drawing.Point(100, 559);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(37, 20);
+            this.lblUserName.TabIndex = 4;
+            this.lblUserName.Text = "ABC";
+            // 
+            // lblLoggedAs
+            // 
+            this.lblLoggedAs.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lblLoggedAs.AutoSize = true;
+            this.lblLoggedAs.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblLoggedAs.Location = new System.Drawing.Point(23, 559);
+            this.lblLoggedAs.Name = "lblLoggedAs";
+            this.lblLoggedAs.Size = new System.Drawing.Size(81, 20);
+            this.lblLoggedAs.TabIndex = 3;
+            this.lblLoggedAs.Text = "Logged as:";
             // 
             // btnUpload
             // 
@@ -79,7 +119,7 @@ namespace Gallaria.GUI
             this.btnUpload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpload.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnUpload.UseVisualStyleBackColor = false;
-            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            this.btnUpload.Click += new System.EventHandler(this.BtnUpload_Click);
             // 
             // buttonCreate
             // 
@@ -224,6 +264,8 @@ namespace Gallaria.GUI
             this.Name = "MainForm";
             this.Text = " ";
             this.panelSidebar.ResumeLayout(false);
+            this.panelSidebar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelTitleBar.ResumeLayout(false);
@@ -246,5 +288,8 @@ namespace Gallaria.GUI
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnMaximize;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label lblUserName;
+        private System.Windows.Forms.Label lblLoggedAs;
     }
 }

@@ -11,11 +11,12 @@ namespace DataAccess.Repositories
     {
         Task<int> CreatePersonAsync(Person person, string password);
         Task<bool> DeletePersonAsync(int id);
+        Task<Person> GetPersonByIdAsync(int id);
         Task<int> LoginAsync(string email, string password);
         Task<bool> UpdatePasswordAsync(string email, string oldPassword, string newPassword);
         Task<int> CreateArtistAsync(Artist artist, string password);
         Task<bool> DeleteArtistAsync(int id);
-        Task<bool> IsArtist(int id); 
+        Task<bool> IsArtistAsync(int id); 
 
     }
 }

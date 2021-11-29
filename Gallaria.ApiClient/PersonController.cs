@@ -70,7 +70,21 @@ namespace Gallaria.ApiClient
 
             return returnValue;
         }
+
+        public static async Task<PersonDto> GetPersonByIdAsync(int id)
+        {
+            var httpClient = new HttpClient();
+            PersonDto person = new PersonDto();
+
+            var response = await httpClient.GetAsync(ApiUrl + "api/Person/" + id);
+            if (response.IsSuccessStatusCode)
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                person = JsonConvert.DeserializeObject<PersonDto>(apiResponse);
+
+            }
+
+            return person;
+        }
     }
-
-
 }
