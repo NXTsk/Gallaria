@@ -34,6 +34,8 @@ namespace Gallaria.WEB.Controllers
             foreach (var art in artDtos)
             {
                 art.Image = "data:image/png;base64, " + art.Image;
+                var artist = ApiClient.PersonController.GetPersonByIdAsync(art.AuthorId).Result;
+                TempData["ArtistName"] = artist.FirstName + " " + artist.LastName;
             }
 
             return View(artDtos);
