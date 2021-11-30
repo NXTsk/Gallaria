@@ -29,6 +29,7 @@ namespace Gallaria.GUI
             //TODO: move this code to API Client
 
             OpenFileDialog op = new OpenFileDialog();
+            op.Filter = "Image Files|*.jpg;*.jpeg;*.png|All files(*.*)|*.*";
             DialogResult dr = op.ShowDialog();
             if (dr == DialogResult.OK)
             {

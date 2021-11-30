@@ -151,6 +151,7 @@ namespace Gallaria.GUI
         private void OpenMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog op = new OpenFileDialog();
+            op.Filter = "Image Files| *.jpg; *.jpeg; *.png|All files(*.*)|*.*";
             DialogResult dr = op.ShowDialog();
             if (dr == DialogResult.OK)
             {
