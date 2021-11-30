@@ -3,9 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gallaria_DC.GUI", "Gallaria_DC.GUI\Gallaria_DC.GUI.csproj", "{D76D0659-1D4B-489B-8586-A8686B9BA357}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gallaria.GUI", "Gallaria.GUI\Gallaria.GUI.csproj", "{45A2CE38-9D76-4EC9-9B85-79418FB1FB24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gallaria.GUI", "Gallaria.GUI\Gallaria.GUI.csproj", "{45A2CE38-9D76-4EC9-9B85-79418FB1FB24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{4D23FB65-CE9D-494D-B10D-4BD15765EAEE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gallaria.API", "Gallaria.API\Gallaria.API.csproj", "{418892A9-A8C3-475D-A6E4-95411DB374FF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gallaria.Tests", "Gallaria.Tests\Gallaria.Tests.csproj", "{C6C497E0-B1B4-42EC-84D6-FF045E20127A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gallaria.ApiClient", "Gallaria.ApiClient\Gallaria.ApiClient.csproj", "{872ECD14-42A0-4449-B3DF-A699A1C0257A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gallaria.WEB", "Gallaria.WEB\Gallaria.WEB.csproj", "{FE0498CA-0CCD-4464-ACA0-2A61F1F07402}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +21,30 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D76D0659-1D4B-489B-8586-A8686B9BA357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D76D0659-1D4B-489B-8586-A8686B9BA357}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D76D0659-1D4B-489B-8586-A8686B9BA357}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D76D0659-1D4B-489B-8586-A8686B9BA357}.Release|Any CPU.Build.0 = Release|Any CPU
 		{45A2CE38-9D76-4EC9-9B85-79418FB1FB24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{45A2CE38-9D76-4EC9-9B85-79418FB1FB24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45A2CE38-9D76-4EC9-9B85-79418FB1FB24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45A2CE38-9D76-4EC9-9B85-79418FB1FB24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D23FB65-CE9D-494D-B10D-4BD15765EAEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D23FB65-CE9D-494D-B10D-4BD15765EAEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D23FB65-CE9D-494D-B10D-4BD15765EAEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D23FB65-CE9D-494D-B10D-4BD15765EAEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{418892A9-A8C3-475D-A6E4-95411DB374FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{418892A9-A8C3-475D-A6E4-95411DB374FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{418892A9-A8C3-475D-A6E4-95411DB374FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{418892A9-A8C3-475D-A6E4-95411DB374FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6C497E0-B1B4-42EC-84D6-FF045E20127A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6C497E0-B1B4-42EC-84D6-FF045E20127A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6C497E0-B1B4-42EC-84D6-FF045E20127A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6C497E0-B1B4-42EC-84D6-FF045E20127A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{872ECD14-42A0-4449-B3DF-A699A1C0257A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{872ECD14-42A0-4449-B3DF-A699A1C0257A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{872ECD14-42A0-4449-B3DF-A699A1C0257A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{872ECD14-42A0-4449-B3DF-A699A1C0257A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE0498CA-0CCD-4464-ACA0-2A61F1F07402}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE0498CA-0CCD-4464-ACA0-2A61F1F07402}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE0498CA-0CCD-4464-ACA0-2A61F1F07402}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE0498CA-0CCD-4464-ACA0-2A61F1F07402}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

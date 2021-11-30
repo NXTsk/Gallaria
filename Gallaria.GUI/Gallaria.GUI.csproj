@@ -4,10 +4,17 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon />
+    <Win32Resource />
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="mahapps.metro" Version="2.4.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gallaria.ApiClient\Gallaria.ApiClient.csproj" />
+    <ProjectReference Include="..\Gallaria.API\Gallaria.API.csproj" />
   </ItemGroup>
 
   <ItemGroup>

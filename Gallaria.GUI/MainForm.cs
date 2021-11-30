@@ -1,4 +1,8 @@
-﻿using System;
+﻿using DataAccess.Model;
+using Gallaria.ApiClient;
+using Gallaria.ApiClient.ApiResponses;
+using Gallaria.ApiClient.DTOs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,20 +17,34 @@ namespace Gallaria.GUI
 {
     public partial class MainForm : Form
     {
+        public static AuthenticatedUserData _user;
 
         private Button currentButton;
         private Color themeColor = ColorTranslator.FromHtml("#34c5e6");
         private Color selectedColor = ColorTranslator.FromHtml("#006e9c");
         private Form activeForm;
 
-        public MainForm()
+
+        public MainForm(AuthenticatedUserData user)
         {
             InitializeComponent();
+            _user = user;
+           
+            var person = Task.Run(async () => await GetPersonByIdAsync(_user.UserId)).ConfigureAwait(false).GetAwaiter().GetResult();
+
+            lblUserName.Text = person.FirstName;
+
             this.WindowState = FormWindowState.Maximized;
             btnCloseChildForm.Visible = false;
             this.Text = string.Empty;
             this.ControlBox = false;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+        }
+
+        private async Task<PersonDto> GetPersonByIdAsync(int id)
+        {
+            PersonDto person = await PersonController.GetPersonByIdAsync(id);
+            return person;
         }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -82,12 +100,12 @@ namespace Gallaria.GUI
             lblTitle.Text = childForm.Text;
         }
 
-        private void buttonCreate_Click(object sender, EventArgs e)
+        private void ButtonCreate_Click(object sender, EventArgs e)
         {
             OpenChildForm(new DrawingTool(), sender);
         }
 
-        private void btnCloseChildForm_Click(object sender, EventArgs e)
+        private void BtnCloseChildForm_Click(object sender, EventArgs e)
         {
             if (activeForm != null)
                 activeForm.Close();
@@ -96,24 +114,24 @@ namespace Gallaria.GUI
         private void Reset()
         {
             DisableButton();
-            lblTitle.Text = "HOME";
+            lblTitle.Text = "Home";
             panelTitleBar.BackColor = themeColor;
             currentButton = null;
             btnCloseChildForm.Visible = false;
         }
 
-        private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
+        private void PanelTitleBar_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void BtnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void btnMaximize_Click(object sender, EventArgs e)
+        private void BtnMaximize_Click(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Normal)
                 this.WindowState = FormWindowState.Maximized;
@@ -121,9 +139,14 @@ namespace Gallaria.GUI
                 this.WindowState = FormWindowState.Normal;
         }
 
-        private void btnMinimize_Click(object sender, EventArgs e)
+        private void BtnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void BtnUpload_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new UploadArtForm(), sender);
         }
     }
 }

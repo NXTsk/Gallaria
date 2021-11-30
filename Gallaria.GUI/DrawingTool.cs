@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Gallaria.GUI
@@ -18,8 +13,8 @@ namespace Gallaria.GUI
         public Pen pe = new Pen(Color.White, 5);
         public Graphics g;
 
-        private const int Height = 820; 
-        private const int Width = 1094; 
+        private const int Height = 870; 
+        private const int Width = 1160; 
 
         Bitmap bitmap;
         Image openedFile;
@@ -44,7 +39,7 @@ namespace Gallaria.GUI
             pe.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
 
             //Changing the background of saved picture to white
-            
+            ClearBitmap();
         }
 
         private void PbCanvas_MouseDown(object sender, MouseEventArgs e)
@@ -73,7 +68,7 @@ namespace Gallaria.GUI
             
         }
 
-        private void buttonColorPicker_Click(object sender, EventArgs e)
+        private void ButtonColorPicker_Click(object sender, EventArgs e)
         {
             ColorDialog cd = new ColorDialog();
             if (cd.ShowDialog() == DialogResult.OK)
@@ -83,13 +78,13 @@ namespace Gallaria.GUI
         }
 
 
-        private void trackBarSize_Scroll(object sender, EventArgs e)
+        private void TrackBarSize_Scroll(object sender, EventArgs e)
         {
             p.Width = trackBarSize2.Value;
             pe.Width = trackBarSize2.Value;
         }
 
-        private void toolStripButton_Click(object sender, EventArgs e)
+        private void ToolStripButton_Click(object sender, EventArgs e)
         {
             foreach (ToolStripButton item in ((ToolStripButton)sender).GetCurrentParent().Items)
             {
@@ -101,7 +96,7 @@ namespace Gallaria.GUI
             }
         }
 
-        private void toolStripButtonColor_Click(object sender, EventArgs e)
+        private void ToolStripButtonColor_Click(object sender, EventArgs e)
         {
             ColorDialog cd = new ColorDialog();
             if (cd.ShowDialog() == DialogResult.OK)
@@ -111,7 +106,7 @@ namespace Gallaria.GUI
             }
         }
 
-        private void toolStripButtonUndo_Click(object sender, EventArgs e)
+        private void ToolStripButtonUndo_Click(object sender, EventArgs e)
         {
             if(undoStack.Count >= 1)
             {
@@ -121,7 +116,7 @@ namespace Gallaria.GUI
             }
         }
 
-        private void toolStripButtonRedo_Click(object sender, EventArgs e)
+        private void ToolStripButtonRedo_Click(object sender, EventArgs e)
         {
             if(redoStack.Count >= 1)
             {
@@ -210,6 +205,17 @@ namespace Gallaria.GUI
         private void UpdateCanvas()
         {
             pbCanvas.Image = bitmap;
+        }
+
+        private void ToolStripFill_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < bitmap.Width; i++)
+            {
+                for (int j = 0; j < bitmap.Height; j++)
+                {
+                    this.bitmap.SetPixel(i, j, p.Color);
+                }
+            }
         }
     }
 }

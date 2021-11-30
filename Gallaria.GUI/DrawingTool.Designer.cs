@@ -37,6 +37,7 @@ namespace Gallaria.GUI
             this.toolStripUndoRedo = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonUndo = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRedo = new System.Windows.Forms.ToolStripButton();
+            this.toolStripFill = new System.Windows.Forms.ToolStripButton();
             this.trackBarSize2 = new System.Windows.Forms.TrackBar();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripBrush = new System.Windows.Forms.ToolStripButton();
@@ -58,7 +59,7 @@ namespace Gallaria.GUI
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(802, 28);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -96,7 +97,7 @@ namespace Gallaria.GUI
             this.groupBox1.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(0);
-            this.groupBox1.Size = new System.Drawing.Size(800, 51);
+            this.groupBox1.Size = new System.Drawing.Size(802, 51);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             // 
@@ -107,10 +108,11 @@ namespace Gallaria.GUI
             this.toolStripUndoRedo.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripUndoRedo.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonUndo,
-            this.toolStripButtonRedo});
+            this.toolStripButtonRedo,
+            this.toolStripFill});
             this.toolStripUndoRedo.Location = new System.Drawing.Point(280, 20);
             this.toolStripUndoRedo.Name = "toolStripUndoRedo";
-            this.toolStripUndoRedo.Size = new System.Drawing.Size(71, 27);
+            this.toolStripUndoRedo.Size = new System.Drawing.Size(100, 27);
             this.toolStripUndoRedo.TabIndex = 2;
             this.toolStripUndoRedo.Text = "toolStrip1";
             // 
@@ -122,7 +124,7 @@ namespace Gallaria.GUI
             this.toolStripButtonUndo.Name = "toolStripButtonUndo";
             this.toolStripButtonUndo.Size = new System.Drawing.Size(29, 24);
             this.toolStripButtonUndo.Text = "Undo";
-            this.toolStripButtonUndo.Click += new System.EventHandler(this.toolStripButtonUndo_Click);
+            this.toolStripButtonUndo.Click += new System.EventHandler(this.ToolStripButtonUndo_Click);
             // 
             // toolStripButtonRedo
             // 
@@ -132,7 +134,18 @@ namespace Gallaria.GUI
             this.toolStripButtonRedo.Name = "toolStripButtonRedo";
             this.toolStripButtonRedo.Size = new System.Drawing.Size(29, 24);
             this.toolStripButtonRedo.Text = "Redo";
-            this.toolStripButtonRedo.Click += new System.EventHandler(this.toolStripButtonRedo_Click);
+            this.toolStripButtonRedo.Click += new System.EventHandler(this.ToolStripButtonRedo_Click);
+            // 
+            // toolStripFill
+            // 
+            this.toolStripFill.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripFill.Image = global::Gallaria.GUI.Properties.Resources.fillIcon_32x32;
+            this.toolStripFill.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripFill.Name = "toolStripFill";
+            this.toolStripFill.Size = new System.Drawing.Size(29, 24);
+            this.toolStripFill.Text = "toolStripButton1";
+            this.toolStripFill.ToolTipText = "Fill";
+            this.toolStripFill.Click += new System.EventHandler(this.ToolStripFill_Click);
             // 
             // trackBarSize2
             // 
@@ -145,7 +158,7 @@ namespace Gallaria.GUI
             this.trackBarSize2.TabIndex = 1;
             this.trackBarSize2.TickStyle = System.Windows.Forms.TickStyle.Both;
             this.trackBarSize2.Value = 2;
-            this.trackBarSize2.Scroll += new System.EventHandler(this.trackBarSize_Scroll);
+            this.trackBarSize2.Scroll += new System.EventHandler(this.TrackBarSize_Scroll);
             // 
             // toolStrip
             // 
@@ -157,7 +170,7 @@ namespace Gallaria.GUI
             this.toolStripButtonColor});
             this.toolStrip.Location = new System.Drawing.Point(0, 20);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(800, 29);
+            this.toolStrip.Size = new System.Drawing.Size(802, 29);
             this.toolStrip.TabIndex = 0;
             this.toolStrip.Text = "toolStrip1";
             // 
@@ -175,7 +188,7 @@ namespace Gallaria.GUI
             this.toolStripBrush.Size = new System.Drawing.Size(29, 24);
             this.toolStripBrush.Text = "Brush";
             this.toolStripBrush.ToolTipText = "Brush";
-            this.toolStripBrush.Click += new System.EventHandler(this.toolStripButton_Click);
+            this.toolStripBrush.Click += new System.EventHandler(this.ToolStripButton_Click);
             // 
             // toolStripEraser
             // 
@@ -186,7 +199,7 @@ namespace Gallaria.GUI
             this.toolStripEraser.Name = "toolStripEraser";
             this.toolStripEraser.Size = new System.Drawing.Size(29, 26);
             this.toolStripEraser.Text = "Eraser";
-            this.toolStripEraser.Click += new System.EventHandler(this.toolStripButton_Click);
+            this.toolStripEraser.Click += new System.EventHandler(this.ToolStripButton_Click);
             // 
             // toolStripButtonColor
             // 
@@ -198,7 +211,7 @@ namespace Gallaria.GUI
             this.toolStripButtonColor.Name = "toolStripButtonColor";
             this.toolStripButtonColor.Padding = new System.Windows.Forms.Padding(1);
             this.toolStripButtonColor.Size = new System.Drawing.Size(29, 26);
-            this.toolStripButtonColor.Click += new System.EventHandler(this.toolStripButtonColor_Click);
+            this.toolStripButtonColor.Click += new System.EventHandler(this.ToolStripButtonColor_Click);
             // 
             // pbCanvas
             // 
@@ -207,7 +220,7 @@ namespace Gallaria.GUI
             this.pbCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbCanvas.Location = new System.Drawing.Point(0, 79);
             this.pbCanvas.Name = "pbCanvas";
-            this.pbCanvas.Size = new System.Drawing.Size(800, 371);
+            this.pbCanvas.Size = new System.Drawing.Size(802, 424);
             this.pbCanvas.TabIndex = 6;
             this.pbCanvas.TabStop = false;
             this.pbCanvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PbCanvas_MouseDown);
@@ -217,7 +230,7 @@ namespace Gallaria.GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(802, 503);
             this.Controls.Add(this.pbCanvas);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
@@ -254,5 +267,6 @@ namespace Gallaria.GUI
         private System.Windows.Forms.ToolStripButton toolStripEraser;
         private System.Windows.Forms.ToolStripButton toolStripButtonColor;
         private System.Windows.Forms.PictureBox pbCanvas;
+        private System.Windows.Forms.ToolStripButton toolStripFill;
     }
 }
