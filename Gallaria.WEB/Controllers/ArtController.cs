@@ -28,12 +28,10 @@ namespace Gallaria.WEB.Controllers
         {
             ArtDto art = ApiClient.ArtController.GetArtByIDAsync(id, CookieHelper.ReadJWT("X-Access-Token", _httpContextAccessor)).Result;
             var artist = ApiClient.PersonController.GetPersonByIdAsync(art.AuthorId).Result;
-            TempData["ArtistName"] = artist.FirstName + " " + artist.LastName;
-
-        
+            art.ArtistName = artist.FirstName + " " + artist.LastName;
 
             //Converting from basestring64 to image
-            art.Image = "data:image/png;base64, " + art.Image;
+            art.Img64 = GetImageSourceFromByteArray(art.Image);
 
             return View(art);
         }
@@ -42,12 +40,20 @@ namespace Gallaria.WEB.Controllers
             IEnumerable<ArtDto> artDtos = ApiClient.ArtController.GetAllArtsAsync().Result;
             foreach (var art in artDtos)
             {
-                art.Image = "data:image/png;base64, " + art.Image;
                 var artist = ApiClient.PersonController.GetPersonByIdAsync(art.AuthorId).Result;
-                TempData["ArtistName"] = artist.FirstName + " " + artist.LastName;
+                art.ArtistName = artist.FirstName + " " + artist.LastName;
+                art.Img64 = GetImageSourceFromByteArray(art.Image);
+
             }
 
             return View(artDtos);
+        }
+
+        public string GetImageSourceFromByteArray(byte[] imgBytes)
+        {
+            string imreBase64Data = Convert.ToBase64String(imgBytes);
+            string imgDataURL = string.Format("data:image/png;base64,{0}", imreBase64Data);
+            return imgDataURL;
         }
     }
 }

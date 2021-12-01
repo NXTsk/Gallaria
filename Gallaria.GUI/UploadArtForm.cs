@@ -11,7 +11,7 @@ namespace Gallaria.GUI
     public partial class UploadArtForm : Form
     {
         Image chosenPicture;
-        string pictureBase64String;
+        byte[] pictureBytes;
         ArtController artController = new ArtController();
         string name;
         string category;
@@ -40,14 +40,13 @@ namespace Gallaria.GUI
                 {
                     img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
                     pictureBox.Image = img;
-                    byte[] byteArray = stream.ToArray();
-                    pictureBase64String = Convert.ToBase64String(byteArray);
+                    pictureBytes = stream.ToArray();
                 }
             }
         }
         public ArtDto CreateArtFromData()
         {
-            ArtDto newArt = new ArtDto() {Title = name, AvailableQuantity = numberOfPieces, Category = category,CreationDate = DateTime.Now, Description = description, Price = price, Image = pictureBase64String};
+            ArtDto newArt = new ArtDto() {Title = name, AvailableQuantity = numberOfPieces, Category = category,CreationDate = DateTime.Now, Description = description, Price = price, Image = pictureBytes};
             return newArt;
         }
 
@@ -167,7 +166,7 @@ namespace Gallaria.GUI
                 errorProviderDataValidation.SetError(textBoxPrice, "field required!");
                 IsValid = false;
             }
-            if (pictureBase64String == null)
+            if (pictureBytes == null)
             {
                 errorProviderDataValidation.SetError(btnSelectFile, "Select a picture!");
                 IsValid = false;
