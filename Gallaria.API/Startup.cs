@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -52,16 +53,22 @@ namespace Gallaria.API
                         {
                             options.SaveToken = true;
                             options.RequireHttpsMetadata = false;
+                            options.Audience = Configuration["JwtInfo:Audience"];
                             options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
                             {
                                 ValidateIssuer = true,
                                 ValidateAudience = true,
-                                ValidAudience = "https://dotnetdetail.net",
-                                ValidIssuer = "https://dotnetdetail.net",
+                                ValidAudience = Configuration["JwtInfo:Audience"],
+                                ValidIssuer = Configuration["JwtInfo:Issuer"],
                                 // Secret key - should not be shown in plain text
                                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtInfo:Key"]))
                             };
                         });
+
+            services.AddAuthorization(options =>
+            {
+                options.DefaultPolicy = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme).RequireAuthenticatedUser().Build();
+            });
 
         }
 
@@ -74,22 +81,21 @@ namespace Gallaria.API
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
+
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-            app.UseAuthentication();
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1");
-
             });
         }
     }

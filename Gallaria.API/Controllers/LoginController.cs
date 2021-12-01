@@ -40,8 +40,8 @@ namespace Gallaria.API.Controllers
 
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JwtInfo:Key"]));
             var token = new JwtSecurityToken(
-                issuer: _config["Jwt:Issuer"],
-                audience: _config["Jwt:Issuer"],
+                issuer: _config["JwtInfo:Issuer"],
+                audience: _config["JwtInfo:Audience"],
                 expires: DateTime.Now.AddDays(5),
                 signingCredentials: new Microsoft.IdentityModel.Tokens.SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                 );

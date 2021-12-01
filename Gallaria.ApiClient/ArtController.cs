@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,17 +39,18 @@ namespace Gallaria.ApiClient
             return createdArt;
         }
         
-        public static async Task<ArtDto> GetArtByIDAsync(int id)
+        public static async Task<ArtDto> GetArtByIDAsync(int id, string token)
         {
             var httpClient = new HttpClient();
             ArtDto art = new ArtDto();
 
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await httpClient.GetAsync(ApiUrl + "api/art/" + id);
+
             if (response.IsSuccessStatusCode)
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 art = JsonConvert.DeserializeObject<ArtDto>(apiResponse);
-
             }
 
             return art;

@@ -5,11 +5,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Gallaria.ApiClient;
+using Gallaria.WEB.Helpers;
+using Microsoft.AspNetCore.Http;
 
 namespace Gallaria.WEB.Controllers
 {
     public class ArtController : Controller
     {
+        private IHttpContextAccessor _httpContextAccessor;
+
+        public ArtController(IHttpContextAccessor httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -17,7 +26,7 @@ namespace Gallaria.WEB.Controllers
 
         public IActionResult Details(int id)
         {
-            ArtDto art = ApiClient.ArtController.GetArtByIDAsync(id).Result;
+            ArtDto art = ApiClient.ArtController.GetArtByIDAsync(id, CookieHelper.ReadJWT("X-Access-Token", _httpContextAccessor)).Result;
             var artist = ApiClient.PersonController.GetPersonByIdAsync(art.AuthorId).Result;
             TempData["ArtistName"] = artist.FirstName + " " + artist.LastName;
 

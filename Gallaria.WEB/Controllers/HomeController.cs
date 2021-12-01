@@ -1,4 +1,6 @@
-﻿using Gallaria.WEB.Models;
+﻿using Gallaria.WEB.Helpers;
+using Gallaria.WEB.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,14 +14,27 @@ namespace Gallaria.WEB.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private IHttpContextAccessor _httpContextAccessor;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public IActionResult Index()
         {
+            
+            if (CookieHelper.ReadJWT("", _httpContextAccessor) != "")
+            {
+                HttpContext.Session.SetString("isAuthenticated", "true");
+            }
+            else
+            {
+                HttpContext.Session.SetString("isAuthenticated", "false");
+            }
+
+
             return View();
         }
 

@@ -8,6 +8,9 @@ using Gallaria.ApiClient.ApiResponses;
 using Gallaria.ApiClient.DTOs;
 using Gallaria.WEB.ViewModels;
 using Gallaria.ApiClient.Helpers;
+using Gallaria.WEB.Helpers;
+using Microsoft.AspNetCore.Http;
+
 namespace Gallaria.WEB.Controllers
 {
     public class AccountsController : Controller
@@ -25,6 +28,31 @@ namespace Gallaria.WEB.Controllers
         public IActionResult CreateAccount()
         {
             return View();
+        }
+        
+        [HttpPost]
+        public async Task<ActionResult> Login(UserDto user)
+        {
+            var result = await AuthenticateController.LoginAsync(user);
+            
+            if (!result.isUserAuthenticated)
+                return Unauthorized("Wrong username or password!");
+
+            CookieHelper.SaveJWTAsCookie("X-Access-Token", result, Response);
+
+            HttpContext.Session.SetString("isAuthenticated", "true");
+
+
+            return RedirectToAction(actionName: "AllArts", controllerName: "Art");
+        }
+
+
+        public IActionResult Logout()
+        {
+            CookieHelper.RemoveJWT("X-Access-Token", Response);
+            HttpContext.Session.SetString("isAuthenticated", "false");
+
+            return RedirectToAction(actionName: "Login", controllerName: "Accounts");
         }
 
         // POST: AuthorController/Create
@@ -78,5 +106,6 @@ namespace Gallaria.WEB.Controllers
             
             return View();
         }
+
     }
 }

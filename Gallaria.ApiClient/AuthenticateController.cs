@@ -18,6 +18,8 @@ namespace Gallaria.ApiClient
         {
             AuthenticatedUserData authenticatedData = new AuthenticatedUserData();
             var httpClient = new HttpClient();
+            
+
             StringContent content = new StringContent(JsonConvert.SerializeObject(user), Encoding.Default, "application/json");
 
             var response = await httpClient.PostAsync(ApiUrl + "api/Login", content);
