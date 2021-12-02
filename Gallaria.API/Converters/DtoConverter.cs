@@ -114,5 +114,40 @@ namespace Gallaria.API.Converters
         }
 
         #endregion
+
+        #region Order conversion methods
+
+        public static OrderDto ToDto(this Order orderToConvert)
+        {
+            var orderDto = new OrderDto();
+            orderToConvert.CopyPropertiesTo(orderDto);
+            return orderDto;
+        }
+
+        public static Order FromDto(this OrderDto orderDtoToConvert)
+        {
+            var order = new Order();
+            orderDtoToConvert.CopyPropertiesTo(order);
+            return order;
+        }
+
+        public static IEnumerable<OrderDto> ToDtos(this IEnumerable<Order> ordersToConvert)
+        {
+            foreach (var order in ordersToConvert)
+            {
+                yield return order.ToDto();
+            }
+        }
+
+        public static IEnumerable<Order> FromDtos(this IEnumerable<OrderDto> orderDtosToConvert)
+        {
+            foreach (var orderDto in orderDtosToConvert)
+            {
+                yield return orderDto.FromDto();
+            }
+        }
+
+        #endregion
+
     }
 }
