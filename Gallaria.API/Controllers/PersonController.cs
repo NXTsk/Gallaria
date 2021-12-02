@@ -11,13 +11,12 @@ namespace Gallaria.API.Controllers
     [Route("api/[controller]")]
     public class PersonController : Controller
     {
-        IConfiguration _config;
+        
         IPersonRepository _personRepository;
 
-        public PersonController(IConfiguration config)
+        public PersonController(IPersonRepository personRepository)
         {
-            _config = config;
-            _personRepository = new PersonRepository(_config["ConnectionStrings:MSSQLconnection"]);
+            _personRepository = personRepository;
         }
 
         // POST api/person

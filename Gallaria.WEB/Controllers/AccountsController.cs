@@ -4,17 +4,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Gallaria.ApiClient.ApiResponses;
 using Gallaria.ApiClient.DTOs;
 using Gallaria.WEB.ViewModels;
 using Gallaria.ApiClient.Helpers;
 using Gallaria.WEB.Helpers;
 using Microsoft.AspNetCore.Http;
+using Gallaria.ApiClient.Interfaces;
 
 namespace Gallaria.WEB.Controllers
 {
     public class AccountsController : Controller
     {
+        private IAuthenticateClient authenticateClient;
+        private IPersonClient personClient;
+        public AccountsController(IAuthenticateClient _authenticateClient, IPersonClient _personClient)
+        {
+            authenticateClient = _authenticateClient;
+            personClient = _personClient;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -33,7 +41,7 @@ namespace Gallaria.WEB.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(UserDto user)
         {
-            var result = await AuthenticateController.LoginAsync(user);
+            var result = await authenticateClient.LoginAsync(user);
             
             if (!result.isUserAuthenticated)
                 return Unauthorized("Wrong username or password!");
@@ -75,8 +83,8 @@ namespace Gallaria.WEB.Controllers
                         ArtistDto artist = accountVM.Person.ConvertIntoArtist();
                         artist.ProfileDescription = accountVM.Artist.ProfileDescription;
 
-                        var response = await PersonController.CreateArtistAsync(artist);
-                        if (response.hasBeenCreated)
+                        int response = await personClient.CreateArtistAsync(artist);
+                        if (response != -1)
                         {
                             return RedirectToAction(nameof(Login), "Accounts");
                         }
@@ -91,8 +99,8 @@ namespace Gallaria.WEB.Controllers
                 {
                     try
                     {
-                        var response = await PersonController.CreatePersonAsync(accountVM.Person);
-                        if (response.hasBeenCreated)
+                        int response = await personClient.CreatePersonAsync(accountVM.Person);
+                        if (response != -1)
                         {
                             return RedirectToAction(nameof(Login), "Accounts");
                         }

@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using Gallaria.ApiClient.ApiResponses;
 using Gallaria.ApiClient;
 using Gallaria.ApiClient.DTOs;
 
@@ -16,11 +15,17 @@ namespace Gallaria.GUI
 {
     public partial class LoginForm : Form
     {
+        private AuthenticateClient authenticateClient;
+        private PersonClient personClient;
+
+
         public LoginForm()
         {
             InitializeComponent();
-
             CustomizeComponents();
+
+            authenticateClient = new AuthenticateClient(Constants.APIUrl);
+            personClient = new PersonClient(Constants.APIUrl);
         }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -68,8 +73,8 @@ namespace Gallaria.GUI
 
         private async Task LoginUserAsync()
         {
-            AuthenticatedUserData userData = await AuthenticateController.LoginAsync(new UserDto { Email = txtUserName.Text, Password = txtPassword.Text });
-            bool isUserArtist = await PersonController.IsArtistAsync(userData.UserId);
+            AuthUserDto userData = await authenticateClient.LoginAsync(new UserDto { Email = txtUserName.Text, Password = txtPassword.Text });
+            bool isUserArtist = await personClient.IsArtistAsync(userData.UserId);
 
 
             if (userData.isUserAuthenticated)

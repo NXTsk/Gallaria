@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gallaria.ApiClient.ApiResponses
+namespace Gallaria.ApiClient.DTOs
 {
-    public class AuthenticatedUserData
+    public class AuthUserDto
     {
         /*-------API Response-------*/
         public string Token { get; set; }

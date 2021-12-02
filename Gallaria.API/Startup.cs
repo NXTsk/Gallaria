@@ -1,3 +1,4 @@
+using DataAccess.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -30,10 +31,12 @@ namespace Gallaria.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
-            // JWT Token Generation from Server Side.  
             services.AddMvc();
+
+            services.AddSingleton<IPersonRepository>(x => new PersonRepository(Configuration["ConnectionStrings:MSSQLconnection"]));
+            services.AddSingleton<IArtRepository>(x => new ArtRepository(Configuration["ConnectionStrings:MSSQLconnection"]));
+
 
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -64,7 +67,6 @@ namespace Gallaria.API
                                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtInfo:Key"]))
                             };
                         });
-
             services.AddAuthorization(options =>
             {
                 options.DefaultPolicy = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme).RequireAuthenticatedUser().Build();

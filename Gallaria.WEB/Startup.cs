@@ -1,3 +1,5 @@
+using Gallaria.ApiClient;
+using Gallaria.ApiClient.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -27,6 +29,11 @@ namespace Gallaria.WEB
         {
             services.AddControllersWithViews();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddSingleton<IArtClient>(x => new ArtClient(Configuration["WebAPIConnection"]));
+            services.AddSingleton<IAuthenticateClient>(x => new AuthenticateClient(Configuration["WebAPIConnection"]));
+            services.AddSingleton<IPersonClient>(x => new PersonClient(Configuration["WebAPIConnection"]));
+
             services.AddSession();
         }
 

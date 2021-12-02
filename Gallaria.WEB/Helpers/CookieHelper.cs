@@ -1,5 +1,4 @@
-﻿using Gallaria.ApiClient.ApiResponses;
-using Gallaria.ApiClient.DTOs;
+﻿using Gallaria.ApiClient.DTOs;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ namespace Gallaria.WEB.Helpers
 {
     public class CookieHelper
     {
-        public static void SaveJWTAsCookie(string key, AuthenticatedUserData userData, HttpResponse response)
+        public static void SaveJWTAsCookie(string key, AuthUserDto userData, HttpResponse response)
         {
             CookieOptions option = new CookieOptions();
 

@@ -1,6 +1,5 @@
 ﻿using DataAccess.Model;
 using Gallaria.ApiClient;
-using Gallaria.ApiClient.ApiResponses;
 using Gallaria.ApiClient.DTOs;
 using System;
 using System.Collections.Generic;
@@ -17,19 +16,22 @@ namespace Gallaria.GUI
 {
     public partial class MainForm : Form
     {
-        public static AuthenticatedUserData _user;
+        public static AuthUserDto _user;
 
         private Button currentButton;
         private Color themeColor = ColorTranslator.FromHtml("#34c5e6");
         private Color selectedColor = ColorTranslator.FromHtml("#006e9c");
         private Form activeForm;
 
+        private PersonClient personClient;
 
-        public MainForm(AuthenticatedUserData user)
+
+        public MainForm(AuthUserDto user)
         {
             InitializeComponent();
             _user = user;
-           
+            personClient = new PersonClient(Constants.APIUrl);
+
             var person = Task.Run(async () => await GetPersonByIdAsync(_user.UserId)).ConfigureAwait(false).GetAwaiter().GetResult();
 
             lblUserName.Text = person.FirstName;
@@ -43,7 +45,7 @@ namespace Gallaria.GUI
 
         private async Task<PersonDto> GetPersonByIdAsync(int id)
         {
-            PersonDto person = await PersonController.GetPersonByIdAsync(id);
+            PersonDto person = await personClient.GetPersonByIdAsync(id);
             return person;
         }
 

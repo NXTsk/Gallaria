@@ -12,7 +12,7 @@ namespace Gallaria.GUI
     {
         Image chosenPicture;
         byte[] pictureBytes;
-        ArtController artController = new ArtController();
+        ArtClient artClient; 
         string name;
         string category;
         int numberOfPieces;
@@ -22,7 +22,8 @@ namespace Gallaria.GUI
         public UploadArtForm()
         {
             InitializeComponent();
-           
+            artClient = new ArtClient(Constants.APIUrl);
+
         }
         private async void BtnSelectFile_Click(object sender, System.EventArgs e)
         {
@@ -110,8 +111,8 @@ namespace Gallaria.GUI
                 ArtDto art = CreateArtFromData();
                 art.AuthorId = MainForm._user.UserId;
 
-                var result = await ArtController.CreateArtAsync(art);
-                if (result.hasBeenCreated)
+                int result = await artClient.CreateArtAsync(art);
+                if (result != -1)
                 {
                     this.Close();
                 }

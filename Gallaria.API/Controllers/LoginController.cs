@@ -18,19 +18,19 @@ namespace Gallaria.API.Controllers
     public class LoginController : Controller
     {
         IConfiguration _config;
-        IPersonRepository personRepository;
+        IPersonRepository _personRepository;
 
-        public LoginController(IConfiguration config)
+        public LoginController(IConfiguration config, IPersonRepository personRepository)
         {
             _config = config;
-            personRepository = new PersonRepository(_config["ConnectionStrings:MSSQLconnection"]);
+            _personRepository = personRepository;
         }
 
 
         [HttpPost]
         public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
         {
-            int userId = await personRepository.LoginAsync(model.Email, model.Password);
+            int userId = await _personRepository.LoginAsync(model.Email, model.Password);
 
             if(userId == -1)
             {

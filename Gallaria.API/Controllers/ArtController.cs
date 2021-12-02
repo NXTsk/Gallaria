@@ -18,13 +18,11 @@ namespace Gallaria.API.Controllers
     [ApiController]
     public class ArtController : Controller
     {
-        IConfiguration _config;
         IArtRepository _artRepository;
 
-        public ArtController(IConfiguration config)
+        public ArtController(IArtRepository artRepository)
         {
-            _config = config;
-            _artRepository = new ArtRepository(_config["ConnectionStrings:MSSQLconnection"]);
+            _artRepository = artRepository;
         }
 
         // GET: api/<ArtController>
