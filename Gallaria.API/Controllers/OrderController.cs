@@ -27,14 +27,14 @@ namespace Gallaria.API.Controllers
         // IDK IF THIS IS OKAY
         // POST api/person
         [HttpPost]
-        public async Task<ActionResult<int>> CreateOrder([FromBody] OrderDto newOrderDto)
+        public async Task<ActionResult<int>> CreateOrderAsync([FromBody] OrderDto newOrderDto)
         {
             return Ok(await _orderRepository.CreateOrderAsync(newOrderDto.FromDto()));
         }
 
         // GET api/<OrderController>/id
         [HttpGet("{id}")]
-        public async Task<ActionResult<OrderDto>> Get(int id)
+        public async Task<ActionResult<OrderDto>> GetAsync(int id)
         {
             var order = await _orderRepository.GetOrderByIdAsync(id);
             if (order == null) { return NotFound(); }

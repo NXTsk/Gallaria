@@ -9,6 +9,8 @@ namespace Gallaria.ApiClient.DTOs
 {
     class OrderLineItemDto
     {
+        public int Id { get; set; }
+        public int OrderId { get; set; }
         public ArtDto Art { get; set; }
 
         [Required(ErrorMessage = "Quantity is required.")]

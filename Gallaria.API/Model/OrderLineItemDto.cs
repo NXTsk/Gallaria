@@ -8,7 +8,7 @@ namespace Gallaria.API.Model
     public class OrderLineItemDto
     {
         public int Id { get; set; }
-        public ArtDto Art { get; set; }
         public int Quantity { get; set; }
+        public ArtDto Art { get; set; }
     }
 }

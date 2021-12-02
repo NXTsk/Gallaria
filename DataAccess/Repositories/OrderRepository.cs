@@ -13,26 +13,23 @@ namespace DataAccess.Repositories
         public OrderRepository(string connectionstring) : base(connectionstring) { }
    
         public async Task<int> CreateOrderAsync(Order order)
-    {
-        try
         {
-            var query = "INSERT INTO Order (Date, FinalPrice, Art, Quantity, Person)" +
-                " OUTPUT INSERTED.Id VALUES (@Date, @FinalPrice, @Art, @Quantity, @Person);";
-            using var connection = CreateConnection();
-            return await connection.QuerySingleAsync<int>(query, new
+            try
             {
-                Date = order.Date,
-                FinalPrice = order.FinalPrice,
-                Art = order.OrderLineItems.Art,
-                Quantity = order.OrderLineItems.Quantity,
-                Person = order.Person
-            });
+                var query = "INSERT INTO Order (Date, FinalPrice)" +
+                    " OUTPUT INSERTED.Id VALUES (@Date, @FinalPrice);";
+                using var connection = CreateConnection();
+                return await connection.QuerySingleAsync<int>(query, new
+                {
+                    Date = order.Date,
+                    FinalPrice = order.FinalPrice,
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error creating new Order: '{ex.Message}'.", ex);
+            }
         }
-        catch (Exception ex)
-        {
-            throw new Exception($"Error creating new Order: '{ex.Message}'.", ex);
-        }
-    }
 
     public async Task<bool> DeleteOrderAsync(int id)
     {
