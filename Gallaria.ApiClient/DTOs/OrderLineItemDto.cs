@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Gallaria.ApiClient.DTOs
 {
-    class OrderLineItemDto
+    public class OrderLineItemDto
     {
         public int Id { get; set; }
         public int OrderId { get; set; }

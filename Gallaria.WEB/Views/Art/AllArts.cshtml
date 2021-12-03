@@ -12,7 +12,7 @@
         {
         <div class="col-md-4 col-sm-6 col-lg-3">
             <a href="@Url.Action("Details", "Art", new { id=item.Id })" style="color:ActiveBorder black; text-decoration: none">
-                <div class="card">
+                <div class="card shadow p-3 mb-5 bg-white rounded">
                     <img src="@Html.DisplayFor(modelItem => item.Img64)" runat="server" class="card-img-top" alt="Picture">
                     <div class="card-body ">
                         <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
