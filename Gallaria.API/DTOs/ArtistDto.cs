@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gallaria.API.Model
+namespace Gallaria.API.DTOs
 {
     public class ArtistDto : PersonDto
     {

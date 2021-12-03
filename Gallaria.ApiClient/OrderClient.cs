@@ -1,36 +1,57 @@
-﻿//using Gallaria.ApiClient.DTOs;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Net.Http;
-//using System.Text;
-//using System.Threading.Tasks;
+﻿using Gallaria.ApiClient.DTOs;
+using Gallaria.ApiClient.Interfaces;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 
-//namespace Gallaria.ApiClient
-//{
-//    class OrderClient
-//    {
-//        private const string ApiUrl = "https://localhost:44327/";
+namespace Gallaria.ApiClient
+{
+    class OrderClient : IOrderClient
+    {
+        public string APIUrl { get; set; }
+        public HttpClient HttpClient { get; set; }
+        public OrderClient(string _APIUrl)
+        {
+            APIUrl = _APIUrl;
+            HttpClient = new HttpClient();
+        }
 
-//        public static async Task<OrderDto> CreateOrderAsync(OrderDto order)
-//        {
-//            var httpClient = new HttpClient();
-//            bool returnValue = false;
-//            OrderDto createdOrder = new OrderDto();
-//            StringContent content = new StringContent(JsonConvert.SerializeObject(order), Encoding.Default, "application/json");
+        public async Task<int> CreateArtAsync(OrderDto order)
+        {
+            StringContent content = new StringContent(JsonConvert.SerializeObject(order), Encoding.Default, "application/json");
+            int returnValue = -1;
 
-//            var response = await httpClient.PostAsync(ApiUrl + "api/art", content);
-//            if (response.IsSuccessStatusCode)
-//            {
-//                string apiResponse = await response.Content.ReadAsStringAsync();
-//                int createdResult = JsonConvert.DeserializeObject<int>(apiResponse);
+            var response = await HttpClient.PostAsync(APIUrl + "api/Order", content);
+            if (response.IsSuccessStatusCode)
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                returnValue = JsonConvert.DeserializeObject<int>(apiResponse);
+            }
 
-//                returnValue = true;
-//                createdOrder.Id = createdResult;
-//            }
+            return returnValue;
+        }
 
-//            createdOrder.hasBeenCreated = returnValue;
-//            return createdOrder;
-//        }
-//    }
-//}
+        public async Task<OrderDto> GetOrderByIdAsync(int id)
+        {
+            OrderDto order = new OrderDto();
+
+            //HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var response = await HttpClient.GetAsync(APIUrl + "api/Order/" + id);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                order = JsonConvert.DeserializeObject<OrderDto>(apiResponse);
+
+                //resetting the RequestHeader
+                //HttpClient.DefaultRequestHeaders.Authorization = null;
+            }
+
+            return order;
+        }
+    }
+}

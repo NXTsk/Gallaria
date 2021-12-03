@@ -9,7 +9,7 @@ namespace DataAccess.Repositories
 {
     public interface IOrderLineItemRepository
     {
-        Task<int> CreateOrderLineItemAsync(OrderLineItem orderLineItem, int orderId);
+        Task<int> CreateOrderLineItemAsync(OrderLineItem orderLineItem);
         Task<bool> DeleteOrderLineItemAsync(int id);
         Task<OrderLineItem> GetOrderLineItemByIdAsync(int id);
         Task<IEnumerable<OrderLineItem>> GetAllOrderLineItemsInOrderAsync(int id);

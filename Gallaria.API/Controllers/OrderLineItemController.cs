@@ -1,7 +1,7 @@
 ﻿using DataAccess.Model;
 using DataAccess.Repositories;
 using Gallaria.API.Converters;
-using Gallaria.API.Model;
+using Gallaria.API.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -27,9 +27,9 @@ namespace Gallaria.API.Controllers
         // IDK IF THIS IS OKAY
         // POST api/person
         [HttpPost]
-        public async Task<ActionResult<int>> CreateOrderLineItemAsync([FromBody] OrderLineItemDto newOrderLineItemDto, int orderId)
+        public async Task<ActionResult<int>> CreateOrderLineItemAsync([FromBody] OrderLineItemDto newOrderLineItemDto)
         {
-            return Ok(await _orderLineItemRepository.CreateOrderLineItemAsync(newOrderLineItemDto.FromDto(), orderId));
+            return Ok(await _orderLineItemRepository.CreateOrderLineItemAsync(newOrderLineItemDto.FromDto()));
         }
 
         // GET api/<OrderLineItemController>/id

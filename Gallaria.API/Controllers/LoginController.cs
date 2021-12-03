@@ -1,5 +1,5 @@
 ﻿using DataAccess.Repositories;
-using Gallaria.API.Model;
+using Gallaria.API.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;

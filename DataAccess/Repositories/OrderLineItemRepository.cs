@@ -12,16 +12,16 @@ namespace DataAccess.Repositories
     {
         public OrderLineItemRepository(string connectionstring) : base(connectionstring) { }
 
-        public async Task<int> CreateOrderLineItemAsync(OrderLineItem orderLineItem, int orderId)
+        public async Task<int> CreateOrderLineItemAsync(OrderLineItem orderLineItem)
         {
             try
             {
                 var query = "INSERT INTO OrderLineItem (OrderId, ArtId, Quantity)" +
-                    "OUTPUT INSERTED.Id VALUES (OrderId, @ArtId, @Quantity);";
+                    "OUTPUT INSERTED.Id VALUES (@OrderId, @ArtId, @Quantity);";
                 using var connection = CreateConnection();
                 return await connection.QuerySingleAsync<int>(query, new
                 {
-                    OrderId = orderId,
+                    OrderId = orderLineItem.OrderId,
                     ArtId = orderLineItem.Art.Id,
                     Quantity = orderLineItem.Quantity
                 });
@@ -64,13 +64,13 @@ namespace DataAccess.Repositories
         {
             try
             {
-                var query = "SELECT * FROM Order WHERE Id=@Id";
+                var query = "SELECT * FROM OrderLineItem WHERE Id=@Id";
                 using var connection = CreateConnection();
                 return await connection.QuerySingleAsync<OrderLineItem>(query, new { id });
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error getting order with id {id}: '{ex.Message}'.", ex);
+                throw new Exception($"Error getting orderLineItem with id {id}: '{ex.Message}'.", ex);
             }
         }
     }

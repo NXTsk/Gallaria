@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Gallaria.ApiClient\Gallaria.ApiClient.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\ShoppingCart\" />
+  </ItemGroup>
+
 </Project>

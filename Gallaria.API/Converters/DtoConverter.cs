@@ -1,5 +1,5 @@
 ﻿using DataAccess.Model;
-using Gallaria.API.Model;
+using Gallaria.API.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -24,8 +24,9 @@ namespace Gallaria.WEB.Controllers
 
         public IActionResult Index()
         {
-            
-            if (CookieHelper.ReadJWT("", _httpContextAccessor) != "")
+            string JWT = CookieHelper.ReadJWT("X-Access-Token", _httpContextAccessor);
+
+            if (JWT != null)
             {
                 HttpContext.Session.SetString("isAuthenticated", "true");
             }

@@ -33,16 +33,15 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="Logout">Log out</a>
                             </li>
                         }
-                        else if(Context.Session.GetString("isAuthenticated") == "false")
+                        else if (Context.Session.GetString("isAuthenticated") == "false")
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="Login">Login</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="CreateAccount">Sign up</a>
+                            </li>
                         }
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="CreateAccount">Sign up</a>
-                        </li>
                     </ul>
                 </div>
             </div>

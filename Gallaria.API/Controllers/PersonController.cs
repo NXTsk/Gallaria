@@ -1,6 +1,6 @@
 ﻿ using DataAccess.Repositories;
 using Gallaria.API.Converters;
-using Gallaria.API.Model;
+using Gallaria.API.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;

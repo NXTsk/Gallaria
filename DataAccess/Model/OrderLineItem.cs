@@ -9,7 +9,8 @@ namespace DataAccess.Model
     public class OrderLineItem
     {
         public int Id { get; set; }
-        public int Quantity { get; set; }
+        public int OrderId { get; set; }
         public Art Art { get; set; }
+        public int Quantity { get; set; }
     }
 }

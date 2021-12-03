@@ -16,13 +16,14 @@ namespace DataAccess.Repositories
         {
             try
             {
-                var query = "INSERT INTO Order (Date, FinalPrice)" +
-                    " OUTPUT INSERTED.Id VALUES (@Date, @FinalPrice);";
+                var query = "INSERT INTO Order (Date, FinalPrice, PersonId)" +
+                    " OUTPUT INSERTED.Id VALUES (@Date, @FinalPrice, @PersonId);";
                 using var connection = CreateConnection();
                 return await connection.QuerySingleAsync<int>(query, new
                 {
                     Date = order.Date,
                     FinalPrice = order.FinalPrice,
+                    PersonId = order.Person.Id
                 });
             }
             catch (Exception ex)

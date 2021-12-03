@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Gallaria.API.Model
+namespace Gallaria.API.DTOs
 {
     public class OrderDto
     {

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using DataAccess.Model;
 using DataAccess.Repositories;
 using Gallaria.API.Converters;
-using Gallaria.API.Model;
+using Gallaria.API.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
@@ -34,7 +34,7 @@ namespace Gallaria.API.Controllers
 
         // GET api/<OrderController>/id
         [HttpGet("{id}")]
-        public async Task<ActionResult<OrderDto>> GetAsync(int id)
+        public async Task<ActionResult<OrderDto>> GetOrderByIdAsync(int id)
         {
             var order = await _orderRepository.GetOrderByIdAsync(id);
             if (order == null) { return NotFound(); }
