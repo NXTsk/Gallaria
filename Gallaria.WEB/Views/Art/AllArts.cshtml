@@ -28,7 +28,12 @@
                             <div class="card-text">Available pieces:</div>
                             <div class="card-text">@Html.DisplayFor(modelItem => item.AvailableQuantity)</div>
                         </div>
-                        <div class="row justify-content-center" style="padding-top: 5%"><a href="@Url.Action("Details", "Art", new { id=item.Id })" class="btn btn-primary align">Add to cart</a></div>
+                        <div class="row justify-content-center" style="padding-top: 5%">
+                            <a href="@Url.Action("AddToCart", "Art",
+                                new {artist = item.ArtistName, title = item.Title })" class="btn btn-primary align">
+                                Add to cart
+                            </a>
+                        </div>
                     </div>
                 </div>
             </a>

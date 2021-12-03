@@ -11,6 +11,6 @@ namespace Gallaria.API.DTOs
         public DateTime Date { get; set; }
         public decimal FinalPrice { get; set; }
         public PersonDto Person { get; set; }
-        public IEnumerable<OrderLineItemDto> OrderLineItems { get; set; }
+        public ICollection<OrderLineItemDto> OrderLineItems { get; set; }
     }
 }

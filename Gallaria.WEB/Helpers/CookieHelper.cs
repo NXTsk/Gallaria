@@ -1,5 +1,6 @@
 ﻿using Gallaria.ApiClient.DTOs;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Gallaria.WEB.Helpers
 {
-    public class CookieHelper
+    public static class CookieHelper
     {
         public static void SaveJWTAsCookie(string key, AuthUserDto userData, HttpResponse response)
         {
@@ -28,6 +29,5 @@ namespace Gallaria.WEB.Helpers
         {
             response.Cookies.Delete(key);
         }
-
     }
 }

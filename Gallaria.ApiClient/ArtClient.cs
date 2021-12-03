@@ -24,66 +24,6 @@ namespace Gallaria.ApiClient
             HttpClient = new HttpClient();
         }
 
-        //public static async Task<CreateArtApiResponse> CreateArtAsync(ArtDto art)
-        //{
-        //    var httpClient = new HttpClient();
-        //    bool returnValue = false;
-        //    CreateArtApiResponse createdArt = new CreateArtApiResponse();
-        //    StringContent content = new StringContent(JsonConvert.SerializeObject(art), Encoding.Default, "application/json");
-
-        //    var response = await httpClient.PostAsync(ApiUrl + "api/art", content);
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        string apiResponse = await response.Content.ReadAsStringAsync();
-        //        int createdResult = JsonConvert.DeserializeObject<int>(apiResponse);
-
-        //        returnValue = true;
-        //        createdArt.ArtId = createdResult;
-        //    }
-
-        //    createdArt.hasBeenCreated = returnValue;
-        //    return createdArt;
-        //}
-        
-        //public static async Task<ArtDto> GetArtByIDAsync(int id, string token)
-        //{
-        //    var httpClient = new HttpClient();
-        //    ArtDto art = new ArtDto();
-
-        //    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-        //    var response = await httpClient.GetAsync(ApiUrl + "api/art/" + id);
-
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        string apiResponse = await response.Content.ReadAsStringAsync();
-        //        art = JsonConvert.DeserializeObject<ArtDto>(apiResponse);
-        //    }
-
-        //    return art;
-        //}
-
-        //public static async Task<IEnumerable<ArtDto>> GetAllArtsAsync()
-        //{
-        //    var httpClient = new HttpClient();
-        //    IEnumerable<ArtDto> artDtos;
-
-        //    var response = await httpClient.GetAsync(ApiUrl + "api/art");
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        string apiResponse = await response.Content.ReadAsStringAsync();
-        //        artDtos = JsonConvert.DeserializeObject<IEnumerable<ArtDto>>(apiResponse);
-
-        //    }
-        //    else
-        //    {
-        //        artDtos = null;
-        //        throw new Exception("Error retrieving all arts");
-        //    }
-        //    return artDtos;
-        //}
-
-        
-
         public async Task<int> CreateArtAsync(ArtDto art)
         {
             StringContent content = new StringContent(JsonConvert.SerializeObject(art), Encoding.Default, "application/json");

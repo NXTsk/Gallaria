@@ -14,14 +14,16 @@ namespace Gallaria.WEB.Controllers
     public class ArtController : Controller
     {
         private IHttpContextAccessor _httpContextAccessor;
-        private IArtClient artClient;
-        private IPersonClient personClient;
+        private IArtClient _artClient;
+        private IPersonClient _personClient;
+        private OrderDto _orderDto;
 
-        public ArtController(IHttpContextAccessor httpContextAccessor, IArtClient _artClient, IPersonClient _personClient)
+        public ArtController(IHttpContextAccessor httpContextAccessor, IArtClient artClient, IPersonClient personClient)
         {
             _httpContextAccessor = httpContextAccessor;
-            artClient = _artClient;
-            personClient = _personClient;
+            _artClient = artClient;
+            _personClient = personClient;
+            InitializeShoppingCartAndSaveInSession();
         }
 
         public IActionResult Index()
@@ -31,8 +33,8 @@ namespace Gallaria.WEB.Controllers
 
         public IActionResult Details(int id)
         {
-            ArtDto art = artClient.GetArtByIDAsync(id, CookieHelper.ReadJWT("X-Access-Token", _httpContextAccessor)).Result;
-            var artist = personClient.GetPersonByIdAsync(art.AuthorId).Result;
+            ArtDto art = _artClient.GetArtByIDAsync(id, CookieHelper.ReadJWT("X-Access-Token", _httpContextAccessor)).Result;
+            var artist = _personClient.GetPersonByIdAsync(art.AuthorId).Result;
 
             art.ArtistName = artist.FirstName + " " + artist.LastName;
 
@@ -43,10 +45,10 @@ namespace Gallaria.WEB.Controllers
         }
         public IActionResult AllArts()
         {
-            IEnumerable<ArtDto> artDtos = artClient.GetAllArtsAsync().Result;
+            IEnumerable<ArtDto> artDtos = _artClient.GetAllArtsAsync().Result;
             foreach (var art in artDtos)
             {
-                var artist = personClient.GetPersonByIdAsync(art.AuthorId).Result;
+                var artist = _personClient.GetPersonByIdAsync(art.AuthorId).Result;
                 art.ArtistName = artist.FirstName + " " + artist.LastName;
                 art.Img64 = GetImageSourceFromByteArray(art.Image);
 
@@ -54,12 +56,36 @@ namespace Gallaria.WEB.Controllers
 
             return View(artDtos);
         }
+        public IActionResult AddtoCart(ArtDto art)
+        {
+            OrderLineItemDto orderLineItem = new OrderLineItemDto() { Art = art, Quantity = 1 }; 
+            _orderDto.OrderLineItems.Add(orderLineItem);
+            _httpContextAccessor.HttpContext.Session.SaveShoppingCartInSession("cart", _orderDto);
+            return RedirectToAction("AllArts");
+        }
 
         public string GetImageSourceFromByteArray(byte[] imgBytes)
         {
             string imreBase64Data = Convert.ToBase64String(imgBytes);
             string imgDataURL = string.Format("data:image/png;base64,{0}", imreBase64Data);
             return imgDataURL;
+        }
+        public void InitializeShoppingCartAndSaveInSession()
+        {
+            if (_httpContextAccessor.HttpContext.Session.GetShoppingCartFromSession("cart") != null)
+            {
+                _orderDto = _httpContextAccessor.HttpContext.Session.GetShoppingCartFromSession("cart");
+            }
+            else
+            {
+                _orderDto = new OrderDto() { FinalPrice = 20};
+                _orderDto.OrderLineItems = new List<OrderLineItemDto>();
+                _httpContextAccessor.HttpContext.Session.SaveShoppingCartInSession("cart", _orderDto);
+            }
+            if (_orderDto.OrderLineItems == null)
+            {
+                _orderDto.OrderLineItems = new List<OrderLineItemDto>();
+            }
         }
     }
 }

@@ -27,6 +27,9 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="ShoppingCart">Cart</a>
+                        </li>
                         @if (Context.Session.GetString("isAuthenticated") == "true")
                         {
                             <li class="nav-item">

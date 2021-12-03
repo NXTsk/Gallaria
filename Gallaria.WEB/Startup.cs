@@ -33,6 +33,7 @@ namespace Gallaria.WEB
             services.AddSingleton<IArtClient>(x => new ArtClient(Configuration["WebAPIConnection"]));
             services.AddSingleton<IAuthenticateClient>(x => new AuthenticateClient(Configuration["WebAPIConnection"]));
             services.AddSingleton<IPersonClient>(x => new PersonClient(Configuration["WebAPIConnection"]));
+            services.AddSingleton<IOrderClient>(x => new OrderClient(Configuration["WebAPIConnection"]));
 
             services.AddSession();
         }

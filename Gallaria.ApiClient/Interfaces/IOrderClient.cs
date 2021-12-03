@@ -13,7 +13,7 @@ namespace Gallaria.ApiClient.Interfaces
         public string APIUrl { get; set; }
         public HttpClient HttpClient { get; set; }
 
-        public Task<int> CreateArtAsync(OrderDto order);
+        public Task<int> CreateOrderAsync(OrderDto order);
         public Task<OrderDto> GetOrderByIdAsync(int id);
     }
 }

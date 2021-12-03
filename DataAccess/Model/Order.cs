@@ -12,6 +12,6 @@ namespace DataAccess.Model
         public DateTime Date { get; set; }
         public decimal FinalPrice { get; set; }
         public Person Person { get; set; }
-        public IEnumerable<OrderLineItem> OrderLineItems { get; set; }
+        public ICollection<OrderLineItem> OrderLineItems { get; set; }
     }
 }

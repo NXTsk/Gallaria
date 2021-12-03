@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Gallaria.ApiClient
 {
-    class OrderClient : IOrderClient
+    public class OrderClient : IOrderClient
     {
         public string APIUrl { get; set; }
         public HttpClient HttpClient { get; set; }
@@ -20,7 +20,7 @@ namespace Gallaria.ApiClient
             HttpClient = new HttpClient();
         }
 
-        public async Task<int> CreateArtAsync(OrderDto order)
+        public async Task<int> CreateOrderAsync(OrderDto order)
         {
             StringContent content = new StringContent(JsonConvert.SerializeObject(order), Encoding.Default, "application/json");
             int returnValue = -1;
