@@ -48,16 +48,18 @@ namespace Gallaria.WEB.Controllers
             IEnumerable<ArtDto> artDtos = _artClient.GetAllArtsAsync().Result;
             foreach (var art in artDtos)
             {
-                var artist = _personClient.GetPersonByIdAsync(art.AuthorId).Result;
-                art.ArtistName = artist.FirstName + " " + artist.LastName;
+                art.ArtistName = getAuthorName(art);
                 art.Img64 = GetImageSourceFromByteArray(art.Image);
 
             }
 
             return View(artDtos);
         }
-        public IActionResult AddtoCart(ArtDto art)
+        public IActionResult AddtoCart(int id)
         {
+            ArtDto art = _artClient.GetArtByIDAsync(id, CookieHelper.ReadJWT("X-Access-Token", _httpContextAccessor)).Result;
+            art.Img64 = GetImageSourceFromByteArray(art.Image);
+            art.ArtistName = getAuthorName(art);
             OrderLineItemDto orderLineItem = new OrderLineItemDto() { Art = art, Quantity = 1 }; 
             _orderDto.OrderLineItems.Add(orderLineItem);
             _httpContextAccessor.HttpContext.Session.SaveShoppingCartInSession("cart", _orderDto);
@@ -70,6 +72,11 @@ namespace Gallaria.WEB.Controllers
             string imgDataURL = string.Format("data:image/png;base64,{0}", imreBase64Data);
             return imgDataURL;
         }
+        public string getAuthorName(ArtDto art)
+        {
+            var artist = _personClient.GetPersonByIdAsync(art.AuthorId).Result;
+            return (artist.FirstName + " " + artist.LastName);
+        }
         public void InitializeShoppingCartAndSaveInSession()
         {
             if (_httpContextAccessor.HttpContext.Session.GetShoppingCartFromSession("cart") != null)
@@ -78,7 +85,7 @@ namespace Gallaria.WEB.Controllers
             }
             else
             {
-                _orderDto = new OrderDto() { FinalPrice = 20};
+                _orderDto = new OrderDto();
                 _orderDto.OrderLineItems = new List<OrderLineItemDto>();
                 _httpContextAccessor.HttpContext.Session.SaveShoppingCartInSession("cart", _orderDto);
             }

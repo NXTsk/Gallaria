@@ -23,7 +23,23 @@ namespace Gallaria.WEB.Controllers
         public IActionResult ShoppingCart()
         {
             OrderDto orderDto = _httpContextAccessor.HttpContext.Session.GetShoppingCartFromSession("cart");
+            orderDto.Date = DateTime.Now;
+            if (orderDto.OrderLineItems != null)
+            {
+                foreach (OrderLineItemDto item in orderDto.OrderLineItems)
+                {
+                    orderDto.FinalPrice += item.Art.Price;
+                }
+            }
             return View(orderDto);
+        }
+        public IActionResult RemoveItemFromShoppingCart(int id)
+        {
+            OrderDto orderDto = _httpContextAccessor.HttpContext.Session.GetShoppingCartFromSession("cart");
+            var item = orderDto.OrderLineItems.Single(x => x.Art.Id == id);
+            orderDto.OrderLineItems.Remove(item);
+            _httpContextAccessor.HttpContext.Session.SaveShoppingCartInSession("cart", orderDto);
+            return RedirectToAction("ShoppingCart");
         }
     }
 }

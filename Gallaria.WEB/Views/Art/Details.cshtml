@@ -27,7 +27,7 @@
                 <div class="card-text">@Html.DisplayFor(model => model.AvailableQuantity)</div>
             </div>
             <div class="d-flex justify-content-end" style="padding-top: 5%; padding-bottom: 5%">
-                <a href="#" class="btn btn-primary">Add to cart</a>
+                <a href="@Url.Action("AddToCart", "Art", new {id = Model.Id})"" class="btn btn-primary">Add to cart</a>
             </div>
             <div><div class="d-flex justify-content-between text-muted">
                 <div class="card-text">Created on:</div>
