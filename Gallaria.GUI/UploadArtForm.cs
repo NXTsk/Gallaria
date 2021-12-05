@@ -37,9 +37,10 @@ namespace Gallaria.GUI
                 chosenPicture = Image.FromFile(op.FileName);
                 lblFileName.Text = op.FileName;
                 Bitmap img = new Bitmap(chosenPicture);
+
                 using (var stream = new MemoryStream())
                 {
-                    img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                    img.Save(stream, chosenPicture.RawFormat);
                     pictureBox.Image = img;
                     pictureBytes = stream.ToArray();
                 }
