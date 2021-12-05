@@ -12,8 +12,8 @@ namespace Gallaria.Tests.DataAccess
 {
     class ArtReporsitoryTest
     {
+        private IArtRepository _artRepository;
         private Art _newArt;
-        private ArtRepository _artRepository;
 
         [SetUp]
         public async Task Setup()
@@ -22,26 +22,63 @@ namespace Gallaria.Tests.DataAccess
             await CreateNewArt();
         }
 
-        [TearDown]
-        public async Task CleanUp()
-        {
-           await _artRepository.DeleteArtAsync(_newArt.Id);
-        }
-
         private async Task<Art> CreateNewArt()
         {
             byte[] bytes = System.IO.File.ReadAllBytes("../../../testImages/11.jpg");
-            _newArt = new Art() { AuthorId = 5, Title = "New art", Description = "hello", Image = bytes, Price = 10, AvailableQuantity = 20, Category = "Nature", CreationDate= new DateTime(2021,11,20)};
+            _newArt = new Art() { AuthorId = 152, Title = "New art", Description = "hello", Image = bytes, Price = 10, AvailableQuantity = 20, Category = "Nature", CreationDate= new DateTime(2021,11,20)};
             _newArt.Id = await _artRepository.CreateArtAsync(_newArt);
+
             return _newArt;
         }
+
         [Test]
         public void CreateArt()
         {
-            //ARRANGE & ACT is done in Setup()
-            //ASSERT
+            //Arrange & Act is done in Setup()
+            //Assert
+            Assert.IsTrue(_newArt.Id > 0, "Art was not created");
+        }
 
-            Assert.IsTrue(_newArt.Id > 0, "Created art ID not returned");
+        [Test]
+        public async Task GettingArtBySpecificIdReturnArt()
+        {
+            //Arragne
+            //Act
+            Art art = await _artRepository.GetArtByIDAsync(33);
+
+            //Assert
+            Assert.NotNull(art, "Art with ID 33 was not found");
+            Assert.IsTrue(art.Id == 33, $"Actual ID of art was {art.Id} not 33");
+        }
+
+        [Test]
+        public async Task GettingAllArtsReturnsListOfArt()
+        {
+            //Arrange
+            //Act
+            IEnumerable<Art> arts = await _artRepository.GetAllArtsAsync();
+
+            //Assert
+            Assert.NotNull(arts.Any(), "List of arts is 0");
+        }
+
+        [Test]
+        public async Task DeleteArt()
+        {
+            //Arrange is done in Setup()
+
+            //Act 
+            bool deleted = await _artRepository.DeleteArtAsync(_newArt.Id);
+
+            //Assert
+            Assert.IsTrue(deleted, "Art was not deleted");
+        }
+
+
+        [TearDown]
+        public async Task CleanUp()
+        { 
+            await _artRepository.DeleteArtAsync(_newArt.Id);
         }
     }
 }
