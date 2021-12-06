@@ -16,27 +16,27 @@ namespace Gallaria.API.Controllers
     public class OrderLineItemController : Controller
     {
         IConfiguration _config;
-        IOrderLineItemRepository _orderLineItemRepository;
+        IOrderRepository _orderRepository;
 
         public OrderLineItemController(IConfiguration config)
         {
             _config = config;
-            _orderLineItemRepository = new OrderLineItemRepository(_config["ConnectionStrings:MSSQLconnection"]);
+            _orderRepository = new OrderRepository(_config["ConnectionStrings:MSSQLconnection"]);
         }
 
         // IDK IF THIS IS OKAY
         // POST api/person
-        [HttpPost]
-        public async Task<ActionResult<int>> CreateOrderLineItemAsync([FromBody] OrderLineItemDto newOrderLineItemDto)
-        {
-            return Ok(await _orderLineItemRepository.CreateOrderLineItemAsync(newOrderLineItemDto.FromDto()));
-        }
+        //[HttpPost]
+        //public async Task<ActionResult<int>> CreateOrderLineItemAsync([FromBody] OrderLineItemDto newOrderLineItemDto)
+        //{
+        //    return Ok(await _orderRepository.CreateOrderLineItemAsync(newOrderLineItemDto.FromDto()));
+        //}
 
         // GET api/<OrderLineItemController>/id
         [HttpGet("{id}")]
         public async Task<ActionResult<OrderLineItemDto>> GetAllOrderLineItemByIdAsync(int id)
         {
-            var order = await _orderLineItemRepository.GetOrderLineItemByIdAsync(id);
+            var order = await _orderRepository.GetOrderLineItemByIdAsync(id);
             if (order == null) { return NotFound(); }
             else { return Ok(order); }
         }
@@ -45,7 +45,7 @@ namespace Gallaria.API.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> DeleteOrderLineItemAsync(int id)
         {
-            if (!await _orderLineItemRepository.DeleteOrderLineItemAsync(id)) { return NotFound(); }
+            if (!await _orderRepository.DeleteOrderLineItemAsync(id)) { return NotFound(); }
             else { return Ok(); }
         }
 
@@ -54,7 +54,7 @@ namespace Gallaria.API.Controllers
         {
             IEnumerable<OrderLineItem> orderLineItems;
 
-            orderLineItems = await _orderLineItemRepository.GetAllOrderLineItemsInOrderAsync(id);
+            orderLineItems = await _orderRepository.GetAllOrderLineItemsInOrderAsync(id);
 
             return Ok(orderLineItems.ToDtos());
         }

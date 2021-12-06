@@ -33,7 +33,7 @@ namespace Gallaria.WEB.Controllers
 
         public IActionResult Details(int id)
         {
-            ArtDto art = _artClient.GetArtByIDAsync(id, CookieHelper.ReadJWT("X-Access-Token", _httpContextAccessor)).Result;
+            ArtDto art = _artClient.GetArtByIDAsync(id).Result;
             var artist = _personClient.GetPersonByIdAsync(art.AuthorId).Result;
 
             art.ArtistName = artist.FirstName + " " + artist.LastName;
@@ -57,7 +57,7 @@ namespace Gallaria.WEB.Controllers
         }
             public IActionResult AddtoCart(int id)
             {
-            ArtDto art = _artClient.GetArtByIDAsync(id, CookieHelper.ReadJWT("X-Access-Token", _httpContextAccessor)).Result;
+            ArtDto art = _artClient.GetArtByIDAsync(id).Result;
             art.Img64 = GetImageSourceFromByteArray(art.Image);
             art.ArtistName = getAuthorName(art);
             OrderLineItemDto orderLineItem = new OrderLineItemDto() { Art = art, Quantity = 1 }; 

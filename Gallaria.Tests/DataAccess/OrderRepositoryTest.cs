@@ -41,6 +41,7 @@ namespace Gallaria.Tests.DataAccess
             return _newPerson;
         }
 
+        
         private OrderLineItem CreateNewOrderLineItem()
         {
             _newOrderLineItem = new OrderLineItem() {Art = _newArt, Quantity = 5 };
@@ -80,8 +81,8 @@ namespace Gallaria.Tests.DataAccess
         [TearDown]
         public async Task CleanUp()
         {
-            await _orderRepository.DeleteOrderAsync(_newOrder.Id);
-            await _orderRepository.DeleteOrderLineItemAsync(_newOrderLineItem.Id);
+            //await _orderRepository.DeleteOrderAsync(_newOrder.Id);
+            //await _orderRepository.DeleteOrderLineItemAsync(_newOrderLineItem.Id);
             await _personRepository.DeleteArtistAsync(_newPerson.Id);
             await _artRepository.DeleteArtAsync(_newArt.Id);
         }

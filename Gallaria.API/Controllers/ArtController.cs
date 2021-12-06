@@ -35,7 +35,6 @@ namespace Gallaria.API.Controllers
         }
 
         // GET api/<ArtController>/50
-        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<ArtDto>> Get(int id)
         {

@@ -39,20 +39,16 @@ namespace Gallaria.ApiClient
             return returnValue;
         }
 
-        public async Task<ArtDto> GetArtByIDAsync(int id, string token)
+        public async Task<ArtDto> GetArtByIDAsync(int id)
         {
             ArtDto art = new ArtDto();
 
-            HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await HttpClient.GetAsync(APIUrl + "api/art/" + id);
 
             if (response.IsSuccessStatusCode)
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 art = JsonConvert.DeserializeObject<ArtDto>(apiResponse);
-
-                //resetting the RequestHeader
-                HttpClient.DefaultRequestHeaders.Authorization = null;
             }
 
             return art;

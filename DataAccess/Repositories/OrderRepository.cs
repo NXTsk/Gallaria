@@ -27,26 +27,14 @@ namespace DataAccess.Repositories
                     //Begin the transaction
                     using (var transaction = connection.BeginTransaction())
                     {
-                        string sqlString = "INSERT INTO Order (PersonId, Date, FinalPrice)" +
-                        " OUTPUT INSERTED.Id VALUES (@PersonId, @Date, @FinalPrice);";
+                        string sqlStringOrder = "INSERT INTO dbo.[Order](PersonId, Date, FinalPrice) VALUES (@PersonId, @Date, @FinalPrice);" +
+                        "SELECT CAST(SCOPE_IDENTITY() as int)";
 
-                        //Create and fill-up master table data
-                        //var paramMaster = new DynamicParameters();
-                        //paramMaster.Add("@PersonId", order.Person.Id);
-                        //paramMaster.Add("@Date", order.Date);
-                        //paramMaster.Add("@FinalPrice", order.FinalPrice);
+                        string sqlStringOrderLineItem = "INSERT INTO dbo.[OrderLineItem](OrderId, ArtId, Quantity) VALUES (@OrderId, @ArtId, @Quantity);" +
+                        "SELECT CAST(SCOPE_IDENTITY() as int)";
 
-                        //Insert record in master table. Pass transaction parameter to Dapper.
-                        var affectedRowsOrder = connection.QuerySingleAsync<int>(sqlString, new {PersonId = order.Person.Id, Date = order.Date, FinalPrice = order.FinalPrice}, transaction: transaction);
+                        int orderId = connection.QuerySingle<int>(sqlStringOrder, new {PersonId = order.Person.Id, Date = order.Date, FinalPrice = order.FinalPrice}, transaction: transaction);
 
-                        //Get the Id newly created for master table record.
-                        //If this is not an Identity, use different method here
-                        int orderId;
-                        orderId = await connection.ExecuteScalarAsync<int>("SELECT @@IDENTITY", null, transaction: transaction);
-
-                        //Create and fill-up detail table data
-                        //Use suitable loop as you want to insert multiple records.
-                        //for(......)
                         foreach (OrderLineItem item in order.OrderLineItems)
                         {
                             var paramDetails = new DynamicParameters();
@@ -55,13 +43,11 @@ namespace DataAccess.Repositories
                             paramDetails.Add("@Quantity", item.Quantity);
 
                             //Insert record in detail table. Pass transaction parameter to Dapper.
-                            var affectedRowsOrderLineItem = connection.QuerySingleAsync<int>("INSERT INTO OrderLineItem (OrderId, ArtId, Quantity)" +
-                            "OUTPUT INSERTED.Id VALUES (@OrderId, @ArtId, @Quantity);", paramDetails, transaction: transaction);
+                            int orderLineItemId = connection.QuerySingle<int>(sqlStringOrderLineItem, paramDetails, transaction: transaction);
                         }
 
                         //Commit transaction
                         transaction.Commit();
-
                         return orderId;
                     }
                 }
@@ -70,37 +56,13 @@ namespace DataAccess.Repositories
             {
                 throw new Exception($"Error creating new Order: '{ex.Message}'.", ex);
             }
-
-        //    try
-        //    {
-        //        var query = "INSERT INTO Order (personId, date, finalPrice)" +
-        //            " OUTPUT INSERTED.Id VALUES (@PersonId, @Date, @FinalPrice);";
-        //        using var connection = CreateConnection();
-        //        int orderId = await connection.QuerySingleAsync<int>(query, new
-        //        {
-        //            PersonId = order.Person.Id,
-        //            Date = order.Date,
-        //            FinalPrice = order.FinalPrice
-        //        });
-
-        //        foreach (OrderLineItem orderLineItem in order.OrderLineItems)
-        //        {
-        //            await _orderRepository.CreateOrderLineItemAsync(orderLineItem, orderId);
-        //        }
-
-        //        return orderId;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception($"Error creating new Order: '{ex.Message}'.", ex);
-        //    }
         }
 
         public async Task<bool> DeleteOrderAsync(int id)
         {
             try
             {
-                var query = "DELETE FROM Order WHERE Id=@Id";
+                var query = "DELETE FROM dbo.[Order] WHERE Id=@Id";
                 using var connection = CreateConnection();
                 return await connection.ExecuteAsync(query, new { id }) > 0;
             }
