@@ -11,8 +11,6 @@ namespace DataAccess.Repositories
 {
     public class OrderRepository : BaseRepository, IOrderRepository
     {
-        private OrderRepository _orderRepository;
-
         public OrderRepository(string connectionstring) : base(connectionstring) { }
 
 
@@ -73,7 +71,7 @@ namespace DataAccess.Repositories
         {
             try
             {
-                var query = "SELECT * FROM Order";
+                var query = "SELECT * FROM dbo.[Order]";
                 using var connection = CreateConnection();
                 return (await connection.QueryAsync<Order>(query)).ToList();
             }
@@ -87,7 +85,7 @@ namespace DataAccess.Repositories
         {
             try
             {
-                var query = "SELECT * FROM Order WHERE Id=@Id";
+                var query = "SELECT * FROM dbo.[Order] WHERE Id=@Id";
                 using var connection = CreateConnection();
                 return await connection.QuerySingleAsync<Order>(query, new { id });
             }
@@ -96,26 +94,6 @@ namespace DataAccess.Repositories
                 throw new Exception($"Error getting order with id {id}: '{ex.Message}'.", ex);
             }
         }
-
-        //public async Task<int> CreateOrderLineItemAsync(OrderLineItem orderLineItem, int orderId)
-        //{
-        //    try
-        //    {
-        //        var query = "INSERT INTO OrderLineItem (OrderId, ArtId, Quantity)" +
-        //            "OUTPUT INSERTED.Id VALUES (@OrderId, @ArtId, @Quantity);";
-        //        using var connection = CreateConnection();
-        //        return await connection.QuerySingleAsync<int>(query, new
-        //        {
-        //            OrderId = orderId,
-        //            ArtId = orderLineItem.Art.Id,
-        //            Quantity = orderLineItem.Quantity
-        //        });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception($"Error creating new Order: '{ex.Message}'.", ex);
-        //    }
-        //}
 
         public async Task<bool> DeleteOrderLineItemAsync(int id)
         {
@@ -137,7 +115,7 @@ namespace DataAccess.Repositories
             {
                 var query = "SELECT * FROM OrderLineItem WHERE orderId=@Id";
                 using var connection = CreateConnection();
-                return (await connection.QueryAsync<OrderLineItem>(query, id)).ToList();
+                return (await connection.QueryAsync<OrderLineItem>(query, new { id })).ToList();
             }
             catch (Exception ex)
             {
