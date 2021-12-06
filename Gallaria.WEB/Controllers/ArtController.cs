@@ -55,15 +55,16 @@ namespace Gallaria.WEB.Controllers
 
             return View(artDtos);
         }
-        public IActionResult AddtoCart(int id)
-        {
+            public IActionResult AddtoCart(int id)
+            {
             ArtDto art = _artClient.GetArtByIDAsync(id, CookieHelper.ReadJWT("X-Access-Token", _httpContextAccessor)).Result;
             art.Img64 = GetImageSourceFromByteArray(art.Image);
             art.ArtistName = getAuthorName(art);
             OrderLineItemDto orderLineItem = new OrderLineItemDto() { Art = art, Quantity = 1 }; 
             _orderDto.OrderLineItems.Add(orderLineItem);
             _httpContextAccessor.HttpContext.Session.SaveShoppingCartInSession("cart", _orderDto);
-            return RedirectToAction("AllArts");
+            //return RedirectToAction("AllArts");
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
         public string GetImageSourceFromByteArray(byte[] imgBytes)
