@@ -27,9 +27,9 @@ namespace Gallaria.API.Controllers
         // IDK IF THIS IS OKAY
         // POST api/person
         [HttpPost]
-        public async Task<ActionResult<int>> CreateOrderAsync([FromBody] OrderDto newOrderDto)
+        public ActionResult<int> CreateOrderAsync([FromBody] OrderDto newOrderDto)
         {
-            return Ok(await _orderRepository.CreateOrderAsync(newOrderDto.FromDto()));
+            return Ok( _orderRepository.CreateOrder(newOrderDto.FromDto()));
         }
 
         // GET api/<OrderController>/id

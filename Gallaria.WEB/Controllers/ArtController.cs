@@ -43,6 +43,7 @@ namespace Gallaria.WEB.Controllers
 
             return View(art);
         }
+
         public IActionResult AllArts()
         {
             IEnumerable<ArtDto> artDtos = _artClient.GetAllArtsAsync().Result;
