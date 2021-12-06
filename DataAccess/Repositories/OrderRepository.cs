@@ -16,7 +16,7 @@ namespace DataAccess.Repositories
         public OrderRepository(string connectionstring) : base(connectionstring) { }
 
 
-        public async Task<int> CreateOrderAsync(Order order)
+        public int CreateOrder(Order order)
         {
             try
             {
@@ -33,17 +33,14 @@ namespace DataAccess.Repositories
                         string sqlStringOrderLineItem = "INSERT INTO dbo.[OrderLineItem](OrderId, ArtId, Quantity) VALUES (@OrderId, @ArtId, @Quantity);" +
                         "SELECT CAST(SCOPE_IDENTITY() as int)";
 
-                        int orderId = connection.QuerySingle<int>(sqlStringOrder, new {PersonId = order.Person.Id, Date = order.Date, FinalPrice = order.FinalPrice}, transaction: transaction);
+                        var orderDetails = new { PersonId = order.Person.Id, Date = order.Date, FinalPrice = order.FinalPrice };
+                        int orderId = connection.QuerySingle<int>(sqlStringOrder, orderDetails, transaction: transaction);
 
                         foreach (OrderLineItem item in order.OrderLineItems)
                         {
-                            var paramDetails = new DynamicParameters();
-                            paramDetails.Add("@OrderId", orderId);
-                            paramDetails.Add("@ArtId", item.Art.Id);
-                            paramDetails.Add("@Quantity", item.Quantity);
-
                             //Insert record in detail table. Pass transaction parameter to Dapper.
-                            int orderLineItemId = connection.QuerySingle<int>(sqlStringOrderLineItem, paramDetails, transaction: transaction);
+                            var orderLineDetails = new { OrderId = orderId, ArtId = item.Art.Id, Quantity = item.Quantity };
+                            int orderLineItemId = connection.QuerySingle<int>(sqlStringOrderLineItem, orderLineDetails, transaction: transaction);
                         }
 
                         //Commit transaction
