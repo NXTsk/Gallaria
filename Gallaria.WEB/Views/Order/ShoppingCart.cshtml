@@ -29,7 +29,7 @@
                                         <div class="col-md-8">
                                             <div class="info">
                                                 <div class="row">
-                                                    <div class="col-md-5 product-name">
+                                                    <div class="col-md-3 product-name">
                                                         <div class="product-name">
                                                             <a href="@Url.Action("Details", "Art", new { id=item.Art.Id })">@Html.DisplayFor(modelItem => item.Art.Title)</a>
                                                             <div class="product-info">
@@ -38,14 +38,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    @*<div class="col-md-4 quantity">
+                                                    <div class="col-md-3 quantity">
                                                         <label for="quantity">Quantity:</label>
-                                                        <input id="quantity" type="number" value="1" class="form-control quantity-input">
-                                                    </div>*@
-                                                    <div class="col-md-4 price justify-content-end">
+                                                        <input id="quantity" type="number" value="1" max="@item.Art.AvailableQuantity" min="1" class="form-control quantity-input">
+                                                    </div>
+                                                    <div class="col-md-3 price justify-content-end">
                                                         <span>@Html.DisplayFor(modelItem => item.Art.Price)€</span>
                                                     </div>
-                                                    <div class="col-md-3 ">
+                                                    <div class="col-md-3 float-right">
                                                         <a href="@Url.Action("RemoveItemFromShoppingCart", "Order", new {id = item.Art.Id})">Remove item</a>
                                                     </div>
                                                 </div>

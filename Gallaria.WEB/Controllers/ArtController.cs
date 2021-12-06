@@ -8,6 +8,8 @@ using Gallaria.ApiClient;
 using Gallaria.WEB.Helpers;
 using Microsoft.AspNetCore.Http;
 using Gallaria.ApiClient.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using System.Net;
 
 namespace Gallaria.WEB.Controllers
 {
@@ -56,16 +58,26 @@ namespace Gallaria.WEB.Controllers
 
             return View(artDtos);
         }
-            public IActionResult AddtoCart(int id)
+        public IActionResult AddtoCart(int id)
+        {
+            string isAuthenticated = _httpContextAccessor.HttpContext.Session.GetString("isAuthenticated");
+            if (isAuthenticated.Equals("true"))
             {
-            ArtDto art = _artClient.GetArtByIDAsync(id).Result;
-            art.Img64 = GetImageSourceFromByteArray(art.Image);
-            art.ArtistName = getAuthorName(art);
-            OrderLineItemDto orderLineItem = new OrderLineItemDto() { Art = art, Quantity = 1 }; 
-            _orderDto.OrderLineItems.Add(orderLineItem);
-            _httpContextAccessor.HttpContext.Session.SaveShoppingCartInSession("cart", _orderDto);
-            //return RedirectToAction("AllArts");
-            return Redirect(Request.Headers["Referer"].ToString());
+                ArtDto art = _artClient.GetArtByIDAsync(id).Result;
+                art.Img64 = GetImageSourceFromByteArray(art.Image);
+                art.ArtistName = getAuthorName(art);
+                OrderLineItemDto orderLineItem = new OrderLineItemDto() { Art = art, Quantity = 1 };
+                _orderDto.OrderLineItems.Add(orderLineItem);
+                _httpContextAccessor.HttpContext.Session.SaveShoppingCartInSession("cart", _orderDto);
+                //return RedirectToAction("AllArts");
+                return Redirect(Request.Headers["Referer"].ToString());
+            }
+            else
+            {
+                return RedirectToAction("Login", "Accounts");
+
+            }
+
         }
 
         public string GetImageSourceFromByteArray(byte[] imgBytes)
