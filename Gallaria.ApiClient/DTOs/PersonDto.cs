@@ -9,6 +9,8 @@ namespace Gallaria.ApiClient.DTOs
 {
     public class PersonDto
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "First name is required.")]
         public string FirstName { get; set; }
 

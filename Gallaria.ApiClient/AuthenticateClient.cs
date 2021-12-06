@@ -21,7 +21,6 @@ namespace Gallaria.ApiClient
             HttpClient = new HttpClient();
         }
 
-
         public async Task<AuthUserDto> LoginAsync(UserDto user)
         {
             AuthUserDto authenticatedData = new AuthUserDto();
