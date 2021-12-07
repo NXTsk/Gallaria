@@ -39,7 +39,7 @@ namespace Gallaria.WEB.Controllers
         }
         
         [HttpPost]
-        public async Task<ActionResult> Login(UserDto user)
+        public async Task<ActionResult> Login(UserDto user, string returnUrl)
         {
             var result = await authenticateClient.LoginAsync(user);
             
@@ -50,8 +50,14 @@ namespace Gallaria.WEB.Controllers
 
             HttpContext.Session.SetString("isAuthenticated", "true");
 
-
-            return RedirectToAction(actionName: "AllArts", controllerName: "Art");
+            if (!string.IsNullOrEmpty(returnUrl))
+            {
+                return LocalRedirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction(actionName: "AllArts", controllerName: "Art");
+            }
         }
 
 
@@ -59,14 +65,15 @@ namespace Gallaria.WEB.Controllers
         {
             CookieHelper.RemoveJWT("X-Access-Token", Response);
             HttpContext.Session.SetString("isAuthenticated", "false");
+            HttpContext.Session.Remove("cart");
 
-            return RedirectToAction(actionName: "Login", controllerName: "Accounts");
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
         // POST: AuthorController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateAccount(AccountViewModel accountVM)
+        public async Task<ActionResult> CreateAccount(AccountViewModel accountVM, string returnUrl)
         {
 
             if (accountVM.Person == null)

@@ -28,7 +28,7 @@ namespace Gallaria.WEB.Controllers
             {
                 foreach (OrderLineItemDto item in orderDto.OrderLineItems)
                 {
-                    orderDto.FinalPrice += item.Art.Price;
+                    orderDto.FinalPrice += item.Art.Price * item.Quantity;
                 }
             }
             return View(orderDto);

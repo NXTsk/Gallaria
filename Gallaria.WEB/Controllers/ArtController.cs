@@ -51,7 +51,7 @@ namespace Gallaria.WEB.Controllers
             IEnumerable<ArtDto> artDtos = _artClient.GetAllArtsAsync().Result;
             foreach (var art in artDtos)
             {
-                art.ArtistName = getAuthorName(art);
+                art.ArtistName = GetAuthorName(art);
                 art.Img64 = GetImageSourceFromByteArray(art.Image);
 
             }
@@ -64,12 +64,19 @@ namespace Gallaria.WEB.Controllers
             if (isAuthenticated.Equals("true"))
             {
                 ArtDto art = _artClient.GetArtByIDAsync(id).Result;
+
                 art.Img64 = GetImageSourceFromByteArray(art.Image);
-                art.ArtistName = getAuthorName(art);
+                art.ArtistName = GetAuthorName(art);
                 OrderLineItemDto orderLineItem = new OrderLineItemDto() { Art = art, Quantity = 1 };
-                _orderDto.OrderLineItems.Add(orderLineItem);
+                if (!CheckIfArtIsAlreadyInserted(art.Id))
+                {
+                    _orderDto.OrderLineItems.Add(orderLineItem);
+                }
+                else
+                {
+                    IncrementInsertedItemQuantity(art.Id);
+                }
                 _httpContextAccessor.HttpContext.Session.SaveShoppingCartInSession("cart", _orderDto);
-                //return RedirectToAction("AllArts");
                 return Redirect(Request.Headers["Referer"].ToString());
             }
             else
@@ -86,7 +93,7 @@ namespace Gallaria.WEB.Controllers
             string imgDataURL = string.Format("data:image/png;base64,{0}", imreBase64Data);
             return imgDataURL;
         }
-        public string getAuthorName(ArtDto art)
+        public string GetAuthorName(ArtDto art)
         {
             var artist = _personClient.GetPersonByIdAsync(art.AuthorId).Result;
             return (artist.FirstName + " " + artist.LastName);
@@ -106,6 +113,23 @@ namespace Gallaria.WEB.Controllers
             if (_orderDto.OrderLineItems == null)
             {
                 _orderDto.OrderLineItems = new List<OrderLineItemDto>();
+            }
+        }
+        public bool CheckIfArtIsAlreadyInserted(int artId)
+        {
+            bool result = false;
+
+            if (_orderDto.OrderLineItems.Any(item => item.Art.Id == artId)) {
+                result = true;
+            }
+            return result;
+        }
+        public void IncrementInsertedItemQuantity(int artId)
+        {
+            var orderLineItem = _orderDto.OrderLineItems.Single(item => item.Art.Id == artId);
+            if (orderLineItem != null)
+            {
+            orderLineItem.Quantity++;
             }
         }
     }
