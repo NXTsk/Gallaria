@@ -15,7 +15,10 @@ namespace Gallaria.API.Converters
             var personDto = new PersonDto();
             personDto.Address = new AddressDto();
             personToConvert.CopyPropertiesTo(personDto);
-            personToConvert.Address.CopyPropertiesTo(personDto.Address);
+            if (personToConvert.Address != null)
+            {
+                personToConvert.Address.CopyPropertiesTo(personDto.Address);
+            }
             return personDto;
         }
 
@@ -24,7 +27,10 @@ namespace Gallaria.API.Converters
             var person = new Person();
             person.Address = new Address();
             personDtoToConvert.CopyPropertiesTo(person);
+            if (personDtoToConvert.Address != null)
+            {
             personDtoToConvert.Address.CopyPropertiesTo(person.Address);
+            }
             return person;
         }
 
@@ -121,17 +127,26 @@ namespace Gallaria.API.Converters
         {
             var orderDto = new OrderDto();
             var orderLineItemDto = new OrderLineItemDto();
+            var personDto = new PersonDto();
+
             orderToConvert.CopyPropertiesTo(orderDto);
-            orderToConvert.OrderLineItems.CopyPropertiesTo(orderLineItemDto);
+            orderDto.OrderLineItems = orderToConvert.OrderLineItems.ToDtos().ToList();
+            orderDto.Person = orderToConvert.Person.ToDto();
+
             return orderDto;
         }
 
         public static Order FromDto(this OrderDto orderDtoToConvert)
         {
             var order = new Order();
-            var orderLineItem = new OrderLineItem();
+            order.OrderLineItems = new List<OrderLineItem>();
+            order.Person = new Person();
+
             orderDtoToConvert.CopyPropertiesTo(order);
-            orderDtoToConvert.CopyPropertiesTo(orderLineItem);
+
+
+            order.OrderLineItems = orderDtoToConvert.OrderLineItems.FromDtos().ToList();
+            order.Person = orderDtoToConvert.Person.FromDto();
             return order;
         }
 

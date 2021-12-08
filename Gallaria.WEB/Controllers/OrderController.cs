@@ -63,7 +63,7 @@ namespace Gallaria.WEB.Controllers
             else
             {
                 _httpContextAccessor.HttpContext.Session.SetString("wasOrderCompleted", "false");
-                return RedirectToAction(nameof(CreateOrder), "Order");
+                return RedirectToAction(nameof(ShoppingCart), "Order");
             }
         }
 
