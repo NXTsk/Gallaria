@@ -82,10 +82,9 @@ namespace Gallaria.WEB.Controllers
             else
             {
                 return RedirectToAction("Login", "Accounts");
-
             }
-
-        }
+            
+        } 
 
         public string GetImageSourceFromByteArray(byte[] imgBytes)
         {

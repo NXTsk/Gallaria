@@ -120,14 +120,18 @@ namespace Gallaria.API.Converters
         public static OrderDto ToDto(this Order orderToConvert)
         {
             var orderDto = new OrderDto();
+            var orderLineItemDto = new OrderLineItemDto();
             orderToConvert.CopyPropertiesTo(orderDto);
+            orderToConvert.OrderLineItems.CopyPropertiesTo(orderLineItemDto);
             return orderDto;
         }
 
         public static Order FromDto(this OrderDto orderDtoToConvert)
         {
             var order = new Order();
+            var orderLineItem = new OrderLineItem();
             orderDtoToConvert.CopyPropertiesTo(order);
+            orderDtoToConvert.CopyPropertiesTo(orderLineItem);
             return order;
         }
 
@@ -164,7 +168,7 @@ namespace Gallaria.API.Converters
             return orderLineItem;
         }
 
-        public static IEnumerable<OrderLineItemDto> ToDtos(this IEnumerable<OrderLineItem> orderLineItemsToConvert)
+        public static IEnumerable<OrderLineItemDto> ToDtos(this ICollection<OrderLineItem> orderLineItemsToConvert)
         {
             foreach (var orderLineItem in orderLineItemsToConvert)
             {
@@ -172,7 +176,7 @@ namespace Gallaria.API.Converters
             }
         }
 
-        public static IEnumerable<OrderLineItem> FromDtos(this IEnumerable<OrderLineItemDto> orderLineItemDtosToConvert)
+        public static IEnumerable<OrderLineItem> FromDtos(this ICollection<OrderLineItemDto> orderLineItemDtosToConvert)
         {
             foreach (var orderLineItemDto in orderLineItemDtosToConvert)
             {

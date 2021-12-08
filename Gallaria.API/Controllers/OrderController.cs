@@ -6,6 +6,7 @@ using DataAccess.Model;
 using DataAccess.Repositories;
 using Gallaria.API.Converters;
 using Gallaria.API.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
@@ -24,12 +25,12 @@ namespace Gallaria.API.Controllers
             _orderRepository = new OrderRepository(_config["ConnectionStrings:MSSQLconnection"]);
         }
 
-        // IDK IF THIS IS OKAY
         // POST api/person
+        [Authorize]
         [HttpPost]
-        public ActionResult<int> CreateOrderAsync([FromBody] OrderDto newOrderDto)
+        public async Task<ActionResult<int>> CreateOrderAsync([FromBody] OrderDto newOrderDto)
         {
-            return Ok( _orderRepository.CreateOrder(newOrderDto.FromDto()));
+            return Ok(await _orderRepository.CreateOrderAsync(newOrderDto.FromDto()));
         }
 
         // GET api/<OrderController>/id

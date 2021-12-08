@@ -1,4 +1,5 @@
-﻿@model Gallaria.ApiClient.DTOs.OrderDto
+﻿@using Microsoft.AspNetCore.Http;
+@model Gallaria.ApiClient.DTOs.OrderDto
 
 <link rel="Stylesheet" href="~/css/shoppingCart.css" type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -21,7 +22,6 @@
                             {
                                 foreach (var item in Model.OrderLineItems)
                                 {
-
                                     <div class="product">
                                         <div class="row">
                                             <div class="col-md-3 align-items-center">
@@ -40,6 +40,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3 quantity">
+
+                                                            <label for="quantity">Quantity:</label>
                                                             <input id="quantity" onkeydown="return false" type="number" value="@Html.DisplayFor(modelItem => item.Quantity)" max="@item.Art.AvailableQuantity" min="1" class="form-control quantity-input">
                                                         </div>
                                                         <div class="col-md-3 price justify-content-end">
@@ -53,30 +55,73 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 }
                             }
                         </div>
                     </div>
-
-                    <div class="col-md-12 col-lg-4">
+                    <dliv class="col-md-12 col-lg-4">
                         <div class="summary">
                             <h3>Summary</h3>
                             @*<div class="summary-item"><span class="text">Subtotal</span><span class="price">$360</span></div>
                 <div class="summary-item"><span class="text">Discount</span><span class="price">$0</span></div>*@
                             <div class="summary-item"><span class="text">Total</span><span class="price" id="total">@Html.DisplayFor(model => model.FinalPrice)€</span></div>
-                            <button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button>
+                            <button type="button" class="btn btn-primary btn-lg btn-block"  onclick="CreateOrder()">Checkout</button>
+
                         </div>
-                    </div>
+                    </dliv>
                 </div>
             </div>                         
         </div>
     </section>
 </main>
-@*<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>*@
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script src="~/js/PriceUpdatedShoppingCart.js" async></script>
 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    if (sessionStorage.getItem("wasOrderCompleted") != "" && sessionStorage.getItem("wasOrderCompleted"))
+        $(window).on('load', function () {
+            $('#myModal').modal('show');
+        });
+</script>
+
+<script>
+    function CreateOrder() {
+        $.ajax({
+            type: "POST",
+            url: "/Order/CreateOrder",
+            async: true,
+            success: function (msg) {
+                ServiceSucceeded(msg);
+            },
+            error: function () {
+                return "error";
+            }
+        });
+    }
+</script>
 
 
 

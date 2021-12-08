@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,16 +21,20 @@ namespace Gallaria.ApiClient
             HttpClient = new HttpClient();
         }
 
-        public async Task<int> CreateOrderAsync(OrderDto order)
+        public async Task<int> CreateOrderAsync(OrderDto order, string token)
         {
+
             StringContent content = new StringContent(JsonConvert.SerializeObject(order), Encoding.Default, "application/json");
             int returnValue = -1;
+
+            HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var response = await HttpClient.PostAsync(APIUrl + "api/Order", content);
             if (response.IsSuccessStatusCode)
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 returnValue = JsonConvert.DeserializeObject<int>(apiResponse);
+                HttpClient.DefaultRequestHeaders.Authorization = null;
             }
 
             return returnValue;

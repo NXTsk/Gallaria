@@ -10,6 +10,7 @@ using Gallaria.ApiClient.Helpers;
 using Gallaria.WEB.Helpers;
 using Microsoft.AspNetCore.Http;
 using Gallaria.ApiClient.Interfaces;
+using System.Net;
 
 namespace Gallaria.WEB.Controllers
 {
@@ -47,8 +48,9 @@ namespace Gallaria.WEB.Controllers
                 return Unauthorized("Wrong username or password!");
 
             CookieHelper.SaveJWTAsCookie("X-Access-Token", result, Response);
-
             HttpContext.Session.SetString("isAuthenticated", "true");
+
+            HttpContext.Response.Cookies.Append("userId", result.UserId.ToString());
 
             if (!string.IsNullOrEmpty(returnUrl))
             {
@@ -66,6 +68,7 @@ namespace Gallaria.WEB.Controllers
             CookieHelper.RemoveJWT("X-Access-Token", Response);
             HttpContext.Session.SetString("isAuthenticated", "false");
             HttpContext.Session.Remove("cart");
+            HttpContext.Response.Cookies.Delete("userId");
 
             return Redirect(Request.Headers["Referer"].ToString());
         }

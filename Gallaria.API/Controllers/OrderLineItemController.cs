@@ -50,9 +50,9 @@ namespace Gallaria.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<OrderLineItemDto>>> GetAllOrderLineItemsInOrderAsync([FromQuery] int id)
+        public async Task<ActionResult<ICollection<OrderLineItemDto>>> GetAllOrderLineItemsInOrderAsync([FromQuery] int id)
         {
-            IEnumerable<OrderLineItem> orderLineItems;
+            ICollection<OrderLineItem> orderLineItems;
 
             orderLineItems = await _orderRepository.GetAllOrderLineItemsInOrderAsync(id);
 

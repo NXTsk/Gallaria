@@ -11,10 +11,14 @@ namespace DataAccess.Repositories
 {
     public class OrderRepository : BaseRepository, IOrderRepository
     {
-        public OrderRepository(string connectionstring) : base(connectionstring) { }
+        private IArtRepository _artRepository;
+        public OrderRepository(string connectionstring) : base(connectionstring) 
+        {
+            _artRepository = new ArtRepository(connectionstring);
+        }
 
 
-        public int CreateOrder(Order order)
+        public async Task<int> CreateOrderAsync(Order order)
         {
             try
             {
@@ -32,18 +36,55 @@ namespace DataAccess.Repositories
                         "SELECT CAST(SCOPE_IDENTITY() as int)";
 
                         var orderDetails = new { PersonId = order.Person.Id, Date = order.Date, FinalPrice = order.FinalPrice };
-                        int orderId = connection.QuerySingle<int>(sqlStringOrder, orderDetails, transaction: transaction);
-
-                        foreach (OrderLineItem item in order.OrderLineItems)
+                        try
                         {
-                            //Insert record in detail table. Pass transaction parameter to Dapper.
-                            var orderLineDetails = new { OrderId = orderId, ArtId = item.Art.Id, Quantity = item.Quantity };
-                            int orderLineItemId = connection.QuerySingle<int>(sqlStringOrderLineItem, orderLineDetails, transaction: transaction);
-                        }
+                            int orderId = connection.QuerySingle<int>(sqlStringOrder, orderDetails, transaction: transaction);
 
-                        //Commit transaction
-                        transaction.Commit();
-                        return orderId;
+                            bool canCommit = true;
+
+                            foreach (OrderLineItem item in order.OrderLineItems)
+                            {
+                                //Insert record in detail table. Pass transaction parameter to Dapper.
+                                var orderLineDetails = new { OrderId = orderId, ArtId = item.Art.Id, Quantity = item.Quantity };
+                                int orderLineItemId = connection.QuerySingle<int>(sqlStringOrderLineItem, orderLineDetails, transaction: transaction);
+                                Art art = await _artRepository.GetArtByIDAsync(item.Art.Id);
+                                if (art.AvailableQuantity < item.Quantity)
+                                {
+                                    canCommit = false;
+                                }
+                            }
+                            if (canCommit)
+                            {
+                                //Commit transaction
+                                transaction.Commit();
+                                return orderId;
+                            }
+                            else
+                            {
+                                transaction.Rollback();
+                                return -1;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Commit Exception Type: {0}", ex.GetType());
+                            Console.WriteLine("  Message: {0}", ex.Message);
+                            // Attempt to roll back the transaction.
+                            try
+                            {
+                                transaction.Rollback();
+                                return -1;
+                            }
+                            catch (Exception ex2)
+                            {
+                                // This catch block will handle any errors that may have occurred
+                                // on the server that would cause the rollback to fail, such as
+                                // a closed connection.
+                                Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
+                                Console.WriteLine("  Message: {0}", ex2.Message);
+                                throw new Exception(ex2.Message);
+                            }
+                        }
                     }
                 }
             }
