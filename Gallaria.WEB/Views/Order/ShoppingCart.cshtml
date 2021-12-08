@@ -21,38 +21,38 @@
                             {
                                 foreach (var item in Model.OrderLineItems)
                                 {
-                                <div class="product">
-                                    <div class="row">
-                                        <div class="col-md-3 align-items-center">
-                                            <img class="img-fluid mx-auto d-block image" src="@Html.DisplayFor(modelItem => item.Art.Img64)" runat="server" alt="art.jpg">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="info">
-                                                <div class="row">
-                                                    <div class="col-md-3 product-name">
-                                                        <div class="product-name">
-                                                            <a href="@Url.Action("Details", "Art", new { id=item.Art.Id })">@Html.DisplayFor(modelItem => item.Art.Title)</a>
-                                                            <div class="product-info">
-                                                                <div>Author: <span class="value">@Html.DisplayFor(modelItem => item.Art.ArtistName)</span></div>
-                                                                <div>Category: <span class="value">@Html.DisplayFor(modelItem => item.Art.Category)</span></div>
+                                    <div class="product">
+                                        <div class="row">
+                                            <div class="col-md-3 align-items-center">
+                                                <img class="img-fluid mx-auto d-block image" src="@Html.DisplayFor(modelItem => item.Art.Img64)" runat="server" alt="art.jpg">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="info">
+                                                    <div class="row">
+                                                        <div class="col-md-3 product-name">
+                                                            <div class="product-name">
+                                                                <a href="@Url.Action("Details", "Art", new { id=item.Art.Id })">@Html.DisplayFor(modelItem => item.Art.Title)</a>
+                                                                <div class="product-info">
+                                                                    <div>Author: <span class="value">@Html.DisplayFor(modelItem => item.Art.ArtistName)</span></div>
+                                                                    <div>Category: <span class="value">@Html.DisplayFor(modelItem => item.Art.Category)</span></div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-3 quantity">
-                                                        <label for="quantity">Quantity:</label>
-                                                        <input id="quantity" type="number" value="@Html.DisplayFor(modelItem => item.Quantity)" max="@item.Art.AvailableQuantity" min="1" class="form-control quantity-input">
-                                                    </div>
-                                                    <div class="col-md-3 price justify-content-end">
-                                                        <span>@Html.DisplayFor(modelItem => item.Art.Price)€</span>
-                                                    </div>
-                                                    <div class="col-md-3 float-right">
-                                                        <a href="@Url.Action("RemoveItemFromShoppingCart", "Order", new {id = item.Art.Id})">Remove item</a>
+                                                        <div class="col-md-3 quantity">
+                                                            <label for="quantity">Quantity:</label>
+                                                            <input id="quantity" type="number" value="@Html.DisplayFor(modelItem => item.Quantity)" max="@item.Art.AvailableQuantity" min="1" class="form-control quantity-input" onkeydown="">
+                                                        </div>
+                                                        <div class="col-md-3 price justify-content-end">
+                                                            <span id="art_price">@Html.DisplayFor(modelItem => item.Art.Price)€</span>
+                                                        </div>
+                                                        <div class="col-md-3 float-right">
+                                                            <a href="@Url.Action("RemoveItemFromShoppingCart", "Order", new {id = item.Art.Id})">Remove item</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 }
                             }
                         </div>
@@ -61,8 +61,8 @@
                         <div class="summary">
                             <h3>Summary</h3>
                             @*<div class="summary-item"><span class="text">Subtotal</span><span class="price">$360</span></div>
-                            <div class="summary-item"><span class="text">Discount</span><span class="price">$0</span></div>*@
-                            <div class="summary-item"><span class="text">Total</span><span class="price">@Html.DisplayFor(model => model.FinalPrice)€</span></div>
+                                <div class="summary-item"><span class="text">Discount</span><span class="price">$0</span></div>*@
+                            <div class="summary-item"><span class="text">Total</span><span class="price" id="total">@Html.DisplayFor(model => model.FinalPrice)€</span></div>
                             <button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button>
                         </div>
                     </div>
@@ -73,6 +73,8 @@
 </main>
 @*<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>*@
+<script src="~/js/PriceUpdatedShoppingCart.js" async></script>
+
 
 
 
