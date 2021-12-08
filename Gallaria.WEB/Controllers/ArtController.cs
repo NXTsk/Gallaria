@@ -126,7 +126,7 @@ namespace Gallaria.WEB.Controllers
         public void IncrementInsertedItemQuantity(int artId)
         {
             var orderLineItem = _orderDto.OrderLineItems.Single(item => item.Art.Id == artId);
-            if (orderLineItem != null)
+            if (orderLineItem != null && orderLineItem.Quantity < orderLineItem.Art.AvailableQuantity)
             {
             orderLineItem.Quantity++;
             }

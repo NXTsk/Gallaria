@@ -31,6 +31,7 @@ namespace Gallaria.WEB.Controllers
         {
             _httpContextAccessor.HttpContext.Session.Remove("wasOrderCompleted");
             OrderDto order = _httpContextAccessor.HttpContext.Session.GetShoppingCartFromSession("cart");
+            order.Date = DateTime.Now;
             HttpContext.Request.Cookies.TryGetValue("userId", out string idString);
             int.TryParse(idString, out int id);
             order.Person = await _personClient.GetPersonByIdAsync(id);
@@ -70,7 +71,6 @@ namespace Gallaria.WEB.Controllers
         public async Task<IActionResult> ShoppingCart()
         {
             OrderDto orderDto = _httpContextAccessor.HttpContext.Session.GetShoppingCartFromSession("cart");
-            orderDto.Date = DateTime.Now;
             
             if (orderDto.OrderLineItems != null)
             {
@@ -78,6 +78,7 @@ namespace Gallaria.WEB.Controllers
                 {
                     orderDto.FinalPrice += item.Art.Price * item.Quantity;
                 }
+                _httpContextAccessor.HttpContext.Session.SaveShoppingCartInSession("cart", orderDto);
             }
             return View(orderDto);
         }

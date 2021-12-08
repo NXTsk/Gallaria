@@ -127,6 +127,7 @@ namespace Gallaria.API.Converters
         {
             var orderDto = new OrderDto();
             var orderLineItemDto = new OrderLineItemDto();
+            Art art = new Art();
             var personDto = new PersonDto();
 
             orderToConvert.CopyPropertiesTo(orderDto);
@@ -172,14 +173,21 @@ namespace Gallaria.API.Converters
         public static OrderLineItemDto ToDto(this OrderLineItem orderLineItemToConvert)
         {
             var orderLineItemDto = new OrderLineItemDto();
+            var artDto = new ArtDto();
+
             orderLineItemToConvert.CopyPropertiesTo(orderLineItemDto);
+            orderLineItemDto.Art = orderLineItemToConvert.Art.ToDto();
             return orderLineItemDto;
         }
 
         public static OrderLineItem FromDto(this OrderLineItemDto orderLineItemDtoToConvert)
         {
             var orderLineItem = new OrderLineItem();
+            var art = new Art();
+
             orderLineItemDtoToConvert.CopyPropertiesTo(orderLineItem);
+            orderLineItem.Art = orderLineItemDtoToConvert.Art.FromDto();
+
             return orderLineItem;
         }
 

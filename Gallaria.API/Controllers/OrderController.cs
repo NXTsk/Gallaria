@@ -25,7 +25,7 @@ namespace Gallaria.API.Controllers
             _orderRepository = new OrderRepository(_config["ConnectionStrings:MSSQLconnection"]);
         }
 
-        // POST api/person
+        // POST api/order
         [Authorize]
         [HttpPost]
         public async Task<ActionResult<int>> CreateOrderAsync([FromBody] OrderDto newOrderDto)
