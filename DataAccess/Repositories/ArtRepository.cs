@@ -2,6 +2,7 @@
 using DataAccess.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,6 +73,23 @@ namespace DataAccess.Repositories
                 var query = "SELECT * FROM Art WHERE Id=@Id";
                 using var connection = CreateConnection();
                 return await connection.QuerySingleAsync<Art>(query, new { id });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error getting art with id {id}: '{ex.Message}'.", ex);
+            }
+        }
+
+        public async Task<int> UpdateArtQuantityById(int id, int updatedQuantity)
+        {
+            try
+            {
+                var query = "UPDATE dbo.[Art] SET AvailableQuantity=@updatedQuantity WHERE Id=@id";
+                using var connection = CreateConnection();
+                return await connection.ExecuteAsync(query, new {
+                    updatedQuantity = updatedQuantity,
+                    Id = id
+                });
             }
             catch (Exception ex)
             {

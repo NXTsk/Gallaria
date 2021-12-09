@@ -10,11 +10,11 @@
     <input id="search" type="text" placeholder="Search..">
 </div>
 
-<div class="container" id="arts" style="margin-top:50px;">
-    <div class="row" data-masonry='{"percentPosition": true }'>
+<div class="container" style="margin-top:50px;">
+    <div class="row" data-masonry='{"percentPosition": true }' id="arts">
         @foreach (var item in Model)
         {
-            <div class="col-md-4 col-sm-6 col-lg-3">
+            <div class="col-md-4 col-sm-6 col-lg-3" id="masonry_item">
                 <a href="@Url.Action("Details", "Art", new { id=item.Id })" style="color:ActiveBorder black; text-decoration: none">
                     <div class="card-sl" id="card_id">
                         <div class="card-image">
@@ -41,8 +41,7 @@
         }
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
-    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+    <script id="masonry" src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -50,10 +49,10 @@
                 var value = $(this).val().toLowerCase();
                 $("#card_id*").filter(function () {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    $grid.masonry("layout").on()
                 });
             });
-        });
-    </script>
-    <script>
-        $grid.isotope({ sortBy: 'name' })
+        })
+        var $grid = $("#arts").masonry({
+        })
     </script>

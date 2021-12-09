@@ -48,9 +48,14 @@ namespace DataAccess.Repositories
                                 var orderLineDetails = new { OrderId = orderId, ArtId = item.Art.Id, Quantity = item.Quantity };
                                 int orderLineItemId = connection.QuerySingle<int>(sqlStringOrderLineItem, orderLineDetails, transaction: transaction);
                                 Art art = await _artRepository.GetArtByIDAsync(item.Art.Id);
+                                
                                 if (art.AvailableQuantity < item.Quantity)
                                 {
                                     canCommit = false;
+                                }
+                                else
+                                {
+                                    await _artRepository.UpdateArtQuantityById(art.Id, art.AvailableQuantity - item.Quantity);
                                 }
                             }
                             if (canCommit)

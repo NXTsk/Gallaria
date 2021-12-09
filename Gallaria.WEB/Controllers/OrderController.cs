@@ -52,19 +52,20 @@ namespace Gallaria.WEB.Controllers
                     else
                     {
                         _httpContextAccessor.HttpContext.Session.SetString("wasOrderCompleted", "false");
-                        return RedirectToAction(nameof(CreateOrder), "Order");
+                        HttpContext.Session.Remove("cart");
+                        return RedirectToAction("ShoppingCart", "Order");
                     }
                 }
                 catch (Exception)
                 {
                     _httpContextAccessor.HttpContext.Session.SetString("wasOrderCompleted", "false");
-                    return RedirectToAction(nameof(CreateOrder), "Order");
+                    return RedirectToAction("ShoppingCart", "Order");
                 }
             }
             else
             {
                 _httpContextAccessor.HttpContext.Session.SetString("wasOrderCompleted", "false");
-                return RedirectToAction(nameof(ShoppingCart), "Order");
+                return RedirectToAction("ShoppingCart", "Order");
             }
         }
 
@@ -87,6 +88,7 @@ namespace Gallaria.WEB.Controllers
             OrderDto orderDto = _httpContextAccessor.HttpContext.Session.GetShoppingCartFromSession("cart");
             var item = orderDto.OrderLineItems.Single(x => x.Art.Id == id);
             orderDto.OrderLineItems.Remove(item);
+            orderDto.FinalPrice -= item.Art.Price * item.Quantity;
             _httpContextAccessor.HttpContext.Session.SaveShoppingCartInSession("cart", orderDto);
             return RedirectToAction("ShoppingCart");
         }
