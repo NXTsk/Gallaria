@@ -1,7 +1,7 @@
-﻿
+
 namespace Gallaria.GUI
 {
-    partial class UploadArtForm
+    partial class UpdateArtForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,12 +31,11 @@ namespace Gallaria.GUI
         {
             this.components = new System.ComponentModel.Container();
             this.lblFileName = new System.Windows.Forms.Label();
-            this.btnSelectFile = new System.Windows.Forms.Button();
             this.textBoxTitle = new System.Windows.Forms.TextBox();
             this.textBoxPrice = new System.Windows.Forms.TextBox();
             this.textBoxNumberOfPieces = new System.Windows.Forms.TextBox();
             this.comboBoxCategory = new System.Windows.Forms.ComboBox();
-            this.btnPublish = new System.Windows.Forms.Button();
+            this.btnSaveChanges = new System.Windows.Forms.Button();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.richTextBoxDescription = new System.Windows.Forms.RichTextBox();
             this.errorProviderDataValidation = new System.Windows.Forms.ErrorProvider(this.components);
@@ -55,25 +54,10 @@ namespace Gallaria.GUI
             this.lblFileName.Size = new System.Drawing.Size(0, 20);
             this.lblFileName.TabIndex = 0;
             // 
-            // btnSelectFile
-            // 
-            this.btnSelectFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSelectFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(110)))), ((int)(((byte)(156)))));
-            this.btnSelectFile.FlatAppearance.BorderSize = 0;
-            this.btnSelectFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSelectFile.ForeColor = System.Drawing.Color.White;
-            this.btnSelectFile.Location = new System.Drawing.Point(657, 39);
-            this.btnSelectFile.Name = "btnSelectFile";
-            this.btnSelectFile.Size = new System.Drawing.Size(110, 29);
-            this.btnSelectFile.TabIndex = 1;
-            this.btnSelectFile.Text = "Select File";
-            this.btnSelectFile.UseVisualStyleBackColor = false;
-            this.btnSelectFile.Click += new System.EventHandler(this.BtnSelectFile_Click);
-            // 
             // textBoxTitle
             // 
             this.textBoxTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxTitle.Location = new System.Drawing.Point(429, 79);
+            this.textBoxTitle.Location = new System.Drawing.Point(429, 58);
             this.textBoxTitle.Name = "textBoxTitle";
             this.textBoxTitle.PlaceholderText = "Title*";
             this.textBoxTitle.Size = new System.Drawing.Size(338, 27);
@@ -83,7 +67,7 @@ namespace Gallaria.GUI
             // textBoxPrice
             // 
             this.textBoxPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxPrice.Location = new System.Drawing.Point(429, 194);
+            this.textBoxPrice.Location = new System.Drawing.Point(429, 173);
             this.textBoxPrice.Name = "textBoxPrice";
             this.textBoxPrice.PlaceholderText = "Price*";
             this.textBoxPrice.Size = new System.Drawing.Size(338, 27);
@@ -94,7 +78,7 @@ namespace Gallaria.GUI
             // textBoxNumberOfPieces
             // 
             this.textBoxNumberOfPieces.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxNumberOfPieces.Location = new System.Drawing.Point(429, 156);
+            this.textBoxNumberOfPieces.Location = new System.Drawing.Point(429, 135);
             this.textBoxNumberOfPieces.Name = "textBoxNumberOfPieces";
             this.textBoxNumberOfPieces.PlaceholderText = "Number of pieces*";
             this.textBoxNumberOfPieces.Size = new System.Drawing.Size(338, 27);
@@ -107,28 +91,28 @@ namespace Gallaria.GUI
             this.comboBoxCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCategory.FormattingEnabled = true;
-            this.comboBoxCategory.Location = new System.Drawing.Point(429, 117);
+            this.comboBoxCategory.Location = new System.Drawing.Point(429, 96);
             this.comboBoxCategory.Name = "comboBoxCategory";
             this.comboBoxCategory.Size = new System.Drawing.Size(338, 28);
             this.comboBoxCategory.TabIndex = 3;
             this.comboBoxCategory.TextChanged += new System.EventHandler(this.TextBoxes_TextChanged);
             // 
-            // btnPublish
+            // btnSaveChanges
             // 
-            this.btnPublish.AllowDrop = true;
-            this.btnPublish.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnSaveChanges.AllowDrop = true;
+            this.btnSaveChanges.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPublish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(110)))), ((int)(((byte)(156)))));
-            this.btnPublish.FlatAppearance.BorderSize = 0;
-            this.btnPublish.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPublish.ForeColor = System.Drawing.Color.White;
-            this.btnPublish.Location = new System.Drawing.Point(267, 387);
-            this.btnPublish.Name = "btnPublish";
-            this.btnPublish.Size = new System.Drawing.Size(322, 52);
-            this.btnPublish.TabIndex = 1;
-            this.btnPublish.Text = "Publish";
-            this.btnPublish.UseVisualStyleBackColor = false;
-            this.btnPublish.Click += new System.EventHandler(this.BtnPublish_Click);
+            this.btnSaveChanges.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(110)))), ((int)(((byte)(156)))));
+            this.btnSaveChanges.FlatAppearance.BorderSize = 0;
+            this.btnSaveChanges.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveChanges.ForeColor = System.Drawing.Color.White;
+            this.btnSaveChanges.Location = new System.Drawing.Point(267, 387);
+            this.btnSaveChanges.Name = "btnSaveChanges";
+            this.btnSaveChanges.Size = new System.Drawing.Size(322, 52);
+            this.btnSaveChanges.TabIndex = 1;
+            this.btnSaveChanges.Text = "Save changes";
+            this.btnSaveChanges.UseVisualStyleBackColor = false;
+            this.btnSaveChanges.Click += new System.EventHandler(this.BtnPublish_Click);
             // 
             // pictureBox
             // 
@@ -150,7 +134,7 @@ namespace Gallaria.GUI
             // 
             this.richTextBoxDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBoxDescription.Location = new System.Drawing.Point(429, 247);
+            this.richTextBoxDescription.Location = new System.Drawing.Point(429, 226);
             this.richTextBoxDescription.MaxLength = 500;
             this.richTextBoxDescription.Name = "richTextBoxDescription";
             this.richTextBoxDescription.Size = new System.Drawing.Size(338, 65);
@@ -169,7 +153,7 @@ namespace Gallaria.GUI
             this.lblCharacterCounter.AutoSize = true;
             this.lblCharacterCounter.BackColor = System.Drawing.Color.Transparent;
             this.lblCharacterCounter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblCharacterCounter.Location = new System.Drawing.Point(704, 315);
+            this.lblCharacterCounter.Location = new System.Drawing.Point(704, 294);
             this.lblCharacterCounter.Name = "lblCharacterCounter";
             this.lblCharacterCounter.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblCharacterCounter.Size = new System.Drawing.Size(63, 20);
@@ -181,13 +165,13 @@ namespace Gallaria.GUI
             // 
             this.lblDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(427, 226);
+            this.lblDescription.Location = new System.Drawing.Point(427, 205);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(85, 20);
             this.lblDescription.TabIndex = 7;
             this.lblDescription.Text = "Description";
             // 
-            // UploadArtForm
+            // UpdateArtForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -200,12 +184,11 @@ namespace Gallaria.GUI
             this.Controls.Add(this.textBoxNumberOfPieces);
             this.Controls.Add(this.textBoxPrice);
             this.Controls.Add(this.textBoxTitle);
-            this.Controls.Add(this.btnPublish);
-            this.Controls.Add(this.btnSelectFile);
+            this.Controls.Add(this.btnSaveChanges);
             this.Controls.Add(this.lblFileName);
-            this.Name = "UploadArtForm";
-            this.Text = "Upload Art";
-            this.Load += new System.EventHandler(this.UploadArtForm_Load);
+            this.Name = "UpdateArtForm";
+            this.Text = "Update art";
+            this.Load += new System.EventHandler(this.UpdateArtForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderDataValidation)).EndInit();
             this.ResumeLayout(false);
@@ -216,12 +199,11 @@ namespace Gallaria.GUI
         #endregion
 
         private System.Windows.Forms.Label lblFileName;
-        private System.Windows.Forms.Button btnSelectFile;
         private System.Windows.Forms.TextBox textBoxTitle;
         private System.Windows.Forms.TextBox textBoxPrice;
         private System.Windows.Forms.TextBox textBoxNumberOfPieces;
         private System.Windows.Forms.ComboBox comboBoxCategory;
-        private System.Windows.Forms.Button btnPublish;
+        private System.Windows.Forms.Button btnSaveChanges;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.RichTextBox richTextBoxDescription;
         private System.Windows.Forms.ErrorProvider errorProviderDataValidation;

@@ -30,6 +30,7 @@ namespace Gallaria.GUI
         private void InitializeComponent()
         {
             this.panelSidebar = new System.Windows.Forms.Panel();
+            this.btnEditArt = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblUserName = new System.Windows.Forms.Label();
             this.lblLoggedAs = new System.Windows.Forms.Label();
@@ -54,6 +55,7 @@ namespace Gallaria.GUI
             // panelSidebar
             // 
             this.panelSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(197)))), ((int)(((byte)(230)))));
+            this.panelSidebar.Controls.Add(this.btnEditArt);
             this.panelSidebar.Controls.Add(this.pictureBox2);
             this.panelSidebar.Controls.Add(this.lblUserName);
             this.panelSidebar.Controls.Add(this.lblLoggedAs);
@@ -65,6 +67,28 @@ namespace Gallaria.GUI
             this.panelSidebar.Name = "panelSidebar";
             this.panelSidebar.Size = new System.Drawing.Size(200, 600);
             this.panelSidebar.TabIndex = 0;
+            // 
+            // btnEditArt
+            // 
+            this.btnEditArt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(197)))), ((int)(((byte)(230)))));
+            this.btnEditArt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnEditArt.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnEditArt.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnEditArt.FlatAppearance.BorderSize = 0;
+            this.btnEditArt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditArt.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnEditArt.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.btnEditArt.Image = global::Gallaria.GUI.Properties.Resources.updateIcon_64x64;
+            this.btnEditArt.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEditArt.Location = new System.Drawing.Point(0, 180);
+            this.btnEditArt.Name = "btnEditArt";
+            this.btnEditArt.Size = new System.Drawing.Size(200, 70);
+            this.btnEditArt.TabIndex = 6;
+            this.btnEditArt.Text = "   Edit";
+            this.btnEditArt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEditArt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEditArt.UseVisualStyleBackColor = false;
+            this.btnEditArt.Click += new System.EventHandler(this.BtnEditArt_Click);
             // 
             // pictureBox2
             // 
@@ -84,9 +108,9 @@ namespace Gallaria.GUI
             this.lblUserName.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblUserName.Location = new System.Drawing.Point(100, 559);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(37, 20);
+            this.lblUserName.Size = new System.Drawing.Size(34, 20);
             this.lblUserName.TabIndex = 4;
-            this.lblUserName.Text = "ABC";
+            this.lblUserName.Text = "Test";
             // 
             // lblLoggedAs
             // 
@@ -291,5 +315,6 @@ namespace Gallaria.GUI
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.Label lblLoggedAs;
+        private System.Windows.Forms.Button btnEditArt;
     }
 }

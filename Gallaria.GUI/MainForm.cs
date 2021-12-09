@@ -25,7 +25,6 @@ namespace Gallaria.GUI
 
         private PersonClient personClient;
 
-
         public MainForm(AuthUserDto user)
         {
             InitializeComponent();
@@ -149,6 +148,11 @@ namespace Gallaria.GUI
         private void BtnUpload_Click(object sender, EventArgs e)
         {
             OpenChildForm(new UploadArtForm(), sender);
+        }
+
+        private void BtnEditArt_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new DisplayCreatedArts(), sender);
         }
     }
 }

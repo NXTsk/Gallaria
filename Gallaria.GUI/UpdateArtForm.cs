@@ -1,4 +1,4 @@
-﻿using Gallaria.ApiClient;
+using Gallaria.ApiClient;
 using Gallaria.ApiClient.DTOs;
 using System;
 using System.Drawing;
@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Gallaria.GUI
 {
-    public partial class UploadArtForm : Form
+    public partial class UpdateArtForm : Form
     {
         Image chosenPicture;
         byte[] pictureBytes;
@@ -19,7 +19,7 @@ namespace Gallaria.GUI
         decimal price;
         string description;
 
-        public UploadArtForm()
+        public UpdateArtForm()
         {
             InitializeComponent();
             artClient = new ArtClient(Constants.APIUrl);
@@ -80,7 +80,6 @@ namespace Gallaria.GUI
         private void RichTextBoxDescription_TextChanged(object sender, EventArgs e)
         {
             lblCharacterCounter.Text = $"{richTextBoxDescription.Text.Length}/500";
-
         }
 
         private void TextBoxNumberOfPieces_KeyPress(object sender, KeyPressEventArgs e)
@@ -122,8 +121,6 @@ namespace Gallaria.GUI
             {
                 MessageBox.Show("Please fill all required fields.", "Gallaria - Message!");
             }
-
-            
         }
 
         public string[] InputCategories()
@@ -133,7 +130,7 @@ namespace Gallaria.GUI
             return categories;
         }
 
-        private void UploadArtForm_Load(object sender, EventArgs e)
+        private void UpdateArtForm_Load(object sender, EventArgs e)
         {
             comboBoxCategory.SelectedItem = null;
             comboBoxCategory.SelectedText = "--select--";
@@ -141,40 +138,40 @@ namespace Gallaria.GUI
             comboBoxCategory.DataSource = InputCategories();
         }
 
-        private bool ValidateChildren()
-        {
-            bool IsValid = true;
-            // Clear error provider only once.
-            errorProviderDataValidation.Clear();
+        //private bool ValidateChildren()
+        //{
+        //    bool IsValid = true;
+        //    // Clear error provider only once.
+        //    errorProviderDataValidation.Clear();
 
-            //use if condition for every condtion, dont use else-if
-            if (string.IsNullOrEmpty(textBoxTitle.Text.Trim()))
-            {
-                errorProviderDataValidation.SetError(textBoxTitle, "field required!");
-                IsValid = false;
-            }
-            if (string.IsNullOrEmpty(comboBoxCategory.Text.Trim()) || comboBoxCategory.Text == "-select category-")
-            {
-                errorProviderDataValidation.SetError(comboBoxCategory, "field required!");
-                IsValid = false;
-            }
-            if (string.IsNullOrEmpty(textBoxNumberOfPieces.Text.Trim()))
-            {
-                errorProviderDataValidation.SetError(textBoxNumberOfPieces, "field required!");
-                IsValid = false;
-            }
-            if (string.IsNullOrEmpty(textBoxPrice.Text.Trim()))
-            {
-                errorProviderDataValidation.SetError(textBoxPrice, "field required!");
-                IsValid = false;
-            }
-            if (pictureBytes == null)
-            {
-                errorProviderDataValidation.SetError(btnSelectFile, "Select a picture!");
-                IsValid = false;
-            }
+        //    //use if condition for every condtion, dont use else-if
+        //    if (string.IsNullOrEmpty(textBoxTitle.Text.Trim()))
+        //    {
+        //        errorProviderDataValidation.SetError(textBoxTitle, "field required!");
+        //        IsValid = false;
+        //    }
+        //    if (string.IsNullOrEmpty(comboBoxCategory.Text.Trim()) || comboBoxCategory.Text == "-select category-")
+        //    {
+        //        errorProviderDataValidation.SetError(comboBoxCategory, "field required!");
+        //        IsValid = false;
+        //    }
+        //    if (string.IsNullOrEmpty(textBoxNumberOfPieces.Text.Trim()))
+        //    {
+        //        errorProviderDataValidation.SetError(textBoxNumberOfPieces, "field required!");
+        //        IsValid = false;
+        //    }
+        //    if (string.IsNullOrEmpty(textBoxPrice.Text.Trim()))
+        //    {
+        //        errorProviderDataValidation.SetError(textBoxPrice, "field required!");
+        //        IsValid = false;
+        //    }
+        //    if (pictureBytes == null)
+        //    {
+        //        errorProviderDataValidation.SetError(btnSelectFile, "Select a picture!");
+        //        IsValid = false;
+        //    }
 
-            return IsValid;
-        }
+        //    return IsValid;
+        //}
     }
 }
