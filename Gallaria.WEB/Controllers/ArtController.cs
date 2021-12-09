@@ -46,9 +46,9 @@ namespace Gallaria.WEB.Controllers
             return View(art);
         }
 
-        public IActionResult AllArts()
+        public async Task<IActionResult> AllArts()
         {
-            IEnumerable<ArtDto> artDtos = _artClient.GetAllArtsAsync().Result.Where(x => x.AvailableQuantity > 0);
+            IEnumerable<ArtDto> artDtos = await _artClient.GetAllAvailableArtsAsync();
             foreach (var art in artDtos)
             {
                 art.ArtistName = GetAuthorName(art);

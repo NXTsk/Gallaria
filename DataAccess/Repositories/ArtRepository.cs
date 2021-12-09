@@ -110,6 +110,20 @@ namespace DataAccess.Repositories
                 throw new Exception($"Error updating art: '{ex.Message}'.", ex);
             }
         }
+
+        public async Task<IEnumerable<Art>> GetAllAvailableArtsAsync()
+        {
+            try
+            {
+                var query = "SELECT * FROM dbo.[Art] WHERE availableQuantity > 0";
+                using var connection = CreateConnection();
+                return (await connection.QueryAsync<Art>(query)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error getting all arts: '{ex.Message}'.", ex);
+            }
+        }
     }
 
 }

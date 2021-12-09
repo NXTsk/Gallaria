@@ -50,8 +50,8 @@
             $("#search").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
                 $(".card-heading*").filter(function () {
-                    $(this).parent().parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                    $("#arts").masonry("layout")
+                    $(this).parent().parent().toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                    $("#arts").masonry("layout");
                 });
             });
         })

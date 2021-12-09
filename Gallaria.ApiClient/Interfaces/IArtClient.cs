@@ -17,6 +17,7 @@ namespace Gallaria.ApiClient.Interfaces
         public Task<int> CreateArtAsync(ArtDto art);
         public Task<ArtDto> GetArtByIDAsync(int id);
         public Task<IEnumerable<ArtDto>> GetAllArtsAsync();
+        public Task<IEnumerable<ArtDto>> GetAllAvailableArtsAsync();
         public byte[] ConvertBase64toByteArray(string pictureBase64String);
     }
 }
