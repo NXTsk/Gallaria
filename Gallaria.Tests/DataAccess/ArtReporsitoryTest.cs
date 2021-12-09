@@ -74,6 +74,28 @@ namespace Gallaria.Tests.DataAccess
             Assert.IsTrue(deleted, "Art was not deleted");
         }
 
+        [Test]
+        public async Task UpdateArtWithSpecificId()
+        {
+            //Arrange
+            string updatedTitle = "New updated art";
+            decimal updatedPrice = 15;
+            string updatedDescription = "hello updated art";
+            string updatedCategory = "Abstract";
+
+            _newArt.Title = updatedTitle;
+            _newArt.Description = updatedDescription;
+            _newArt.Price = updatedPrice;
+            _newArt.Category = updatedCategory;
+
+            //Act 
+            await _artRepository.UpdateArtAsync(_newArt);
+
+            //Assert
+            var refoundArt = await _artRepository.GetArtByIDAsync(_newArt.Id);
+            Assert.IsTrue(refoundArt.Title == updatedTitle && refoundArt.Price == updatedPrice && refoundArt.Description == updatedDescription && refoundArt.Category == updatedCategory, "Art was not deleted");
+        }
+
 
         [TearDown]
         public async Task CleanUp()

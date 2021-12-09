@@ -72,6 +72,22 @@ namespace Gallaria.ApiClient
             return artDtos;
         }
 
+        public async Task<bool> UpdateAuthorAsync(ArtDto artDto)
+        {
+            StringContent content = new StringContent(JsonConvert.SerializeObject(artDto), Encoding.Default, "application/json");
+            var response = await HttpClient.PutAsync(APIUrl + "api/art/", content);
+
+            bool valueToReturn = false;
+
+            if (response.IsSuccessStatusCode)
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                valueToReturn = JsonConvert.DeserializeObject<bool>(apiResponse);
+            }
+
+            return valueToReturn;
+        }
+
         public byte[] ConvertBase64toByteArray(string pictureBase64String)
         {
             byte[] pictureByteArray = Convert.FromBase64String(pictureBase64String);

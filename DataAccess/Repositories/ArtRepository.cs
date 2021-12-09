@@ -96,6 +96,20 @@ namespace DataAccess.Repositories
                 throw new Exception($"Error getting art with id {id}: '{ex.Message}'.", ex);
             }
         }
+
+        public async Task<bool> UpdateArtAsync(Art art)
+        {
+            try
+            {
+                var query = "UPDATE dbo.[Art] SET Title=@Title, Description=@Description, Price=@Price, Category=@Category WHERE Id=@id;"; 
+                using var connection = CreateConnection();
+                return await connection.ExecuteAsync(query, art) > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error updating art: '{ex.Message}'.", ex);
+            }
+        }
     }
 
 }

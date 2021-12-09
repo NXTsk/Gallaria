@@ -50,10 +50,17 @@ namespace Gallaria.API.Controllers
             return Ok(await _artRepository.CreateArtAsync(newArtDto.FromDto()));
         }
 
-        // PUT api/<ArtController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // PUT api/<ArtController>/35
+        [HttpPut]
+        public async Task<ActionResult> UpdateArtAsync([FromBody] ArtDto artDtoToUpdate)
         {
+            bool wasUpdated = await _artRepository.UpdateArtAsync(artDtoToUpdate.FromDto());
+
+            if (wasUpdated) 
+            {
+                return Ok(); 
+            }
+            return NotFound(); 
         }
 
         // DELETE api/<ArtController>/5

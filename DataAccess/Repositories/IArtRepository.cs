@@ -15,5 +15,6 @@ namespace DataAccess.Repositories
         Task<Art> GetArtByIDAsync(int id);
         Task<IEnumerable<Art>> GetAllArtsAsync();
         Task<int> UpdateArtQuantityById(int id, int updatedQuantity);
+        Task<bool> UpdateArtAsync(Art art);
     }
 }
