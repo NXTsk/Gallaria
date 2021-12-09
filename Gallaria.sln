@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gallaria.Tests", "Gallaria.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gallaria.ApiClient", "Gallaria.ApiClient\Gallaria.ApiClient.csproj", "{872ECD14-42A0-4449-B3DF-A699A1C0257A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gallaria.WEB", "Gallaria.WEB\Gallaria.WEB.csproj", "{FE0498CA-0CCD-4464-ACA0-2A61F1F07402}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gallaria.WEB", "Gallaria.WEB\Gallaria.WEB.csproj", "{FE0498CA-0CCD-4464-ACA0-2A61F1F07402}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

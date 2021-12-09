@@ -16,18 +16,42 @@ namespace Gallaria.Tests.ApiClient
 
         private List<OrderLineItemDto> orderLineItemDtos;
 
+        private PersonDto person;
+        private List<OrderLineItemDto> orderLineItems;
+
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
             //TODO: Create a personDTO for the order
             _orderClient = new OrderClient(Configuration.API_URL);
+
+            person = new()
+            {
+                Id = 1
+            };
+
+            orderLineItems = new List<OrderLineItemDto>
+            {
+                new OrderLineItemDto {
+                    Art = new ArtDto{
+                        
+                    },
+
+                },
+                new OrderLineItemDto {}
+            };
         }
 
         [Test]
         public async Task TestCreateOrder()
         {
             //TODO: Arrange
-            OrderDto orderDto = new() { Date = DateTime.Now};
+            OrderDto orderDto = new() {
+                Date = DateTime.Now,
+                FinalPrice = 150,
+                Person = person,
+                OrderLineItems = orderLineItems
+            };  
 
             //Act
             int actualId = await _orderClient.CreateOrderAsync(orderDto);

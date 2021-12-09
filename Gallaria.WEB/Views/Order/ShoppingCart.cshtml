@@ -3,6 +3,18 @@
 
 <link rel="Stylesheet" href="~/css/shoppingCart.css" type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+@if (Context.Session.GetString("wasOrderCompleted") != null && Context.Session.GetString("wasOrderCompleted") == "false")
+{
+    <script>
+        $(document).ready(function () {
+            $("#myModal").modal('show');
+        });
+    </script>
+}
+
 
 @{
     ViewData["Title"] = "ShoppingCart";
@@ -78,39 +90,31 @@
         </div>
     </section>
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Order error</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    There was something wrong with your order.<br />
+                    Check if the art is still available for a purchase.
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 
 </main>
-<!-- Modal -->
-
 <script src="~/js/PriceUpdatedShoppingCart.js" async></script>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-    if (sessionStorage.getItem("wasOrderCompleted") !== "" || sessionStorage.getItem("wasOrderCompleted") === "true")
-        $(window).on('load', function () {
-            $('#myModal').modal('show');
-        });
-</script>
-
 
 
 

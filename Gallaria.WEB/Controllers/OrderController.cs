@@ -72,7 +72,6 @@ namespace Gallaria.WEB.Controllers
         public async Task<IActionResult> ShoppingCart()
         {
             OrderDto orderDto = _httpContextAccessor.HttpContext.Session.GetShoppingCartFromSession("cart");
-            
             if (orderDto.OrderLineItems != null)
             {
                 foreach (OrderLineItemDto item in orderDto.OrderLineItems)
