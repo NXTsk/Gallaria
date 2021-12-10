@@ -62,7 +62,7 @@ namespace Gallaria.API.Controllers
 
         // PUT api/<ArtController>/35
         [HttpPut]
-        public async Task<ActionResult> UpdateArtAsync([FromBody] ArtDto artDtoToUpdate)
+        public async Task<ActionResult<bool>> UpdateArtAsync([FromBody] ArtDto artDtoToUpdate)
         {
             bool wasUpdated = await _artRepository.UpdateArtAsync(artDtoToUpdate.FromDto());
 

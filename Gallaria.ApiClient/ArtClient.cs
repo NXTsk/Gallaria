@@ -81,12 +81,12 @@ namespace Gallaria.ApiClient
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 artDtos = JsonConvert.DeserializeObject<IEnumerable<ArtDto>>(apiResponse);
-
             }
             else
             {
                 throw new Exception("Error retrieving all arts");
             }
+
             return artDtos;
         }
 
@@ -95,15 +95,15 @@ namespace Gallaria.ApiClient
             StringContent content = new StringContent(JsonConvert.SerializeObject(artDto), Encoding.Default, "application/json");
             var response = await HttpClient.PutAsync(APIUrl + "api/art/", content);
 
-            bool valueToReturn = false;
-
             if (response.IsSuccessStatusCode)
-            {
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                valueToReturn = JsonConvert.DeserializeObject<bool>(apiResponse);
+            {   
+                //Changed this DAN
+                return true;
             }
-
-            return valueToReturn;
+            else
+            {
+                throw new Exception($"Error updating art");
+            }
         }
 
         public byte[] ConvertBase64toByteArray(string pictureBase64String)

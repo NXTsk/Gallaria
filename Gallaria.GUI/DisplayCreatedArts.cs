@@ -15,14 +15,14 @@ namespace Gallaria.GUI
     public partial class DisplayCreatedArts : Form
     {
         private ArtClient artClient;
-        public  DisplayCreatedArts()
+        public  DisplayCreatedArts(MainForm mainForm)
         {
             artClient = new ArtClient(Constants.APIUrl);
             InitializeComponent();
 
             ArtDto artDto = Task.Run(async () => await GetArtByIDAsync(207)).ConfigureAwait(false).GetAwaiter().GetResult();
 
-            ArtPanel artPanel = new ArtPanel(artDto);
+            ArtPanel artPanel = new ArtPanel(artDto, mainForm);
             artPanel.Show();
             artPanel.BringToFront();
             this.Controls.Add(artPanel);

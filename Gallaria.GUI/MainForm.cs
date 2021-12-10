@@ -152,7 +152,7 @@ namespace Gallaria.GUI
 
         private void BtnEditArt_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new DisplayCreatedArts(), sender);
+            OpenChildForm(new DisplayCreatedArts(this), sender);
         }
     }
 }

@@ -37,7 +37,6 @@ namespace Gallaria.GUI
             //TODO: Not working
             comboBoxCategory.SelectedItem = _artDto.Category;
 
-
         }
 
         private void TextBoxes_TextChanged(object sender, EventArgs e)
