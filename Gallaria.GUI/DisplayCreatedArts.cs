@@ -25,7 +25,6 @@ namespace Gallaria.GUI
             ArtPanel artPanel = new ArtPanel(artDto);
             artPanel.Show();
             artPanel.BringToFront();
-            artPanel.Dock = DockStyle.Fill;
             this.Controls.Add(artPanel);
         }
 

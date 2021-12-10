@@ -90,7 +90,7 @@ namespace Gallaria.ApiClient
             return artDtos;
         }
 
-        public async Task<bool> UpdateAuthorAsync(ArtDto artDto)
+        public async Task<bool> UpdateArtAsync(ArtDto artDto)
         {
             StringContent content = new StringContent(JsonConvert.SerializeObject(artDto), Encoding.Default, "application/json");
             var response = await HttpClient.PutAsync(APIUrl + "api/art/", content);

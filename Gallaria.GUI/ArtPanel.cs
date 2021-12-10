@@ -14,9 +14,11 @@ namespace Gallaria.GUI
 {
     public partial class ArtPanel : UserControl
     {
+        public static ArtDto _artDto;
         public ArtPanel(ArtDto artDto)
         {
             InitializeComponent();
+            _artDto = artDto;
 
             Bitmap bmp;
             using (var ms = new MemoryStream(artDto.Image))
@@ -30,6 +32,9 @@ namespace Gallaria.GUI
 
         private void BtnEdit_Click(object sender, EventArgs e)
         {
+       
+            UpdateArtForm updateArtForm = new UpdateArtForm(_artDto);
+            updateArtForm.Show();
         }
     }
 }

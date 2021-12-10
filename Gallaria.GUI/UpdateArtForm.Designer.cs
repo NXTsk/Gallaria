@@ -112,7 +112,7 @@ namespace Gallaria.GUI
             this.btnSaveChanges.TabIndex = 1;
             this.btnSaveChanges.Text = "Save changes";
             this.btnSaveChanges.UseVisualStyleBackColor = false;
-            this.btnSaveChanges.Click += new System.EventHandler(this.BtnPublish_Click);
+            this.btnSaveChanges.Click += new System.EventHandler(this.BtnSaveChanges_Click);
             // 
             // pictureBox
             // 

@@ -78,7 +78,7 @@ namespace Gallaria.GUI
             this.btnEditArt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditArt.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnEditArt.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnEditArt.Image = global::Gallaria.GUI.Properties.Resources.updateIcon_64x64;
+            this.btnEditArt.Image = global::Gallaria.GUI.Properties.Resources.updateArt_64px;
             this.btnEditArt.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEditArt.Location = new System.Drawing.Point(0, 180);
             this.btnEditArt.Name = "btnEditArt";

@@ -10,70 +10,53 @@ namespace Gallaria.GUI
 {
     public partial class UpdateArtForm : Form
     {
-        Image chosenPicture;
-        byte[] pictureBytes;
         ArtClient artClient; 
-        string name;
-        string category;
-        int numberOfPieces;
-        decimal price;
-        string description;
+        string newTitle;
+        string newCategory;
+        string newDescription;
+        decimal newPrice;
 
-        public UpdateArtForm()
+        public ArtDto _artDto;
+
+        public UpdateArtForm(ArtDto artDto)
         {
             InitializeComponent();
+            _artDto = artDto;
             artClient = new ArtClient(Constants.APIUrl);
 
-        }
-        private async void BtnSelectFile_Click(object sender, System.EventArgs e)
-        {
-            //TODO: move this code to API Client
-
-            OpenFileDialog op = new OpenFileDialog();
-            op.Filter = "Image Files|*.jpg;*.jpeg;*.png|All files(*.*)|*.*";
-            DialogResult dr = op.ShowDialog();
-            if (dr == DialogResult.OK)
+            Bitmap bmp;
+            using (var ms = new MemoryStream(_artDto.Image))
             {
-                chosenPicture = Image.FromFile(op.FileName);
-                lblFileName.Text = op.FileName;
-                Bitmap img = new Bitmap(chosenPicture);
-
-                using (var stream = new MemoryStream())
-                {
-                    img.Save(stream, chosenPicture.RawFormat);
-                    pictureBox.Image = img;
-                    pictureBytes = stream.ToArray();
-                }
+                bmp = new Bitmap(ms);
             }
-        }
-        public ArtDto CreateArtFromData()
-        {
-            ArtDto newArt = new ArtDto() {Title = name, AvailableQuantity = numberOfPieces, Category = category,CreationDate = DateTime.Now, Description = description, Price = price, Image = pictureBytes};
-            return newArt;
+            pictureBox.Image = bmp;
+
+            textBoxPrice.Text = _artDto.Price.ToString();
+            textBoxTitle.Text = _artDto.Title;
+            richTextBoxDescription.Text = _artDto.Description;
+            //TODO: Not working
+            comboBoxCategory.SelectedItem = _artDto.Category;
+
+
         }
 
         private void TextBoxes_TextChanged(object sender, EventArgs e)
         {
             if(textBoxTitle.Text.Length > 0)
             {
-                name = textBoxTitle.Text;
+                newTitle = textBoxTitle.Text;
             }
             if (!comboBoxCategory.Text.Equals("-select category-"))
             {
-                category = comboBoxCategory.Text;
-            }
-
-            if (textBoxNumberOfPieces.Text.Length > 0)
-            {
-                int.TryParse(textBoxNumberOfPieces.Text, out numberOfPieces);
+                newCategory = comboBoxCategory.Text;
             }
             if (textBoxPrice.Text.Length > 0)
             {
-                Decimal.TryParse(textBoxPrice.Text, out price);
+                Decimal.TryParse(textBoxPrice.Text, out newPrice);
             }
             if (richTextBoxDescription.Text != "")
             {
-                description = richTextBoxDescription.Text;
+                newDescription = richTextBoxDescription.Text;
             }
         }
 
@@ -104,15 +87,17 @@ namespace Gallaria.GUI
             }
         }
 
-        private async void BtnPublish_Click(object sender, EventArgs e)
+        private async void BtnSaveChanges_Click(object sender, EventArgs e)
         {
             if (ValidateChildren())
             {
-                ArtDto art = CreateArtFromData();
-                art.AuthorId = MainForm._user.UserId;
+                _artDto.Title = newTitle;
+                _artDto.Description = newDescription;
+                _artDto.Category = newCategory;
+                _artDto.Price = newPrice;
 
-                int result = await artClient.CreateArtAsync(art);
-                if (result != -1)
+                bool result = await artClient.UpdateArtAsync(_artDto);
+                if (result == true)
                 {
                     this.Close();
                 }
@@ -138,40 +123,25 @@ namespace Gallaria.GUI
             comboBoxCategory.DataSource = InputCategories();
         }
 
-        //private bool ValidateChildren()
-        //{
-        //    bool IsValid = true;
-        //    // Clear error provider only once.
-        //    errorProviderDataValidation.Clear();
+        private bool ValidateChildren()
+        {
+            bool IsValid = true;
+            // Clear error provider only once.
+            errorProviderDataValidation.Clear();
 
-        //    //use if condition for every condtion, dont use else-if
-        //    if (string.IsNullOrEmpty(textBoxTitle.Text.Trim()))
-        //    {
-        //        errorProviderDataValidation.SetError(textBoxTitle, "field required!");
-        //        IsValid = false;
-        //    }
-        //    if (string.IsNullOrEmpty(comboBoxCategory.Text.Trim()) || comboBoxCategory.Text == "-select category-")
-        //    {
-        //        errorProviderDataValidation.SetError(comboBoxCategory, "field required!");
-        //        IsValid = false;
-        //    }
-        //    if (string.IsNullOrEmpty(textBoxNumberOfPieces.Text.Trim()))
-        //    {
-        //        errorProviderDataValidation.SetError(textBoxNumberOfPieces, "field required!");
-        //        IsValid = false;
-        //    }
-        //    if (string.IsNullOrEmpty(textBoxPrice.Text.Trim()))
-        //    {
-        //        errorProviderDataValidation.SetError(textBoxPrice, "field required!");
-        //        IsValid = false;
-        //    }
-        //    if (pictureBytes == null)
-        //    {
-        //        errorProviderDataValidation.SetError(btnSelectFile, "Select a picture!");
-        //        IsValid = false;
-        //    }
+            //use if condition for every condtion, dont use else-if
+            if (string.IsNullOrEmpty(textBoxTitle.Text.Trim()))
+            {
+                errorProviderDataValidation.SetError(textBoxTitle, "field required!");
+                IsValid = false;
+            }
+            if (string.IsNullOrEmpty(comboBoxCategory.Text.Trim()) || comboBoxCategory.Text == "-select category-")
+            {
+                errorProviderDataValidation.SetError(comboBoxCategory, "field required!");
+                IsValid = false;
+            }
 
-        //    return IsValid;
-        //}
+            return IsValid;
+        }
     }
 }
