@@ -72,6 +72,7 @@ namespace Gallaria.WEB.Controllers
         public async Task<IActionResult> ShoppingCart()
         {
             OrderDto orderDto = _httpContextAccessor.HttpContext.Session.GetShoppingCartFromSession("cart");
+            orderDto.FinalPrice = 0;
             if (orderDto.OrderLineItems != null)
             {
                 foreach (OrderLineItemDto item in orderDto.OrderLineItems)
@@ -89,6 +90,29 @@ namespace Gallaria.WEB.Controllers
             orderDto.OrderLineItems.Remove(item);
             orderDto.FinalPrice -= item.Art.Price * item.Quantity;
             _httpContextAccessor.HttpContext.Session.SaveShoppingCartInSession("cart", orderDto);
+            return RedirectToAction("ShoppingCart");
+        }
+
+        public IActionResult IncrementQuantity(int id)
+        {
+            OrderDto orderDto = _httpContextAccessor.HttpContext.Session.GetShoppingCartFromSession("cart");
+            var item = orderDto.OrderLineItems.Single(x => x.Art.Id == id);
+            if (item.Quantity < item.Art.AvailableQuantity)
+            {
+            item.Quantity ++;
+            _httpContextAccessor.HttpContext.Session.SaveShoppingCartInSession("cart", orderDto);
+            }
+            return RedirectToAction("ShoppingCart");
+        }
+        public IActionResult DecrementQuantity(int id)
+        {
+            OrderDto orderDto = _httpContextAccessor.HttpContext.Session.GetShoppingCartFromSession("cart");
+            var item = orderDto.OrderLineItems.Single(x => x.Art.Id == id);
+            if (item.Quantity > 1)
+            {
+                item.Quantity--;
+                _httpContextAccessor.HttpContext.Session.SaveShoppingCartInSession("cart", orderDto);
+            }
             return RedirectToAction("ShoppingCart");
         }
 
