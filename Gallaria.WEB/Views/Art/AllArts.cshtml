@@ -1,13 +1,14 @@
 ﻿@model IEnumerable<Gallaria.ApiClient.DTOs.ArtDto>
 
 <link rel="Stylesheet" href="~/css/allArts.css" type="text/css" />
+<link href="~/css/index.css" rel="stylesheet" type="text/css"/>
 
 @{
     ViewData["Title"] = "AllArts";
 }
 <div class="row justify-content-between">
-    <h1>All Arts</h1>
-    <input id="search" type="text" placeholder="Search..">
+    <h1 class="col-6">All Arts</h1>
+    <input class="col-6" style="max-width: 25%" id="search" type="text" placeholder="Search..">
 </div>
 
 <div class="container" style="margin-top:50px;">
