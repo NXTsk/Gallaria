@@ -43,7 +43,7 @@ namespace Gallaria.WEB.Controllers
                     if (result != -1)
                     {
                         HttpContext.Session.Remove("cart");
-                        _httpContextAccessor.HttpContext.Session.SetString("wasOrderCompleted", "true");
+                        TempData["wasOrderCompleted"] = "true";
 
                         //TODO: Redirect to completed Order page
                         return RedirectToAction("AllArts", "Art");
@@ -51,20 +51,20 @@ namespace Gallaria.WEB.Controllers
                     }
                     else
                     {
-                        _httpContextAccessor.HttpContext.Session.SetString("wasOrderCompleted", "false");
+                        TempData["wasOrderCompleted"] = "false";
                         HttpContext.Session.Remove("cart");
                         return RedirectToAction("ShoppingCart", "Order");
                     }
                 }
                 catch (Exception)
                 {
-                    _httpContextAccessor.HttpContext.Session.SetString("wasOrderCompleted", "false");
+                    TempData["wasOrderCompleted"] = "false";
                     return RedirectToAction("ShoppingCart", "Order");
                 }
             }
             else
             {
-                _httpContextAccessor.HttpContext.Session.SetString("wasOrderCompleted", "false");
+                TempData["wasOrderCompleted"] = "false";
                 return RedirectToAction("ShoppingCart", "Order");
             }
         }

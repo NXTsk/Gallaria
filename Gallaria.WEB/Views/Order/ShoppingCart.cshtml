@@ -6,7 +6,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
-@if (Context.Session.GetString("wasOrderCompleted") != null && Context.Session.GetString("wasOrderCompleted") == "false")
+@if (TempData["wasOrderCompleted"] != null && TempData["wasOrderCompleted"].Equals("false"))
 {
     <script>
         $(document).ready(function () {
@@ -51,10 +51,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        @*<div class="col-md-3 quantity">
-                                                            <label for="quantity">Quantity:</label>
-                                                            <input id="quantity" name="quantity" onkeydown="return false" onchange="updateQuantity(@item.Art.Id)" type="number" value="@Html.DisplayFor(modelItem => item.Quantity)" max="@item.Art.AvailableQuantity" min="1" class="form-control quantity-input">
-                                                        </div>*@
                                                         <div class="col-md-3 quantity justify-content-between">
                                                             <a href="@Url.Action("DecrementQuantity", "Order", new {id = item.Art.Id})"><img src="~/Images/minus.png" style="max-width: 25px; padding-right: 5px" alt="-"></a>
                                                             <label>@Html.DisplayFor(modelItem => item.Quantity)</label>
