@@ -35,7 +35,7 @@
                         <div class="card-text">
                             @Html.DisplayFor(modelItem => item.AvailableQuantity) piece(s) available
                         </div>
-                        <a href="@Url.Action("AddToCart", "Art", new {id = item.Id})" class="card-button"> Add to cart</a>
+                        <a href="@Url.Action("AddToCart", "Art", new {id = item.Id})" class="card-button" style="text-decoration: none"> Add to cart</a>
                     </div>
                 </a>
             </div>
