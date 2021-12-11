@@ -75,7 +75,7 @@ namespace Gallaria.ApiClient
         {
             IEnumerable<ArtDto> artDtos = null;
 
-            var response = await HttpClient.GetAsync(APIUrl + "api/art/artistsArts/" + authorId) ;
+            var response = await HttpClient.GetAsync(APIUrl + "api/art/artistArts/" + authorId);
             if (response.IsSuccessStatusCode)
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
