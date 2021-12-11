@@ -63,7 +63,6 @@ namespace DataAccess.Repositories
             {
                 throw new Exception($"Error getting all arts: '{ex.Message}'.", ex);
             }
-
         }
 
         public async Task<Art> GetArtByIDAsync(int id)
@@ -77,6 +76,20 @@ namespace DataAccess.Repositories
             catch (Exception ex)
             {
                 throw new Exception($"Error getting art with id {id}: '{ex.Message}'.", ex);
+            }
+        }
+
+        public async Task<IEnumerable<Art>> GetAllArtsThatByAuthorIdAsync(int authorId)
+        {
+            try
+            {
+                var query = "SELECT * FROM Art WHERE AuthorId=@AuthorId";
+                using var connection = CreateConnection();
+                return (await connection.QueryAsync<Art>(query, new { authorId })).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error getting all arts that belong to specific Artis: '{ex.Message}'.", ex);
             }
         }
 

@@ -63,11 +63,27 @@ namespace Gallaria.ApiClient
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 artDtos = JsonConvert.DeserializeObject<IEnumerable<ArtDto>>(apiResponse);
-
             }
             else
             {
                 throw new Exception("Error retrieving all arts");
+            }
+            return artDtos;
+        }
+
+        public async Task<IEnumerable<ArtDto>> GetAllArtsThatByAuthorIdAsync(int authorId)
+        {
+            IEnumerable<ArtDto> artDtos = null;
+
+            var response = await HttpClient.GetAsync(APIUrl + "api/art/artistsArts/" + authorId) ;
+            if (response.IsSuccessStatusCode)
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                artDtos = JsonConvert.DeserializeObject<IEnumerable<ArtDto>>(apiResponse);
+            }
+            else
+            {
+                throw new Exception("Error retrieving all arts that belong to specific artist");
             }
             return artDtos;
         }

@@ -63,6 +63,18 @@ namespace Gallaria.Tests.DataAccess
         }
 
         [Test]
+        public async Task GettingAllArtsByAuthorIdReturnsListOfArt()
+        {
+            //Arrange
+            int authorId = 152;
+            //Act
+            IEnumerable<Art> arts = await _artRepository.GetAllArtsThatByAuthorIdAsync(authorId);
+
+            //Assert
+            Assert.NotNull(arts.Any(), "List of arts is 0");
+        }
+
+        [Test]
         public async Task DeleteArt()
         {
             //Arrange is done in Setup()
