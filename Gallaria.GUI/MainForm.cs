@@ -21,7 +21,7 @@ namespace Gallaria.GUI
         private Button currentButton;
         private Color themeColor = ColorTranslator.FromHtml("#34c5e6");
         private Color selectedColor = ColorTranslator.FromHtml("#006e9c");
-        private Form activeForm;
+        public Form activeForm;
 
         private PersonClient personClient;
 

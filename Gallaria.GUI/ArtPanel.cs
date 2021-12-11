@@ -14,7 +14,7 @@ namespace Gallaria.GUI
 {
     public partial class ArtPanel : UserControl
     {
-        public static ArtDto _artDto;
+        public ArtDto _artDto;
         public static MainForm _mainForm;
 
         public ArtPanel(ArtDto artDto, MainForm mainForm)
@@ -37,6 +37,7 @@ namespace Gallaria.GUI
         {
             UpdateArtForm updateArtForm = new UpdateArtForm(_artDto);
             updateArtForm.TopLevel = false;
+            _mainForm.activeForm = updateArtForm;
             _mainForm.Controls.Add(updateArtForm);
             updateArtForm.BringToFront();
             updateArtForm.FormBorderStyle = FormBorderStyle.None;

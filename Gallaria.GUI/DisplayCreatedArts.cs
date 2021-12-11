@@ -20,18 +20,25 @@ namespace Gallaria.GUI
             artClient = new ArtClient(Constants.APIUrl);
             InitializeComponent();
 
-            ArtDto artDto = Task.Run(async () => await GetArtByIDAsync(207)).ConfigureAwait(false).GetAwaiter().GetResult();
-
-            ArtPanel artPanel = new ArtPanel(artDto, mainForm);
-            artPanel.Show();
-            artPanel.BringToFront();
-            this.Controls.Add(artPanel);
+            IEnumerable<ArtDto> artDtos = Task.Run(async () => await GetAllArtsThatByAuthorIdAsync(MainForm._user.UserId)).ConfigureAwait(false).GetAwaiter().GetResult();
+            FlowLayoutPanel flowLayoutPanel = new FlowLayoutPanel();
+            foreach (ArtDto artDto in artDtos)
+            {
+                ArtPanel artPanel = new ArtPanel(artDto, mainForm);
+                artPanel.Show();
+                artPanel.BringToFront();
+                this.Controls.Add(flowLayoutPanel);
+                flowLayoutPanel.Dock = DockStyle.Fill;
+                flowLayoutPanel.AutoScroll = true;
+                flowLayoutPanel.BringToFront();
+                flowLayoutPanel.Controls.Add(artPanel);
+            }
         }
 
-        private async Task<ArtDto> GetArtByIDAsync(int id)
+        private async Task<IEnumerable<ArtDto>> GetAllArtsThatByAuthorIdAsync(int authorId)
         {
-            ArtDto artDto = await artClient.GetArtByIDAsync(id);
-            return artDto;
+            IEnumerable<ArtDto> artDtos = await artClient.GetAllArtsThatByAuthorIdAsync(authorId);
+            return artDtos;
         }
     }
 }
