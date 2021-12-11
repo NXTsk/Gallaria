@@ -36,7 +36,7 @@ namespace Gallaria.API.Controllers
 
         // GET: api/<ArtController>
         [HttpGet]
-        [Route("artistsArts/{authorId}")]
+        [Route("artistArts/{authorId}")]
         public async Task<ActionResult<IEnumerable<ArtDto>>> GetAllArtsThatByAuthorIdAsync(int authorId)
         {
             IEnumerable<Art> arts;
