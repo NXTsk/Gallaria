@@ -32,14 +32,15 @@ namespace Gallaria.GUI
             {
                 bmp = new Bitmap(ms);
             }
-            pictureBox.Image = bmp;
 
+            pictureBox.Image = bmp;
             textBoxPrice.Text = _artDto.Price.ToString();
             textBoxTitle.Text = _artDto.Title;
             richTextBoxDescription.Text = _artDto.Description;
-            //TODO: Not working
             comboBoxCategory.SelectedItem = _artDto.Category;
 
+
+            _displayCreatedArts.Close();
         }
 
         private void TextBoxes_TextChanged(object sender, EventArgs e)
@@ -58,6 +59,7 @@ namespace Gallaria.GUI
             }
             if (richTextBoxDescription.Text != "")
             {
+                lblCharacterCounter.Text = $"{richTextBoxDescription.Text.Length}/500";
                 newDescription = richTextBoxDescription.Text;
             }
         }
@@ -101,8 +103,7 @@ namespace Gallaria.GUI
                 bool result = await artClient.UpdateArtAsync(_artDto);
                 if (result == true)
                 {
-                    this.Close();
-                    _displayCreatedArts.Refresh();
+                    this.Dispose();
                 }
             }
             else
@@ -111,19 +112,9 @@ namespace Gallaria.GUI
             }
         }
 
-        public string[] InputCategories()
-        {
-            var categories = new[] {"-select category-","Abstract", "Photography", "Portrait", "Landscape", "Nature", "Animals", "Pixel art", "Surrealism"};
-            Array.Sort(categories, (x, y) => String.Compare(x, y));
-            return categories;
-        }
-
         private void UpdateArtForm_Load(object sender, EventArgs e)
         {
-            comboBoxCategory.SelectedItem = null;
-            comboBoxCategory.SelectedText = "--select--";
             lblCharacterCounter.Text = $"{richTextBoxDescription.Text.Length}/500";
-            comboBoxCategory.DataSource = InputCategories();
         }
 
         private bool ValidateChildren()
@@ -141,6 +132,11 @@ namespace Gallaria.GUI
             if (string.IsNullOrEmpty(comboBoxCategory.Text.Trim()) || comboBoxCategory.Text == "-select category-")
             {
                 errorProviderDataValidation.SetError(comboBoxCategory, "field required!");
+                IsValid = false;
+            }
+            if (string.IsNullOrEmpty(textBoxPrice.Text.Trim()))
+            {
+                errorProviderDataValidation.SetError(textBoxPrice, "field required!");
                 IsValid = false;
             }
 

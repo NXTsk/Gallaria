@@ -22,6 +22,7 @@ namespace Gallaria.GUI
         private Color themeColor = ColorTranslator.FromHtml("#34c5e6");
         private Color selectedColor = ColorTranslator.FromHtml("#006e9c");
         internal Form activeForm;
+        private Form displayCreatedArts;
 
         private PersonClient personClient;
 
@@ -64,7 +65,7 @@ namespace Gallaria.GUI
                     currentButton = (Button)btnSender;
                     currentButton.BackColor = color;
                     currentButton.ForeColor = Color.White;
-                    currentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    currentButton.Font = new System.Drawing.Font("Yu Gothic UI", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                     panelTitleBar.BackColor = color;
                     //ThemeColor.PrimaryColor = color;
                     //ThemeColor.SecondaryColor = ThemeColor.ChangeColorBrightness(color, -0.3);
@@ -85,6 +86,7 @@ namespace Gallaria.GUI
                 }
             }
         }
+
         private void OpenChildForm(Form childForm, object btnSender)
         {
             if (activeForm != null)
@@ -112,6 +114,7 @@ namespace Gallaria.GUI
                 activeForm.Close();
             Reset();
         }
+
         private void Reset()
         {
             DisableButton();
@@ -119,6 +122,7 @@ namespace Gallaria.GUI
             panelTitleBar.BackColor = themeColor;
             currentButton = null;
             btnCloseChildForm.Visible = false;
+            activeForm = displayCreatedArts;
         }
 
         private void PanelTitleBar_MouseDown(object sender, MouseEventArgs e)
@@ -152,7 +156,8 @@ namespace Gallaria.GUI
 
         private void BtnEditArt_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new DisplayCreatedArts(this), sender);
+            displayCreatedArts = new DisplayCreatedArts(this);
+            OpenChildForm(displayCreatedArts, sender);
         }
     }
 }

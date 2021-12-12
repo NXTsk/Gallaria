@@ -73,14 +73,9 @@ namespace Gallaria.GUI
             }
             if (richTextBoxDescription.Text != "")
             {
+                lblCharacterCounter.Text = $"{richTextBoxDescription.Text.Length}/500";
                 description = richTextBoxDescription.Text;
             }
-        }
-
-        private void RichTextBoxDescription_TextChanged(object sender, EventArgs e)
-        {
-            lblCharacterCounter.Text = $"{richTextBoxDescription.Text.Length}/500";
-
         }
 
         private void TextBoxNumberOfPieces_KeyPress(object sender, KeyPressEventArgs e)
@@ -122,8 +117,6 @@ namespace Gallaria.GUI
             {
                 MessageBox.Show("Please fill all required fields.", "Gallaria - Message!");
             }
-
-            
         }
 
         public string[] InputCategories()
@@ -135,8 +128,6 @@ namespace Gallaria.GUI
 
         private void UploadArtForm_Load(object sender, EventArgs e)
         {
-            comboBoxCategory.SelectedItem = null;
-            comboBoxCategory.SelectedText = "--select--";
             lblCharacterCounter.Text = $"{richTextBoxDescription.Text.Length}/500";
             comboBoxCategory.DataSource = InputCategories();
         }

@@ -56,6 +56,7 @@ namespace Gallaria.GUI
             // textBoxTitle
             // 
             this.textBoxTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxTitle.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxTitle.Location = new System.Drawing.Point(429, 70);
             this.textBoxTitle.Name = "textBoxTitle";
             this.textBoxTitle.PlaceholderText = "Title*";
@@ -66,6 +67,7 @@ namespace Gallaria.GUI
             // textBoxPrice
             // 
             this.textBoxPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxPrice.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxPrice.Location = new System.Drawing.Point(429, 142);
             this.textBoxPrice.Name = "textBoxPrice";
             this.textBoxPrice.PlaceholderText = "Price*";
@@ -78,7 +80,17 @@ namespace Gallaria.GUI
             // 
             this.comboBoxCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxCategory.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBoxCategory.FormattingEnabled = true;
+            this.comboBoxCategory.Items.AddRange(new object[] {
+            "Abstract",
+            "Animals",
+            "Landscape",
+            "Nature",
+            "Photography",
+            "Pixel art",
+            "Portrait",
+            "Surrealism"});
             this.comboBoxCategory.Location = new System.Drawing.Point(429, 108);
             this.comboBoxCategory.Name = "comboBoxCategory";
             this.comboBoxCategory.Size = new System.Drawing.Size(338, 28);
@@ -93,6 +105,7 @@ namespace Gallaria.GUI
             this.btnSaveChanges.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(110)))), ((int)(((byte)(156)))));
             this.btnSaveChanges.FlatAppearance.BorderSize = 0;
             this.btnSaveChanges.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveChanges.Font = new System.Drawing.Font("Yu Gothic UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSaveChanges.ForeColor = System.Drawing.Color.White;
             this.btnSaveChanges.Location = new System.Drawing.Point(267, 387);
             this.btnSaveChanges.Name = "btnSaveChanges";
@@ -122,6 +135,7 @@ namespace Gallaria.GUI
             // 
             this.richTextBoxDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBoxDescription.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.richTextBoxDescription.Location = new System.Drawing.Point(429, 195);
             this.richTextBoxDescription.MaxLength = 500;
             this.richTextBoxDescription.Name = "richTextBoxDescription";
@@ -153,6 +167,7 @@ namespace Gallaria.GUI
             // 
             this.lblDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDescription.AutoSize = true;
+            this.lblDescription.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblDescription.Location = new System.Drawing.Point(427, 174);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(85, 20);

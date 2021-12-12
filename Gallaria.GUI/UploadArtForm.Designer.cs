@@ -61,6 +61,7 @@ namespace Gallaria.GUI
             this.btnSelectFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(110)))), ((int)(((byte)(156)))));
             this.btnSelectFile.FlatAppearance.BorderSize = 0;
             this.btnSelectFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelectFile.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSelectFile.ForeColor = System.Drawing.Color.White;
             this.btnSelectFile.Location = new System.Drawing.Point(657, 39);
             this.btnSelectFile.Name = "btnSelectFile";
@@ -73,6 +74,7 @@ namespace Gallaria.GUI
             // textBoxTitle
             // 
             this.textBoxTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxTitle.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxTitle.Location = new System.Drawing.Point(429, 79);
             this.textBoxTitle.Name = "textBoxTitle";
             this.textBoxTitle.PlaceholderText = "Title*";
@@ -83,6 +85,7 @@ namespace Gallaria.GUI
             // textBoxPrice
             // 
             this.textBoxPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxPrice.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxPrice.Location = new System.Drawing.Point(429, 194);
             this.textBoxPrice.Name = "textBoxPrice";
             this.textBoxPrice.PlaceholderText = "Price*";
@@ -94,6 +97,7 @@ namespace Gallaria.GUI
             // textBoxNumberOfPieces
             // 
             this.textBoxNumberOfPieces.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxNumberOfPieces.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxNumberOfPieces.Location = new System.Drawing.Point(429, 156);
             this.textBoxNumberOfPieces.Name = "textBoxNumberOfPieces";
             this.textBoxNumberOfPieces.PlaceholderText = "Number of pieces*";
@@ -106,6 +110,7 @@ namespace Gallaria.GUI
             // 
             this.comboBoxCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxCategory.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBoxCategory.FormattingEnabled = true;
             this.comboBoxCategory.Location = new System.Drawing.Point(429, 117);
             this.comboBoxCategory.Name = "comboBoxCategory";
@@ -121,6 +126,7 @@ namespace Gallaria.GUI
             this.btnPublish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(110)))), ((int)(((byte)(156)))));
             this.btnPublish.FlatAppearance.BorderSize = 0;
             this.btnPublish.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPublish.Font = new System.Drawing.Font("Yu Gothic UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnPublish.ForeColor = System.Drawing.Color.White;
             this.btnPublish.Location = new System.Drawing.Point(267, 387);
             this.btnPublish.Name = "btnPublish";
@@ -150,6 +156,7 @@ namespace Gallaria.GUI
             // 
             this.richTextBoxDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBoxDescription.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.richTextBoxDescription.Location = new System.Drawing.Point(429, 247);
             this.richTextBoxDescription.MaxLength = 500;
             this.richTextBoxDescription.Name = "richTextBoxDescription";
@@ -169,6 +176,7 @@ namespace Gallaria.GUI
             this.lblCharacterCounter.AutoSize = true;
             this.lblCharacterCounter.BackColor = System.Drawing.Color.Transparent;
             this.lblCharacterCounter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCharacterCounter.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblCharacterCounter.Location = new System.Drawing.Point(704, 315);
             this.lblCharacterCounter.Name = "lblCharacterCounter";
             this.lblCharacterCounter.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -181,6 +189,7 @@ namespace Gallaria.GUI
             // 
             this.lblDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDescription.AutoSize = true;
+            this.lblDescription.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblDescription.Location = new System.Drawing.Point(427, 226);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(85, 20);
