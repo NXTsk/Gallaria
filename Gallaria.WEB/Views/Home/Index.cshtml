@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Gallaria.ApiClient.DTOs.ArtDto>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -19,7 +20,7 @@
                     <div class="col-lg-8 col-xl-7 col-xxl-6">
                         <div class="my-5 text-center text-xl-start">
                             <img class="img-fluid" src="~/Images/Full_Logo_White.png" alt="Gallaria.png" />
-                            <p class="lead fw-normal text-white-50 mb-4">Become an artist on Gallaria. Use our dedicated app to create and upload your artwork!<br />(To use it you have to <a class="text-white-50" href="@Url.Action("CreateAccount","Accounts")">sign up</a>.)</p>
+                            <p class="lead fw-normal text-white-50 mb-4">Become an artist on Gallaria. Use our dedicated app to create and upload your artwork!<br />(To use it you have to <a class="text-white-50" href="@Url.Action("CreateAccount","Accounts")">sign up</a> as artist.)</p>
                             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
                                 <a class="btn btn-dark btn-lg px-4 me-sm-3" href="#features">Download app</a>
                             </div>
@@ -30,60 +31,109 @@
             </div>
         </header>
 
-        
+
 
         <!-- Features section-->
         <section class="py-5" id="features">
+
+            <div class="bg-primary container px-5">
+                <div class="row gx-5 align-items-center justify-content-center">
+                    <div class="col-12 justify-content-center text-center h-75">
+                        @foreach (var item in Model)
+                        {
+                            <img class="img-fluid rounded-3 my-5 w-25" src="@Html.DisplayFor(modelItem => item.Img64)" runat="server" alt="Sample art.png" />
+                        }
+                    </div>
+                    <div class="col-lg-8 col-xl-7 col-xxl-6 h-25">
+                        <div class="my-5 text-center">
+                            <p class="lead fw-normal text-white-50 mb-4">Support starting artists!</p>
+                            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                                <a class="btn btn-dark btn-lg px-4 me-sm-3" asp-area="" asp-controller="Art" asp-action="AllArts">Browse all arts</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="container px-5 my-5">
                 <div class="row gx-5">
                     <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0">A better way to start building.</h2></div>
                     <div class="col-lg-8">
                         <div class="row gx-5 row-cols-1 row-cols-md-2">
                             <div class="col mb-5 h-100">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
-                                <h2 class="h5">Featured title</h2>
-                                <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-brush"></i></div>
+                                <h2 class="h5">New era of art</h2>
+                                <p class="mb-0">Be seen on our market of various digital artpieces</p>
                             </div>
                             <div class="col mb-5 h-100">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
-                                <h2 class="h5">Featured title</h2>
-                                <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>
-                            </div>
-                            <div class="col mb-5 mb-md-0 h-100">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
-                                <h2 class="h5">Featured title</h2>
-                                <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>
-                            </div>
-                            <div class="col h-100">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
-                                <h2 class="h5">Featured title</h2>
-                                <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-currency-euro"></i></div>
+                                <h2 class="h5">Support artist</h2>
+                                <p class="mb-0">Browse the marketplace and support starting artist by buying their art</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- Testimonial section-->
-        <div class="py-5 bg-light">
-            <div class="container px-5 my-5">
-                <div class="row gx-5 justify-content-center">
-                    <div class="col-lg-10 col-xl-7">
-                        <div class="text-center">
-                            <div class="fs-4 mb-4 fst-italic">"Working with Start Bootstrap templates has saved me tons of development time when building new projects! Starting with a Bootstrap template just makes things easier!"</div>
-                            <div class="d-flex align-items-center justify-content-center">
-                                <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
-                                <div class="fw-bold">
-                                    Tom Ato
-                                    <span class="fw-bold text-primary mx-1">/</span>
-                                    CEO, Pomodoro
+            <!-- Testimonial section-->
+            <div class="py-5 bg-light">
+                <div class="container px-5 my-5">
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-10 col-xl-7">
+                            <div class="text-center">
+                                <div class="fs-4 mb-4 fst-italic">"Art is my passion and I love to support young digital artist. Gallaria is a great project!"</div>
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <img class="rounded-circle me-3 img-fluid" src="~/Images/ZayanSquare.jpg" alt="..." style="height: 50px"/>
+                                    <div class="fw-bold">
+                                        Zayan Davis
+                                        <span class="fw-bold text-primary mx-1">/</span>
+                                        Art enthusiast
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <div class="container px-5 my-5">
+                <div class="text-center">
+                    <h2 class="fw-bolder">Our team</h2>
+                    <p class="lead fw-normal text-muted mb-5">Founders of Gallaria</p>
+                </div>
+                <div class="row gx-5 row-cols-1 row-cols-sm-2 row-cols-xl-4 justify-content-center">
+                    <div class="col mb-2 mb-xl-0">
+                        <div class="text-center">
+                            <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d" alt="..." />
+                            <h5 class="fw-bolder">Adam Galla</h5>
+                        </div>
+                    </div>
+                    <div class="col mb-2 mb-xl-0">
+                        <div class="text-center">
+                            <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d" alt="..." />
+                            <h5 class="fw-bolder">Dan Vyhlidal</h5>
+                        </div>
+                    </div>
+                    <div class="col mb-2 mb-sm-0">
+                        <div class="text-center">
+                            <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d" alt="..." />
+                            <h5 class="fw-bolder">Denisa Gabriela Neagu</h5>
+                        </div>
+                    </div>
+                    <div class="col mb-2">
+                        <div class="text-center">
+                            <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d" alt="..." />
+                            <h5 class="fw-bolder">Matej Horvath</h5>
+                        </div>
+                    </div>
+                    <div class="col mb-2">
+                        <div class="text-center">
+                            <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d" alt="..." />
+                            <h5 class="fw-bolder">Tomas Chmelik</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     <!-- Footer-->
     <footer class="bg-dark py-4 mt-auto">
