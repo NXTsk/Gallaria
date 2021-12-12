@@ -43,11 +43,11 @@ namespace Gallaria.GUI
             this.btnEdit.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnEdit.FlatAppearance.BorderSize = 0;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnEdit.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnEdit.ForeColor = System.Drawing.Color.Black;
-            this.btnEdit.Location = new System.Drawing.Point(0, 260);
+            this.btnEdit.Location = new System.Drawing.Point(0, 308);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(250, 40);
+            this.btnEdit.Size = new System.Drawing.Size(274, 40);
             this.btnEdit.TabIndex = 0;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = false;
@@ -57,30 +57,28 @@ namespace Gallaria.GUI
             // 
             this.txtPanel.Controls.Add(this.lblArtTitle);
             this.txtPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtPanel.Location = new System.Drawing.Point(0, 205);
+            this.txtPanel.Location = new System.Drawing.Point(0, 253);
             this.txtPanel.Name = "txtPanel";
-            this.txtPanel.Size = new System.Drawing.Size(250, 55);
+            this.txtPanel.Size = new System.Drawing.Size(274, 55);
             this.txtPanel.TabIndex = 1;
             // 
             // lblArtTitle
             // 
-            this.lblArtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblArtTitle.AutoSize = true;
-            this.lblArtTitle.Font = new System.Drawing.Font("Yu Gothic UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblArtTitle.Location = new System.Drawing.Point(85, 18);
+            this.lblArtTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblArtTitle.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblArtTitle.Location = new System.Drawing.Point(0, 0);
             this.lblArtTitle.Name = "lblArtTitle";
-            this.lblArtTitle.Size = new System.Drawing.Size(70, 23);
+            this.lblArtTitle.Size = new System.Drawing.Size(274, 55);
             this.lblArtTitle.TabIndex = 0;
             this.lblArtTitle.Text = "testTitle";
+            this.lblArtTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox
             // 
-            this.pictureBox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(250, 205);
+            this.pictureBox.Size = new System.Drawing.Size(274, 253);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 2;
             this.pictureBox.TabStop = false;
@@ -89,13 +87,13 @@ namespace Gallaria.GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.txtPanel);
             this.Controls.Add(this.btnEdit);
             this.Name = "ArtPanel";
-            this.Size = new System.Drawing.Size(250, 300);
+            this.Size = new System.Drawing.Size(274, 348);
             this.txtPanel.ResumeLayout(false);
-            this.txtPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 

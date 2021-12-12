@@ -30,7 +30,7 @@ namespace Gallaria.Tests.DataAccess
 
             await CreateNewPerson();
             await CreateNewArt();
-            _newOrder = CreateNewOrder();
+            _newOrder = await CreateNewOrderAsync();
         }
 
         private async Task<Person> CreateNewPerson()
@@ -58,13 +58,13 @@ namespace Gallaria.Tests.DataAccess
             return _newArt;
         }
 
-        private Order CreateNewOrder()
+        private async Task<Order> CreateNewOrderAsync()
         {
             List<OrderLineItem> _newOrderLineItems = new List<OrderLineItem>();
 
             _newOrder = new Order() {Date = DateTime.Now, FinalPrice = 50, Person = _newPerson, OrderLineItems = _newOrderLineItems};
             _newOrder.OrderLineItems.Add(CreateNewOrderLineItem());
-            _newOrder.Id = _orderRepository.CreateOrder(_newOrder);
+            _newOrder.Id = await _orderRepository.CreateOrderAsync(_newOrder);
 
             return _newOrder;
         }

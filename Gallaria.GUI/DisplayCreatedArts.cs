@@ -15,6 +15,7 @@ namespace Gallaria.GUI
     public partial class DisplayCreatedArts : Form
     {
         private ArtClient artClient;
+
         public  DisplayCreatedArts(MainForm mainForm)
         {
             artClient = new ArtClient(Constants.APIUrl);
@@ -24,7 +25,7 @@ namespace Gallaria.GUI
             FlowLayoutPanel flowLayoutPanel = new FlowLayoutPanel();
             foreach (ArtDto artDto in artDtos)
             {
-                ArtPanel artPanel = new ArtPanel(artDto, mainForm);
+                ArtPanel artPanel = new ArtPanel(artDto, mainForm, this) ;
                 artPanel.Show();
                 artPanel.BringToFront();
                 this.Controls.Add(flowLayoutPanel);

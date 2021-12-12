@@ -16,12 +16,15 @@ namespace Gallaria.GUI
         string newDescription;
         decimal newPrice;
 
-        public ArtDto _artDto;
+        private ArtDto _artDto;
+        private DisplayCreatedArts _displayCreatedArts;
 
-        public UpdateArtForm(ArtDto artDto)
+        public UpdateArtForm(ArtDto artDto, DisplayCreatedArts displayCreatedArts)
         {
             InitializeComponent();
             _artDto = artDto;
+            _displayCreatedArts = displayCreatedArts;
+
             artClient = new ArtClient(Constants.APIUrl);
 
             Bitmap bmp;
@@ -99,6 +102,7 @@ namespace Gallaria.GUI
                 if (result == true)
                 {
                     this.Close();
+                    _displayCreatedArts.Refresh();
                 }
             }
             else

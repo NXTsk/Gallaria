@@ -33,7 +33,6 @@ namespace Gallaria.GUI
             this.lblFileName = new System.Windows.Forms.Label();
             this.textBoxTitle = new System.Windows.Forms.TextBox();
             this.textBoxPrice = new System.Windows.Forms.TextBox();
-            this.textBoxNumberOfPieces = new System.Windows.Forms.TextBox();
             this.comboBoxCategory = new System.Windows.Forms.ComboBox();
             this.btnSaveChanges = new System.Windows.Forms.Button();
             this.pictureBox = new System.Windows.Forms.PictureBox();
@@ -57,7 +56,7 @@ namespace Gallaria.GUI
             // textBoxTitle
             // 
             this.textBoxTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxTitle.Location = new System.Drawing.Point(429, 58);
+            this.textBoxTitle.Location = new System.Drawing.Point(429, 70);
             this.textBoxTitle.Name = "textBoxTitle";
             this.textBoxTitle.PlaceholderText = "Title*";
             this.textBoxTitle.Size = new System.Drawing.Size(338, 27);
@@ -67,7 +66,7 @@ namespace Gallaria.GUI
             // textBoxPrice
             // 
             this.textBoxPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxPrice.Location = new System.Drawing.Point(429, 173);
+            this.textBoxPrice.Location = new System.Drawing.Point(429, 142);
             this.textBoxPrice.Name = "textBoxPrice";
             this.textBoxPrice.PlaceholderText = "Price*";
             this.textBoxPrice.Size = new System.Drawing.Size(338, 27);
@@ -75,23 +74,12 @@ namespace Gallaria.GUI
             this.textBoxPrice.TextChanged += new System.EventHandler(this.TextBoxes_TextChanged);
             this.textBoxPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxPrice_KeyPress);
             // 
-            // textBoxNumberOfPieces
-            // 
-            this.textBoxNumberOfPieces.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxNumberOfPieces.Location = new System.Drawing.Point(429, 135);
-            this.textBoxNumberOfPieces.Name = "textBoxNumberOfPieces";
-            this.textBoxNumberOfPieces.PlaceholderText = "Number of pieces*";
-            this.textBoxNumberOfPieces.Size = new System.Drawing.Size(338, 27);
-            this.textBoxNumberOfPieces.TabIndex = 2;
-            this.textBoxNumberOfPieces.TextChanged += new System.EventHandler(this.TextBoxes_TextChanged);
-            this.textBoxNumberOfPieces.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxNumberOfPieces_KeyPress);
-            // 
             // comboBoxCategory
             // 
             this.comboBoxCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCategory.FormattingEnabled = true;
-            this.comboBoxCategory.Location = new System.Drawing.Point(429, 96);
+            this.comboBoxCategory.Location = new System.Drawing.Point(429, 108);
             this.comboBoxCategory.Name = "comboBoxCategory";
             this.comboBoxCategory.Size = new System.Drawing.Size(338, 28);
             this.comboBoxCategory.TabIndex = 3;
@@ -134,7 +122,7 @@ namespace Gallaria.GUI
             // 
             this.richTextBoxDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBoxDescription.Location = new System.Drawing.Point(429, 226);
+            this.richTextBoxDescription.Location = new System.Drawing.Point(429, 195);
             this.richTextBoxDescription.MaxLength = 500;
             this.richTextBoxDescription.Name = "richTextBoxDescription";
             this.richTextBoxDescription.Size = new System.Drawing.Size(338, 65);
@@ -153,7 +141,7 @@ namespace Gallaria.GUI
             this.lblCharacterCounter.AutoSize = true;
             this.lblCharacterCounter.BackColor = System.Drawing.Color.Transparent;
             this.lblCharacterCounter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblCharacterCounter.Location = new System.Drawing.Point(704, 294);
+            this.lblCharacterCounter.Location = new System.Drawing.Point(704, 263);
             this.lblCharacterCounter.Name = "lblCharacterCounter";
             this.lblCharacterCounter.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblCharacterCounter.Size = new System.Drawing.Size(63, 20);
@@ -165,7 +153,7 @@ namespace Gallaria.GUI
             // 
             this.lblDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(427, 205);
+            this.lblDescription.Location = new System.Drawing.Point(427, 174);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(85, 20);
             this.lblDescription.TabIndex = 7;
@@ -181,7 +169,6 @@ namespace Gallaria.GUI
             this.Controls.Add(this.richTextBoxDescription);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.comboBoxCategory);
-            this.Controls.Add(this.textBoxNumberOfPieces);
             this.Controls.Add(this.textBoxPrice);
             this.Controls.Add(this.textBoxTitle);
             this.Controls.Add(this.btnSaveChanges);
@@ -201,7 +188,6 @@ namespace Gallaria.GUI
         private System.Windows.Forms.Label lblFileName;
         private System.Windows.Forms.TextBox textBoxTitle;
         private System.Windows.Forms.TextBox textBoxPrice;
-        private System.Windows.Forms.TextBox textBoxNumberOfPieces;
         private System.Windows.Forms.ComboBox comboBoxCategory;
         private System.Windows.Forms.Button btnSaveChanges;
         private System.Windows.Forms.PictureBox pictureBox;

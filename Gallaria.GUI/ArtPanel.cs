@@ -14,14 +14,16 @@ namespace Gallaria.GUI
 {
     public partial class ArtPanel : UserControl
     {
-        public ArtDto _artDto;
-        public static MainForm _mainForm;
+        private ArtDto _artDto;
+        private MainForm _mainForm;
+        private DisplayCreatedArts _displayCreatedArts;
 
-        public ArtPanel(ArtDto artDto, MainForm mainForm)
+        public ArtPanel(ArtDto artDto, MainForm mainForm, DisplayCreatedArts displayCreatedArts)
         {
             InitializeComponent();
             _artDto = artDto;
             _mainForm = mainForm;
+            _displayCreatedArts = displayCreatedArts;
 
             Bitmap bmp;
             using (var ms = new MemoryStream(artDto.Image))
@@ -35,7 +37,7 @@ namespace Gallaria.GUI
 
         private void BtnEdit_Click(object sender, EventArgs e)
         {
-            UpdateArtForm updateArtForm = new UpdateArtForm(_artDto);
+            UpdateArtForm updateArtForm = new UpdateArtForm(_artDto, _displayCreatedArts);
             updateArtForm.TopLevel = false;
             _mainForm.activeForm = updateArtForm;
             _mainForm.Controls.Add(updateArtForm);
