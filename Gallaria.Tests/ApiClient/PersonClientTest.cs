@@ -70,7 +70,7 @@ namespace Gallaria.Tests.ApiClient
         public async Task TestIsArtist()
         {
             //Arrange - artist ID
-            int id = 15;
+            int id = 152;
             //Act
             bool isArtist = await _personClient.IsArtistAsync(id);
 
@@ -82,7 +82,7 @@ namespace Gallaria.Tests.ApiClient
         public async Task TestGetPersonById()
         {
             //Arrange
-            int id = 15;
+            int id = 152;
             //Act
             PersonDto personDto = await _personClient.GetPersonByIdAsync(id);
 

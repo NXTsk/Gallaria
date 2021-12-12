@@ -26,7 +26,7 @@ namespace Gallaria.Tests.ApiClient
             //Arrange
             ArtDto artToCreate = new()
             {
-                AuthorId = 15,
+                AuthorId = 152,
                 ArtistName = "Denisa",
                 Title = "The best piece of art",
                 Description = "This is most certainly the best piece of art you can ever see.",
@@ -48,7 +48,7 @@ namespace Gallaria.Tests.ApiClient
         public async Task TestGetArtByID()
         {
             //Arrange
-            int id = 15;
+            int id = 30; 
 
             //Act
             ArtDto artDto = await _artClient.GetArtByIDAsync(id);
@@ -66,6 +66,12 @@ namespace Gallaria.Tests.ApiClient
 
             //Assert
             Assert.NotNull(arts.Any(), "List of arts is 0");
+        }
+
+        [TearDown]
+        public async Task CleanUp()
+        {
+            await _artRepository.DeleteArtAsync(_newArt.Id);
         }
     }
 }
