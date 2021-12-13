@@ -100,10 +100,15 @@ namespace Gallaria.GUI
                 _artDto.Category = newCategory;
                 _artDto.Price = newPrice;
 
-                bool result = await artClient.UpdateArtAsync(_artDto);
+                bool result = await artClient.UpdateArtAsync(_artDto); 
                 if (result == true)
                 {
+                    MessageBox.Show("Art was successfully updated", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Dispose();
+                }
+                else
+                {
+                    MessageBox.Show("Art couldn't be updated, please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else

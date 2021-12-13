@@ -110,7 +110,12 @@ namespace Gallaria.GUI
                 int result = await artClient.CreateArtAsync(art);
                 if (result != -1)
                 {
+                    MessageBox.Show("Art was successfully uploaded", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Art couldn't be uploaded, please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else

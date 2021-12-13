@@ -113,13 +113,10 @@ namespace Gallaria.ApiClient
 
             if (response.IsSuccessStatusCode)
             {   
-                //Changed this DAN
                 return true;
             }
-            else
-            {
-                throw new Exception($"Error updating art");
-            }
+
+            return false;
         }
 
         public byte[] ConvertBase64toByteArray(string pictureBase64String)
