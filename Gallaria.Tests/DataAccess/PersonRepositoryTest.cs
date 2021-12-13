@@ -17,16 +17,14 @@ namespace Gallaria.Tests.DataAccess
         private string _password = "TestPassword";
 
         [SetUp]
-        public async Task Setup()
+        public async Task SetupAsync()
         {
             _personRepository = new PersonRepository(Configuration.CONNECTION_STRING);
-            await CreateNewPerson();
-            await CreateNewArtist();
+            await CreateNewPersonAsync();
+            await CreateNewArtistAsync();
         }
 
-        
-
-        private async Task<Person> CreateNewPerson()
+        private async Task<Person> CreateNewPersonAsync()
         {
             Address a = new Address() {Street = "Dannebrogsgade", HouseNumber = "13", Zipcode = "9000", City = "Aalborg", Country = "Denmark"};
             _newPerson = new Person() {FirstName="Laco", LastName = "Cobolski",Email="laco@slovak.sk",PhoneNumber = "123456" ,Address = a};
@@ -34,7 +32,7 @@ namespace Gallaria.Tests.DataAccess
             return _newPerson;
         }
 
-        private async Task<Artist> CreateNewArtist()
+        private async Task<Artist> CreateNewArtistAsync()
         {
             Address a = new Address() {Street = "Nibevej", HouseNumber = "12", Zipcode = "9200", City = "Aalborg", Country = "Denmark"};
             _newArtist = new Artist() {FirstName = "Petronela", LastName = "Lakatosova", Email = "petronela@slovak.sk", PhoneNumber = "123123", Address = a, ProfileDescription = "I am a digital artist."};
@@ -47,9 +45,8 @@ namespace Gallaria.Tests.DataAccess
         public void CreatePerson()
         {
             //Arrange & Act is done in Setup()
-
             //Assert
-            Assert.IsTrue(_newPerson.Id > 0, "Created author ID not returned");
+            Assert.IsTrue(_newPerson.Id > 0, "Created person ID not returned");
         }
 
         [Test]
@@ -57,14 +54,14 @@ namespace Gallaria.Tests.DataAccess
         {
             //Arrange
             //Act
-            Person person = await _personRepository.GetPersonByIdAsync(87);
+            Person person = await _personRepository.GetPersonByIdAsync(_newPerson.Id);
 
             //Assert
-            Assert.NotNull(person, "Person with ID 87 was not found");
+            Assert.NotNull(person, $"Person with ID {_newPerson.Id} was not found");
         }
 
         [Test]
-        public async Task UpdatePersonPasswordAndLoginAsync()
+        public async Task UpdatePersonPasswordAndLogin()
         {
             //Arrange
             var newPassword = "TestNewPassword";
@@ -82,7 +79,6 @@ namespace Gallaria.Tests.DataAccess
         public async Task DeletePerson()
         {
             //Arrange is done in Setup()
-
             //Act
             bool deleted = await _personRepository.DeletePersonAsync(_newPerson.Id);
 
@@ -94,7 +90,6 @@ namespace Gallaria.Tests.DataAccess
         public void CreateArtist()
         {
             //Arrange & Act is done in Setup()
-
             //Assert
             Assert.IsTrue(_newArtist.Id > 0, "Created artist ID not returned");
         }
@@ -103,7 +98,6 @@ namespace Gallaria.Tests.DataAccess
         public async Task DeleteArtist()
         {
             //Arrange is done in Setup()
-
             //Act
             bool deleted = await _personRepository.DeleteArtistAsync(_newArtist.ArtistId);
 
@@ -123,10 +117,9 @@ namespace Gallaria.Tests.DataAccess
         }
 
         [TearDown]
-        public async Task CleanUp()
+        public async Task CleanUpAsync()
         {
             await _personRepository.DeletePersonAsync(_newPerson.Id);
-
             await _personRepository.DeleteArtistAsync(_newArtist.ArtistId);
             await _personRepository.DeletePersonAsync(_newArtist.Id);
         }

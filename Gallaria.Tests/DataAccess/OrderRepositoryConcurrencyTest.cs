@@ -39,12 +39,14 @@ namespace Gallaria.Tests.DataAccess
         [Test]
         public async Task ConcurrencyOrder() 
         {
+            //Arrange
+            //Act
             _order1 = await CreateNewOrder(_person1, _newOrderLineItem);
             Order order2 = await CreateNewOrder(_person2, _newOrderLineItem);
 
+            //Assert
             Assert.IsTrue(_order1.Id > 0, "order was not created");
             Assert.IsTrue(order2.Id <= 0, "order was or wasn't created");
-
         }
 
         [TearDown]
@@ -55,8 +57,6 @@ namespace Gallaria.Tests.DataAccess
             await _personRepository.DeletePersonAsync(_person2.Id);
             await _artRepository.DeleteArtAsync(_newArt.Id);
         }
-
-
 
         #region Create Order
         private async Task<Order> CreateNewOrder(Person person, OrderLineItem item)
@@ -106,8 +106,5 @@ namespace Gallaria.Tests.DataAccess
             return _newOrderLineItem;
         }
         #endregion
-
-        
-
     }
 }

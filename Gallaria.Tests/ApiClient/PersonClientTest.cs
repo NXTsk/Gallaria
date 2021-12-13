@@ -14,70 +14,78 @@ namespace Gallaria.Tests.ApiClient
     {
         private IPersonClient _personClient;
 
-        private ArtistDto artistToCreate;
-        private PersonDto personToCreate;
+        private ArtistDto artist;
+        private PersonDto person;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-
             _personClient = new PersonClient(Configuration.API_URL);
         }
 
-        [Test]
-        public async Task TestCreatePerson()
+        [SetUp]
+        public async Task SetUp()
         {
-            //Arrange
-            personToCreate = new()
+            await CreatePersonAsync();
+            await CreateArtistAsync();
+        }
+
+        public async Task CreatePersonAsync()
+        {
+            person = new()
             {
                 Email = "dandapanda@seznam.cz",
                 FirstName = "Danda",
                 LastName = "Panda",
                 HashPassword = "123456789",
-                ConfirmPassword = "123456789",
                 PhoneNumber = "50689874",
                 Address = new() { City = "Aarhus", Country = "Denmark", HouseNumber = "145", Street = "Danstrosgade", Zipcode = "96500" }
             };
-
-            //Act
-            int actualId = await _personClient.CreatePersonAsync(personToCreate);
-            personToCreate.Id = actualId;
-            //Assert
-            Assert.IsTrue(actualId > 0, $"Failed to create person with name: {personToCreate.FirstName} {personToCreate.LastName}!");
+            person.Id = await _personClient.CreatePersonAsync(person);
         }
 
-        [Test]
-        public async Task TestCreateArtist()
+        public async Task CreateArtistAsync()
         {
-            //Arrange
-            artistToCreate = new()
+            artist = new()
             {
                 Email = "galantniadam@gmail.com",
                 FirstName = "Adam",
                 LastName = "Galantni",
                 HashPassword = "123456789",
-                ConfirmPassword = "123456789",
                 PhoneNumber = "68598487",
                 ProfileDescription = "I am the king in a north.",
                 Address = new() { City = "Copenhagen", Country = "Denmark", HouseNumber = "154", Street = "Slotsgade", Zipcode = "84536" }
             };
 
-            //Act
-            int actualId = await _personClient.CreateArtistAsync(artistToCreate);
-            artistToCreate.Id = actualId;
+            artist.Id = await _personClient.CreateArtistAsync(artist);
+        }
+
+        [Test]
+        public async Task TestCreatePerson()
+        {
+            //Arrange & Act is done in Setup()
             //Assert
-            Assert.IsTrue(actualId > 0, $"Failed to create person with name: {artistToCreate.FirstName} {artistToCreate.LastName}!");
+            Assert.IsTrue(person.Id > 0, $"Failed to create person with name: {person.FirstName} {person.LastName}!");
+        }
+
+        [Test]
+        public async Task TestCreateArtist()
+        {
+            //Arrange & Act is done in Setup()
+            //Assert
+            Assert.IsTrue(artist.Id > 0, $"Failed to create person with name: {artist.FirstName} {artist.LastName}!");
         }
 
         [Test]
         public async Task TestIsArtist()
         {
             //Arrange - artist ID
-            int id = 152;
+            int id = artist.Id;
+
             //Act
             bool isArtist = await _personClient.IsArtistAsync(id);
 
-            //TODO: Assert
+            //Assert
             Assert.IsTrue(isArtist, $"The person with id: {id} is not an artist.");
         }
 
@@ -85,20 +93,21 @@ namespace Gallaria.Tests.ApiClient
         public async Task TestGetPersonById()
         {
             //Arrange
-            int id = 152;
+            int id = person.Id;
+
             //Act
             PersonDto personDto = await _personClient.GetPersonByIdAsync(id);
 
-            //TODO: Assert
-
+            //Assert
             Assert.AreEqual(id, personDto.Id, $"Recieved person wasn't with id {id}");
         }
 
         [TearDown]
         public async Task CleanUp()
         {
-            await _personClient.DeleteArtistAsync(artistToCreate.Id);
-            await _personClient.DeletePersonAsync(personToCreate.Id);
+            await _personClient.DeleteArtistAsync(artist.Id);
+            await _personClient.DeletePersonAsync(artist.Id);
+            await _personClient.DeletePersonAsync(person.Id);
         }
     }
 }

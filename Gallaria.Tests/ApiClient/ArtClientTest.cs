@@ -36,7 +36,7 @@ namespace Gallaria.Tests.ApiClient
                 CreationDate = DateTime.Now,
                 Price = 20000,
                 Image = System.IO.File.ReadAllBytes("../../../testImages/11.jpg")
-        };
+            };
 
             //Act
             int actualId = await _artClient.CreateArtAsync(artToCreate);
@@ -60,7 +60,7 @@ namespace Gallaria.Tests.ApiClient
         }
 
         [Test]
-        public async Task TestGetAllArtsAsync()
+        public async Task TestGetAllArts()
         {
             //Arrange
             //Act

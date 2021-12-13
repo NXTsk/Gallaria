@@ -13,22 +13,36 @@ namespace Gallaria.Tests.DataAccess
     class ArtReporsitoryTest
     {
         private IArtRepository _artRepository;
+        private IPersonRepository _personRepository;
         private Art _newArt;
+        private Artist _newArtist;
+        private string _testPassword = "123";
 
         [SetUp]
         public async Task Setup()
         {
             _artRepository = new ArtRepository(Configuration.CONNECTION_STRING);
-            await CreateNewArt();
+            _personRepository = new PersonRepository(Configuration.CONNECTION_STRING);
+            await CreateNewArtistAsync();
+            await CreateNewArtAsync();
         }
 
-        private async Task<Art> CreateNewArt()
+        private async Task<Art> CreateNewArtAsync()
         {
             byte[] bytes = System.IO.File.ReadAllBytes("../../../testImages/11.jpg");
-            _newArt = new Art() { AuthorId = 152, Title = "New art", Description = "hello", Image = bytes, Price = 10, AvailableQuantity = 20, Category = "Nature", CreationDate= new DateTime(2021,11,20)};
+            _newArt = new Art() { AuthorId = _newArtist.Id, Title = "New art", Description = "hello", Image = bytes, Price = 10, AvailableQuantity = 20, Category = "Nature", CreationDate= new DateTime(2021,11,20)};
             _newArt.Id = await _artRepository.CreateArtAsync(_newArt);
 
             return _newArt;
+        }
+
+        private async Task<Artist> CreateNewArtistAsync()
+        {
+            Address a = new Address() { Street = "Nibevej", HouseNumber = "12", Zipcode = "9200", City = "Aalborg", Country = "Denmark" };
+            _newArtist = new Artist() { FirstName = "Petronela", LastName = "Lakatosova", Email = "petronela@slovak.sk", PhoneNumber = "123123", Address = a, ProfileDescription = "I am a digital artist." };
+            _newArtist.ArtistId = await _personRepository.CreateArtistAsync(_newArtist, _testPassword);
+
+            return _newArtist;
         }
 
         [Test]
@@ -42,13 +56,13 @@ namespace Gallaria.Tests.DataAccess
         [Test]
         public async Task GettingArtBySpecificIdReturnArt()
         {
-            //Arragne
+            //Arrange
             //Act
-            Art art = await _artRepository.GetArtByIDAsync(33);
+            Art art = await _artRepository.GetArtByIDAsync(_newArt.Id);
 
             //Assert
             Assert.NotNull(art, "Art with ID 33 was not found");
-            Assert.IsTrue(art.Id == 33, $"Actual ID of art was {art.Id} not 33");
+            Assert.IsTrue(art.Id == _newArt.Id, $"Actual ID of art was {art.Id} not {_newArt.Id}");
         }
 
         [Test]
@@ -65,10 +79,9 @@ namespace Gallaria.Tests.DataAccess
         [Test]
         public async Task GettingAllArtsByAuthorIdReturnsListOfArt()
         {
-            //Arrange
-            int authorId = 152;
+            //Arrange is done in Setup()
             //Act
-            IEnumerable<Art> arts = await _artRepository.GetAllArtsThatByAuthorIdAsync(authorId);
+            IEnumerable<Art> arts = await _artRepository.GetAllArtsThatByAuthorIdAsync(_newArtist.Id);
 
             //Assert
             Assert.NotNull(arts.Any(), "List of arts is 0");
@@ -78,7 +91,6 @@ namespace Gallaria.Tests.DataAccess
         public async Task DeleteArt()
         {
             //Arrange is done in Setup()
-
             //Act 
             bool deleted = await _artRepository.DeleteArtAsync(_newArt.Id);
 
@@ -94,6 +106,7 @@ namespace Gallaria.Tests.DataAccess
             decimal updatedPrice = 15;
             string updatedDescription = "hello updated art";
             string updatedCategory = "Abstract";
+            int updatedQuantity = 10;
 
             _newArt.Title = updatedTitle;
             _newArt.Description = updatedDescription;
@@ -102,17 +115,19 @@ namespace Gallaria.Tests.DataAccess
 
             //Act 
             await _artRepository.UpdateArtAsync(_newArt);
+            await _artRepository.UpdateArtQuantityById(_newArt.Id, updatedQuantity);
 
             //Assert
             var refoundArt = await _artRepository.GetArtByIDAsync(_newArt.Id);
-            Assert.IsTrue(refoundArt.Title == updatedTitle && refoundArt.Price == updatedPrice && refoundArt.Description == updatedDescription && refoundArt.Category == updatedCategory, "Art was not deleted");
+            Assert.IsTrue(refoundArt.Title == updatedTitle && refoundArt.Price == updatedPrice && refoundArt.Description == updatedDescription && refoundArt.Category == updatedCategory && refoundArt.AvailableQuantity == updatedQuantity, "Art was not updated");
         }
-
 
         [TearDown]
         public async Task CleanUp()
-        { 
+        {
             await _artRepository.DeleteArtAsync(_newArt.Id);
+            await _personRepository.DeleteArtistAsync(_newArtist.Id);
+            await _personRepository.DeletePersonAsync(_newArtist.Id);
         }
     }
 }
