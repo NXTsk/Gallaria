@@ -11,6 +11,7 @@ using Gallaria.WEB.Helpers;
 using Microsoft.AspNetCore.Http;
 using Gallaria.ApiClient.Interfaces;
 using System.Net;
+using System.Dynamic;
 
 namespace Gallaria.WEB.Controllers
 {
@@ -18,10 +19,13 @@ namespace Gallaria.WEB.Controllers
     {
         private IAuthenticateClient authenticateClient;
         private IPersonClient personClient;
-        public AccountsController(IAuthenticateClient _authenticateClient, IPersonClient _personClient)
+        private IArtClient artClient;
+        public AccountsController(IAuthenticateClient _authenticateClient, IPersonClient _personClient, IArtClient _artClient)
         {
             authenticateClient = _authenticateClient;
             personClient = _personClient;
+            artClient = _artClient;
+            
         }
 
         public IActionResult Account()
@@ -34,12 +38,21 @@ namespace Gallaria.WEB.Controllers
             if (isArtist)
             {
                 ArtistDto artist = personClient.GetArtistByIdAsync(id).Result;
-                return View(artist);
+                //TODO: Orders
+
+                dynamic obj = new ExpandoObject();
+                obj.Person = artist;
+
+                return View(obj);
             }
             else
             {
                 PersonDto person = personClient.GetPersonByIdAsync(id).Result;
-                return View(person); 
+
+                dynamic obj = new ExpandoObject();
+                obj.Person = person;
+
+                return View(obj);
 
             }
         }

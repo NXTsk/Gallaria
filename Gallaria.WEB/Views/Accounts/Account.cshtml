@@ -21,14 +21,14 @@
             <div class="col-md-6">
                 <div class="profile-head">
                     <h5>
-                        @Model.FirstName
+                        @Model.Person.FirstName
                     </h5>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Owned art</a>
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">My orders</a>
                         </li>
                     </ul>
                 </div>
@@ -39,14 +39,12 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-                <div class="adress">
-                    <p><lable>Adress</lable></p>
-                    <p></p>
-                    @Model.Address.Street<br />
-                    @Model.Address.HouseNumber<br />
-                    @Model.Address.Zipcode<br />
-                    @Model.Address.City<br />
-                    @Model.Address.Country<br />
+                <div class="profile-work">
+                    <p><h6>Adress</h6></p>
+                    @Model.Person.Address.Street @Model.Person.Address.HouseNumber<br />
+                    @Model.Person.Address.Zipcode<br />
+                    @Model.Person.Address.City<br />
+                    @Model.Person.Address.Country<br />
             </div>
             </div>
             <div class="col-md-8">
@@ -59,7 +57,7 @@
                             <div class="col-md-6">
                                 <p>
                                     @{
-                                       var fullName = Model.FirstName + " " + Model.LastName;
+                                       var fullName = Model.Person.FirstName + " " + Model.Person.LastName;
                                        @fullName
                                        }
                                 </p>
@@ -70,7 +68,7 @@
                                 <label>Email</label>
                             </div>
                             <div class="col-md-6">
-                                <p>@Model.Email</p>
+                                <p>@Model.Person.Email</p>
                             </div>
                         </div>
                         <div class="row">
@@ -78,7 +76,7 @@
                                 <label>Phone</label>
                             </div>
                             <div class="col-md-6">
-                                <p>@Model.PhoneNumber</p>
+                                <p>@Model.Person.PhoneNumber</p>
                             </div>
                         </div>
                         @if (ViewBag.isArtist)
@@ -88,59 +86,41 @@
                                     <label>Description</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>@Model.ProfileDescription</p>
+                                    <p>@Model.Person.ProfileDescription</p>
                                 </div>
                             </div>
                         }
                     </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Experience</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Expert</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Hourly Rate</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>10$/hr</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Total Projects</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>230</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>English Level</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Expert</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Availability</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>6 months</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label>Your Bio</label><br />
-                                <p>Your detail description</p>
-                            </div>
-                        </div>
+                    @if (ViewBag.isArtist)
+                    {
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        	<div class="table-container">
+							<table class="table table-filter">
+								<tbody>
+                                        
+                                          <tr>
+										<td>
+											<div class="media">
+												<a href="#" class="pull-left">
+													<img src="~/Images/ZayanSquare.jpg" class="media-photo" style="max-height:100px;">
+												</a>
+												<div class="media-body">
+													<h4 class="title">
+														Lorem Impsum
+														<span class="pull-right pagado">(Pagado)</span>
+													</h4>
+													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+												</div>
+											</div>
+										</td>
+									</tr>  
+                                        
+								</tbody>
+							</table>
+						</div>
                     </div>
+                    }
+                    
                 </div>
             </div>
         </div>
