@@ -160,5 +160,29 @@ namespace Gallaria.ApiClient
 
             return person;
         }
+
+        public async Task<bool> DeletePersonAsync(int id)
+        {
+            var response = await HttpClient.GetAsync(APIUrl + "api/Person/deletePerson/" + id);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public async Task<bool> DeleteArtistAsync(int id)
+        {
+            var response = await HttpClient.GetAsync(APIUrl + "api/Person/deleteArtist/" + id);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

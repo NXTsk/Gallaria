@@ -119,6 +119,18 @@ namespace Gallaria.ApiClient
             return false;
         }
 
+        public async Task<bool> DeleteArtAsync(int id)
+        {
+            var response = await HttpClient.DeleteAsync(APIUrl + "api/art/" + id);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public byte[] ConvertBase64toByteArray(string pictureBase64String)
         {
             byte[] pictureByteArray = Convert.FromBase64String(pictureBase64String);

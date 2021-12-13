@@ -14,6 +14,9 @@ namespace Gallaria.Tests.ApiClient
     {
         private IPersonClient _personClient;
 
+        private ArtistDto artistToCreate;
+        private PersonDto personToCreate;
+
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
@@ -25,7 +28,7 @@ namespace Gallaria.Tests.ApiClient
         public async Task TestCreatePerson()
         {
             //Arrange
-            PersonDto personToCreate = new()
+            personToCreate = new()
             {
                 Email = "dandapanda@seznam.cz",
                 FirstName = "Danda",
@@ -38,7 +41,7 @@ namespace Gallaria.Tests.ApiClient
 
             //Act
             int actualId = await _personClient.CreatePersonAsync(personToCreate);
-
+            personToCreate.Id = actualId;
             //Assert
             Assert.IsTrue(actualId > 0, $"Failed to create person with name: {personToCreate.FirstName} {personToCreate.LastName}!");
         }
@@ -47,7 +50,7 @@ namespace Gallaria.Tests.ApiClient
         public async Task TestCreateArtist()
         {
             //Arrange
-            ArtistDto artistToCreate = new()
+            artistToCreate = new()
             {
                 Email = "galantniadam@gmail.com",
                 FirstName = "Adam",
@@ -61,7 +64,7 @@ namespace Gallaria.Tests.ApiClient
 
             //Act
             int actualId = await _personClient.CreateArtistAsync(artistToCreate);
-
+            artistToCreate.Id = actualId;
             //Assert
             Assert.IsTrue(actualId > 0, $"Failed to create person with name: {artistToCreate.FirstName} {artistToCreate.LastName}!");
         }
@@ -89,6 +92,13 @@ namespace Gallaria.Tests.ApiClient
             //TODO: Assert
 
             Assert.AreEqual(id, personDto.Id, $"Recieved person wasn't with id {id}");
+        }
+
+        [TearDown]
+        public async Task CleanUp()
+        {
+            await _personClient.DeleteArtistAsync(artistToCreate.Id);
+            await _personClient.DeletePersonAsync(personToCreate.Id);
         }
     }
 }

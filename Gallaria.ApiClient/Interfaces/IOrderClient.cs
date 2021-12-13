@@ -15,5 +15,6 @@ namespace Gallaria.ApiClient.Interfaces
 
         public Task<int> CreateOrderAsync(OrderDto order, string token);
         public Task<OrderDto> GetOrderByIdAsync(int id);
+        public Task<bool> DeleteOrderAsync(int id);
     }
 }

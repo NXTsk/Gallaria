@@ -22,6 +22,7 @@ namespace Gallaria.Tests.ApiClient
         private PersonDto person;
         private AuthUserDto authUser;
         private List<OrderLineItemDto> orderLineItems;
+        private OrderDto orderToCreate;
 
         [OneTimeSetUp]
         public async Task OneTimeSetUp()
@@ -51,18 +52,19 @@ namespace Gallaria.Tests.ApiClient
         public async Task TestCreateOrder()
         {
             //TODO: Arrange
-            OrderDto orderDto = new() {
+            orderToCreate = new() {
                 Date = DateTime.Now,
                 FinalPrice = 150,
                 Person = person,
                 OrderLineItems = orderLineItems
-            };  
+            };
 
             //Act
-            int actualId = await _orderClient.CreateOrderAsync(orderDto, authUser.Token);
+            int actualId = await _orderClient.CreateOrderAsync(orderToCreate, authUser.Token);
+            orderToCreate.Id = actualId;
 
             //Assert
-            Assert.IsTrue(actualId > 0, $"Failed to create an order for: {orderDto.Person.FirstName} {orderDto.Person.LastName}!");
+            Assert.IsTrue(actualId > 0, $"Failed to create an order for: {orderToCreate.Person.FirstName} {orderToCreate.Person.LastName}!");
         }
 
         [Test]
@@ -75,6 +77,12 @@ namespace Gallaria.Tests.ApiClient
 
             //TODO: Assert
             Assert.AreEqual(id, orderDto.Id, "Recieved order wasn't with id 1");
+        }
+
+        [TearDown]
+        public async Task CleanUp()
+        {
+            await _artClient.DeleteArtAsync(orderToCreate.Id);
         }
     }
 }

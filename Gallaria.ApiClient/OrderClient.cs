@@ -58,5 +58,17 @@ namespace Gallaria.ApiClient
 
             return order;
         }
+
+        public async Task<bool> DeleteOrderAsync(int id)
+        {
+            var response = await HttpClient.DeleteAsync(APIUrl + "api/Order/" + id);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+    
+            return false;
+        }
     }
 }

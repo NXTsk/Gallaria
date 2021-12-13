@@ -49,5 +49,31 @@ namespace Gallaria.API.Controllers
             if (person == null) { return NotFound(); }
             else { return Ok(person); }
         }
+
+        [HttpDelete]
+        [Route("deleteArtist/{id}")]
+        public async Task<ActionResult> DeleteArtistAsync(int id)
+        {
+            bool result = await _personRepository.DeleteArtistAsync(id);
+            if (result)
+            {
+                return Ok();
+            }
+
+            return NotFound();
+        }
+
+        [HttpDelete]
+        [Route("deletePerson/{id}")]
+        public async Task<ActionResult> DeletePersonAsync(int id)
+        {
+            bool result = await _personRepository.DeletePersonAsync(id);
+            if (result)
+            {
+                return Ok();
+            }
+
+            return NotFound();
+        }
     }
 }

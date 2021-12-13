@@ -85,8 +85,15 @@ namespace Gallaria.API.Controllers
 
         // DELETE api/<ArtController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            bool wasDeleted = await _artRepository.DeleteArtAsync(id);
+
+            if (wasDeleted)
+            {
+                return Ok();
+            }
+            return NotFound();
         }
     }
 }

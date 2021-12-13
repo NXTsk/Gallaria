@@ -41,5 +41,19 @@ namespace Gallaria.API.Controllers
             if (order == null) { return NotFound(); }
             else { return Ok(order); }
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteOrderAsync(int id)
+        {
+            bool result = await _orderRepository.DeleteOrderAsync(id);
+
+            if (result)
+            {
+                return Ok();
+            }
+
+            return NotFound();
+        }
+
     }
 }
