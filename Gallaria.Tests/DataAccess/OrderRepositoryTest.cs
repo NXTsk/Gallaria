@@ -28,12 +28,12 @@ namespace Gallaria.Tests.DataAccess
             _artRepository = new ArtRepository(Configuration.CONNECTION_STRING);
             _personRepository = new PersonRepository(Configuration.CONNECTION_STRING);
 
-            await CreateNewPerson();
-            await CreateNewArt();
+            await CreateNewPersonAsync();
+            await CreateNewArtAsync();
             _newOrder = await CreateNewOrderAsync();
         }
 
-        private async Task<Person> CreateNewPerson()
+        private async Task<Person> CreateNewPersonAsync()
         {
             Address a = new Address() { Street = "Dannebrogsgade", HouseNumber = "13", Zipcode = "9000", City = "Aalborg", Country = "Denmark" };
             _newPerson = new Person() { FirstName = "Jacob", LastName = "Working", Email = "jacob@working.com", PhoneNumber = "50151412", Address = a };
@@ -49,7 +49,7 @@ namespace Gallaria.Tests.DataAccess
             return _newOrderLineItem;
         }
 
-        private async Task<Art> CreateNewArt()
+        private async Task<Art> CreateNewArtAsync()
         {
             byte[] bytes = System.IO.File.ReadAllBytes("../../../testImages/11.jpg");
             _newArt = new Art() { AuthorId = 152, Title = "New art", Description = "hello", Image = bytes, Price = 10, AvailableQuantity = 20, Category = "Nature", CreationDate = new DateTime(2021, 11, 20) };
@@ -70,23 +70,27 @@ namespace Gallaria.Tests.DataAccess
         }
 
         [Test]
-        public void CreateOrder()
+        public async Task WasOrderAndOrderLineItemCreated()
         {
-            //arrange & act is done in setup()
-            //assert
-            Assert.IsTrue(_newOrder.Id > 0, "order was not created");
+            //Arrange is done in Setup()
+            //Act
+            ICollection<OrderLineItem> orderLineItems = await _orderRepository.GetAllOrderLineItemsInOrderAsync(_newOrder.Id);
+
+            //Assert
+            Assert.IsTrue(_newOrder.Id > 0, "Order was not created");
+            Assert.IsNotNull(orderLineItems, "OrderLineItem was not created");
         }
 
         [Test]
         public async Task GettingOrderBySpecificIdReturnOrder()
         {
-            //Arragne
+            //Arrange
             //Act
-            Order order = await _orderRepository.GetOrderByIdAsync(64);
+            Order order = await _orderRepository.GetOrderByIdAsync(_newOrder.Id);
 
             //Assert
             Assert.NotNull(order, "Order with ID 64 was not found");
-            Assert.IsTrue(order.Id == 64, $"Actual ID of art was {order.Id} not 64");
+            Assert.IsTrue(order.Id == _newOrder.Id, $"Actual ID of art was {order.Id} not {_newOrder.Id}");
         }
 
         [Test]
@@ -101,10 +105,20 @@ namespace Gallaria.Tests.DataAccess
         }
 
         [Test]
+        public async Task GettingAllOrderLineItemsReturnsListOfOrderLineItems()
+        {
+            //Arrange
+            //Act
+            IEnumerable<OrderLineItem> orderLineItems = await _orderRepository.GetAllOrderLineItemsInOrderAsync(_newOrderLineItem.Id);
+
+            //Assert
+            Assert.NotNull(orderLineItems.Any(), "List of orders is 0");
+        }
+
+        [Test]
         public async Task DeleteOrder()
         {
             //Arrange is done in Setup()
-
             //Act 
             bool deleted = await _orderRepository.DeleteOrderAsync(_newOrder.Id);
 
@@ -112,42 +126,10 @@ namespace Gallaria.Tests.DataAccess
             Assert.IsTrue(deleted, "Order was not deleted");
         }
 
-        //[Test]
-        //public void CreateOrderLineItem()
-        //{
-        //    //arrange & act is done in setup()
-        //    //assert
-        //    Assert.IsTrue(_newOrderLineItem.Id > 0, "orderLineItem was not created");
-        //}
-
-        [Test]
-        public async Task GettingOrderLineItemBySpecificIdReturnOrderLineItem()
-        {
-            //Arragne
-            //Act
-            OrderLineItem orderLineItem = await _orderRepository.GetOrderLineItemByIdAsync(68);
-
-            //Assert
-            Assert.NotNull(orderLineItem, "Order with ID 68 was not found");
-            Assert.IsTrue(orderLineItem.Id == 68, $"Actual ID of art was {orderLineItem.Id} not 68");
-        }
-
-        [Test]
-        public async Task GettingAllOrderLineItemsReturnsListOfOrderLineItems()
-        {
-            //Arrange
-            //Act
-            IEnumerable<OrderLineItem> orderLineItems = await _orderRepository.GetAllOrderLineItemsInOrderAsync(64);
-
-            //Assert
-            Assert.NotNull(orderLineItems.Any(), "List of orders is 0");
-        }
-
         [TearDown]
         public async Task CleanUp()
         {
             await _orderRepository.DeleteOrderAsync(_newOrder.Id);
-            //await _orderRepository.DeleteOrderLineItemAsync(_newOrderLineItem.Id);
             await _personRepository.DeletePersonAsync(_newPerson.Id);
             await _artRepository.DeleteArtAsync(_newArt.Id);
         }

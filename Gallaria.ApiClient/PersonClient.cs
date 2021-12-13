@@ -178,7 +178,7 @@ namespace Gallaria.ApiClient
 
         public async Task<bool> DeletePersonAsync(int id)
         {
-            var response = await HttpClient.GetAsync(APIUrl + "api/Person/deletePerson/" + id);
+            var response = await HttpClient.DeleteAsync(APIUrl + "api/Person/deletePerson/" + id);
 
             if (response.IsSuccessStatusCode)
             {
@@ -190,7 +190,7 @@ namespace Gallaria.ApiClient
 
         public async Task<bool> DeleteArtistAsync(int id)
         {
-            var response = await HttpClient.GetAsync(APIUrl + "api/Person/deleteArtist/" + id);
+            var response = await HttpClient.DeleteAsync(APIUrl + "api/Person/deleteArtist/" + id);
 
             if (response.IsSuccessStatusCode)
             {
