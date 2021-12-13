@@ -21,8 +21,8 @@ namespace Gallaria.GUI
         private Button currentButton;
         private Color themeColor = ColorTranslator.FromHtml("#34c5e6");
         private Color selectedColor = ColorTranslator.FromHtml("#006e9c");
-        internal Form activeForm;
         private Form displayCreatedArts;
+        internal Form activeForm;
 
         private PersonClient personClient;
 
@@ -67,8 +67,6 @@ namespace Gallaria.GUI
                     currentButton.ForeColor = Color.White;
                     currentButton.Font = new System.Drawing.Font("Yu Gothic UI", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                     panelTitleBar.BackColor = color;
-                    //ThemeColor.PrimaryColor = color;
-                    //ThemeColor.SecondaryColor = ThemeColor.ChangeColorBrightness(color, -0.3);
                     btnCloseChildForm.Visible = true;
                 }
             }
@@ -82,7 +80,7 @@ namespace Gallaria.GUI
                 {
                     previousBtn.BackColor = themeColor;
                     previousBtn.ForeColor = Color.Gainsboro;
-                    previousBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    previousBtn.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
             }
         }
