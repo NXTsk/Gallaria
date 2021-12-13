@@ -31,14 +31,14 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                    </ul>
-                    <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Art" asp-action="AllArts">Market</a>
                         </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link text-dark cart position-relative d-inline-flex" asp-area="" asp-controller="Order" asp-action="ShoppingCart">
                                 <img src="~/Images/shopping-cart.png" alt="Cart" height="32" width="32" />
@@ -50,7 +50,7 @@
                         @if (Context.Session.GetString("isAuthenticated") == "true")
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="Account">Account</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="Account"><img src="~/Images/profilePicture-64x64.png" height="32" width="32"/></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="Logout">Log out <img src="~/Images/log-out.png" height="32" width="32" /></a>
@@ -59,7 +59,7 @@
                         else if (Context.Session.GetString("isAuthenticated") == "false")
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="Login" asp-route-returnurl="@returnUrl">Login <img src="~/Images/log-in.png" height="32" width="32" /></a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="Login" asp-route-returnurl="@returnUrl"> Login <img src="~/Images/log-in.png" height="32" width="32" /></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="CreateAccount">Sign up</a>
