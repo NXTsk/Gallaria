@@ -46,7 +46,7 @@ namespace Gallaria.WEB.Controllers
                         TempData["wasOrderCompleted"] = "true";
 
                         //TODO: Redirect to completed Order page
-                        return RedirectToAction("AllArts", "Art");
+                        return RedirectToAction("ShoppingCart", "Order");
 
                     }
                     else
