@@ -50,6 +50,14 @@ namespace Gallaria.API.Controllers
             else { return Ok(person); }
         }
 
+        [HttpGet("getArtist/{id}")]
+        public async Task<ActionResult<ArtistDto>> GetArtistAsync(int id)
+        {
+            var artist = await _personRepository.GetArtistByIdAsync(id);
+            if (artist == null) { return NotFound(); }
+            else { return Ok(artist); }
+        }
+
         [HttpDelete]
         [Route("deleteArtist/{id}")]
         public async Task<ActionResult> DeleteArtistAsync(int id)

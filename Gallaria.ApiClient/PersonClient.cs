@@ -161,6 +161,21 @@ namespace Gallaria.ApiClient
             return person;
         }
 
+        public async Task<ArtistDto> GetArtistByIdAsync(int id)
+        {
+            ArtistDto artist = new ArtistDto();
+
+            var response = await HttpClient.GetAsync(APIUrl + "api/Person/getArtist/" + id);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                artist = JsonConvert.DeserializeObject<ArtistDto>(apiResponse);
+            }
+
+            return artist;
+        }
+
         public async Task<bool> DeletePersonAsync(int id)
         {
             var response = await HttpClient.GetAsync(APIUrl + "api/Person/deletePerson/" + id);

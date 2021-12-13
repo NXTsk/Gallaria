@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using DataAccess.Authentication;
+using DataAccess.Helpers;
 using DataAccess.Model;
 using System;
 using System.Collections.Generic;
@@ -135,13 +136,38 @@ namespace DataAccess.Repositories
             }
         }
 
+        public async Task<Artist> GetArtistByIdAsync(int id)
+        {
+            try
+            {
+                var query = "SELECT * FROM Artist WHERE artistId=@Id";
+                using var connection = CreateConnection();
+                var person = await GetPersonByIdAsync(id);
+                var artist = await connection.QuerySingleAsync<Artist>(query, new { id });
+
+                Artist artistToReturn = person.ConvertIntoArtist();
+                artistToReturn.ProfileDescription = artist.ProfileDescription;
+
+                return artistToReturn;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error getting person with id {id}: '{ex.Message}'.", ex);
+            }
+        }
+
         public async Task<Person> GetPersonByIdAsync(int id)
         {
             try
             {
                 var query = "SELECT * FROM Person WHERE Id=@Id";
+                var addressQuery = "SELECT street,houseNumber,zipcode,city,country FROM Person WHERE Id=@Id";
                 using var connection = CreateConnection();
-                return await connection.QuerySingleAsync<Person>(query, new { id });
+                Person personToReturn =  await connection.QuerySingleAsync<Person>(query, new { id });
+                Address address =  await connection.QuerySingleAsync<Address>(addressQuery, new { id });
+
+                personToReturn.Address = address;
+                return personToReturn;
             }
             catch (Exception ex)
             {

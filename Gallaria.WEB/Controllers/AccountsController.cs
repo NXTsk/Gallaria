@@ -24,6 +24,26 @@ namespace Gallaria.WEB.Controllers
             personClient = _personClient;
         }
 
+        public IActionResult Account()
+        {
+            int id = int.Parse(HttpContext.Request.Cookies["userId"]);
+            bool isArtist = personClient.IsArtistAsync(id).Result;
+
+            ViewBag.IsArtist = isArtist;
+
+            if (isArtist)
+            {
+                ArtistDto artist = personClient.GetArtistByIdAsync(id).Result;
+                return View(artist);
+            }
+            else
+            {
+                PersonDto person = personClient.GetPersonByIdAsync(id).Result;
+                return View(person); 
+
+            }
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -124,6 +144,8 @@ namespace Gallaria.WEB.Controllers
             
             return View();
         }
+
+
 
     }
 }

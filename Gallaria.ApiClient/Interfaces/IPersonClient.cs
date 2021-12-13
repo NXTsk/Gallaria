@@ -17,6 +17,7 @@ namespace Gallaria.ApiClient.Interfaces
         public Task<int> CreateArtistAsync(ArtistDto artist);
         public Task<bool> IsArtistAsync(int id);
         public Task<PersonDto> GetPersonByIdAsync(int id);
+        public Task<ArtistDto> GetArtistByIdAsync(int id);
         public Task<bool> DeletePersonAsync(int id);
         public Task<bool> DeleteArtistAsync(int id);
     }

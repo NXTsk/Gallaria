@@ -50,6 +50,9 @@
                         @if (Context.Session.GetString("isAuthenticated") == "true")
                         {
                             <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="Account">Account</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="Logout">Log out <img src="~/Images/log-out.png" height="32" width="32" /></a>
                             </li>
                         }
