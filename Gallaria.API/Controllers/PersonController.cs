@@ -69,6 +69,19 @@ namespace Gallaria.API.Controllers
             return NotFound();
         }
 
+        [HttpPut]
+        [Route("password")]
+        public async Task<ActionResult<bool>> UpdatePasswordAsync([FromBody] PersonDto personDto)
+        {
+            bool wasUpdated = await _personRepository.UpdatePasswordAsync(personDto.Email, personDto.HashPassword, personDto.NewPassword);
+
+            if (wasUpdated)
+            {
+                return Ok();
+            }
+            return NotFound();
+        }
+
         // GET api/<PersonController>/id
         [HttpGet("{id}")]
         public async Task<ActionResult<PersonDto>> Get(int id)

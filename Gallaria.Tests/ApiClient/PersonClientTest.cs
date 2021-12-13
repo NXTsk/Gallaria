@@ -123,6 +123,22 @@ namespace Gallaria.Tests.ApiClient
         }
 
         [Test]
+        public async Task TestIfPasswordWasUpdated()
+        {
+            //Arrange
+            string newPassword = "123456";
+
+            person.NewPassword = newPassword;
+
+            //Act
+            bool wasUpdated = await _personClient.UpdatePasswordAsync(person);
+
+            //Assert
+            Assert.IsTrue(wasUpdated, "Password was not updated");
+            //Assert.IsTrue(person.HashPassword == newPassword, "Passwords don't match so password was not updated");
+        }
+
+        [Test]
         public async Task TestIsArtist()
         {
             //Arrange - artist ID

@@ -80,6 +80,19 @@ namespace Gallaria.ApiClient
             return false;
         }
 
+        public async Task<bool> UpdatePasswordAsync(PersonDto personDto)
+        {
+            StringContent content = new StringContent(JsonConvert.SerializeObject(personDto), Encoding.Default, "application/json");
+            var response = await HttpClient.PutAsync(APIUrl + "api/person/password", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public async Task<bool> IsArtistAsync(int id)
         {
             bool returnValue = false;

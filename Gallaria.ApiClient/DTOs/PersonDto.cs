@@ -25,6 +25,10 @@ namespace Gallaria.ApiClient.DTOs
         [DataType(DataType.Password)]
         public string HashPassword { get; set; }
 
+        [Required]
+        [DataType(DataType.Password)]
+        public string NewPassword { get; set; }
+
         [Required(ErrorMessage = "Confirmation of password is required.")]
         [Compare("HashPassword", ErrorMessage = "Passwords don't match")]
         [DataType(DataType.Password)]

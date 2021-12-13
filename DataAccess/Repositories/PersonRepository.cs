@@ -110,7 +110,7 @@ namespace DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error updating person: '{ex.Message}'.", ex);
+                throw new Exception($"Error updating password: '{ex.Message}'.", ex);
             }
         }
 

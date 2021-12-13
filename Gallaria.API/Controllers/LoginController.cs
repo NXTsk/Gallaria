@@ -51,7 +51,6 @@ namespace Gallaria.API.Controllers
                 expiration = token.ValidTo,
                 userId = userId
             });
-
         }
     }
 }
