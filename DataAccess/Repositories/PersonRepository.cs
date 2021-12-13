@@ -27,7 +27,7 @@ namespace DataAccess.Repositories
                     HouseNumber = person.Address.HouseNumber,
                     Zipcode = person.Address.Zipcode,
                     City = person.Address.City,
-                    Country = person.Address.Country,
+                    Country = person.Address.Country
                 });
             }
             catch (Exception ex)
@@ -69,6 +69,31 @@ namespace DataAccess.Repositories
                 throw new Exception($"Error logging in for user with email {email}: '{ex.Message}'.", ex);
             }
         }
+        public async Task<bool> UpdatePersonAsync(Person person)
+        {
+            try
+            {
+                var query = "UPDATE dbo.[Person] SET FirstName=@FirstName, LastName=@LastName, Email=@Email, PhoneNumber=@PhoneNumber," +
+                    " Street=@Street, HouseNumber=@HouseNumber, Zipcode=@Zipcode, City=@City, Country=@Country WHERE Id=@id;";
+                using var connection = CreateConnection();
+                return await connection.ExecuteAsync(query, new{
+                    FirstName = person.FirstName,
+                    LastName = person.LastName,
+                    Email = person.Email,
+                    PhoneNumber = person.PhoneNumber,
+                    Street = person.Address.Street,
+                    HouseNumber = person.Address.HouseNumber,
+                    Zipcode = person.Address.Zipcode,
+                    City = person.Address.City,
+                    Country = person.Address.Country,
+                    Id = person.Id
+                 }) > 0; 
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error updating person: '{ex.Message}'.", ex);
+            }
+        }
         public async Task<bool> UpdatePasswordAsync(string email, string oldPassword, string newPassword)
         {
             try
@@ -107,6 +132,20 @@ namespace DataAccess.Repositories
             }
         }
 
+        public async Task<bool> UpdateArtistAsync(Artist artist)
+        {
+            try
+            {
+                var query = "UPDATE dbo.[Artist] SET ProfileDescription=@ProfileDescription WHERE ArtistId=@ArtistId;";
+                using var connection = CreateConnection();
+                return await connection.ExecuteAsync(query, artist) > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error updating rtist: '{ex.Message}'.", ex);
+            }
+        }
+
         public async Task<bool> DeleteArtistAsync(int artistId)
         {
             try
@@ -132,7 +171,7 @@ namespace DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error deleting artist with id {artistId}: '{ex.Message}'.", ex);
+                throw new Exception($"Error deleting Artist with id {artistId}: '{ex.Message}'.", ex);
             }
         }
 
@@ -152,7 +191,7 @@ namespace DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error getting person with id {id}: '{ex.Message}'.", ex);
+                throw new Exception($"Error getting Person with id {id}: '{ex.Message}'.", ex);
             }
         }
 
@@ -171,7 +210,7 @@ namespace DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error getting person with id {id}: '{ex.Message}'.", ex);
+                throw new Exception($"Error getting Person with id {id}: '{ex.Message}'.", ex);
             }
         }
     }

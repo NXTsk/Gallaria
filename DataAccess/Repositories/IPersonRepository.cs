@@ -14,6 +14,8 @@ namespace DataAccess.Repositories
         Task<Person> GetPersonByIdAsync(int id);
         Task<Artist> GetArtistByIdAsync(int id);
         Task<int> LoginAsync(string email, string password);
+        Task<bool> UpdatePersonAsync(Person person);
+        Task<bool> UpdateArtistAsync(Artist artist);
         Task<bool> UpdatePasswordAsync(string email, string oldPassword, string newPassword);
         Task<int> CreateArtistAsync(Artist artist, string password);
         Task<bool> DeleteArtistAsync(int id);

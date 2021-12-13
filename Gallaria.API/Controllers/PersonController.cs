@@ -41,6 +41,34 @@ namespace Gallaria.API.Controllers
             return Ok(await _personRepository.IsArtistAsync(id));
         }
 
+        // PUT api/<PersonController>/updatePerson
+        [HttpPut]
+        [Route("updatePerson")]
+        public async Task<ActionResult<bool>> UpdatePersonAsync([FromBody] PersonDto personDtoToUpdate)
+        {
+            bool wasUpdated = await _personRepository.UpdatePersonAsync(personDtoToUpdate.FromDto());
+
+            if (wasUpdated)
+            {
+                return Ok();
+            }
+            return NotFound();
+        }
+
+        // PUT api/<PersonController>/updateArtist
+        [HttpPut]
+        [Route("updateArtist")]
+        public async Task<ActionResult<bool>> UpdateArtistAsync([FromBody] ArtistDto artistDtoToUpdate)
+        {
+            bool wasUpdated = await _personRepository.UpdateArtistAsync(artistDtoToUpdate.FromDto());
+
+            if (wasUpdated)
+            {
+                return Ok();
+            }
+            return NotFound();
+        }
+
         // GET api/<PersonController>/id
         [HttpGet("{id}")]
         public async Task<ActionResult<PersonDto>> Get(int id)

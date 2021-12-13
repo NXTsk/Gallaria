@@ -12,7 +12,6 @@ namespace Gallaria.ApiClient
 {
     public class PersonClient : IPersonClient
     {
-
         public string APIUrl { get; set; }
         public HttpClient HttpClient { get; set; }
 
@@ -21,81 +20,6 @@ namespace Gallaria.ApiClient
             APIUrl = _APIUrl;
             HttpClient = new HttpClient();
         }
-
-        //public static async Task<CreatePersonApiResponse> CreatePersonAsync(PersonDto person)
-        //{
-        //    var httpClient = new HttpClient();
-        //    bool returnValue = false;
-        //    CreatePersonApiResponse createdPerson = new CreatePersonApiResponse();
-        //    StringContent content = new StringContent(JsonConvert.SerializeObject(person), Encoding.Default, "application/json");
-
-        //    var response = await httpClient.PostAsync(ApiUrl + "api/person", content);
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        string apiResponse = await response.Content.ReadAsStringAsync();
-        //        int createdResult = JsonConvert.DeserializeObject<int>(apiResponse);    
-
-        //        returnValue = true;
-        //        createdPerson.UserId = createdResult;
-        //    }
-
-        //    createdPerson.hasBeenCreated = returnValue;
-        //    return createdPerson;
-        //}
-
-        //public static async Task<CreatePersonApiResponse> CreateArtistAsync(ArtistDto artist)
-        //{
-        //    var httpClient = new HttpClient();
-        //    bool returnValue = false;
-        //    CreatePersonApiResponse createdArtist = new CreatePersonApiResponse();
-        //    StringContent content = new StringContent(JsonConvert.SerializeObject(artist), Encoding.Default, "application/json");
-
-        //    var response = await httpClient.PostAsync(ApiUrl + "api/Person/artist", content);
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        string apiResponse = await response.Content.ReadAsStringAsync();
-        //        int createdResult = JsonConvert.DeserializeObject<int>(apiResponse);
-
-        //        returnValue = true;
-        //        createdArtist.UserId = createdResult;
-        //    }
-
-        //    createdArtist.hasBeenCreated = returnValue;
-        //    return createdArtist;
-        //}
-
-        //public static async Task<bool> IsArtistAsync(int id)
-        //{
-        //    var httpClient = new HttpClient();
-        //    bool returnValue = false;
-
-        //    var response = await httpClient.GetAsync(ApiUrl + "api/Person/isArtist/" + id);
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        string apiResponse = await response.Content.ReadAsStringAsync();
-        //        returnValue = JsonConvert.DeserializeObject<bool>(apiResponse);
-        //    }
-
-        //    return returnValue;
-        //}
-
-        //public static async Task<PersonDto> GetPersonByIdAsync(int id)
-        //{
-        //    var httpClient = new HttpClient();
-        //    PersonDto person = new PersonDto();
-
-        //    var response = await httpClient.GetAsync(ApiUrl + "api/Person/" + id);
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        string apiResponse = await response.Content.ReadAsStringAsync();
-        //        person = JsonConvert.DeserializeObject<PersonDto>(apiResponse);
-
-        //    }
-
-        //    return person;
-        //}
-
-
 
         public async Task<int> CreatePersonAsync(PersonDto person)
         {
@@ -110,7 +34,6 @@ namespace Gallaria.ApiClient
                 returnValue = JsonConvert.DeserializeObject<int>(apiResponse);
             }
 
-            
             return returnValue;
         }
 
@@ -129,6 +52,32 @@ namespace Gallaria.ApiClient
             }
 
             return returnValue;
+        }
+
+        public async Task<bool> UpdatePersonAsync(PersonDto personDto)
+        {
+            StringContent content = new StringContent(JsonConvert.SerializeObject(personDto), Encoding.Default, "application/json");
+            var response = await HttpClient.PutAsync(APIUrl + "api/person/updatePerson", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public async Task<bool> UpdateArtistAsync(ArtistDto artistDto)
+        {
+            StringContent content = new StringContent(JsonConvert.SerializeObject(artistDto), Encoding.Default, "application/json");
+            var response = await HttpClient.PutAsync(APIUrl + "api/person/updateArtist", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public async Task<bool> IsArtistAsync(int id)

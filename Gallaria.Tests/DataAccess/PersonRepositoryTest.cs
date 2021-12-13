@@ -61,6 +61,57 @@ namespace Gallaria.Tests.DataAccess
         }
 
         [Test]
+        public async Task UpdatePersonWithSpecificId()
+        {
+            //Arrange
+            string updatedFirstName = "Martin";
+            string updatedLastName = "Vláčil";
+            string updatedEmail = "martinvlacil@gmail.com";
+            string updatedPhoneNumber = "5012312310";
+            string updatedStreet = "Dannebrogsgade";
+            string updatedHouseNumber = "13";
+            string updatedZipcode = "9000";
+            string updatedCity = "Aalborg";
+            string updatedCountry = "Denmark";
+
+            _newPerson.FirstName = updatedFirstName;
+            _newPerson.LastName = updatedLastName;
+            _newPerson.Email = updatedEmail;
+            _newPerson.PhoneNumber = updatedPhoneNumber;
+            _newPerson.Address.Street = updatedStreet;
+            _newPerson.Address.HouseNumber = updatedHouseNumber;
+            _newPerson.Address.Zipcode = updatedZipcode;
+            _newPerson.Address.City = updatedCity;
+            _newPerson.Address.Country = updatedCountry;
+            
+            //Act 
+            await _personRepository.UpdatePersonAsync(_newPerson);
+
+            //Assert
+            var refoundPerson = await _personRepository.GetPersonByIdAsync(_newPerson.Id);
+            Assert.IsTrue(refoundPerson.FirstName == updatedFirstName && refoundPerson.LastName == refoundPerson.LastName && refoundPerson.Email == updatedEmail 
+                && refoundPerson.PhoneNumber == updatedPhoneNumber && refoundPerson.Address.Street == updatedStreet && refoundPerson.Address.HouseNumber == updatedHouseNumber 
+                && refoundPerson.Address.Zipcode == updatedZipcode && refoundPerson.Address.City == updatedCity 
+                && refoundPerson.Address.Country == updatedCountry, "Person was not updated");
+        }
+
+        [Test]
+        public async Task UpdateArtistWithSpecificId()
+        {
+            //Arrange
+            string updatedProfileDescription = "My profile description is the best!";
+
+            _newArtist.ProfileDescription = updatedProfileDescription;
+
+            //Act 
+            await _personRepository.UpdateArtistAsync(_newArtist);
+
+            //Assert
+            var refoundPerson = await _personRepository.GetArtistByIdAsync(_newArtist.Id);
+            Assert.IsTrue(refoundPerson.ProfileDescription == updatedProfileDescription, "Artist was not updated");
+        }
+
+        [Test]
         public async Task UpdatePersonPasswordAndLogin()
         {
             //Arrange

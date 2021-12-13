@@ -77,6 +77,52 @@ namespace Gallaria.Tests.ApiClient
         }
 
         [Test]
+        public async Task TestIfPersonWasUpdated()
+        {
+            //Arrange
+            string updatedFirstName = "Martin";
+            string updatedLastName = "Vláčil";
+            string updatedEmail = "martinvlacil@gmail.com";
+            string updatedPhoneNumber = "5012312310";
+            string updatedStreet = "Dannebrogsgade";
+            string updatedHouseNumber = "13";
+            string updatedZipcode = "9000";
+            string updatedCity = "Aalborg";
+            string updatedCountry = "Denmark";
+
+            person.FirstName = updatedFirstName;
+            person.LastName = updatedLastName;
+            person.Email = updatedEmail;
+            person.PhoneNumber = updatedPhoneNumber;
+            person.Address.Street = updatedStreet;
+            person.Address.HouseNumber = updatedHouseNumber;
+            person.Address.Zipcode = updatedZipcode;
+            person.Address.City = updatedCity;
+            person.Address.Country = updatedCountry;
+
+            //Act
+            bool wasUpdated = await _personClient.UpdatePersonAsync(person);
+
+            //Assert
+            Assert.IsTrue(wasUpdated, "Person was not updated");
+        }
+
+        [Test]
+        public async Task TestIfArtistWasUpdated()
+        {
+            //Arrange
+            string updatedProfileDescription = "My profile description is the best!";
+
+            artist.ProfileDescription = updatedProfileDescription;
+
+            //Act
+            bool wasUpdated = await _personClient.UpdateArtistAsync(artist);
+
+            //Assert
+            Assert.IsTrue(wasUpdated, "Artist was not updated");
+        }
+
+        [Test]
         public async Task TestIsArtist()
         {
             //Arrange - artist ID

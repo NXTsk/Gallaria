@@ -66,6 +66,7 @@ namespace Gallaria.API.Converters
             var artist = new Artist();
             artist.Address = new Address();
             artistDtoToConvert.CopyPropertiesTo(artist);
+            artist.ArtistId = artistDtoToConvert.Id;
             artistDtoToConvert.Address.CopyPropertiesTo(artist.Address);
             return artist;
         }
