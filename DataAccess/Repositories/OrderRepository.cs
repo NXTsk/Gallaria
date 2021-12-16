@@ -141,6 +141,25 @@ namespace DataAccess.Repositories
             }
         }
 
+        public async Task<IEnumerable<Order>> GetAllOrdersByPersonIdAsync(int personId) 
+        { 
+            try
+            {
+                var query = "SELECT * FROM dbo.[Order] WHERE personId=@personId";
+                using var connection = CreateConnection();
+                var orders = await connection.QueryAsync<Order>(query, new { personId });
+                foreach(Order order in orders) 
+                {
+                    order.OrderLineItems = await GetAllOrderLineItemsInOrderAsync(order.Id);
+                }
+                return orders.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error getting orders for this specific person: '{ex.Message}'.", ex);
+            }
+        }
+
         public async Task<bool> DeleteOrderLineItemAsync(int id)
         {
             try
@@ -161,7 +180,12 @@ namespace DataAccess.Repositories
             {
                 var query = "SELECT * FROM OrderLineItem WHERE orderId=@Id";
                 using var connection = CreateConnection();
-                return (await connection.QueryAsync<OrderLineItem>(query, new { id })).ToList();
+                var orderLineItems = await connection.QueryAsync<OrderLineItem>(query, new { id });
+                foreach (OrderLineItem orderLineItem in orderLineItems)
+                {
+                    orderLineItem.Art = await _artRepository.GetArtByIDAsync(orderLineItem.artId);
+                }
+                return orderLineItems.ToList();
             }
             catch (Exception ex)
             {

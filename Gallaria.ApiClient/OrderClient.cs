@@ -59,6 +59,23 @@ namespace Gallaria.ApiClient
             return order;
         }
 
+        public async Task<IEnumerable<OrderDto>> GetAllOrdersByPersonIdAsync(int personId)
+        {
+            IEnumerable<OrderDto> orderDtos = null;
+
+            var response = await HttpClient.GetAsync(APIUrl + "api/Order/getOrdersByPerson/" + personId);
+            if (response.IsSuccessStatusCode)
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                orderDtos = JsonConvert.DeserializeObject<IEnumerable<OrderDto>>(apiResponse);
+            }
+            else
+            {
+                throw new Exception("Error retrieving all arts that belong to specific artist");
+            }
+            return orderDtos;
+        }
+
         public async Task<bool> DeleteOrderAsync(int id)
         {
             var response = await HttpClient.DeleteAsync(APIUrl + "api/Order/" + id);

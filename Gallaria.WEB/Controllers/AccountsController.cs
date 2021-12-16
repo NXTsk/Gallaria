@@ -20,25 +20,27 @@ namespace Gallaria.WEB.Controllers
         private IAuthenticateClient authenticateClient;
         private IPersonClient personClient;
         private IArtClient artClient;
-        public AccountsController(IAuthenticateClient _authenticateClient, IPersonClient _personClient, IArtClient _artClient)
+        private IOrderClient orderClient;
+        public AccountsController(IAuthenticateClient _authenticateClient, IPersonClient _personClient, IArtClient _artClient, IOrderClient _orderClient)
         {
             authenticateClient = _authenticateClient;
             personClient = _personClient;
             artClient = _artClient;
+            orderClient = _orderClient;
             
         }
 
-        public IActionResult Account()
+        public async Task<IActionResult> Account()
         {
-            int id = int.Parse(HttpContext.Request.Cookies["userId"]);
-            bool isArtist = personClient.IsArtistAsync(id).Result;
-
+            int personId = int.Parse(HttpContext.Request.Cookies["userId"]);
+            IEnumerable<OrderDto> orderDtos = await orderClient.GetAllOrdersByPersonIdAsync(personId);
+            bool isArtist = personClient.IsArtistAsync(personId).Result;
             ViewBag.IsArtist = isArtist;
 
             if (isArtist)
             {
-                ArtistDto artist = personClient.GetArtistByIdAsync(id).Result;
-                //TODO: Orders
+                ArtistDto artist = personClient.GetArtistByIdAsync(personId).Result;
+                
 
                 dynamic obj = new ExpandoObject();
                 obj.Person = artist;
@@ -47,7 +49,7 @@ namespace Gallaria.WEB.Controllers
             }
             else
             {
-                PersonDto person = personClient.GetPersonByIdAsync(id).Result;
+                PersonDto person = personClient.GetPersonByIdAsync(personId).Result;
 
                 dynamic obj = new ExpandoObject();
                 obj.Person = person;

@@ -42,6 +42,16 @@ namespace Gallaria.API.Controllers
             else { return Ok(order); }
         }
 
+        // GET: api/<OrderController>/personId
+        [HttpGet]
+        [Route("getOrdersByPerson/{personId}")]
+        public async Task<ActionResult<IEnumerable<OrderDto>>> GetAllOrdersByPersonIdAsync(int personId)
+        {
+            IEnumerable<Order> orders;
+            orders = await _orderRepository.GetAllOrdersByPersonIdAsync(personId);
+            return Ok(orders.ToDtos());
+        }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteOrderAsync(int id)
         {

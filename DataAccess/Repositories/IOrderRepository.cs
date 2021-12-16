@@ -14,6 +14,7 @@ namespace DataAccess.Repositories
         Task<bool> DeleteOrderAsync(int id);
         Task<Order> GetOrderByIdAsync(int id);
         Task<IEnumerable<Order>> GetAllOrdersAsync();
+        Task<IEnumerable<Order>> GetAllOrdersByPersonIdAsync(int personId);
 
         //OrderLineItemRepository
         //Task<int> CreateOrderLineItemAsync(OrderLineItem orderLineItem, int orderId);
