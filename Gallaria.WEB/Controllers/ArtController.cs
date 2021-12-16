@@ -53,11 +53,11 @@ namespace Gallaria.WEB.Controllers
             {
                 art.ArtistName = GetAuthorName(art);
                 art.Img64 = GetImageSourceFromByteArray(art.Image);
-
             }
 
             return View(artDtos);
         }
+
         public IActionResult AddtoCart(int id)
         {
             string isAuthenticated = _httpContextAccessor.HttpContext.Session.GetString("isAuthenticated");
@@ -77,13 +77,13 @@ namespace Gallaria.WEB.Controllers
                     IncrementInsertedItemQuantity(art.Id);
                 }
                 _httpContextAccessor.HttpContext.Session.SaveShoppingCartInSession("cart", _orderDto);
-                return Redirect(Request.Headers["Referer"].ToString());
+
+                return Redirect(Request.Headers["Referer"].ToString()); ;
             }
             else
             {
                 return RedirectToAction("Login", "Accounts");
             }
-            
         } 
 
         public string GetImageSourceFromByteArray(byte[] imgBytes)

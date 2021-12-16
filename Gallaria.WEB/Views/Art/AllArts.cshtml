@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Gallaria.ApiClient.DTOs.ArtDto>
 
 <link rel="Stylesheet" href="~/css/allArts.css" type="text/css" />
-<link href="~/css/index.css" rel="stylesheet" type="text/css"/>
+<link href="~/css/index.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewData["Title"] = "AllArts";
@@ -21,7 +21,6 @@
                         <div class="card-image">
                             <img src="@Html.DisplayFor(modelItem => item.Img64)" runat="server" />
                         </div>
-
                         @*<a class="card-action" href="#"><i class="fa fa-heart"></i></a>*@
                         <div class="card-heading">
                             @Html.DisplayFor(modelItem => item.Title)
@@ -35,16 +34,41 @@
                         <div class="card-text">
                             @Html.DisplayFor(modelItem => item.AvailableQuantity) piece(s) available
                         </div>
-                        <a href="@Url.Action("AddToCart", "Art", new {id = item.Id})" class="card-button" style="text-decoration: none"> Add to cart</a>
+                        <a href="@Url.Action("AddToCart", "Art", new {id = item.Id})" id="addToCart" class="card-button" type="button" onclick="showModal()" style="text-decoration: none"> Add to cart</a>
                     </div>
                 </a>
             </div>
         }
     </div>
 
+    <div class="modal fade" id="itemSuccessfullyAddedToCart" tabindex="-1" role="dialog" aria-labelledby="itemSuccessfullyAddedToCartLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="itemSuccessfullyAddedToCartLabel">Successful</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Item was successfully added to shopping cart!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    @*<button type="button" class="btn btn-primary">View shopping cart</button>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script id="masonry" src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <script>
+        function showModal() {
+            $("#itemSuccessfullyAddedToCart").modal('show');
+        }
+    </script>
 
     <script>
         $(document).ready(function () {
