@@ -1,9 +1,12 @@
 ﻿function showPassword() {
     var passwordText = document.getElementById("password");
+
     if (passwordText.type == "password") {
         passwordText.type = "text";
+        document.getElementById("icon").src = "/Images/hidden.png"
     } else {
-        passwordText.type = "password";
+        passwordText.type = "password"
+        document.getElementById("icon").src = "/Images/show.png"
     }
 }
 

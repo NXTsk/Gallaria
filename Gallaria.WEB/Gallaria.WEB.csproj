@@ -12,14 +12,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\Images\hidden.png" />
     <Content Remove="wwwroot\Images\profilePicture-64x64.png" />
+    <Content Remove="wwwroot\Images\show.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Images\hidden.png" />
     <None Include="wwwroot\Images\logo-128x128.png" />
     <None Include="wwwroot\Images\logo-256x256.png" />
     <None Include="wwwroot\Images\logo-64x64.png" />
     <None Include="wwwroot\Images\profilePicture-64x64.png" />
+    <None Include="wwwroot\Images\show.png" />
   </ItemGroup>
 
   <ItemGroup>

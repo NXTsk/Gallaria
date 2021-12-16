@@ -4,33 +4,21 @@
     ViewData["Title"] = "Login";
 }
 
-@*<h1>Login</h1>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" required />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" type="password" required />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>*@
+<script src="~/js/ShowPassword.js"></script>
 
-@*<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="~/css/loginStyle.css" type="text/css" rel="stylesheet"/>*@
+<style>
+    .unstyled-button {
+        background: none;
+        color: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+    }
+    .unstyled-button:focus{
+        outline: none;
+    }
+</style>
 
-<br>
 <br>
 <div class="container">
     <div class="row justify-content-center">
@@ -42,20 +30,18 @@
                         <p class="text-muted">Sign In to your account</p>
                         <form method="post">
                             <div class="input-group mb-3">
-                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                 <input asp-for="Email" type="text" class="form-control" placeholder="Email" required>
                             </div>
                             <div class="input-group mb-4">
-                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                <input asp-for="Password" type="password" class="form-control" placeholder="Password" required>
+                                <input asp-for="Password" type="password" class="form-control" placeholder="Password" required id="password">
+                                <button type="button" class="unstyled-button" onclick="showPassword()" >
+                                    <img style="float: right;" src="~/Images/show.png" height="32" width="32" id="icon"/>
+                                </button>
                             </div>
                             <div class="row">
                                 <div class="col-6">
                                     <button type="submit" value="Login" class="btn btn-primary px-4">Login</button>
                                 </div>
-                                @*<div class="col-6 text-right">
-                                    <button type="button" class="btn btn-link px-0">Forgot password?</button>
-                                </div>*@
                             </div>
                         </form>
                     </div>
@@ -64,6 +50,7 @@
                     <div class="card-body text-center">
                         <div>
                             <h2>Sign up</h2>
+                            <p></p>
                             <p>Are you new on our website? Would you like to buy any interesting art ? If you don't have account yet</p>
                             <button type="button" onclick="location.href='@Url.Action("CreateAccount","Accounts")'" class="btn btn-primary active mt-3">Sign up now!</button>
                         </div>
