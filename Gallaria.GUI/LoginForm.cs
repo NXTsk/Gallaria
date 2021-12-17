@@ -110,5 +110,10 @@ namespace Gallaria.GUI
             showPasswordButtonBox.Visible = true;
             hidePasswordButtonBox.Visible = false;
         }
+
+        private void LinkLabelForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MessageBox.Show(this, "Sorry but this feature is not implemented yet.", "Sorry", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
