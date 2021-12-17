@@ -35,6 +35,17 @@ namespace Gallaria.WEB.Controllers
 
         public IActionResult Details(int id)
         {
+            string isAuthenticated = _httpContextAccessor.HttpContext.Session.GetString("isAuthenticated");
+
+            if (isAuthenticated.Equals("true"))
+            {
+                HttpContext.Session.SetString("isAuthenticated", "true");
+            }
+            else
+            {
+                HttpContext.Session.SetString("isAuthenticated", "false");
+            }
+
             ArtDto art = _artClient.GetArtByIDAsync(id).Result;
             var artist = _personClient.GetPersonByIdAsync(art.AuthorId).Result;
 
@@ -48,6 +59,17 @@ namespace Gallaria.WEB.Controllers
 
         public async Task<IActionResult> AllArts()
         {
+            string isAuthenticated = _httpContextAccessor.HttpContext.Session.GetString("isAuthenticated");
+
+            if (isAuthenticated.Equals("true"))
+            {
+                HttpContext.Session.SetString("isAuthenticated", "true");
+            }
+            else
+            {
+                HttpContext.Session.SetString("isAuthenticated", "false");
+            }
+
             IEnumerable<ArtDto> artDtos = await _artClient.GetAllAvailableArtsAsync();
             foreach (var art in artDtos)
             {

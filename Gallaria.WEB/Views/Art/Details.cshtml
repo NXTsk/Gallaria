@@ -1,4 +1,5 @@
 ﻿@model Gallaria.ApiClient.DTOs.ArtDto
+@using Microsoft.AspNetCore.Http;
 
 @{
     ViewData["Title"] = "DetailsView";
@@ -59,8 +60,11 @@
     </div>
 </div>
 
-<script>
-    function showModal() {
-        $("#itemSuccessfullyAddedToCart").modal('show');
-    }
-</script>
+@if (Context.Session.GetString("isAuthenticated") == "true")
+{
+    <script>
+        function showModal() {
+            $("#itemSuccessfullyAddedToCart").modal('show');
+        }
+    </script>
+}

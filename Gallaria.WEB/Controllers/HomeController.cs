@@ -1,4 +1,4 @@
-﻿using Gallaria.ApiClient.DTOs;
+﻿    using Gallaria.ApiClient.DTOs;
 using Gallaria.ApiClient.Interfaces;
 using Gallaria.WEB.Helpers;
 using Gallaria.WEB.Models;
@@ -44,7 +44,6 @@ namespace Gallaria.WEB.Controllers
             {
                 HttpContext.Session.SetString("isAuthenticated", "false");
             }
-
 
             return View(list);
         }
