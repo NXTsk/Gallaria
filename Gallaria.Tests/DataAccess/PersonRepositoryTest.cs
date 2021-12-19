@@ -89,8 +89,9 @@ namespace Gallaria.Tests.DataAccess
 
             //Assert
             var refoundPerson = await _personRepository.GetPersonByIdAsync(_newPerson.Id);
-            Assert.IsTrue(refoundPerson.FirstName == updatedFirstName && refoundPerson.LastName == refoundPerson.LastName && refoundPerson.Email == updatedEmail 
-                && refoundPerson.PhoneNumber == updatedPhoneNumber && refoundPerson.Address.Street == updatedStreet && refoundPerson.Address.HouseNumber == updatedHouseNumber 
+            Assert.IsTrue(refoundPerson.FirstName == updatedFirstName && refoundPerson.LastName == refoundPerson.LastName 
+                && refoundPerson.Email == updatedEmail && refoundPerson.PhoneNumber == updatedPhoneNumber 
+                && refoundPerson.Address.Street == updatedStreet && refoundPerson.Address.HouseNumber == updatedHouseNumber 
                 && refoundPerson.Address.Zipcode == updatedZipcode && refoundPerson.Address.City == updatedCity 
                 && refoundPerson.Address.Country == updatedCountry, "Person was not updated");
         }
@@ -168,7 +169,7 @@ namespace Gallaria.Tests.DataAccess
         }
 
         [TearDown]
-        public async Task CleanUpAsync()
+        public async Task CleanUp()
         {
             await _personRepository.DeletePersonAsync(_newPerson.Id);
             await _personRepository.DeleteArtistAsync(_newArtist.ArtistId);

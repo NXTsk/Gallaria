@@ -135,7 +135,7 @@ namespace Gallaria.Tests.ApiClient
 
             //Assert
             Assert.IsTrue(wasUpdated, "Password was not updated");
-            //Assert.IsTrue(person.HashPassword == newPassword, "Passwords don't match so password was not updated");
+            Assert.IsTrue(person.HashPassword == newPassword, "Passwords don't match so password was not updated");
         }
 
         [Test]
