@@ -1,6 +1,7 @@
 ﻿ using DataAccess.Repositories;
 using Gallaria.API.Converters;
 using Gallaria.API.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
@@ -44,6 +45,7 @@ namespace Gallaria.API.Controllers
         // PUT api/<PersonController>/updatePerson
         [HttpPut]
         [Route("updatePerson")]
+        [Authorize]
         public async Task<ActionResult<bool>> UpdatePersonAsync([FromBody] PersonDto personDtoToUpdate)
         {
             bool wasUpdated = await _personRepository.UpdatePersonAsync(personDtoToUpdate.FromDto());
@@ -58,6 +60,7 @@ namespace Gallaria.API.Controllers
         // PUT api/<PersonController>/updateArtist
         [HttpPut]
         [Route("updateArtist")]
+        [Authorize]
         public async Task<ActionResult<bool>> UpdateArtistAsync([FromBody] ArtistDto artistDtoToUpdate)
         {
             bool wasUpdated = await _personRepository.UpdateArtistAsync(artistDtoToUpdate.FromDto());
@@ -84,6 +87,7 @@ namespace Gallaria.API.Controllers
 
         // GET api/<PersonController>/id
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<PersonDto>> Get(int id)
         {
             var person = await _personRepository.GetPersonByIdAsync(id);
@@ -95,6 +99,7 @@ namespace Gallaria.API.Controllers
         }
 
         [HttpGet("getArtist/{id}")]
+        [Authorize]
         public async Task<ActionResult<ArtistDto>> GetArtistAsync(int id)
         {
             var artist = await _personRepository.GetArtistByIdAsync(id);
@@ -106,6 +111,7 @@ namespace Gallaria.API.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         [Route("deleteArtist/{id}")]
         public async Task<ActionResult> DeleteArtistAsync(int id)
         {
@@ -119,6 +125,7 @@ namespace Gallaria.API.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         [Route("deletePerson/{id}")]
         public async Task<ActionResult> DeletePersonAsync(int id)
         {

@@ -2,6 +2,7 @@
 using DataAccess.Repositories;
 using Gallaria.API.Converters;
 using Gallaria.API.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -26,6 +27,7 @@ namespace Gallaria.API.Controllers
 
         // GET api/<OrderLineItemController>/id
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<OrderLineItemDto>> GetAllOrderLineItemByIdAsync(int id)
         {
             var order = await _orderRepository.GetOrderLineItemByIdAsync(id);
@@ -38,6 +40,7 @@ namespace Gallaria.API.Controllers
 
         // DELETE api/<OrderLineItemController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<ActionResult<bool>> DeleteOrderLineItemAsync(int id)
         {
             if (!await _orderRepository.DeleteOrderLineItemAsync(id)) { return NotFound(); }
@@ -48,6 +51,7 @@ namespace Gallaria.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<ICollection<OrderLineItemDto>>> GetAllOrderLineItemsInOrderAsync([FromQuery] int id)
         {
             ICollection<OrderLineItem> orderLineItems;
