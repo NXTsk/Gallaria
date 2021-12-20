@@ -14,8 +14,8 @@ namespace Gallaria.ApiClient.Interfaces
         public HttpClient HttpClient { get; set; }
 
         public Task<int> CreateOrderAsync(OrderDto order, string token);
-        public Task<OrderDto> GetOrderByIdAsync(int id);
-        public Task<IEnumerable<OrderDto>> GetAllOrdersByPersonIdAsync(int personId);
-        public Task<bool> DeleteOrderAsync(int id);
+        public Task<OrderDto> GetOrderByIdAsync(int id, string token);
+        public Task<IEnumerable<OrderDto>> GetAllOrdersByPersonIdAsync(int personId, string token);
+        public Task<bool> DeleteOrderAsync(int id, string token);
     }
 }

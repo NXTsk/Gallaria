@@ -27,6 +27,7 @@ namespace Gallaria.API.Controllers
         }
 
 
+        // POST: api/Login
         [HttpPost]
         public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
         {
@@ -45,6 +46,9 @@ namespace Gallaria.API.Controllers
                 expires: DateTime.Now.AddDays(5),
                 signingCredentials: new Microsoft.IdentityModel.Tokens.SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                 );
+
+            // Returning Ok response with an object inside the body of the response
+            // Object contain Logged in userId, token and it's expiration
             return Ok(new
             {
                 token = new JwtSecurityTokenHandler().WriteToken(token),

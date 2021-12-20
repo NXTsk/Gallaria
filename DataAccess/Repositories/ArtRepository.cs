@@ -37,6 +37,7 @@ namespace DataAccess.Repositories
                 throw new Exception($"Error creating new Art: '{ex.Message}'.", ex);
             }
         }
+
         public async Task<bool> DeleteArtAsync(int id)
         {
             try

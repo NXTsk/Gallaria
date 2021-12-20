@@ -131,6 +131,9 @@ namespace Gallaria.ApiClient
             return false;
         }
 
+        /*
+         * Converting an image from Base64 string into Byte Array, that can be stored in a database
+         */
         public byte[] ConvertBase64toByteArray(string pictureBase64String)
         {
             byte[] pictureByteArray = Convert.FromBase64String(pictureBase64String);

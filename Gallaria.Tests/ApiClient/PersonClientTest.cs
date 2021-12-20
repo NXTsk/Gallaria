@@ -13,14 +13,18 @@ namespace Gallaria.Tests.ApiClient
     class PersonClientTest
     {
         private IPersonClient _personClient;
+        private IAuthenticateClient _authenticateClient;
 
         private ArtistDto _artist;
         private PersonDto _person;
+        private AuthUserDto _loggedInArtist;
+        private AuthUserDto _loggedInPerson;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
             _personClient = new PersonClient(Configuration.API_URL);
+            _authenticateClient = new AuthenticateClient(Configuration.API_URL);
         }
 
         [SetUp]
@@ -28,6 +32,9 @@ namespace Gallaria.Tests.ApiClient
         {
             await CreatePersonAsync();
             await CreateArtistAsync();
+            _loggedInArtist = await _authenticateClient.LoginAsync(new UserDto() { Email = _artist.Email, Password = _artist.HashPassword });
+            _loggedInPerson = await _authenticateClient.LoginAsync(new UserDto() { Email = _person.Email, Password = _person.HashPassword });
+
         }
 
         public async Task CreatePersonAsync()
@@ -101,7 +108,8 @@ namespace Gallaria.Tests.ApiClient
             _person.Address.Country = updatedCountry;
 
             //Act
-            bool wasUpdated = await _personClient.UpdatePersonAsync(_person);
+
+            bool wasUpdated = await _personClient.UpdatePersonAsync(_person, _loggedInPerson.Token);
 
             //Assert
             Assert.IsTrue(wasUpdated, "Person was not updated");
@@ -116,7 +124,8 @@ namespace Gallaria.Tests.ApiClient
             _artist.ProfileDescription = updatedProfileDescription;
 
             //Act
-            bool wasUpdated = await _personClient.UpdateArtistAsync(_artist);
+
+            bool wasUpdated = await _personClient.UpdateArtistAsync(_artist, _loggedInArtist.Token);
 
             //Assert
             Assert.IsTrue(wasUpdated, "Artist was not updated");
@@ -131,11 +140,10 @@ namespace Gallaria.Tests.ApiClient
             _person.NewPassword = newPassword;
 
             //Act
-            bool wasUpdated = await _personClient.UpdatePasswordAsync(_person);
+            bool wasUpdated = await _personClient.UpdatePasswordAsync(_person, _loggedInPerson.Token);
 
             //Assert
             Assert.IsTrue(wasUpdated, "Password was not updated");
-            Assert.IsTrue(_person.HashPassword == newPassword, "Passwords don't match so password was not updated");
         }
 
         [Test]
@@ -167,9 +175,9 @@ namespace Gallaria.Tests.ApiClient
         [TearDown]
         public async Task CleanUp()
         {
-            await _personClient.DeleteArtistAsync(_artist.Id);
-            await _personClient.DeletePersonAsync(_artist.Id);
-            await _personClient.DeletePersonAsync(_person.Id);
+            await _personClient.DeleteArtistAsync(_artist.Id, _loggedInArtist.Token);
+            await _personClient.DeletePersonAsync(_artist.Id, _loggedInArtist.Token);
+            await _personClient.DeletePersonAsync(_person.Id, _loggedInPerson.Token);
         }
     }
 }

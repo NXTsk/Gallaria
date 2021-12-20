@@ -34,21 +34,25 @@ namespace Gallaria.API
             services.AddControllers();
             services.AddMvc();
 
+            // Adding Singletons for all repositories, allowing us to do the dependency injection of those objects
             services.AddSingleton<IPersonRepository>(x => new PersonRepository(Configuration["ConnectionStrings:MSSQLconnection"]));
             services.AddSingleton<IArtRepository>(x => new ArtRepository(Configuration["ConnectionStrings:MSSQLconnection"]));
             services.AddSingleton<IOrderRepository>(x => new OrderRepository(Configuration["ConnectionStrings:MSSQLconnection"]));
 
 
+            // Dissabling the Swagger documentation
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "SwaggerDemoApplication",
-                    Version = "v1"
-                });
-            });
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo
+            //    {
+            //        Title = "SwaggerDemoApplication",
+            //        Version = "v1"
+            //    });
+            //});
 
+
+            // Adding basic authentication service with JWT Token validation and authorization
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -87,6 +91,7 @@ namespace Gallaria.API
             app.UseHttpsRedirection();
             app.UseRouting();
 
+            // Using the Authentication and Authorization through out our application
             app.UseAuthorization();
             app.UseAuthentication();
 
@@ -96,11 +101,13 @@ namespace Gallaria.API
                 endpoints.MapControllers();
             });
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1");
-            });
+            // Dissabling the Swagger documentation
+
+            //app.UseSwagger();
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1");
+            //});
         }
     }
 }

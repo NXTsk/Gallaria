@@ -37,6 +37,7 @@ namespace DataAccess.Repositories
                         string sqlStringOrderLineItem = "INSERT INTO dbo.[OrderLineItem](OrderId, ArtId, Quantity) VALUES (@OrderId, @ArtId, @Quantity);" +
                         "SELECT CAST(SCOPE_IDENTITY() as int)";
 
+                        // Parameterized order details
                         var orderDetails = new { PersonId = order.Person.Id, Date = order.Date, FinalPrice = order.FinalPrice };
                         try
                         {
@@ -68,6 +69,7 @@ namespace DataAccess.Repositories
                             }
                             else
                             {
+                                // If something goes wrong, imediately reroll the transaction
                                 transaction.Rollback();
                                 return -1;
                             }

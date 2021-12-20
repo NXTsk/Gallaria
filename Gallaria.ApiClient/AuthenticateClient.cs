@@ -21,6 +21,9 @@ namespace Gallaria.ApiClient
             HttpClient = new HttpClient();
         }
 
+        /**
+         * Returning a AuthUserDto containing userId, Token and it's expiration
+         **/
         public async Task<AuthUserDto> LoginAsync(UserDto user)
         {
             AuthUserDto authenticatedData = new AuthUserDto();

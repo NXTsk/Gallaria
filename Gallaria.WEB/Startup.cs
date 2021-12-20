@@ -30,6 +30,7 @@ namespace Gallaria.WEB
             services.AddControllersWithViews();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            // Adding Singletons for all ApiClients, allowing us to do the dependency injection of those objects
             services.AddSingleton<IArtClient>(x => new ArtClient(Configuration["WebAPIConnection"]));
             services.AddSingleton<IAuthenticateClient>(x => new AuthenticateClient(Configuration["WebAPIConnection"]));
             services.AddSingleton<IPersonClient>(x => new PersonClient(Configuration["WebAPIConnection"]));

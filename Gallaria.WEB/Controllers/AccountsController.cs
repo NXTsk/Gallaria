@@ -37,23 +37,40 @@ namespace Gallaria.WEB.Controllers
 
         public async Task<IActionResult> Account()
         {
-            int personId = int.Parse(CookieHelper.ReadCookie("userId", _httpContextAccessor));
-            IEnumerable<OrderDto> orderDtos = await _orderClient.GetAllOrdersByPersonIdAsync(personId);
+            int personId = 0;
+            bool parsing = int.TryParse(CookieHelper.ReadCookie("userId", _httpContextAccessor), out personId);
+
+            if (!parsing)
+            {
+                // If anything happens with the cookie, the user is redirected to Home page
+                return RedirectToAction("Index", "Home");
+            }
+
+            string token = CookieHelper.ReadJWT(_httpContextAccessor);
+
+            // Retrieving the orders from database
+            IEnumerable<OrderDto> orderDtos = await _orderClient.GetAllOrdersByPersonIdAsync(personId, token);
+
+            // Creating a new list of orders, where newly altered orders will go into
             ICollection<OrderDto> newOrderDtos = new List<OrderDto>();
 
+            // Looping through orders from the database
             foreach (OrderDto order in orderDtos)
             {
                 OrderDto orderDto = new OrderDto();
 
+                // Assigning the values from variables from the database order into new orderDto object
                 orderDto.Id = order.Id;
                 orderDto.Person = order.Person;
                 orderDto.FinalPrice = order.FinalPrice;
                 orderDto.Date = order.Date;
                 orderDto.OrderLineItems = new List<OrderLineItemDto>();
 
+                // Looping through each orderlineitem 
                 foreach (OrderLineItemDto orderLineItemDto in order.OrderLineItems)
                 {
                     OrderLineItemDto orderLineItem = orderLineItemDto;
+                    // Converting byte array int of stored image into string and assigning that value to Img64 property in Art object
                     orderLineItem.Art.Img64 = ArtHelper.GetImageSourceFromByteArray(orderLineItem.Art.Image);
                     orderDto.OrderLineItems.Add(orderLineItem);
                 }
@@ -69,7 +86,8 @@ namespace Gallaria.WEB.Controllers
             {
                 ArtistDto artist = _personClient.GetArtistByIdAsync(personId).Result;
 
-
+                // Creating Expando object, so we can pass it in parameter to the view
+                // View then works with dynamic object
                 dynamic obj = new ExpandoObject();
                 obj.Person = artist;
                 obj.Orders = newOrderDtos;
@@ -80,6 +98,8 @@ namespace Gallaria.WEB.Controllers
             {
                 PersonDto person = _personClient.GetPersonByIdAsync(personId).Result;
 
+                // Creating Expando object, so we can pass it in parameter to the view
+                // View then works with dynamic object
                 dynamic obj = new ExpandoObject();
                 obj.Person = person;
 
@@ -126,10 +146,10 @@ namespace Gallaria.WEB.Controllers
             if (!result.IsUserAuthenticated)
                 return Unauthorized("Wrong username or password!");
 
-            CookieHelper.SaveJWTAsCookie("X-Access-Token", result, Response);
-            HttpContext.Session.SetString("isAuthenticated", "true");
-
+            // Setting up Session and cookies
+            CookieHelper.SaveJWTAsCookie(result, Response);
             CookieHelper.SaveCookie("userId", result.UserId.ToString(), Response);
+            HttpContext.Session.SetString("isAuthenticated", "true");
 
             if (!string.IsNullOrEmpty(returnUrl))
             {
@@ -142,12 +162,12 @@ namespace Gallaria.WEB.Controllers
         }
         public IActionResult Logout()
         {
-            CookieHelper.RemoveJWT("X-Access-Token", Response);
-            HttpContext.Session.SetString("isAuthenticated", "false");
-            HttpContext.Session.Remove("cart");
+            CookieHelper.RemoveJWT(Response);
             CookieHelper.RemoveCookie("userId", Response);
-
-            return Redirect(Request.Headers["Referer"].ToString());
+            HttpContext.Session.Remove("cart");
+            HttpContext.Session.SetString("isAuthenticated", "false");
+            
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: AuthorController/Create
@@ -202,21 +222,27 @@ namespace Gallaria.WEB.Controllers
             return View();
         }
 
+
+        /*
+         * This method is still under development and does not work properly
+         */
         [HttpPost]
         public async Task<ActionResult> UpdatePassword([FromBody] PersonDto personDto)
         {
-            //int userId = int.Parse(HttpContext.Request.Cookies["userId"]);
-            //personDto.Id = userId;
-            //PersonDto person = await personClient.GetPersonByIdAsync(userId);
-            //person.NewPassword = personDto.NewPassword;
 
-            //bool response = await personClient.UpdatePasswordAsync(person);
+            int userId = int.Parse(CookieHelper.ReadCookie("userId", _httpContextAccessor));
+            string token = CookieHelper.ReadJWT(_httpContextAccessor);
+            personDto.Id = userId;
+            PersonDto person = await _personClient.GetPersonByIdAsync(userId);
+            person.NewPassword = personDto.NewPassword;
 
-            //if (!response)
-            //{
-            //    HttpContext.Session.SetString("changedPassword", "false");
-            //    return RedirectToAction("ChangePassword", "Accounts");
-            //}
+            bool response = await _personClient.UpdatePasswordAsync(person, token);
+
+            if (!response)
+            {
+                HttpContext.Session.SetString("changedPassword", "false");
+                return RedirectToAction("ChangePassword", "Accounts");
+            }
 
             return RedirectToAction("PasswordChangedSuccessfully", "Accounts");
         }

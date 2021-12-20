@@ -111,7 +111,7 @@ namespace Gallaria.Tests.ApiClient
             int id = _orderToCreate.Id;
 
             //Act
-            OrderDto orderDto = await _orderClient.GetOrderByIdAsync(id);
+            OrderDto orderDto = await _orderClient.GetOrderByIdAsync(id, _authUser.Token);
 
             //Assert
             Assert.AreEqual(id, orderDto.Id, "Recieved order wasn't equal");
@@ -120,10 +120,10 @@ namespace Gallaria.Tests.ApiClient
         [OneTimeTearDown]
         public async Task CleanUp()
         {
-            await _orderClient.DeleteOrderAsync(_orderToCreate.Id);
+            await _orderClient.DeleteOrderAsync(_orderToCreate.Id, _authUser.Token);
             await _artClient.DeleteArtAsync(_art.Id);
-            await _personClient.DeleteArtistAsync(_artist.Id);
-            await _personClient.DeletePersonAsync(_artist.Id);
+            await _personClient.DeleteArtistAsync(_artist.Id, _authUser.Token);
+            await _personClient.DeletePersonAsync(_artist.Id, _authUser.Token);
         }
     }
 }

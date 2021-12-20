@@ -28,7 +28,7 @@ namespace Gallaria.WEB.Controllers
 
         public IActionResult Index()
         {
-            string JWT = CookieHelper.ReadJWT("X-Access-Token", _httpContextAccessor);
+            string token = CookieHelper.ReadJWT(_httpContextAccessor);
             IEnumerable<ArtDto> sampleArts = _artClient.GetAllAvailableArtsAsync().Result;
             var list = sampleArts.Reverse().Take(3);
             foreach (var item in list)
@@ -36,7 +36,7 @@ namespace Gallaria.WEB.Controllers
                 item.Img64 = GetImageSourceFromByteArray(item.Image);
             }
 
-            if (JWT != null)
+            if (token != null)
             {
                 HttpContext.Session.SetString("isAuthenticated", "true");
 

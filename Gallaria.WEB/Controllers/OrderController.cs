@@ -36,7 +36,7 @@ namespace Gallaria.WEB.Controllers
             {
                 try
                 {
-                    int result = await _orderClient.CreateOrderAsync(order, CookieHelper.ReadJWT("X-Access-Token", _httpContextAccessor));
+                    int result = await _orderClient.CreateOrderAsync(order, CookieHelper.ReadJWT(_httpContextAccessor));
                     if (result != -1)
                     {
                         HttpContext.Session.Remove("cart");

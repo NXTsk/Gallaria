@@ -25,7 +25,7 @@ namespace Gallaria.API.Controllers
             _artRepository = artRepository;
         }
 
-        // GET: api/<ArtController>
+        // GET: api/Art
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ArtDto>>> GetAllAsync()
         {
@@ -34,7 +34,7 @@ namespace Gallaria.API.Controllers
             return Ok(arts.ToDtos());
         }
 
-        // GET: api/<ArtController>
+        // GET: api/Art/artistArts/{authorId}
         [HttpGet]
         [Route("artistArts/{authorId}")]
         public async Task<ActionResult<IEnumerable<ArtDto>>> GetAllArtsThatByAuthorIdAsync(int authorId)
@@ -44,7 +44,7 @@ namespace Gallaria.API.Controllers
             return Ok(arts.ToDtos());
         }
 
-        // GET: api/<ArtController>
+        // GET: api/Art/available
         [HttpGet]
         [Route("available")]
         public async Task<ActionResult<IEnumerable<ArtDto>>> GetAllAvailableAsync()
@@ -54,7 +54,7 @@ namespace Gallaria.API.Controllers
             return Ok(arts.ToDtos());
         }
 
-        // GET api/<ArtController>/50
+        // GET: api/Art/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<ArtDto>> Get(int id)
         {
@@ -66,14 +66,14 @@ namespace Gallaria.API.Controllers
             }
         }
 
-        // POST api/<ArtController>
+        // POST: api/Art
         [HttpPost]
         public async Task<ActionResult<int>> CreateArtAsync([FromBody] ArtDto newArtDto)
         {
             return Ok(await _artRepository.CreateArtAsync(newArtDto.FromDto()));
         }
 
-        // PUT api/<ArtController>/35
+        // PUT: api/Art
         [HttpPut]
         public async Task<ActionResult<bool>> UpdateArtAsync([FromBody] ArtDto artDtoToUpdate)
         {
@@ -86,7 +86,7 @@ namespace Gallaria.API.Controllers
             return NotFound(); 
         }
 
-        // DELETE api/<ArtController>/5
+        // DELETE: api/Art/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
