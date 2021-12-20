@@ -30,7 +30,8 @@ namespace Gallaria.Tests.DataAccess
         private async Task<Art> CreateNewArtAsync()
         {
             byte[] bytes = System.IO.File.ReadAllBytes("../../../testImages/11.jpg");
-            _newArt = new Art() { AuthorId = _newArtist.Id, Title = "New art", Description = "hello", Image = bytes, Price = 10, AvailableQuantity = 20, Category = "Nature", CreationDate= new DateTime(2021,11,20)};
+            _newArt = new Art() { AuthorId = _newArtist.Id, Title = "New art", Description = "hello", Image = bytes, Price = 10,
+                AvailableQuantity = 20, Category = "Nature", CreationDate= new DateTime(2021,11,20)};
             _newArt.Id = await _artRepository.CreateArtAsync(_newArt);
 
             return _newArt;
@@ -39,7 +40,8 @@ namespace Gallaria.Tests.DataAccess
         private async Task<Artist> CreateNewArtistAsync()
         {
             Address a = new Address() { Street = "Nibevej", HouseNumber = "12", Zipcode = "9200", City = "Aalborg", Country = "Denmark" };
-            _newArtist = new Artist() { FirstName = "Petronela", LastName = "Lakatosova", Email = "petronela@slovak.sk", PhoneNumber = "123123", Address = a, ProfileDescription = "I am a digital artist." };
+            _newArtist = new Artist() { FirstName = "Petronela", LastName = "Lakatosova", Email = "petronela@slovak.sk",
+                PhoneNumber = "123123", Address = a, ProfileDescription = "I am a digital artist." };
             _newArtist.ArtistId = await _personRepository.CreateArtistAsync(_newArtist, _testPassword);
 
             return _newArtist;

@@ -14,8 +14,8 @@ namespace Gallaria.Tests.ApiClient
     {
         private IPersonClient _personClient;
 
-        private ArtistDto artist;
-        private PersonDto person;
+        private ArtistDto _artist;
+        private PersonDto _person;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -32,7 +32,7 @@ namespace Gallaria.Tests.ApiClient
 
         public async Task CreatePersonAsync()
         {
-            person = new()
+            _person = new()
             {
                 Email = "dandapanda@seznam.cz",
                 FirstName = "Danda",
@@ -41,12 +41,12 @@ namespace Gallaria.Tests.ApiClient
                 PhoneNumber = "50689874",
                 Address = new() { City = "Aarhus", Country = "Denmark", HouseNumber = "145", Street = "Danstrosgade", Zipcode = "96500" }
             };
-            person.Id = await _personClient.CreatePersonAsync(person);
+            _person.Id = await _personClient.CreatePersonAsync(_person);
         }
 
         public async Task CreateArtistAsync()
         {
-            artist = new()
+            _artist = new()
             {
                 Email = "galantniadam@gmail.com",
                 FirstName = "Adam",
@@ -57,7 +57,7 @@ namespace Gallaria.Tests.ApiClient
                 Address = new() { City = "Copenhagen", Country = "Denmark", HouseNumber = "154", Street = "Slotsgade", Zipcode = "84536" }
             };
 
-            artist.Id = await _personClient.CreateArtistAsync(artist);
+            _artist.Id = await _personClient.CreateArtistAsync(_artist);
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace Gallaria.Tests.ApiClient
         {
             //Arrange & Act is done in Setup()
             //Assert
-            Assert.IsTrue(person.Id > 0, $"Failed to create person with name: {person.FirstName} {person.LastName}!");
+            Assert.IsTrue(_person.Id > 0, $"Failed to create person with name: {_person.FirstName} {_person.LastName}!");
         }
 
         [Test]
@@ -73,7 +73,7 @@ namespace Gallaria.Tests.ApiClient
         {
             //Arrange & Act is done in Setup()
             //Assert
-            Assert.IsTrue(artist.Id > 0, $"Failed to create person with name: {artist.FirstName} {artist.LastName}!");
+            Assert.IsTrue(_artist.Id > 0, $"Failed to create person with name: {_artist.FirstName} {_artist.LastName}!");
         }
 
         [Test]
@@ -90,18 +90,18 @@ namespace Gallaria.Tests.ApiClient
             string updatedCity = "Aalborg";
             string updatedCountry = "Denmark";
 
-            person.FirstName = updatedFirstName;
-            person.LastName = updatedLastName;
-            person.Email = updatedEmail;
-            person.PhoneNumber = updatedPhoneNumber;
-            person.Address.Street = updatedStreet;
-            person.Address.HouseNumber = updatedHouseNumber;
-            person.Address.Zipcode = updatedZipcode;
-            person.Address.City = updatedCity;
-            person.Address.Country = updatedCountry;
+            _person.FirstName = updatedFirstName;
+            _person.LastName = updatedLastName;
+            _person.Email = updatedEmail;
+            _person.PhoneNumber = updatedPhoneNumber;
+            _person.Address.Street = updatedStreet;
+            _person.Address.HouseNumber = updatedHouseNumber;
+            _person.Address.Zipcode = updatedZipcode;
+            _person.Address.City = updatedCity;
+            _person.Address.Country = updatedCountry;
 
             //Act
-            bool wasUpdated = await _personClient.UpdatePersonAsync(person);
+            bool wasUpdated = await _personClient.UpdatePersonAsync(_person);
 
             //Assert
             Assert.IsTrue(wasUpdated, "Person was not updated");
@@ -113,10 +113,10 @@ namespace Gallaria.Tests.ApiClient
             //Arrange
             string updatedProfileDescription = "My profile description is the best!";
 
-            artist.ProfileDescription = updatedProfileDescription;
+            _artist.ProfileDescription = updatedProfileDescription;
 
             //Act
-            bool wasUpdated = await _personClient.UpdateArtistAsync(artist);
+            bool wasUpdated = await _personClient.UpdateArtistAsync(_artist);
 
             //Assert
             Assert.IsTrue(wasUpdated, "Artist was not updated");
@@ -128,21 +128,21 @@ namespace Gallaria.Tests.ApiClient
             //Arrange
             string newPassword = "123456";
 
-            person.NewPassword = newPassword;
+            _person.NewPassword = newPassword;
 
             //Act
-            bool wasUpdated = await _personClient.UpdatePasswordAsync(person);
+            bool wasUpdated = await _personClient.UpdatePasswordAsync(_person);
 
             //Assert
             Assert.IsTrue(wasUpdated, "Password was not updated");
-            Assert.IsTrue(person.HashPassword == newPassword, "Passwords don't match so password was not updated");
+            Assert.IsTrue(_person.HashPassword == newPassword, "Passwords don't match so password was not updated");
         }
 
         [Test]
         public async Task TestIsArtist()
         {
             //Arrange - artist ID
-            int id = artist.Id;
+            int id = _artist.Id;
 
             //Act
             bool isArtist = await _personClient.IsArtistAsync(id);
@@ -155,7 +155,7 @@ namespace Gallaria.Tests.ApiClient
         public async Task TestGetPersonById()
         {
             //Arrange
-            int id = person.Id;
+            int id = _person.Id;
 
             //Act
             PersonDto personDto = await _personClient.GetPersonByIdAsync(id);
@@ -167,9 +167,9 @@ namespace Gallaria.Tests.ApiClient
         [TearDown]
         public async Task CleanUp()
         {
-            await _personClient.DeleteArtistAsync(artist.Id);
-            await _personClient.DeletePersonAsync(artist.Id);
-            await _personClient.DeletePersonAsync(person.Id);
+            await _personClient.DeleteArtistAsync(_artist.Id);
+            await _personClient.DeletePersonAsync(_artist.Id);
+            await _personClient.DeletePersonAsync(_person.Id);
         }
     }
 }

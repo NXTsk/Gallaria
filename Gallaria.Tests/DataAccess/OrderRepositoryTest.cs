@@ -35,8 +35,14 @@ namespace Gallaria.Tests.DataAccess
 
         private async Task<Person> CreateNewPersonAsync()
         {
-            Address a = new Address() { Street = "Dannebrogsgade", HouseNumber = "13", Zipcode = "9000", City = "Aalborg", Country = "Denmark" };
-            _newPerson = new Person() { FirstName = "Jacob", LastName = "Working", Email = "jacob@working.com", PhoneNumber = "50151412", Address = a };
+            Address a = new Address() 
+            {
+                Street = "Dannebrogsgade", HouseNumber = "13", Zipcode = "9000", City = "Aalborg", Country = "Denmark" 
+            };
+            _newPerson = new Person() 
+            {
+                FirstName = "Jacob", LastName = "Working", Email = "jacob@working.com", PhoneNumber = "50151412", Address = a 
+            };
             _newPerson.Id = await _personRepository.CreatePersonAsync(_newPerson, _password);
             return _newPerson;
         }
@@ -52,7 +58,8 @@ namespace Gallaria.Tests.DataAccess
         private async Task<Art> CreateNewArtAsync()
         {
             byte[] bytes = System.IO.File.ReadAllBytes("../../../testImages/11.jpg");
-            _newArt = new Art() { AuthorId = 152, Title = "New art", Description = "hello", Image = bytes, Price = 10, AvailableQuantity = 20, Category = "Nature", CreationDate = new DateTime(2021, 11, 20) };
+            _newArt = new Art() { AuthorId = 152, Title = "New art", Description = "hello", Image = bytes, Price = 10,
+                AvailableQuantity = 20, Category = "Nature", CreationDate = new DateTime(2021, 11, 20) };
             _newArt.Id = await _artRepository.CreateArtAsync(_newArt);
 
             return _newArt;

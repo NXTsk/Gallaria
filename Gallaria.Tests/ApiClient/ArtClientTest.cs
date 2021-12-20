@@ -13,7 +13,7 @@ namespace Gallaria.Tests.ApiClient
     class ArtClientTest
     {
         private IArtClient _artClient;
-        private ArtDto artToCreate;
+        private ArtDto _artToCreate;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -25,7 +25,7 @@ namespace Gallaria.Tests.ApiClient
         public async Task TestCreateArt()
         {
             //Arrange
-            artToCreate = new()
+            _artToCreate = new()
             {
                 AuthorId = 152,
                 ArtistName = "Denisa",
@@ -39,11 +39,11 @@ namespace Gallaria.Tests.ApiClient
             };
 
             //Act
-            int actualId = await _artClient.CreateArtAsync(artToCreate);
-            artToCreate.Id = actualId;
+            int actualId = await _artClient.CreateArtAsync(_artToCreate);
+            _artToCreate.Id = actualId;
 
             //Assert
-            Assert.IsTrue(actualId > 0, $"Failed to create art from artist with id: {artToCreate.AuthorId} and description: {artToCreate.Description}!");
+            Assert.IsTrue(actualId > 0, $"Failed to create art from artist with id: {_artToCreate.AuthorId} and description: {_artToCreate.Description}!");
         }
 
         [Test]
@@ -73,7 +73,7 @@ namespace Gallaria.Tests.ApiClient
         [TearDown]
         public async Task CleanUp()
         {
-            await _artClient.DeleteArtAsync(artToCreate.Id);
+            await _artClient.DeleteArtAsync(_artToCreate.Id);
         }
     }
 }

@@ -17,11 +17,11 @@ namespace Gallaria.Tests.ApiClient
         private IPersonClient _personClient;
         private IAuthenticateClient _authenticateClient;
 
-        private ArtistDto artist;
-        private ArtDto art;
-        private AuthUserDto authUser;
-        private List<OrderLineItemDto> orderLineItems;
-        private OrderDto orderToCreate;
+        private ArtistDto _artist;
+        private ArtDto _art;
+        private AuthUserDto _authUser;
+        private List<OrderLineItemDto> _orderLineItems;
+        private OrderDto _orderToCreate;
 
         [OneTimeSetUp]
         public async Task OneTimeSetUp()
@@ -34,16 +34,16 @@ namespace Gallaria.Tests.ApiClient
             await CreateArtistAsync();
             await CreateArtAsync();
 
-            authUser = await _authenticateClient.LoginAsync(new UserDto()
+            _authUser = await _authenticateClient.LoginAsync(new UserDto()
             {
-                Email = artist.Email,
-                Password = artist.HashPassword
+                Email = _artist.Email,
+                Password = _artist.HashPassword
             });
 
-            orderLineItems = new List<OrderLineItemDto>
+            _orderLineItems = new List<OrderLineItemDto>
             {
                 new OrderLineItemDto {
-                    Art = art,
+                    Art = _art,
                     Quantity = 1
                 }
             };
@@ -53,7 +53,7 @@ namespace Gallaria.Tests.ApiClient
 
         public async Task CreateArtistAsync()
         {
-            artist = new()
+            _artist = new()
             {
                 Email = "galantniadam@gmail.com",
                 FirstName = "Adam",
@@ -64,15 +64,15 @@ namespace Gallaria.Tests.ApiClient
                 Address = new() { City = "Copenhagen", Country = "Denmark", HouseNumber = "154", Street = "Slotsgade", Zipcode = "84536" }
             };
 
-            artist.Id = await _personClient.CreateArtistAsync(artist);
+            _artist.Id = await _personClient.CreateArtistAsync(_artist);
         }
 
         public async Task CreateArtAsync()
         {
-            art = new()
+            _art = new()
             {
-                AuthorId = artist.Id,
-                ArtistName = artist.FirstName,
+                AuthorId = _artist.Id,
+                ArtistName = _artist.FirstName,
                 Title = "The best piece of art",
                 Description = "This is most certainly the best piece of art you can ever see.",
                 AvailableQuantity = 1,
@@ -81,19 +81,19 @@ namespace Gallaria.Tests.ApiClient
                 Price = 20000,
                 Image = System.IO.File.ReadAllBytes("../../../testImages/11.jpg")
             };
-            art.Id = await _artClient.CreateArtAsync(art);
+            _art.Id = await _artClient.CreateArtAsync(_art);
         }
 
         public async Task CreateOrderAsync() 
         {
-            orderToCreate = new()
+            _orderToCreate = new()
             {
                 Date = DateTime.Now,
                 FinalPrice = 20000,
-                Person = artist,
-                OrderLineItems = orderLineItems
+                Person = _artist,
+                OrderLineItems = _orderLineItems
             };
-            orderToCreate.Id = await _orderClient.CreateOrderAsync(orderToCreate, authUser.Token);
+            _orderToCreate.Id = await _orderClient.CreateOrderAsync(_orderToCreate, _authUser.Token);
         }
 
         [Test]
@@ -101,14 +101,14 @@ namespace Gallaria.Tests.ApiClient
         {
             //Arrange & Act is done in OneTimeSetup()    
             //Assert
-            Assert.IsTrue(orderToCreate.Id > 0, $"Failed to create an order for: {orderToCreate.Person.FirstName} {orderToCreate.Person.LastName}!");
+            Assert.IsTrue(_orderToCreate.Id > 0, $"Failed to create an order for: {_orderToCreate.Person.FirstName} {_orderToCreate.Person.LastName}!");
         }
 
         [Test]
         public async Task TestGetOrderById()
         {
             //Arrange
-            int id = orderToCreate.Id;
+            int id = _orderToCreate.Id;
 
             //Act
             OrderDto orderDto = await _orderClient.GetOrderByIdAsync(id);
@@ -120,10 +120,10 @@ namespace Gallaria.Tests.ApiClient
         [OneTimeTearDown]
         public async Task CleanUp()
         {
-            await _orderClient.DeleteOrderAsync(orderToCreate.Id);
-            await _artClient.DeleteArtAsync(art.Id);
-            await _personClient.DeleteArtistAsync(artist.Id);
-            await _personClient.DeletePersonAsync(artist.Id);
+            await _orderClient.DeleteOrderAsync(_orderToCreate.Id);
+            await _artClient.DeleteArtAsync(_art.Id);
+            await _personClient.DeleteArtistAsync(_artist.Id);
+            await _personClient.DeletePersonAsync(_artist.Id);
         }
     }
 }
