@@ -30,7 +30,7 @@ namespace Gallaria.Tests.ApiClient
             AuthUserDto authUserDto = await _authenticateClient.LoginAsync(userDto);
 
             //Assert
-            Assert.IsTrue(authUserDto.isUserAuthenticated, $"Failed to login as a person with an email: {userDto.Email}!");
+            Assert.IsTrue(authUserDto.IsUserAuthenticated, $"Failed to login as a person with an email: {userDto.Email}!");
         }
     }
 }

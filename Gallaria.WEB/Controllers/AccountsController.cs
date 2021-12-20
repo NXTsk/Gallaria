@@ -17,27 +17,28 @@ namespace Gallaria.WEB.Controllers
 {
     public class AccountsController : Controller
     {
-        private IHttpContextAccessor httpContextAccessor;
+        private IHttpContextAccessor _httpContextAccessor;
 
-        private IAuthenticateClient authenticateClient;
-        private IPersonClient personClient;
-        private IArtClient artClient;
-        private IOrderClient orderClient;
-        public AccountsController(IAuthenticateClient _authenticateClient, IPersonClient _personClient, IArtClient _artClient, IOrderClient _orderClient, IHttpContextAccessor _contextAccessor)
+        private IAuthenticateClient _authenticateClient;
+        private IPersonClient _personClient;
+        private IArtClient _artClient;
+        private IOrderClient _orderClient;
+        public AccountsController(IAuthenticateClient authenticateClient, IPersonClient personClient,
+            IArtClient artClient, IOrderClient orderClient, IHttpContextAccessor contextAccessor)
         {
-            authenticateClient = _authenticateClient;
-            personClient = _personClient;
-            artClient = _artClient;
-            orderClient = _orderClient;
+            _authenticateClient = authenticateClient;
+            _personClient = personClient;
+            _artClient = artClient;
+            _orderClient = orderClient;
 
-            httpContextAccessor = _contextAccessor;
+            _httpContextAccessor = contextAccessor;
 
         }
 
         public async Task<IActionResult> Account()
         {
-            int personId = int.Parse(CookieHelper.ReadCookie("userId", httpContextAccessor));
-            IEnumerable<OrderDto> orderDtos = await orderClient.GetAllOrdersByPersonIdAsync(personId);
+            int personId = int.Parse(CookieHelper.ReadCookie("userId", _httpContextAccessor));
+            IEnumerable<OrderDto> orderDtos = await _orderClient.GetAllOrdersByPersonIdAsync(personId);
             ICollection<OrderDto> newOrderDtos = new List<OrderDto>();
 
             foreach (OrderDto order in orderDtos)
@@ -61,12 +62,12 @@ namespace Gallaria.WEB.Controllers
             }
             orderDtos = null;
 
-            bool isArtist = personClient.IsArtistAsync(personId).Result;
+            bool isArtist = _personClient.IsArtistAsync(personId).Result;
             ViewBag.IsArtist = isArtist;
 
             if (isArtist)
             {
-                ArtistDto artist = personClient.GetArtistByIdAsync(personId).Result;
+                ArtistDto artist = _personClient.GetArtistByIdAsync(personId).Result;
 
 
                 dynamic obj = new ExpandoObject();
@@ -77,7 +78,7 @@ namespace Gallaria.WEB.Controllers
             }
             else
             {
-                PersonDto person = personClient.GetPersonByIdAsync(personId).Result;
+                PersonDto person = _personClient.GetPersonByIdAsync(personId).Result;
 
                 dynamic obj = new ExpandoObject();
                 obj.Person = person;
@@ -120,9 +121,9 @@ namespace Gallaria.WEB.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(UserDto user, string returnUrl)
         {
-            var result = await authenticateClient.LoginAsync(user);
+            var result = await _authenticateClient.LoginAsync(user);
 
-            if (!result.isUserAuthenticated)
+            if (!result.IsUserAuthenticated)
                 return Unauthorized("Wrong username or password!");
 
             CookieHelper.SaveJWTAsCookie("X-Access-Token", result, Response);
@@ -161,7 +162,7 @@ namespace Gallaria.WEB.Controllers
             }
             else
             {
-                bool isUserArtist = accountVM.isPersonArtist;
+                bool isUserArtist = accountVM.IsPersonArtist;
                 if (isUserArtist)
                 {
                     try
@@ -169,7 +170,7 @@ namespace Gallaria.WEB.Controllers
                         ArtistDto artist = accountVM.Person.ConvertIntoArtist();
                         artist.ProfileDescription = accountVM.Artist.ProfileDescription;
 
-                        int response = await personClient.CreateArtistAsync(artist);
+                        int response = await _personClient.CreateArtistAsync(artist);
                         if (response != -1)
                         {
                             return RedirectToAction(nameof(Login), "Accounts");
@@ -185,7 +186,7 @@ namespace Gallaria.WEB.Controllers
                 {
                     try
                     {
-                        int response = await personClient.CreatePersonAsync(accountVM.Person);
+                        int response = await _personClient.CreatePersonAsync(accountVM.Person);
                         if (response != -1)
                         {
                             return RedirectToAction(nameof(Login), "Accounts");

@@ -16,14 +16,11 @@ namespace Gallaria.WEB.Controllers
         private IOrderClient _orderClient;
         private IPersonClient _personClient;
 
-        public  OrderController(IHttpContextAccessor httpContextAccessor, IOrderClient orderClient, IPersonClient personClient) {
-
+        public  OrderController(IHttpContextAccessor httpContextAccessor, IOrderClient orderClient, IPersonClient personClient)
+        {
             _httpContextAccessor = httpContextAccessor;
             _orderClient = orderClient;
             _personClient = personClient;
-
-            //TODO: Use this when calling CreateOrder on OrderClient
-            //CookieHelper.ReadJWT("X-Access-Token", _httpContextAccessor)
         }
 
         [HttpPost]
