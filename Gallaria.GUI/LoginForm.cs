@@ -15,8 +15,8 @@ namespace Gallaria.GUI
 {
     public partial class LoginForm : Form
     {
-        private AuthenticateClient authenticateClient;
-        private PersonClient personClient;
+        private AuthenticateClient _authenticateClient;
+        private PersonClient _personClient;
 
 
         public LoginForm()
@@ -24,8 +24,8 @@ namespace Gallaria.GUI
             InitializeComponent();
             CustomizeComponents();
 
-            authenticateClient = new AuthenticateClient(Constants.APIUrl);
-            personClient = new PersonClient(Constants.APIUrl);
+            _authenticateClient = new AuthenticateClient(Constants.APIUrl);
+            _personClient = new PersonClient(Constants.APIUrl);
         }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -73,11 +73,11 @@ namespace Gallaria.GUI
 
         private async Task LoginUserAsync()
         {
-            AuthUserDto userData = await authenticateClient.LoginAsync(new UserDto { Email = txtUserName.Text, Password = txtPassword.Text });
-            bool isUserArtist = await personClient.IsArtistAsync(userData.UserId);
+            AuthUserDto userData = await _authenticateClient.LoginAsync(new UserDto { Email = txtUserName.Text, Password = txtPassword.Text });
+            bool isUserArtist = await _personClient.IsArtistAsync(userData.UserId);
 
 
-            if (userData.isUserAuthenticated)
+            if (userData.IsUserAuthenticated)
             {
                 switch (isUserArtist)
                 {

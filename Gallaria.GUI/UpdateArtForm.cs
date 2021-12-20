@@ -10,11 +10,11 @@ namespace Gallaria.GUI
 {
     public partial class UpdateArtForm : Form
     {
-        ArtClient artClient; 
-        string newTitle;
-        string newCategory;
-        string newDescription;
-        decimal newPrice;
+        ArtClient _artClient; 
+        string _newTitle;
+        string _newCategory;
+        string _newDescription;
+        decimal _newPrice;
 
         private ArtDto _artDto;
         private DisplayCreatedArts _displayCreatedArts;
@@ -25,7 +25,7 @@ namespace Gallaria.GUI
             _artDto = artDto;
             _displayCreatedArts = displayCreatedArts;
 
-            artClient = new ArtClient(Constants.APIUrl);
+            _artClient = new ArtClient(Constants.APIUrl);
 
             Bitmap bmp;
             using (var ms = new MemoryStream(_artDto.Image))
@@ -47,20 +47,20 @@ namespace Gallaria.GUI
         {
             if(textBoxTitle.Text.Length > 0)
             {
-                newTitle = textBoxTitle.Text;
+                _newTitle = textBoxTitle.Text;
             }
             if (!comboBoxCategory.Text.Equals("-select category-"))
             {
-                newCategory = comboBoxCategory.Text;
+                _newCategory = comboBoxCategory.Text;
             }
             if (textBoxPrice.Text.Length > 0)
             {
-                Decimal.TryParse(textBoxPrice.Text, out newPrice);
+                Decimal.TryParse(textBoxPrice.Text, out _newPrice);
             }
             if (richTextBoxDescription.Text != "")
             {
                 lblCharacterCounter.Text = $"{richTextBoxDescription.Text.Length}/500";
-                newDescription = richTextBoxDescription.Text;
+                _newDescription = richTextBoxDescription.Text;
             }
         }
 
@@ -95,12 +95,12 @@ namespace Gallaria.GUI
         {
             if (ValidateChildren())
             {
-                _artDto.Title = newTitle;
-                _artDto.Description = newDescription;
-                _artDto.Category = newCategory;
-                _artDto.Price = newPrice;
+                _artDto.Title = _newTitle;
+                _artDto.Description = _newDescription;
+                _artDto.Category = _newCategory;
+                _artDto.Price = _newPrice;
 
-                bool result = await artClient.UpdateArtAsync(_artDto); 
+                bool result = await _artClient.UpdateArtAsync(_artDto); 
                 if (result == true)
                 {
                     MessageBox.Show("Art was successfully updated", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);

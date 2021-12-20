@@ -10,19 +10,19 @@ namespace Gallaria.GUI
 {
     public partial class UploadArtForm : Form
     {
-        Image chosenPicture;
-        byte[] pictureBytes;
-        ArtClient artClient; 
-        string name;
-        string category;
-        int numberOfPieces;
-        decimal price;
-        string description;
+        Image _chosenPicture;
+        byte[] _pictureBytes;
+        ArtClient _artClient; 
+        string _name;
+        string _category;
+        int _numberOfPieces;
+        decimal _price;
+        string _description;
 
         public UploadArtForm()
         {
             InitializeComponent();
-            artClient = new ArtClient(Constants.APIUrl);
+            _artClient = new ArtClient(Constants.APIUrl);
 
         }
         private async void BtnSelectFile_Click(object sender, System.EventArgs e)
@@ -34,21 +34,30 @@ namespace Gallaria.GUI
             DialogResult dr = op.ShowDialog();
             if (dr == DialogResult.OK)
             {
-                chosenPicture = Image.FromFile(op.FileName);
+                _chosenPicture = Image.FromFile(op.FileName);
                 lblFileName.Text = op.FileName;
-                Bitmap img = new Bitmap(chosenPicture);
+                Bitmap img = new Bitmap(_chosenPicture);
 
                 using (var stream = new MemoryStream())
                 {
-                    img.Save(stream, chosenPicture.RawFormat);
+                    img.Save(stream, _chosenPicture.RawFormat);
                     pictureBox.Image = img;
-                    pictureBytes = stream.ToArray();
+                    _pictureBytes = stream.ToArray();
                 }
             }
         }
         public ArtDto CreateArtFromData()
         {
-            ArtDto newArt = new ArtDto() {Title = name, AvailableQuantity = numberOfPieces, Category = category,CreationDate = DateTime.Now, Description = description, Price = price, Image = pictureBytes};
+            ArtDto newArt = new ArtDto() 
+            {
+                Title = _name, 
+                AvailableQuantity = _numberOfPieces, 
+                Category = _category,
+                CreationDate = DateTime.Now, 
+                Description = _description, 
+                Price = _price,
+                Image = _pictureBytes
+            };
             return newArt;
         }
 
@@ -56,25 +65,25 @@ namespace Gallaria.GUI
         {
             if(textBoxTitle.Text.Length > 0)
             {
-                name = textBoxTitle.Text;
+                _name = textBoxTitle.Text;
             }
             if (!comboBoxCategory.Text.Equals("-select category-"))
             {
-                category = comboBoxCategory.Text;
+                _category = comboBoxCategory.Text;
             }
 
             if (textBoxNumberOfPieces.Text.Length > 0)
             {
-                int.TryParse(textBoxNumberOfPieces.Text, out numberOfPieces);
+                int.TryParse(textBoxNumberOfPieces.Text, out _numberOfPieces);
             }
             if (textBoxPrice.Text.Length > 0)
             {
-                Decimal.TryParse(textBoxPrice.Text, out price);
+                Decimal.TryParse(textBoxPrice.Text, out _price);
             }
             if (richTextBoxDescription.Text != "")
             {
                 lblCharacterCounter.Text = $"{richTextBoxDescription.Text.Length}/500";
-                description = richTextBoxDescription.Text;
+                _description = richTextBoxDescription.Text;
             }
         }
 
@@ -105,9 +114,9 @@ namespace Gallaria.GUI
             if (ValidateChildren())
             {
                 ArtDto art = CreateArtFromData();
-                art.AuthorId = MainForm._user.UserId;
+                art.AuthorId = MainForm.User.UserId;
 
-                int result = await artClient.CreateArtAsync(art);
+                int result = await _artClient.CreateArtAsync(art);
                 if (result != -1)
                 {
                     MessageBox.Show("Art was successfully uploaded", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -126,7 +135,10 @@ namespace Gallaria.GUI
 
         public string[] InputCategories()
         {
-            var categories = new[] {"-select category-","Abstract", "Photography", "Portrait", "Landscape", "Nature", "Animals", "Pixel art", "Surrealism"};
+            var categories = new[] 
+            {
+                "-select category-","Abstract", "Photography", "Portrait", "Landscape", "Nature", "Animals", "Pixel art", "Surrealism"
+            };
             Array.Sort(categories, (x, y) => String.Compare(x, y));
             return categories;
         }
@@ -164,7 +176,7 @@ namespace Gallaria.GUI
                 errorProviderDataValidation.SetError(textBoxPrice, "field required!");
                 IsValid = false;
             }
-            if (pictureBytes == null)
+            if (_pictureBytes == null)
             {
                 errorProviderDataValidation.SetError(btnSelectFile, "Select a picture!");
                 IsValid = false;

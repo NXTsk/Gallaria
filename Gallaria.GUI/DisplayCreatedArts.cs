@@ -14,14 +14,14 @@ namespace Gallaria.GUI
 {
     public partial class DisplayCreatedArts : Form
     {
-        private ArtClient artClient;
+        private ArtClient _artClient;
 
         public  DisplayCreatedArts(MainForm mainForm)
         {
-            artClient = new ArtClient(Constants.APIUrl);
+            _artClient = new ArtClient(Constants.APIUrl);
             InitializeComponent();
 
-            IEnumerable<ArtDto> artDtos = Task.Run(async () => await GetAllArtsThatByAuthorIdAsync(MainForm._user.UserId)).ConfigureAwait(false).GetAwaiter().GetResult();
+            IEnumerable<ArtDto> artDtos = Task.Run(async () => await GetAllArtsThatByAuthorIdAsync(MainForm.User.UserId)).ConfigureAwait(false).GetAwaiter().GetResult();
             FlowLayoutPanel flowLayoutPanel = new FlowLayoutPanel();
             foreach (ArtDto artDto in artDtos)
             {
@@ -38,7 +38,7 @@ namespace Gallaria.GUI
 
         private async Task<IEnumerable<ArtDto>> GetAllArtsThatByAuthorIdAsync(int authorId)
         {
-            IEnumerable<ArtDto> artDtos = await artClient.GetAllArtsThatByAuthorIdAsync(authorId);
+            IEnumerable<ArtDto> artDtos = await _artClient.GetAllArtsThatByAuthorIdAsync(authorId);
             return artDtos;
         }
     }

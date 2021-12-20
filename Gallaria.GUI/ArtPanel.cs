@@ -39,7 +39,7 @@ namespace Gallaria.GUI
         {
             UpdateArtForm updateArtForm = new UpdateArtForm(_artDto, _displayCreatedArts);
             updateArtForm.TopLevel = false;
-            _mainForm.activeForm = updateArtForm;
+            _mainForm._activeForm = updateArtForm;
             _mainForm.Controls.Add(updateArtForm);
             updateArtForm.BringToFront();
             updateArtForm.FormBorderStyle = FormBorderStyle.None;
