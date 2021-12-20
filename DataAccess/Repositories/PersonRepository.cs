@@ -22,7 +22,9 @@ namespace DataAccess.Repositories
                     " OUTPUT INSERTED.Id VALUES (@FirstName, @LastName, @Email, @HashPassword, @PhoneNumber, @Street, @HouseNumber, @Zipcode, @City, @Country);";
                 var hashPassword = BCryptTool.HashPassword(password);
                 using var connection = CreateConnection();
-                return await connection.QuerySingleAsync<int>(query, new {FirstName = person.FirstName, LastName = person.LastName, Email = person.Email, HashPassword = hashPassword, PhoneNumber = person.PhoneNumber,
+                return await connection.QuerySingleAsync<int>(query, new 
+                {
+                    FirstName = person.FirstName, LastName = person.LastName, Email = person.Email, HashPassword = hashPassword, PhoneNumber = person.PhoneNumber,
                     Street = person.Address.Street,
                     HouseNumber = person.Address.HouseNumber,
                     Zipcode = person.Address.Zipcode,
@@ -76,7 +78,8 @@ namespace DataAccess.Repositories
                 var query = "UPDATE dbo.[Person] SET FirstName=@FirstName, LastName=@LastName, Email=@Email, PhoneNumber=@PhoneNumber," +
                     " Street=@Street, HouseNumber=@HouseNumber, Zipcode=@Zipcode, City=@City, Country=@Country WHERE Id=@id;";
                 using var connection = CreateConnection();
-                return await connection.ExecuteAsync(query, new{
+                return await connection.ExecuteAsync(query, new
+                {
                     FirstName = person.FirstName,
                     LastName = person.LastName,
                     Email = person.Email,
@@ -122,7 +125,8 @@ namespace DataAccess.Repositories
             {
                 var query = "INSERT INTO Artist (artistId, profileDescription)" + "OUTPUT INSERTED.artistId VALUES(@artistId, @profileDescription);";
                 using var connection = CreateConnection();
-                return await connection.QuerySingleAsync<int>(query, new {
+                return await connection.QuerySingleAsync<int>(query, new 
+                {
                     artistId = personId, profileDescription = artist.ProfileDescription
                 });
             }

@@ -12,7 +12,7 @@ namespace DataAccess.Model
         public int OrderId { get; set; }
         public Art Art { get; set; }
 
-        public int artId { get; set; } 
+        public int ArtId { get; set; } 
         public int Quantity { get; set; }
     }
 }

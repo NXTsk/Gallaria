@@ -99,7 +99,8 @@ namespace DataAccess.Repositories
             {
                 var query = "UPDATE dbo.[Art] SET AvailableQuantity=@updatedQuantity WHERE Id=@id";
                 using var connection = CreateConnection();
-                return await connection.ExecuteAsync(query, new {
+                return await connection.ExecuteAsync(query, new
+                {
                     updatedQuantity = updatedQuantity,
                     Id = id
                 });

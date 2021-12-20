@@ -183,7 +183,7 @@ namespace DataAccess.Repositories
                 var orderLineItems = await connection.QueryAsync<OrderLineItem>(query, new { id });
                 foreach (OrderLineItem orderLineItem in orderLineItems)
                 {
-                    orderLineItem.Art = await _artRepository.GetArtByIDAsync(orderLineItem.artId);
+                    orderLineItem.Art = await _artRepository.GetArtByIDAsync(orderLineItem.ArtId);
                 }
                 return orderLineItems.ToList();
             }
