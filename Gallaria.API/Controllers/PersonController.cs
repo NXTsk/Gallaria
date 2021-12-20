@@ -88,7 +88,10 @@ namespace Gallaria.API.Controllers
         {
             var person = await _personRepository.GetPersonByIdAsync(id);
             if (person == null) { return NotFound(); }
-            else { return Ok(person); }
+            else 
+            { 
+                return Ok(person); 
+            }
         }
 
         [HttpGet("getArtist/{id}")]
@@ -96,7 +99,10 @@ namespace Gallaria.API.Controllers
         {
             var artist = await _personRepository.GetArtistByIdAsync(id);
             if (artist == null) { return NotFound(); }
-            else { return Ok(artist); }
+            else 
+            { 
+                return Ok(artist);
+            }
         }
 
         [HttpDelete]

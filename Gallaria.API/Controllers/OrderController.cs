@@ -39,7 +39,10 @@ namespace Gallaria.API.Controllers
         {
             var order = await _orderRepository.GetOrderByIdAsync(id);
             if (order == null) { return NotFound(); }
-            else { return Ok(order); }
+            else 
+            {
+                return Ok(order); 
+            }
         }
 
         // GET: api/<OrderController>/personId

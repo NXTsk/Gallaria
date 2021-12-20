@@ -60,7 +60,10 @@ namespace Gallaria.API.Controllers
         {
             var art = await _artRepository.GetArtByIDAsync(id);
             if (art == null) { return NotFound(); }
-            else { return Ok(art); }
+            else 
+            {
+                return Ok(art); 
+            }
         }
 
         // POST api/<ArtController>

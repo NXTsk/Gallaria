@@ -24,21 +24,16 @@ namespace Gallaria.API.Controllers
             _orderRepository = orderRepository;
         }
 
-        // IDK IF THIS IS OKAY
-        // POST api/person
-        //[HttpPost]
-        //public async Task<ActionResult<int>> CreateOrderLineItemAsync([FromBody] OrderLineItemDto newOrderLineItemDto)
-        //{
-        //    return Ok(await _orderRepository.CreateOrderLineItemAsync(newOrderLineItemDto.FromDto()));
-        //}
-
         // GET api/<OrderLineItemController>/id
         [HttpGet("{id}")]
         public async Task<ActionResult<OrderLineItemDto>> GetAllOrderLineItemByIdAsync(int id)
         {
             var order = await _orderRepository.GetOrderLineItemByIdAsync(id);
             if (order == null) { return NotFound(); }
-            else { return Ok(order); }
+            else 
+            { 
+                return Ok(order); 
+            }
         }
 
         // DELETE api/<OrderLineItemController>/5
@@ -46,7 +41,10 @@ namespace Gallaria.API.Controllers
         public async Task<ActionResult<bool>> DeleteOrderLineItemAsync(int id)
         {
             if (!await _orderRepository.DeleteOrderLineItemAsync(id)) { return NotFound(); }
-            else { return Ok(); }
+            else 
+            {
+                return Ok(); 
+            }
         }
 
         [HttpGet]
