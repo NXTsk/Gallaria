@@ -14,6 +14,6 @@ namespace Gallaria.ApiClient.DTOs
         public int UserId { get; set; }
 
         /*-------Another variables-------*/
-        public bool isUserAuthenticated { get; set; }
+        public bool IsUserAuthenticated { get; set; }
     }
 }

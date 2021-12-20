@@ -32,11 +32,11 @@ namespace Gallaria.ApiClient
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 authenticatedData = JsonConvert.DeserializeObject<AuthUserDto>(apiResponse);
-                authenticatedData.isUserAuthenticated = true;
+                authenticatedData.IsUserAuthenticated = true;
             }
             else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
-                authenticatedData.isUserAuthenticated = false;
+                authenticatedData.IsUserAuthenticated = false;
             }
 
             return authenticatedData;
