@@ -52,7 +52,7 @@ namespace Gallaria.WEB.Controllers
             art.ArtistName = artist.FirstName + " " + artist.LastName;
 
             //Converting from basestring64 to image
-            art.Img64 = GetImageSourceFromByteArray(art.Image);
+            art.Img64 = ArtHelper.GetImageSourceFromByteArray(art.Image);
 
             return View(art);
         }
@@ -73,8 +73,8 @@ namespace Gallaria.WEB.Controllers
             IEnumerable<ArtDto> artDtos = await _artClient.GetAllAvailableArtsAsync();
             foreach (var art in artDtos)
             {
-                art.ArtistName = GetAuthorName(art);
-                art.Img64 = GetImageSourceFromByteArray(art.Image);
+                art.ArtistName = ArtHelper.GetAuthorName(art, _personClient);
+                art.Img64 = ArtHelper.GetImageSourceFromByteArray(art.Image);
             }
 
             return View(artDtos);
@@ -87,8 +87,8 @@ namespace Gallaria.WEB.Controllers
             {
                 ArtDto art = _artClient.GetArtByIDAsync(id).Result;
 
-                art.Img64 = GetImageSourceFromByteArray(art.Image);
-                art.ArtistName = GetAuthorName(art);
+                art.Img64 = ArtHelper.GetImageSourceFromByteArray(art.Image);
+                art.ArtistName = ArtHelper.GetAuthorName(art, _personClient);
                 OrderLineItemDto orderLineItem = new OrderLineItemDto() { Art = art, Quantity = 1 };
                 if (!CheckIfArtIsAlreadyInserted(art.Id))
                 {
@@ -108,17 +108,7 @@ namespace Gallaria.WEB.Controllers
             }
         } 
 
-        public string GetImageSourceFromByteArray(byte[] imgBytes)
-        {
-            string imreBase64Data = Convert.ToBase64String(imgBytes);
-            string imgDataURL = string.Format("data:image/png;base64,{0}", imreBase64Data);
-            return imgDataURL;
-        }
-        public string GetAuthorName(ArtDto art)
-        {
-            var artist = _personClient.GetPersonByIdAsync(art.AuthorId).Result;
-            return (artist.FirstName + " " + artist.LastName);
-        }
+        
         public void InitializeShoppingCartAndSaveInSession()
         {
             if (_httpContextAccessor.HttpContext.Session.GetShoppingCartFromSession("cart") != null)

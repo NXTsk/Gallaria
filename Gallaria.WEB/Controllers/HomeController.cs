@@ -39,6 +39,7 @@ namespace Gallaria.WEB.Controllers
             if (JWT != null)
             {
                 HttpContext.Session.SetString("isAuthenticated", "true");
+
             }
             else
             {

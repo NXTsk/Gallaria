@@ -29,5 +29,25 @@ namespace Gallaria.WEB.Helpers
         {
             response.Cookies.Delete(key);
         }
+
+        public static void SaveCookie(string key, string data, HttpResponse response)
+        {
+            CookieOptions option = new CookieOptions();
+
+            option.Expires = DateTime.Now.AddMonths(1);
+            response.Cookies.Append(key, data, option);
+        }
+
+        public static string ReadCookie(string key, IHttpContextAccessor contextAccessor)
+        {
+            string cookie = contextAccessor.HttpContext.Request.Cookies[key];
+
+            return cookie;
+        }
+
+        public static void RemoveCookie(string key, HttpResponse response)
+        {
+            response.Cookies.Delete(key);
+        }
     }
 }

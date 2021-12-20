@@ -36,6 +36,8 @@ namespace Gallaria.API
 
             services.AddSingleton<IPersonRepository>(x => new PersonRepository(Configuration["ConnectionStrings:MSSQLconnection"]));
             services.AddSingleton<IArtRepository>(x => new ArtRepository(Configuration["ConnectionStrings:MSSQLconnection"]));
+            services.AddSingleton<IOrderRepository>(x => new OrderRepository(Configuration["ConnectionStrings:MSSQLconnection"]));
+
 
 
             services.AddSwaggerGen(c => {

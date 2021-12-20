@@ -18,10 +18,10 @@ namespace Gallaria.API.Controllers
         IConfiguration _config;
         IOrderRepository _orderRepository;
 
-        public OrderLineItemController(IConfiguration config)
+        public OrderLineItemController(IConfiguration config, IOrderRepository orderRepository)
         {
             _config = config;
-            _orderRepository = new OrderRepository(_config["ConnectionStrings:MSSQLconnection"]);
+            _orderRepository = orderRepository;
         }
 
         // IDK IF THIS IS OKAY

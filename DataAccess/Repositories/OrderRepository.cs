@@ -12,9 +12,11 @@ namespace DataAccess.Repositories
     public class OrderRepository : BaseRepository, IOrderRepository
     {
         private IArtRepository _artRepository;
+        private IPersonRepository _personRepository;
         public OrderRepository(string connectionstring) : base(connectionstring) 
         {
             _artRepository = new ArtRepository(connectionstring);
+            _personRepository = new PersonRepository(connectionstring);
         }
 
 
@@ -151,7 +153,9 @@ namespace DataAccess.Repositories
                 foreach(Order order in orders) 
                 {
                     order.OrderLineItems = await GetAllOrderLineItemsInOrderAsync(order.Id);
+                    order.Person = await _personRepository.GetPersonByIdAsync(personId);
                 }
+                
                 return orders.ToList();
             }
             catch (Exception ex)

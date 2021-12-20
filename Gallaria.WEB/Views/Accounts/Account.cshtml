@@ -1,5 +1,5 @@
 ﻿@model dynamic
-
+@using Gallaria.ApiClient.DTOs;
 @{
     ViewData["Title"] = "Create account";
 }
@@ -11,11 +11,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt="" />
-                    <div class="file btn btn-lg btn-primary">
-                        Change Photo
-                        <input type="file" name="file" />
-                    </div>
+                    <img src="~/Images/profilePicture-64x64.png" alt="" />
                 </div>
             </div>
             <div class="col-md-6">
@@ -34,7 +30,8 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
+                <input type="submit" class="btn btn-dark rounded-pill" name="btnAddMore" value="Edit Profile" />
+                <input type="button" class="btn btn-warning rounded-pill mt-2"value="Change password" onclick="location.href='@Url.Action("ChangePassword", "Accounts")'" />
             </div>
         </div>
         <div class="row">
@@ -45,7 +42,7 @@
                     @Model.Person.Address.Zipcode<br />
                     @Model.Person.Address.City<br />
                     @Model.Person.Address.Country<br />
-            </div>
+                </div>
             </div>
             <div class="col-md-8">
                 <div class="tab-content profile-tab" id="myTabContent">
@@ -57,9 +54,9 @@
                             <div class="col-md-6">
                                 <p>
                                     @{
-                                       var fullName = Model.Person.FirstName + " " + Model.Person.LastName;
-                                       @fullName
-                                       }
+                                        var fullName = Model.Person.FirstName + " " + Model.Person.LastName;
+                                        @fullName
+                                    }
                                 </p>
                             </div>
                         </div>
@@ -93,36 +90,45 @@
                     </div>
                     @if (ViewBag.isArtist)
                     {
+
+
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        	<div class="table-container">
-							<table class="table table-filter">
-								<tbody>
-                                        
-                                          <tr>
-										<td>
-											<div class="media">
-												<a href="#" class="pull-left">
-													<img src="~/Images/ZayanSquare.jpg" class="media-photo" style="max-height:100px;">
-												</a>
-												<div class="media-body">
-													<h4 class="title">
-														Lorem Impsum
-														<span class="pull-right pagado">(Pagado)</span>
-													</h4>
-													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-												</div>
-											</div>
-										</td>
-									</tr>  
-                                        
-								</tbody>
-							</table>
-						</div>
-                    </div>
+                            <div class="table-container">
+                                <table class="table table-filter">
+                                    <tbody>
+                                        @foreach (OrderDto order in Model.Orders)
+                                        {
+                                            @foreach (OrderLineItemDto orderLineItem in order.OrderLineItems)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <div class="media">
+                                                            <a href="#" class="pull-left">
+                                                                <img src="@orderLineItem.Art.Img64" style="max-height:100px;" />
+                                                            </a>
+                                                            <div class="media-body">
+                                                                <h4 class="title">
+                                                                    <span class="pull-right pagado">@orderLineItem.Art.Title</span>
+                                                                </h4>
+                                                                <p class="summary">@orderLineItem.Art.Description</p>
+                                                                <h3>Quantity: @orderLineItem.Quantity</h3>
+                                                                <b>@order.Date.ToShortDateString()</b>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     }
-                    
+
                 </div>
             </div>
         </div>
     </form>
 </div>
+
