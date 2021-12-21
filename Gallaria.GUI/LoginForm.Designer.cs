@@ -29,6 +29,7 @@ namespace Gallaria.GUI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.titleBar = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnMinimalize = new System.Windows.Forms.PictureBox();
@@ -38,7 +39,6 @@ namespace Gallaria.GUI
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblPassword = new System.Windows.Forms.Label();
-            this.checkBoxRememberPassword = new System.Windows.Forms.CheckBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.linkLabelForgotPassword = new System.Windows.Forms.LinkLabel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -127,7 +127,6 @@ namespace Gallaria.GUI
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(350, 34);
             this.txtUserName.TabIndex = 3;
-            this.txtUserName.Text = "denisacreative@gmail.com";
             // 
             // txtPassword
             // 
@@ -136,7 +135,6 @@ namespace Gallaria.GUI
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(350, 31);
             this.txtPassword.TabIndex = 5;
-            this.txtPassword.Text = "1234567";
             // 
             // lblPassword
             // 
@@ -148,18 +146,6 @@ namespace Gallaria.GUI
             this.lblPassword.Size = new System.Drawing.Size(111, 31);
             this.lblPassword.TabIndex = 4;
             this.lblPassword.Text = "Password";
-            // 
-            // checkBoxRememberPassword
-            // 
-            this.checkBoxRememberPassword.AutoSize = true;
-            this.checkBoxRememberPassword.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.checkBoxRememberPassword.ForeColor = System.Drawing.Color.White;
-            this.checkBoxRememberPassword.Location = new System.Drawing.Point(50, 379);
-            this.checkBoxRememberPassword.Name = "checkBoxRememberPassword";
-            this.checkBoxRememberPassword.Size = new System.Drawing.Size(171, 24);
-            this.checkBoxRememberPassword.TabIndex = 6;
-            this.checkBoxRememberPassword.Text = "Remember password";
-            this.checkBoxRememberPassword.UseVisualStyleBackColor = true;
             // 
             // btnLogin
             // 
@@ -189,6 +175,7 @@ namespace Gallaria.GUI
             this.linkLabelForgotPassword.TabIndex = 8;
             this.linkLabelForgotPassword.TabStop = true;
             this.linkLabelForgotPassword.Text = "Forgot password ?";
+            this.linkLabelForgotPassword.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabelForgotPassword_LinkClicked);
             // 
             // panel1
             // 
@@ -247,7 +234,6 @@ namespace Gallaria.GUI
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.linkLabelForgotPassword);
             this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.checkBoxRememberPassword);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.txtUserName);
@@ -255,6 +241,7 @@ namespace Gallaria.GUI
             this.Controls.Add(this.bottomPanel);
             this.Controls.Add(this.titleBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoginForm";
             this.Opacity = 0.9D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -283,7 +270,6 @@ namespace Gallaria.GUI
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label lblPassword;
-        private System.Windows.Forms.CheckBox checkBoxRememberPassword;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.LinkLabel linkLabelForgotPassword;
         private System.Windows.Forms.Panel panel1;

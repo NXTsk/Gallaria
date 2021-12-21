@@ -8,6 +8,9 @@ namespace Gallaria.API.Converters
 {
     public static class ConverterExtensionMethods
     {
+        /*
+         * Converter from DTO to DTO
+         */
         public static T CopyPropertiesTo<T>(this object sourceObject, T destinationObject)
         {
             foreach (PropertyInfo destinationProperty in destinationObject.GetType().GetProperties().Where(p => p.CanWrite))

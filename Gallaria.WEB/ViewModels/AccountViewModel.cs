@@ -9,6 +9,6 @@ namespace Gallaria.WEB.ViewModels
     {
         public ArtistDto? Artist { get; set; }
         public PersonDto Person { get; set; }
-        public bool isPersonArtist { get; set; }
+        public bool IsPersonArtist { get; set; }
     }
 }

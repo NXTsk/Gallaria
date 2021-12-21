@@ -1,0 +1,148 @@
+﻿@model dynamic
+@using Gallaria.ApiClient.DTOs;
+@{
+    ViewData["Title"] = "Create account";
+}
+
+<link rel="stylesheet" href="~/css/account.css">
+
+<div class="container emp-profile">
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img src="~/Images/ProfilePicture.png" style="max-height: 200px; width: auto" alt="" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <h5>
+                        @Model.Person.FirstName
+                    </h5>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">My orders</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-dark rounded-pill" data-toggle="modal" data-target="#featureNotImplemented">
+                    Edit Profile
+                </button>
+                <input type="button" class="btn btn-warning rounded-pill mt-2" value="Change password" onclick="location.href='@Url.Action("ChangePassword", "Accounts")'" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-work">
+                    <p><h6>Adress</h6></p>
+                    @Model.Person.Address.Street @Model.Person.Address.HouseNumber<br />
+                    @Model.Person.Address.Zipcode<br />
+                    @Model.Person.Address.City<br />
+                    @Model.Person.Address.Country<br />
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>
+                                    @{
+                                        var fullName = Model.Person.FirstName + " " + Model.Person.LastName;
+                                        @fullName
+                                    }
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.Person.Email</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Phone</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.Person.PhoneNumber</p>
+                            </div>
+                        </div>
+                        @if (ViewBag.isArtist)
+                        {
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Description</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>@Model.Person.ProfileDescription</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="table-container">
+                            <table class="table table-filter">
+                                <tbody>
+                                    @foreach (OrderDto order in Model.Orders)
+                                    {
+                                        @foreach (OrderLineItemDto orderLineItem in order.OrderLineItems)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <div class="media">
+                                                        <img src="@orderLineItem.Art.Img64" style="max-height:100px;" />
+                                                        <div class="media-body">
+                                                            <h4 class="title">
+                                                                <span class="pull-right pagado">@orderLineItem.Art.Title</span>
+                                                            </h4>
+                                                            <p class="summary">@orderLineItem.Art.Description</p>
+                                                            <h3>Quantity: @orderLineItem.Quantity</h3>
+                                                            <b>@order.Date.ToShortDateString()</b>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal fade" id="featureNotImplemented" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Feature error</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                This feature is not implemented yet!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -2,6 +2,7 @@
 using DataAccess.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,7 @@ namespace DataAccess.Repositories
                 throw new Exception($"Error creating new Art: '{ex.Message}'.", ex);
             }
         }
+
         public async Task<bool> DeleteArtAsync(int id)
         {
             try
@@ -62,7 +64,6 @@ namespace DataAccess.Repositories
             {
                 throw new Exception($"Error getting all arts: '{ex.Message}'.", ex);
             }
-
         }
 
         public async Task<Art> GetArtByIDAsync(int id)
@@ -76,6 +77,66 @@ namespace DataAccess.Repositories
             catch (Exception ex)
             {
                 throw new Exception($"Error getting art with id {id}: '{ex.Message}'.", ex);
+            }
+        }
+
+        public async Task<IEnumerable<Art>> GetAllArtsThatByAuthorIdAsync(int authorId)
+        {
+            try
+            {
+                var query = "SELECT * FROM Art WHERE AuthorId=@AuthorId";
+                using var connection = CreateConnection();
+                return (await connection.QueryAsync<Art>(query, new { authorId })).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error getting all arts that belong to specific Artis: '{ex.Message}'.", ex);
+            }
+        }
+
+        public async Task<int> UpdateArtQuantityById(int id, int updatedQuantity)
+        {
+            try
+            {
+                var query = "UPDATE dbo.[Art] SET AvailableQuantity=@updatedQuantity WHERE Id=@id";
+                using var connection = CreateConnection();
+                return await connection.ExecuteAsync(query, new
+                {
+                    updatedQuantity = updatedQuantity,
+                    Id = id
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error getting art with id {id}: '{ex.Message}'.", ex);
+            }
+        }
+
+        public async Task<bool> UpdateArtAsync(Art art)
+        {
+            try
+            {
+                var query = "UPDATE dbo.[Art] SET Title=@Title, Description=@Description, Price=@Price, Category=@Category WHERE Id=@id;"; 
+                using var connection = CreateConnection();
+                return await connection.ExecuteAsync(query, art) > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error updating art: '{ex.Message}'.", ex);
+            }
+        }
+
+        public async Task<IEnumerable<Art>> GetAllAvailableArtsAsync()
+        {
+            try
+            {
+                var query = "SELECT * FROM dbo.[Art] WHERE availableQuantity > 0";
+                using var connection = CreateConnection();
+                return (await connection.QueryAsync<Art>(query)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error getting all arts: '{ex.Message}'.", ex);
             }
         }
     }

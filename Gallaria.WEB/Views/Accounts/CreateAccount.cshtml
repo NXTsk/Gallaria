@@ -1,91 +1,184 @@
 ﻿@model Gallaria.WEB.ViewModels.AccountViewModel;
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 @{
     ViewData["Title"] = "Create account";
 }
 
-<h1>Create account</h1>
+<style>
+    .full-width {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+    }
+</style>
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="CreateAccount">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label class="control-label">First name</label>
-                <input asp-for="Person.FirstName" class="form-control" required />
-                <span asp-validation-for="Person.FirstName" class="text-danger"></span>
+<section class="h-100 full-width bg-primary" style="background: -webkit-linear-gradient(left, #3931af, #00c6ff); margin-top: -1.5%">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 col-xl-11">
+                <div class="card text-black my-3" style="border-radius: 25px;">
+                    <div class="card-body p-md-5">
+                        <div class="row justify-content-center">
+                            <div class="col-12 order-2 order-lg-1">
+
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Create account</p>
+
+                                <form class="row col-12" asp-action="CreateAccount">
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <div class="d-flex flex-row align-items-center mb-4 form-group">
+                                            <i class="align-self-start mt-3 fa fa-user fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="text" id="form3Example1c" class="form-control" asp-for="Person.FirstName" required />
+                                                <label class="form-label" for="form3Example1c">First name</label>
+                                                <span asp-validation-for="Person.FirstName" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4 form-group">
+                                            <i class="fa  fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="text" id="form3Example1c" class="form-control" asp-for="Person.LastName" required />
+                                                <label class="form-label" for="form3Example1c">Last name</label>
+                                                <span asp-validation-for="Person.LastName" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4 form-group">
+                                            <i class="align-self-start mt-3 fa fa-envelope fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="email" id="form3Example1c" class="form-control" asp-for="Person.Email" required />
+                                                <label class="form-label" for="form3Example1c">Email</label>
+                                                <span asp-validation-for="Person.Email" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4 mx-2 form-group">
+                                            <div class="form-outline flex-fill mb-0">
+                                                <div class="row flex-nowrap">
+                                                    <i class="flex-column align-self-start mt-3 fa fa-lock fa-lg me-3 fa-fw col-1"></i>
+                                                    <input type="password" id="password" class="form-control flex-column col-10 border rounded-left" asp-for="Person.HashPassword" required />
+                                                    <button type="button" class="p-0 border rounded col-1 bg-white" onclick="showPassword()">
+                                                        <img class="img-fluid" src="~/Images/show.png" id="icon" style="height: auto; width:auto" />
+                                                    </button>
+                                                </div>
+                                                <label class="form-label ml-4" for="password">Password</label>
+                                                <span asp-validation-for="Person.HashPassword" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4 mx-2 form-group">
+                                            <div class="form-outline flex-fill mb-0">
+                                                <div class="row flex-nowrap">
+                                                    <i class="align-self-start mt-3 fa fa-lg me-3 fa-fw col-1"></i>
+                                                    <input type="password" id="confirmPassword" class="form-control col-10 border rounded-left" asp-for="Person.ConfirmPassword" required />
+                                                    <button type="button" class="p-0 border rounded col-1 bg-white" onclick="showConfirmPassword()">
+                                                        <img class="img-fluid" src="~/Images/show.png" id="iconConfirm" style="height: auto; width:auto" />
+                                                    </button>
+                                                </div>
+                                                <label class="form-label ml-4" for="form3Example1c">Confirm Password</label>
+                                                <span asp-validation-for="Person.ConfirmPassword" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4 form-group">
+                                            <i class="align-self-start mt-3 fa fa-phone fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="tel" id="form3Example1c" class="form-control" asp-for="Person.PhoneNumber" required />
+                                                <label class="form-label" for="form3Example1c">Phone number</label>
+                                                <span asp-validation-for="Person.PhoneNumber" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="checkbox" asp-for="IsPersonArtist" id="wantToBeArtist" onclick="showProfileDescription()" /> I want to become artist.
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4 form-group">
+                                            <i class="fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0" style="display:none" id="profileDescription">
+                                                <textarea class="form-control" asp-for="Artist.ProfileDescription" id="textAreaProfileDescription" rows=6 cols=40 disabled="disabled" required></textarea>
+                                                <label class="form-label" for="form3Example1c">Profile description</label>
+                                                <span asp-validation-for="Artist.ProfileDescription" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="d-flex flex-row align-items-center mb-4 form-group">
+                                            <i class="align-self-start mt-3 fa fa-home fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="text" id="form3Example1c" class="form-control" asp-for="Person.Address.Street" required />
+                                                <label class="form-label" for="form3Example1c">Street</label>
+                                                <span asp-validation-for="Person.Address.Street" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4 form-group">
+                                            <i class="fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="text" id="form3Example1c" class="form-control" asp-for="Person.Address.HouseNumber" required />
+                                                <label class="form-label" for="form3Example1c">House Number</label>
+                                                <span asp-validation-for="Person.Address.HouseNumber" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4 form-group">
+                                            <i class="fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="text" id="form3Example1c" class="form-control" asp-for="Person.Address.Zipcode" required />
+                                                <label class="form-label" for="form3Example1c">Zipcode</label>
+                                                <span asp-validation-for="Person.Address.Zipcode" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4 form-group">
+                                            <i class="fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="text" id="form3Example1c" class="form-control" asp-for="Person.Address.City" required />
+                                                <label class="form-label" for="form3Example1c">City</label>
+                                                <span asp-validation-for="Person.Address.City" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4 form-group">
+                                            <i class="fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="text" id="form3Example1c" class="form-control" asp-for="Person.Address.Country" required />
+                                                <label class="form-label" for="form3Example1c">Country</label>
+                                                <span asp-validation-for="Person.Address.Country" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4 form-group">
+                                            <i class="fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0" style="display:none" id="profileDescription">
+                                                <textarea class="form-control" asp-for="Artist.ProfileDescription" id="textAreaProfileDescription" rows=6 cols=40 disabled="disabled" required></textarea>
+                                                <label class="form-label" for="form3Example1c">Profile description</label>
+                                                <span asp-validation-for="Artist.ProfileDescription" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex col-12 justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <button type="submit" value="Create account" class="btn btn-primary btn-block col-8">Register</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label class="control-label">Last name</label>
-                <input asp-for="Person.LastName" class="form-control" required />
-                <span asp-validation-for="Person.LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Email</label>
-                <input asp-for="Person.Email" class="form-control" type="email" required />
-                <span asp-validation-for="Person.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Password</label>
-                <input asp-for="Person.HashPassword" class="form-control" type="password" id="password" required />
-                <span asp-validation-for="Person.HashPassword" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="checkbox" onclick="showPassword()" /> Show password
-            </div>
-            <div class="form-group">
-                <label class="control-label">Confirm password</label>
-                <input asp-for="Person.ConfirmPassword" class="form-control" type="password" id="confirmPassword" required />
-                <span asp-validation-for="Person.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="checkbox" onclick="showConfirmPassword()" /> Show password
-            </div>
-            <div class="form-group">
-                <label class="control-label">Phone number</label>
-                <input asp-for="Person.PhoneNumber" class="form-control" required />
-                <span asp-validation-for="Person.PhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Street</label>
-                <input asp-for="Person.Address.Street" class="form-control" required />
-                <span asp-validation-for="Person.Address.Street" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">House number</label>
-                <input asp-for="Person.Address.HouseNumber" class="form-control" required />
-                <span asp-validation-for="Person.Address.HouseNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Zipcode</label>
-                <input asp-for="Person.Address.Zipcode" class="form-control" required />
-                <span asp-validation-for="Person.Address.Zipcode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">City</label>
-                <input asp-for="Person.Address.City" class="form-control" required />
-                <span asp-validation-for="Person.Address.City" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Country</label>
-                <input asp-for="Person.Address.Country" class="form-control" required />
-                <span asp-validation-for="Person.Address.Country" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="checkbox" asp-for="isPersonArtist" id="wantToBeArtist" onclick="showProfileDescription()"/> I want to become artist.
-            </div>
-            <div class="form-group" id="profileDescription" style="display: none;">
-                <label for="artistDescription">Profile description:</label>
-                <textarea asp-for="Artist.ProfileDescription" id="textAreaProfileDescription" rows=6 cols=40 disabled="disabled" required></textarea>
-                <span asp-validation-for="Artist.ProfileDescription" class="text-danger"></span>
-            </div>              
-            <div class="form-group">
-                <input type="submit" value="Create account" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+</section>
 
 <div>
     <a asp-action="Index" asp-controller="Home">Back to main page</a>

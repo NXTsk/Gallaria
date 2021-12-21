@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using Gallaria.ApiClient.ApiResponses;
 using Gallaria.ApiClient;
 using Gallaria.ApiClient.DTOs;
 
@@ -16,11 +15,17 @@ namespace Gallaria.GUI
 {
     public partial class LoginForm : Form
     {
+        private AuthenticateClient _authenticateClient;
+        private PersonClient _personClient;
+
+
         public LoginForm()
         {
             InitializeComponent();
-
             CustomizeComponents();
+
+            _authenticateClient = new AuthenticateClient(Constants.APIUrl);
+            _personClient = new PersonClient(Constants.APIUrl);
         }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -68,11 +73,11 @@ namespace Gallaria.GUI
 
         private async Task LoginUserAsync()
         {
-            AuthenticatedUserData userData = await AuthenticateController.LoginAsync(new UserDto { Email = txtUserName.Text, Password = txtPassword.Text });
-            bool isUserArtist = await PersonController.IsArtistAsync(userData.UserId);
+            AuthUserDto userData = await _authenticateClient.LoginAsync(new UserDto { Email = txtUserName.Text, Password = txtPassword.Text });
+            bool isUserArtist = await _personClient.IsArtistAsync(userData.UserId);
 
 
-            if (userData.isUserAuthenticated)
+            if (userData.IsUserAuthenticated)
             {
                 switch (isUserArtist)
                 {
@@ -104,6 +109,11 @@ namespace Gallaria.GUI
             txtPassword.UseSystemPasswordChar = true;
             showPasswordButtonBox.Visible = true;
             hidePasswordButtonBox.Visible = false;
+        }
+
+        private void LinkLabelForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MessageBox.Show(this, "Sorry but this feature is not implemented yet.", "Sorry", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

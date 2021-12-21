@@ -1,17 +1,30 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+@using Gallaria.WEB.Helpers;
+@{var returnUrl = Context.Request.Path;
+    var currentCartCount = 0;
+    if (Context.Session.GetShoppingCartFromSession("cart") != null && Context.Session.GetShoppingCartFromSession("cart").OrderLineItems != null)
+    {
+        currentCartCount = Context.Session.GetShoppingCartFromSession("cart").OrderLineItems.Count;
+    }
+ }
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Gallaria.WEB</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/shoppinCartIcon.css" />
+
+
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/Images/logo-48x48.png"></a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/Images/logo-256x256.png" height="48" width="48" /> </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -27,11 +40,31 @@
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="Login">Login</a>
+                            <a class="nav-link text-dark cart position-relative d-inline-flex" asp-area="" asp-controller="Order" asp-action="ShoppingCart">
+                                <img src="~/Images/shopping-cart.png" alt="Cart" height="32" width="32" />
+                                <span class="cart-basket d-flex align-items-center justify-content-center">
+                                    @currentCartCount
+                                </span>
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="CreateAccount">Sign up</a>
-                        </li>
+                        @if (Context.Session.GetString("isAuthenticated") == "true")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="Account"><img src="~/Images/profilePicture-64x64.png" height="32" width="32"/></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="Logout">Log out <img src="~/Images/log-out.png" height="32" width="32" /></a>
+                            </li>
+                        }
+                        else if (Context.Session.GetString("isAuthenticated") == "false")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="Login" asp-route-returnurl="@returnUrl"> Login <img src="~/Images/log-in.png" height="32" width="32" /></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="CreateAccount">Sign up</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -48,6 +81,8 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/ShowPassword.js"></script>
     <script src="~/js/IsArtist.js"></script>
+    <script id="masonry" src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

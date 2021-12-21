@@ -1,0 +1,146 @@
+﻿@using Microsoft.AspNetCore.Http;
+@model Gallaria.ApiClient.DTOs.OrderDto
+
+<link rel="Stylesheet" href="~/css/shoppingCart.css" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+@if (TempData["wasOrderCompleted"] != null && TempData["wasOrderCompleted"].Equals("false"))
+{
+    <script>
+        $(document).ready(function () {
+            $("#orderFailed").modal('show');
+        });
+    </script>
+}
+@if (TempData["wasOrderCompleted"] != null && TempData["wasOrderCompleted"].Equals("true"))
+{
+    <script>
+        $(document).ready(function () {
+            $("#orderFinished").modal('show');
+        });
+    </script>
+}
+
+
+@{
+    ViewData["Title"] = "ShoppingCart";
+}
+
+<main class="page">
+    <section class="shopping-cart dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2>Shopping Cart</h2>
+            </div>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-12 col-lg-8">
+                        <div class="items">
+                            @if (Model.OrderLineItems != null)
+                            {
+                                foreach (var item in Model.OrderLineItems)
+                                {
+                                    <div class="product">
+                                        <div class="row">
+                                            <div class="col-md-3 align-items-center">
+                                                <img class="img-fluid mx-auto d-block image" src="@Html.DisplayFor(modelItem => item.Art.Img64)" runat="server" alt="art.jpg">
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="info">
+                                                    <div class="row">
+                                                        <div class="col-md-3 product-name">
+                                                            <div class="product-name">
+                                                                <a href="@Url.Action("Details", "Art", new { id=item.Art.Id })">@Html.DisplayFor(modelItem => item.Art.Title)</a>
+                                                                <div class="product-info">
+                                                                    <div>Author: <span class="value">@Html.DisplayFor(modelItem => item.Art.ArtistName)</span></div>
+                                                                    <div>Category: <span class="value">@Html.DisplayFor(modelItem => item.Art.Category)</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 quantity justify-content-between">
+                                                            <a href="@Url.Action("DecrementQuantity", "Order", new {id = item.Art.Id})"><img src="~/Images/minus.png" style="max-width: 25px; padding-right: 5px" alt="-"></a>
+                                                            <label>@Html.DisplayFor(modelItem => item.Quantity)</label>
+                                                            <a href="@Url.Action("IncrementQuantity", "Order", new {id = item.Art.Id})"><img src="~/Images/add.png" style="max-width: 25px; padding-left: 5px" alt="+"></a>
+                                                        </div>
+                                                        <div class="col-md-3 price justify-content-end">
+                                                            <span>@Html.DisplayFor(modelItem => item.Art.Price)€</span>
+                                                        </div>
+                                                        <div class="col-md-3 float-right justify-content-end">
+                                                            <a href="@Url.Action("RemoveItemFromShoppingCart", "Order", new {id = item.Art.Id})"><img src="~/Images/removeIcon.png" alt="Remove item"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <dliv class="col-md-12 col-lg-4">
+                        <div class="summary">
+                            <h3>Summary</h3>
+                            @*<div class="summary-item"><span class="text">Subtotal</span><span class="price">$360</span></div>
+                                <div class="summary-item"><span class="text">Discount</span><span class="price">$0</span></div>*@
+                            <div class="summary-item"><span class="text">Total</span><span class="price" id="total">@Html.DisplayFor(model => model.FinalPrice)€</span></div>
+
+                            @using (Html.BeginForm("CreateOrder", "Order", FormMethod.Post))
+                            {
+                                <input type="submit" class="btn btn-primary btn-lg btn-block" value="Checkout" />
+                            }
+
+                        </div>
+                    </dliv>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="modal fade" id="orderFailed" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Order error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    There was something wrong with your order.<br />
+                    Check if the art is still available for a purchase.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="orderFinished" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Order completed</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Order passed successfully.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+<script src="~/js/PriceUpdatedShoppingCart.js" async></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+

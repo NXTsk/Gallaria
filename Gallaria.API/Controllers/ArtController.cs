@@ -1,5 +1,5 @@
 ﻿using DataAccess.Repositories;
-using Gallaria.API.Model;
+using Gallaria.API.DTOs;
 using Gallaria.API.Converters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataAccess.Model;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,16 +18,14 @@ namespace Gallaria.API.Controllers
     [ApiController]
     public class ArtController : Controller
     {
-        IConfiguration _config;
         IArtRepository _artRepository;
 
-        public ArtController(IConfiguration config)
+        public ArtController(IArtRepository artRepository)
         {
-            _config = config;
-            _artRepository = new ArtRepository(_config["ConnectionStrings:MSSQLconnection"]);
+            _artRepository = artRepository;
         }
 
-        // GET: api/<ArtController>
+        // GET: api/Art
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ArtDto>>> GetAllAsync()
         {
@@ -35,32 +34,69 @@ namespace Gallaria.API.Controllers
             return Ok(arts.ToDtos());
         }
 
-        // GET api/<ArtController>/50
+        // GET: api/Art/artistArts/{authorId}
+        [HttpGet]
+        [Route("artistArts/{authorId}")]
+        public async Task<ActionResult<IEnumerable<ArtDto>>> GetAllArtsThatByAuthorIdAsync(int authorId)
+        {
+            IEnumerable<Art> arts;
+            arts = await _artRepository.GetAllArtsThatByAuthorIdAsync(authorId);
+            return Ok(arts.ToDtos());
+        }
+
+        // GET: api/Art/available
+        [HttpGet]
+        [Route("available")]
+        public async Task<ActionResult<IEnumerable<ArtDto>>> GetAllAvailableAsync()
+        {
+            IEnumerable<Art> arts;
+            arts = await _artRepository.GetAllAvailableArtsAsync();
+            return Ok(arts.ToDtos());
+        }
+
+        // GET: api/Art/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<ArtDto>> Get(int id)
         {
             var art = await _artRepository.GetArtByIDAsync(id);
             if (art == null) { return NotFound(); }
-            else { return Ok(art); }
+            else 
+            {
+                return Ok(art); 
+            }
         }
 
-        // POST api/<ArtController>
+        // POST: api/Art
         [HttpPost]
         public async Task<ActionResult<int>> CreateArtAsync([FromBody] ArtDto newArtDto)
         {
             return Ok(await _artRepository.CreateArtAsync(newArtDto.FromDto()));
         }
 
-        // PUT api/<ArtController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // PUT: api/Art
+        [HttpPut]
+        public async Task<ActionResult<bool>> UpdateArtAsync([FromBody] ArtDto artDtoToUpdate)
         {
+            bool wasUpdated = await _artRepository.UpdateArtAsync(artDtoToUpdate.FromDto());
+
+            if (wasUpdated) 
+            {
+                return Ok(); 
+            }
+            return NotFound(); 
         }
 
-        // DELETE api/<ArtController>/5
+        // DELETE: api/Art/{id}
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            bool wasDeleted = await _artRepository.DeleteArtAsync(id);
+
+            if (wasDeleted)
+            {
+                return Ok();
+            }
+            return NotFound();
         }
     }
 }

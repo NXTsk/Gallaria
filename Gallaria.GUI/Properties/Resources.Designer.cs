@@ -183,6 +183,16 @@ namespace Gallaria.GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap gallariaLogoBlackSmaller {
+            get {
+                object obj = ResourceManager.GetObject("gallariaLogoBlackSmaller", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap hidden {
             get {
                 object obj = ResourceManager.GetObject("hidden", resourceCulture);
@@ -246,6 +256,26 @@ namespace Gallaria.GUI.Properties {
         internal static System.Drawing.Bitmap undo_icon_1320085939108537891 {
             get {
                 object obj = ResourceManager.GetObject("undo+icon-1320085939108537891", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap updateArt_64px {
+            get {
+                object obj = ResourceManager.GetObject("updateArt_64px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap updateIcon_64x64 {
+            get {
+                object obj = ResourceManager.GetObject("updateIcon-64x64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

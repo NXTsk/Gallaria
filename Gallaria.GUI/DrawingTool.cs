@@ -7,36 +7,36 @@ namespace Gallaria.GUI
 {
     public partial class DrawingTool : Form
     {
-        public Point current = new Point();
-        public Point old = new Point();
-        public Pen p = new Pen(Color.Black, 5);
-        public Pen pe = new Pen(Color.White, 5);
-        public Graphics g;
+        public Point Current = new Point();
+        public Point Old = new Point();
+        public Pen P = new Pen(Color.Black, 5);
+        public Pen Pe = new Pen(Color.White, 5);
+        public Graphics G;
 
         private const int Height = 870; 
         private const int Width = 1160; 
 
-        Bitmap bitmap;
-        Image openedFile;
+        Bitmap _bitmap;
+        Image _openedFile;
 
-        private Stack<Bitmap> undoStack;
-        private Stack<Bitmap> redoStack;
+        private Stack<Bitmap> _undoStack;
+        private Stack<Bitmap> _redoStack;
 
 
         public DrawingTool()
         {
             InitializeComponent();
 
-            this.bitmap = new Bitmap(Width, Height);
-            this.undoStack = new Stack<Bitmap>();
-            this.redoStack = new Stack<Bitmap>();
+            this._bitmap = new Bitmap(Width, Height);
+            this._undoStack = new Stack<Bitmap>();
+            this._redoStack = new Stack<Bitmap>();
 
             toolStripBrush.Checked = true;
-            g = pbCanvas.CreateGraphics();
+            G = pbCanvas.CreateGraphics();
 
             //smoothing the drawing line
-            p.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
-            pe.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
+            P.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
+            Pe.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
 
             //Changing the background of saved picture to white
             ClearBitmap();
@@ -44,25 +44,25 @@ namespace Gallaria.GUI
 
         private void PbCanvas_MouseDown(object sender, MouseEventArgs e)
         {
-            old = e.Location;
+            Old = e.Location;
 
             AddStep();
         }
 
         private void PbCanvas_MouseMove(object sender, MouseEventArgs e)
         {
-            g = Graphics.FromImage(bitmap);
+            G = Graphics.FromImage(_bitmap);
             if (e.Button == MouseButtons.Left && toolStripBrush.Checked)
             {
-                current = e.Location;
-                g.DrawLine(p, old, current);
-                old = current;
+                Current = e.Location;
+                G.DrawLine(P, Old, Current);
+                Old = Current;
             }
             else if (e.Button == MouseButtons.Left && toolStripEraser.Checked)
             {
-                current = e.Location;
-                g.DrawLine(pe, old, current);
-                old = current;
+                Current = e.Location;
+                G.DrawLine(Pe, Old, Current);
+                Old = Current;
             }
             UpdateCanvas();
             
@@ -73,15 +73,15 @@ namespace Gallaria.GUI
             ColorDialog cd = new ColorDialog();
             if (cd.ShowDialog() == DialogResult.OK)
             {
-                p.Color = cd.Color;
+                P.Color = cd.Color;
             }
         }
 
 
         private void TrackBarSize_Scroll(object sender, EventArgs e)
         {
-            p.Width = trackBarSize2.Value;
-            pe.Width = trackBarSize2.Value;
+            P.Width = trackBarSize2.Value;
+            Pe.Width = trackBarSize2.Value;
         }
 
         private void ToolStripButton_Click(object sender, EventArgs e)
@@ -101,14 +101,14 @@ namespace Gallaria.GUI
             ColorDialog cd = new ColorDialog();
             if (cd.ShowDialog() == DialogResult.OK)
             {
-                p.Color = cd.Color;
+                P.Color = cd.Color;
                 toolStripButtonColor.BackColor = cd.Color;
             }
         }
 
         private void ToolStripButtonUndo_Click(object sender, EventArgs e)
         {
-            if(undoStack.Count >= 1)
+            if(_undoStack.Count >= 1)
             {
                 Bitmap bitmap = UndoStep();
                 UseStep(bitmap);
@@ -118,7 +118,7 @@ namespace Gallaria.GUI
 
         private void ToolStripButtonRedo_Click(object sender, EventArgs e)
         {
-            if(redoStack.Count >= 1)
+            if(_redoStack.Count >= 1)
             {
                 Bitmap bitmap = RedoStep();
                 UseStep(bitmap);
@@ -151,27 +151,28 @@ namespace Gallaria.GUI
         private void OpenMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog op = new OpenFileDialog();
+            op.Filter = "Image Files| *.jpg; *.jpeg; *.png|All files(*.*)|*.*";
             DialogResult dr = op.ShowDialog();
             if (dr == DialogResult.OK)
             {
-                openedFile = Image.FromFile(op.FileName);
-                bitmap = new Bitmap(openedFile);
+                _openedFile = Image.FromFile(op.FileName);
+                _bitmap = new Bitmap(_openedFile);
                 pbCanvas.ImageLocation = op.FileName;
-                pbCanvas.Image = bitmap;
+                pbCanvas.Image = _bitmap;
             }
         }
 
         private void AddStep()
         {
-            this.undoStack.Push(new Bitmap(this.bitmap));
+            this._undoStack.Push(new Bitmap(this._bitmap));
         }
 
         private Bitmap UndoStep()
         {
             // return bitmap
-            Bitmap returnMap = this.undoStack.Pop();
+            Bitmap returnMap = this._undoStack.Pop();
 
-            this.redoStack.Push(this.bitmap);
+            this._redoStack.Push(this._bitmap);
 
             return returnMap;
         }
@@ -179,41 +180,41 @@ namespace Gallaria.GUI
         private Bitmap RedoStep()
         {
             // return bitmap
-            Bitmap returnMap = this.redoStack.Pop();
+            Bitmap returnMap = this._redoStack.Pop();
 
-            this.undoStack.Push(this.bitmap);
+            this._undoStack.Push(this._bitmap);
 
             return returnMap;
         }
 
         private void UseStep(Bitmap bitmap)
         {
-            this.bitmap = bitmap;
+            this._bitmap = bitmap;
         }
 
         private void ClearBitmap()
         {
-            for (int i = 0; i < bitmap.Width; i++)
+            for (int i = 0; i < _bitmap.Width; i++)
             {
-                for (int j = 0; j < bitmap.Height; j++)
+                for (int j = 0; j < _bitmap.Height; j++)
                 {
-                    this.bitmap.SetPixel(i, j, Color.White);
+                    this._bitmap.SetPixel(i, j, Color.White);
                 }
             }
         }
 
         private void UpdateCanvas()
         {
-            pbCanvas.Image = bitmap;
+            pbCanvas.Image = _bitmap;
         }
 
         private void ToolStripFill_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < bitmap.Width; i++)
+            for (int i = 0; i < _bitmap.Width; i++)
             {
-                for (int j = 0; j < bitmap.Height; j++)
+                for (int j = 0; j < _bitmap.Height; j++)
                 {
-                    this.bitmap.SetPixel(i, j, p.Color);
+                    this._bitmap.SetPixel(i, j, P.Color);
                 }
             }
         }

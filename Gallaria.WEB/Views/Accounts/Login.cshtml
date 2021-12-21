@@ -4,31 +4,61 @@
     ViewData["Title"] = "Login";
 }
 
-<h1>Login</h1>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Login">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" required/>
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" type="password" required/>
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+<script src="~/js/ShowPassword.js"></script>
 
-<div>
-    <a asp-action="Index" asp-controller="Home">Back to front page</a>
+<style>
+    .unstyled-button {
+        background: none;
+        color: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+    }
+    .unstyled-button:focus{
+        outline: none;
+    }
+</style>
+
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card-group mb-0">
+                <div class="card p-4">
+                    <div class="card-body">
+                        <h1>Login</h1>
+                        <p class="text-muted">Sign In to your account</p>
+                        <form method="post">
+                            <div class="input-group mb-3">
+                                <input asp-for="Email" type="text" class="form-control" placeholder="Email" required>
+                            </div>
+                            <div class="input-group mb-4">
+                                <input asp-for="Password" type="password" class="form-control" placeholder="Password" required id="password">
+                                <button type="button" class="unstyled-button border rounded-right" onclick="showPassword()" >
+                                    <img style="float: right;" src="~/Images/show.png" height="32" width="32" id="icon"/>
+                                </button>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="submit" value="Login" class="btn btn-primary px-4">Login</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
+                    <div class="card-body text-center">
+                        <div>
+                            <h2>Sign up</h2>
+                            <p></p>
+                            <p>Are you new on our website? Would you like to buy any interesting art ? If you don't have account yet</p>
+                            <button type="button" onclick="location.href='@Url.Action("CreateAccount","Accounts")'" class="btn btn-primary active mt-3">Sign up now!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Scripts {

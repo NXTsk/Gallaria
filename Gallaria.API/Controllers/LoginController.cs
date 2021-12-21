@@ -1,5 +1,5 @@
 ﻿using DataAccess.Repositories;
-using Gallaria.API.Model;
+using Gallaria.API.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -18,19 +18,20 @@ namespace Gallaria.API.Controllers
     public class LoginController : Controller
     {
         IConfiguration _config;
-        IPersonRepository personRepository;
+        IPersonRepository _personRepository;
 
-        public LoginController(IConfiguration config)
+        public LoginController(IConfiguration config, IPersonRepository personRepository)
         {
             _config = config;
-            personRepository = new PersonRepository(_config["ConnectionStrings:MSSQLconnection"]);
+            _personRepository = personRepository;
         }
 
 
+        // POST: api/Login
         [HttpPost]
         public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
         {
-            int userId = await personRepository.LoginAsync(model.Email, model.Password);
+            int userId = await _personRepository.LoginAsync(model.Email, model.Password);
 
             if(userId == -1)
             {
@@ -40,18 +41,20 @@ namespace Gallaria.API.Controllers
 
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JwtInfo:Key"]));
             var token = new JwtSecurityToken(
-                issuer: _config["Jwt:Issuer"],
-                audience: _config["Jwt:Issuer"],
+                issuer: _config["JwtInfo:Issuer"],
+                audience: _config["JwtInfo:Audience"],
                 expires: DateTime.Now.AddDays(5),
                 signingCredentials: new Microsoft.IdentityModel.Tokens.SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                 );
+
+            // Returning Ok response with an object inside the body of the response
+            // Object contain Logged in userId, token and it's expiration
             return Ok(new
             {
                 token = new JwtSecurityTokenHandler().WriteToken(token),
                 expiration = token.ValidTo,
                 userId = userId
             });
-
         }
     }
 }

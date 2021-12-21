@@ -9,6 +9,8 @@ namespace Gallaria.ApiClient.DTOs
 {
     public class PersonDto
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "First name is required.")]
         public string FirstName { get; set; }
 
@@ -22,6 +24,10 @@ namespace Gallaria.ApiClient.DTOs
         [Required(ErrorMessage = "Password is required.")]
         [DataType(DataType.Password)]
         public string HashPassword { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        public string NewPassword { get; set; }
 
         [Required(ErrorMessage = "Confirmation of password is required.")]
         [Compare("HashPassword", ErrorMessage = "Passwords don't match")]

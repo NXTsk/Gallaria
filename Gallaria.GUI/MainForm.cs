@@ -1,6 +1,5 @@
 ﻿using DataAccess.Model;
 using Gallaria.ApiClient;
-using Gallaria.ApiClient.ApiResponses;
 using Gallaria.ApiClient.DTOs;
 using System;
 using System.Collections.Generic;
@@ -17,20 +16,23 @@ namespace Gallaria.GUI
 {
     public partial class MainForm : Form
     {
-        public static AuthenticatedUserData _user;
+        public static AuthUserDto User;
 
-        private Button currentButton;
-        private Color themeColor = ColorTranslator.FromHtml("#34c5e6");
-        private Color selectedColor = ColorTranslator.FromHtml("#006e9c");
-        private Form activeForm;
+        private Button _currentButton;
+        private Color _themeColor = ColorTranslator.FromHtml("#34c5e6");
+        private Color _selectedColor = ColorTranslator.FromHtml("#006e9c");
+        private Form _displayCreatedArts;
+        internal Form _activeForm;
 
+        private PersonClient _personClient;
 
-        public MainForm(AuthenticatedUserData user)
+        public MainForm(AuthUserDto user)
         {
             InitializeComponent();
-            _user = user;
-           
-            var person = Task.Run(async () => await GetPersonByIdAsync(_user.UserId)).ConfigureAwait(false).GetAwaiter().GetResult();
+            User = user;
+            _personClient = new PersonClient(Constants.APIUrl);
+
+            var person = Task.Run(async () => await GetPersonByIdAsync(User.UserId)).ConfigureAwait(false).GetAwaiter().GetResult();
 
             lblUserName.Text = person.FirstName;
 
@@ -43,7 +45,7 @@ namespace Gallaria.GUI
 
         private async Task<PersonDto> GetPersonByIdAsync(int id)
         {
-            PersonDto person = await PersonController.GetPersonByIdAsync(id);
+            PersonDto person = await _personClient.GetPersonByIdAsync(id);
             return person;
         }
 
@@ -56,17 +58,15 @@ namespace Gallaria.GUI
         {
             if (btnSender != null)
             {
-                if (currentButton != (Button)btnSender)
+                if (_currentButton != (Button)btnSender)
                 {
                     DisableButton();
-                    Color color = selectedColor;
-                    currentButton = (Button)btnSender;
-                    currentButton.BackColor = color;
-                    currentButton.ForeColor = Color.White;
-                    currentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    Color color = _selectedColor;
+                    _currentButton = (Button)btnSender;
+                    _currentButton.BackColor = color;
+                    _currentButton.ForeColor = Color.White;
+                    _currentButton.Font = new System.Drawing.Font("Yu Gothic UI", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                     panelTitleBar.BackColor = color;
-                    //ThemeColor.PrimaryColor = color;
-                    //ThemeColor.SecondaryColor = ThemeColor.ChangeColorBrightness(color, -0.3);
                     btnCloseChildForm.Visible = true;
                 }
             }
@@ -78,18 +78,19 @@ namespace Gallaria.GUI
             {
                 if (previousBtn.GetType() == typeof(Button))
                 {
-                    previousBtn.BackColor = themeColor;
+                    previousBtn.BackColor = _themeColor;
                     previousBtn.ForeColor = Color.Gainsboro;
-                    previousBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    previousBtn.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
             }
         }
+
         private void OpenChildForm(Form childForm, object btnSender)
         {
-            if (activeForm != null)
-                activeForm.Close();
+            if (_activeForm != null)
+                _activeForm.Close();
             ActivateButton(btnSender);
-            activeForm = childForm;
+            _activeForm = childForm;
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
@@ -107,17 +108,19 @@ namespace Gallaria.GUI
 
         private void BtnCloseChildForm_Click(object sender, EventArgs e)
         {
-            if (activeForm != null)
-                activeForm.Close();
+            if (_activeForm != null)
+                _activeForm.Close();
             Reset();
         }
+
         private void Reset()
         {
             DisableButton();
             lblTitle.Text = "Home";
-            panelTitleBar.BackColor = themeColor;
-            currentButton = null;
+            panelTitleBar.BackColor = _themeColor;
+            _currentButton = null;
             btnCloseChildForm.Visible = false;
+            _activeForm = _displayCreatedArts;
         }
 
         private void PanelTitleBar_MouseDown(object sender, MouseEventArgs e)
@@ -147,6 +150,12 @@ namespace Gallaria.GUI
         private void BtnUpload_Click(object sender, EventArgs e)
         {
             OpenChildForm(new UploadArtForm(), sender);
+        }
+
+        private void BtnEditArt_Click(object sender, EventArgs e)
+        {
+            _displayCreatedArts = new DisplayCreatedArts(this);
+            OpenChildForm(_displayCreatedArts, sender);
         }
     }
 }

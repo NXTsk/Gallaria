@@ -1,5 +1,5 @@
 ﻿using DataAccess.Model;
-using Gallaria.API.Model;
+using Gallaria.API.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,10 @@ namespace Gallaria.API.Converters
             var personDto = new PersonDto();
             personDto.Address = new AddressDto();
             personToConvert.CopyPropertiesTo(personDto);
-            personToConvert.Address.CopyPropertiesTo(personDto.Address);
+            if (personToConvert.Address != null)
+            {
+                personToConvert.Address.CopyPropertiesTo(personDto.Address);
+            }
             return personDto;
         }
 
@@ -24,7 +27,10 @@ namespace Gallaria.API.Converters
             var person = new Person();
             person.Address = new Address();
             personDtoToConvert.CopyPropertiesTo(person);
+            if (personDtoToConvert.Address != null)
+            {
             personDtoToConvert.Address.CopyPropertiesTo(person.Address);
+            }
             return person;
         }
 
@@ -60,6 +66,7 @@ namespace Gallaria.API.Converters
             var artist = new Artist();
             artist.Address = new Address();
             artistDtoToConvert.CopyPropertiesTo(artist);
+            artist.ArtistId = artistDtoToConvert.Id;
             artistDtoToConvert.Address.CopyPropertiesTo(artist.Address);
             return artist;
         }
@@ -110,6 +117,94 @@ namespace Gallaria.API.Converters
             foreach (var artDto in artDtosToConvert)
             {
                 yield return artDto.FromDto();
+            }
+        }
+
+        #endregion
+
+        #region Order conversion methods
+
+        public static OrderDto ToDto(this Order orderToConvert)
+        {
+            var orderDto = new OrderDto();
+            var orderLineItemDto = new OrderLineItemDto();
+            Art art = new Art();
+            var personDto = new PersonDto();
+
+            orderToConvert.CopyPropertiesTo(orderDto);
+            orderDto.OrderLineItems = orderToConvert.OrderLineItems.ToDtos().ToList();
+            orderDto.Person = orderToConvert.Person.ToDto();
+
+            return orderDto;
+        }
+
+        public static Order FromDto(this OrderDto orderDtoToConvert)
+        {
+            var order = new Order();
+            order.OrderLineItems = new List<OrderLineItem>();
+            order.Person = new Person();
+
+            orderDtoToConvert.CopyPropertiesTo(order);
+
+
+            order.OrderLineItems = orderDtoToConvert.OrderLineItems.FromDtos().ToList();
+            order.Person = orderDtoToConvert.Person.FromDto();
+            return order;
+        }
+
+        public static IEnumerable<OrderDto> ToDtos(this IEnumerable<Order> ordersToConvert)
+        {
+            foreach (var order in ordersToConvert)
+            {
+                yield return order.ToDto();
+            }
+        }
+
+        public static IEnumerable<Order> FromDtos(this IEnumerable<OrderDto> orderDtosToConvert)
+        {
+            foreach (var orderDto in orderDtosToConvert)
+            {
+                yield return orderDto.FromDto();
+            }
+        }
+
+        #endregion
+
+        #region OrderLineItem conversion methods
+        public static OrderLineItemDto ToDto(this OrderLineItem orderLineItemToConvert)
+        {
+            var orderLineItemDto = new OrderLineItemDto();
+            var artDto = new ArtDto();
+
+            orderLineItemToConvert.CopyPropertiesTo(orderLineItemDto);
+            orderLineItemDto.Art = orderLineItemToConvert.Art.ToDto();
+            return orderLineItemDto;
+        }
+
+        public static OrderLineItem FromDto(this OrderLineItemDto orderLineItemDtoToConvert)
+        {
+            var orderLineItem = new OrderLineItem();
+            var art = new Art();
+
+            orderLineItemDtoToConvert.CopyPropertiesTo(orderLineItem);
+            orderLineItem.Art = orderLineItemDtoToConvert.Art.FromDto();
+
+            return orderLineItem;
+        }
+
+        public static IEnumerable<OrderLineItemDto> ToDtos(this ICollection<OrderLineItem> orderLineItemsToConvert)
+        {
+            foreach (var orderLineItem in orderLineItemsToConvert)
+            {
+                yield return orderLineItem.ToDto();
+            }
+        }
+
+        public static IEnumerable<OrderLineItem> FromDtos(this ICollection<OrderLineItemDto> orderLineItemDtosToConvert)
+        {
+            foreach (var orderLineItemDto in orderLineItemDtosToConvert)
+            {
+                yield return orderLineItemDto.FromDto();
             }
         }
 
