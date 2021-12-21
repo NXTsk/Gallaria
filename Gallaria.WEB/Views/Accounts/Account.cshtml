@@ -90,42 +90,37 @@
                             </div>
                         }
                     </div>
-                    @if (ViewBag.isArtist)
-                    {
 
-
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="table-container">
-                                <table class="table table-filter">
-                                    <tbody>
-                                        @foreach (OrderDto order in Model.Orders)
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="table-container">
+                            <table class="table table-filter">
+                                <tbody>
+                                    @foreach (OrderDto order in Model.Orders)
+                                    {
+                                        @foreach (OrderLineItemDto orderLineItem in order.OrderLineItems)
                                         {
-                                            @foreach (OrderLineItemDto orderLineItem in order.OrderLineItems)
-                                            {
-                                                <tr>
-                                                    <td>
-                                                        <div class="media">
-                                                            <img src="@orderLineItem.Art.Img64" style="max-height:100px;" />
-                                                            <div class="media-body">
-                                                                <h4 class="title">
-                                                                    <span class="pull-right pagado">@orderLineItem.Art.Title</span>
-                                                                </h4>
-                                                                <p class="summary">@orderLineItem.Art.Description</p>
-                                                                <h3>Quantity: @orderLineItem.Quantity</h3>
-                                                                <b>@order.Date.ToShortDateString()</b>
-                                                            </div>
+                                            <tr>
+                                                <td>
+                                                    <div class="media">
+                                                        <img src="@orderLineItem.Art.Img64" style="max-height:100px;" />
+                                                        <div class="media-body">
+                                                            <h4 class="title">
+                                                                <span class="pull-right pagado">@orderLineItem.Art.Title</span>
+                                                            </h4>
+                                                            <p class="summary">@orderLineItem.Art.Description</p>
+                                                            <h3>Quantity: @orderLineItem.Quantity</h3>
+                                                            <b>@order.Date.ToShortDateString()</b>
                                                         </div>
-                                                    </td>
-                                                </tr>
-                                            }
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         }
+                                    }
 
-                                    </tbody>
-                                </table>
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
-                    }
-
+                    </div>
                 </div>
             </div>
         </div>

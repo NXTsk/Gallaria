@@ -82,30 +82,26 @@ namespace Gallaria.WEB.Controllers
             bool isArtist = _personClient.IsArtistAsync(personId).Result;
             ViewBag.IsArtist = isArtist;
 
+            // Creating Expando object, so we can pass it in parameter to the view
+            // View then works with dynamic object
+            dynamic obj = new ExpandoObject();
+            obj.Orders = newOrderDtos;
+
+
             if (isArtist)
             {
                 ArtistDto artist = _personClient.GetArtistByIdAsync(personId).Result;
-
-                // Creating Expando object, so we can pass it in parameter to the view
-                // View then works with dynamic object
-                dynamic obj = new ExpandoObject();
                 obj.Person = artist;
-                obj.Orders = newOrderDtos;
-
-                return View(obj);
             }
             else
             {
                 PersonDto person = _personClient.GetPersonByIdAsync(personId).Result;
-
-                // Creating Expando object, so we can pass it in parameter to the view
-                // View then works with dynamic object
-                dynamic obj = new ExpandoObject();
                 obj.Person = person;
 
-                return View(obj);
-
             }
+
+            return View(obj);
+
         }
 
         public IActionResult Index()

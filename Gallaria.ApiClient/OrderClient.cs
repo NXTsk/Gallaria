@@ -75,7 +75,7 @@ namespace Gallaria.ApiClient
             }
             else
             {
-                throw new Exception("Error retrieving all arts that belong to specific artist");
+                throw new Exception("Error retrieving all orders that belong to a specific person");
             }
             return orderDtos;
         }
