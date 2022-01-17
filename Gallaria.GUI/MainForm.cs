@@ -157,5 +157,16 @@ namespace Gallaria.GUI
             _displayCreatedArts = new DisplayCreatedArts(this);
             OpenChildForm(_displayCreatedArts, sender);
         }
+
+        private void BtnLogOut_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Are you sure", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                this.Dispose();
+                LoginForm loginForm = new LoginForm();
+                loginForm.Show();
+            }
+        }
     }
 }

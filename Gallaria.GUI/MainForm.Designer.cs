@@ -31,6 +31,7 @@ namespace Gallaria.GUI
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelSidebar = new System.Windows.Forms.Panel();
+            this.btnLogOut = new System.Windows.Forms.Button();
             this.btnEditArt = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblUserName = new System.Windows.Forms.Label();
@@ -59,6 +60,7 @@ namespace Gallaria.GUI
             // panelSidebar
             // 
             this.panelSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(197)))), ((int)(((byte)(230)))));
+            this.panelSidebar.Controls.Add(this.btnLogOut);
             this.panelSidebar.Controls.Add(this.btnEditArt);
             this.panelSidebar.Controls.Add(this.pictureBox2);
             this.panelSidebar.Controls.Add(this.lblUserName);
@@ -71,6 +73,22 @@ namespace Gallaria.GUI
             this.panelSidebar.Name = "panelSidebar";
             this.panelSidebar.Size = new System.Drawing.Size(200, 600);
             this.panelSidebar.TabIndex = 0;
+            // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnLogOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
+            this.btnLogOut.FlatAppearance.BorderSize = 0;
+            this.btnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogOut.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnLogOut.ForeColor = System.Drawing.Color.White;
+            this.btnLogOut.Location = new System.Drawing.Point(31, 554);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(131, 34);
+            this.btnLogOut.TabIndex = 8;
+            this.btnLogOut.Text = "Log out";
+            this.btnLogOut.UseVisualStyleBackColor = false;
+            this.btnLogOut.Click += new System.EventHandler(this.BtnLogOut_Click);
             // 
             // btnEditArt
             // 
@@ -98,7 +116,7 @@ namespace Gallaria.GUI
             // 
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pictureBox2.Image = global::Gallaria.GUI.Properties.Resources.profilePicture_64x64;
-            this.pictureBox2.Location = new System.Drawing.Point(62, 482);
+            this.pictureBox2.Location = new System.Drawing.Point(68, 450);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(64, 64);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -110,7 +128,7 @@ namespace Gallaria.GUI
             this.lblUserName.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblUserName.AutoSize = true;
             this.lblUserName.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblUserName.Location = new System.Drawing.Point(100, 559);
+            this.lblUserName.Location = new System.Drawing.Point(106, 517);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(34, 20);
             this.lblUserName.TabIndex = 4;
@@ -121,7 +139,7 @@ namespace Gallaria.GUI
             this.lblLoggedAs.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblLoggedAs.AutoSize = true;
             this.lblLoggedAs.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblLoggedAs.Location = new System.Drawing.Point(23, 559);
+            this.lblLoggedAs.Location = new System.Drawing.Point(29, 517);
             this.lblLoggedAs.Name = "lblLoggedAs";
             this.lblLoggedAs.Size = new System.Drawing.Size(81, 20);
             this.lblLoggedAs.TabIndex = 3;
@@ -337,5 +355,6 @@ namespace Gallaria.GUI
         private System.Windows.Forms.Label lblLoggedAs;
         private System.Windows.Forms.Button btnEditArt;
         private System.Windows.Forms.PictureBox pictureBoxLogo;
+        protected System.Windows.Forms.Button btnLogOut;
     }
 }
